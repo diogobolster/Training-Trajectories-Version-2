@@ -1,0 +1,8 @@
+# Optional richer simulation stack. The current bootstrap code only requires numpy.
+h5py
+scipy
+scikit-image
+matplotlib
+porespy
+openpnm
+pytest

@@ -1,0 +1,45 @@
+{
+  "raw": "data/raw/Core2_Subvol1_6micron_225cube_16bit_LE.raw",
+  "case_dir": "openfoam_cases/bentheimer_core2_subvol1_6um_downsample2_voxel_flow",
+  "time": "105",
+  "input_shape": [
+    225,
+    225,
+    225
+  ],
+  "simulation_shape": [
+    112,
+    112,
+    112
+  ],
+  "voxel_size": 1.2e-05,
+  "downsample_factor": 2,
+  "raw_porosity": 0.23081253985969388,
+  "connected_porosity": 0.2295662126457726,
+  "physical_mean_speed_voxels_per_second": 0.0016115898540828538,
+  "target_mean_speed": 0.09,
+  "simulation_mean_speed": 0.08999999999999998,
+  "particles_requested": 5000,
+  "steps_requested": 4000,
+  "dt": 0.1,
+  "diffusivity": 0.00225,
+  "max_advective_step": 0.05,
+  "max_diffusive_step": 0.0375,
+  "max_substeps": 128,
+  "seed": 20260524,
+  "n_trajectories": 5000,
+  "mean_trajectory_length": 4000.842,
+  "tracking_diagnostics": {
+    "particles_started": 5000.0,
+    "output_steps_attempted": 19999210.0,
+    "output_steps_completed": 19999210.0,
+    "substeps": 20215996.0,
+    "max_substeps_in_output_step": 5.0,
+    "substep_cap_hits": 0.0,
+    "diffusive_rejections": 237543.0,
+    "advective_fallback_accepts": 175482.0,
+    "immobile_rejections": 62061.0,
+    "mean_substeps_per_output_step": 1.0108397281692627
+  },
+  "output": "data/processed/bentheimer_core2_subvol1_6um_downsample2_D00225_openfoam_phys_scaled_dt010_n5000_trajectories.npz"
+}

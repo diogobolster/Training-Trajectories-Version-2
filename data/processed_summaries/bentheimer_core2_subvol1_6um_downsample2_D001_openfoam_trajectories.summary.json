@@ -1,0 +1,30 @@
+{
+  "raw": "data/raw/Core2_Subvol1_6micron_225cube_16bit_LE.raw",
+  "case_dir": "openfoam_cases/bentheimer_core2_subvol1_6um_downsample2_voxel_flow",
+  "time": "105",
+  "input_shape": [
+    225,
+    225,
+    225
+  ],
+  "simulation_shape": [
+    112,
+    112,
+    112
+  ],
+  "voxel_size": 1.2e-05,
+  "downsample_factor": 2,
+  "raw_porosity": 0.23081253985969388,
+  "connected_porosity": 0.2295662126457726,
+  "physical_mean_speed_voxels_per_second": 0.0016115898540828538,
+  "target_mean_speed": 0.06,
+  "simulation_mean_speed": 0.06,
+  "particles_requested": 500,
+  "steps_requested": 800,
+  "dt": 0.5,
+  "diffusivity": 0.001,
+  "seed": 1,
+  "n_trajectories": 500,
+  "mean_trajectory_length": 801.0,
+  "output": "data/processed/bentheimer_core2_subvol1_6um_downsample2_D001_openfoam_trajectories.npz"
+}

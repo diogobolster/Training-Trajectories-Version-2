@@ -1,0 +1,4267 @@
+{
+  "input": "data/processed/bentheimer_core2_subvol1_6um_downsample3_D001_trajectories.npz",
+  "n_outer_splits": 4,
+  "n_repeats": 3,
+  "component_order": [
+    "gaussian_bayes",
+    "knn_conditional",
+    "hybrid",
+    "pair_rerank"
+  ],
+  "objective_weights": {
+    "btc": 1.0,
+    "pair": 20.0,
+    "dilution": 120.0,
+    "reaction": 1000.0
+  },
+  "outer_results": [
+    {
+      "outer_index": 0,
+      "seed": 123,
+      "splits": {
+        "train_pool": 350,
+        "test": 150,
+        "test_fraction": 0.3,
+        "seed": 123
+      },
+      "archive": {
+        "size": 16800,
+        "segment_steps": 36,
+        "match_steps": 20
+      },
+      "repeat_results": [
+        {
+          "repeat": 0,
+          "seed": 123,
+          "split": {
+            "fit": 245,
+            "validation": 105,
+            "validation_fraction": 0.3
+          },
+          "archive_size": 11760,
+          "selected_weights": {
+            "gaussian_bayes": 0.25,
+            "knn_conditional": 0.25,
+            "hybrid": 0.5,
+            "pair_rerank": 0.0
+          },
+          "selected_score": 233.71650472250602,
+          "validation_top": [
+            {
+              "weights": {
+                "gaussian_bayes": 0.25,
+                "knn_conditional": 0.25,
+                "hybrid": 0.5,
+                "pair_rerank": 0.0
+              },
+              "score": 233.71650472250602,
+              "errors": {
+                "btc_score": 100.7079365079365,
+                "btc_quantile_mae": 75.3111111111111,
+                "btc_coverage_deficit": 0.10158730158730157,
+                "dilution_log_mae": 0.7120501916984396,
+                "pair_quantile_mae": 2.3781272605378385,
+                "reaction_abs_error": 0.0
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.0,
+                "knn_conditional": 0.0,
+                "hybrid": 0.75,
+                "pair_rerank": 0.25
+              },
+              "score": 260.6496300971088,
+              "errors": {
+                "btc_score": 119.43386243386242,
+                "btc_quantile_mae": 90.33333333333331,
+                "btc_coverage_deficit": 0.11640211640211641,
+                "dilution_log_mae": 0.7534653025282396,
+                "pair_quantile_mae": 2.5399965679928824,
+                "reaction_abs_error": 0.0
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.5,
+                "knn_conditional": 0.0,
+                "hybrid": 0.25,
+                "pair_rerank": 0.25
+              },
+              "score": 262.8841969569024,
+              "errors": {
+                "btc_score": 135.46719576719576,
+                "btc_quantile_mae": 95.25555555555555,
+                "btc_coverage_deficit": 0.16084656084656082,
+                "dilution_log_mae": 0.7457636671886847,
+                "pair_quantile_mae": 1.7712680563532235,
+                "reaction_abs_error": 0.0024999999999999988
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.5,
+                "knn_conditional": 0.0,
+                "hybrid": 0.5,
+                "pair_rerank": 0.0
+              },
+              "score": 263.21587941401094,
+              "errors": {
+                "btc_score": 130.35978835978835,
+                "btc_quantile_mae": 91.99999999999999,
+                "btc_coverage_deficit": 0.15343915343915346,
+                "dilution_log_mae": 0.7332673306416002,
+                "pair_quantile_mae": 2.2432005688615297,
+                "reaction_abs_error": 0.0
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.0,
+                "knn_conditional": 0.25,
+                "hybrid": 0.75,
+                "pair_rerank": 0.0
+              },
+              "score": 263.50462278334084,
+              "errors": {
+                "btc_score": 126.47460317460316,
+                "btc_quantile_mae": 95.52222222222221,
+                "btc_coverage_deficit": 0.12380952380952381,
+                "dilution_log_mae": 0.7534653025282394,
+                "pair_quantile_mae": 2.289042498600782,
+                "reaction_abs_error": 0.0008333333333333318
+              }
+            }
+          ]
+        },
+        {
+          "repeat": 1,
+          "seed": 1132,
+          "split": {
+            "fit": 245,
+            "validation": 105,
+            "validation_fraction": 0.3
+          },
+          "archive_size": 11760,
+          "selected_weights": {
+            "gaussian_bayes": 0.75,
+            "knn_conditional": 0.25,
+            "hybrid": 0.0,
+            "pair_rerank": 0.0
+          },
+          "selected_score": 267.2793095516558,
+          "validation_top": [
+            {
+              "weights": {
+                "gaussian_bayes": 0.75,
+                "knn_conditional": 0.25,
+                "hybrid": 0.0,
+                "pair_rerank": 0.0
+              },
+              "score": 267.2793095516558,
+              "errors": {
+                "btc_score": 143.0201058201058,
+                "btc_quantile_mae": 76.08888888888889,
+                "btc_coverage_deficit": 0.26772486772486775,
+                "dilution_log_mae": 0.7143317255017285,
+                "pair_quantile_mae": 1.6769698335671273,
+                "reaction_abs_error": 0.005000000000000001
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.25,
+                "knn_conditional": 0.5,
+                "hybrid": 0.25,
+                "pair_rerank": 0.0
+              },
+              "score": 282.5158791298748,
+              "errors": {
+                "btc_score": 168.7793650793651,
+                "btc_quantile_mae": 120.36666666666669,
+                "btc_coverage_deficit": 0.19365079365079363,
+                "dilution_log_mae": 0.6604202781248438,
+                "pair_quantile_mae": 1.4743040337764233,
+                "reaction_abs_error": 0.005000000000000001
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.75,
+                "knn_conditional": 0.0,
+                "hybrid": 0.25,
+                "pair_rerank": 0.0
+              },
+              "score": 287.4859401592824,
+              "errors": {
+                "btc_score": 168.5941798941799,
+                "btc_quantile_mae": 88.7,
+                "btc_coverage_deficit": 0.31957671957671957,
+                "dilution_log_mae": 0.6941337536150891,
+                "pair_quantile_mae": 1.5297854915645905,
+                "reaction_abs_error": 0.005000000000000001
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.5,
+                "knn_conditional": 0.25,
+                "hybrid": 0.0,
+                "pair_rerank": 0.25
+              },
+              "score": 290.04663244277594,
+              "errors": {
+                "btc_score": 172.52751322751323,
+                "btc_quantile_mae": 114.85555555555555,
+                "btc_coverage_deficit": 0.2306878306878307,
+                "dilution_log_mae": 0.7297349961808386,
+                "pair_quantile_mae": 1.3308793170114368,
+                "reaction_abs_error": 0.0033333333333333357
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.25,
+                "knn_conditional": 0.0,
+                "hybrid": 0.75,
+                "pair_rerank": 0.0
+              },
+              "score": 293.39113418952576,
+              "errors": {
+                "btc_score": 171.84973544973542,
+                "btc_quantile_mae": 108.6222222222222,
+                "btc_coverage_deficit": 0.2529100529100529,
+                "dilution_log_mae": 0.6864321182755342,
+                "pair_quantile_mae": 1.7084772273363116,
+                "reaction_abs_error": 0.005000000000000001
+              }
+            }
+          ]
+        },
+        {
+          "repeat": 2,
+          "seed": 2141,
+          "split": {
+            "fit": 245,
+            "validation": 105,
+            "validation_fraction": 0.3
+          },
+          "archive_size": 11760,
+          "selected_weights": {
+            "gaussian_bayes": 0.5,
+            "knn_conditional": 0.25,
+            "hybrid": 0.25,
+            "pair_rerank": 0.0
+          },
+          "selected_score": 254.69841211424196,
+          "validation_top": [
+            {
+              "weights": {
+                "gaussian_bayes": 0.5,
+                "knn_conditional": 0.25,
+                "hybrid": 0.25,
+                "pair_rerank": 0.0
+              },
+              "score": 254.69841211424196,
+              "errors": {
+                "btc_score": 103.96402116402118,
+                "btc_quantile_mae": 66.13333333333335,
+                "btc_coverage_deficit": 0.1513227513227513,
+                "dilution_log_mae": 0.6933462201595209,
+                "pair_quantile_mae": 2.5849755598872473,
+                "reaction_abs_error": 0.01583333333333333
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.25,
+                "knn_conditional": 0.25,
+                "hybrid": 0.5,
+                "pair_rerank": 0.0
+              },
+              "score": 258.12314117586646,
+              "errors": {
+                "btc_score": 101.08359788359789,
+                "btc_quantile_mae": 75.42222222222223,
+                "btc_coverage_deficit": 0.10264550264550265,
+                "dilution_log_mae": 0.6914584530840167,
+                "pair_quantile_mae": 2.8698931127759963,
+                "reaction_abs_error": 0.016666666666666663
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.25,
+                "knn_conditional": 0.5,
+                "hybrid": 0.25,
+                "pair_rerank": 0.0
+              },
+              "score": 258.5728376697639,
+              "errors": {
+                "btc_score": 105.178835978836,
+                "btc_quantile_mae": 85.86666666666669,
+                "btc_coverage_deficit": 0.07724867724867725,
+                "dilution_log_mae": 0.6914584530840167,
+                "pair_quantile_mae": 2.6042826993756263,
+                "reaction_abs_error": 0.018333333333333333
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.5,
+                "knn_conditional": 0.5,
+                "hybrid": 0.0,
+                "pair_rerank": 0.0
+              },
+              "score": 258.6767678663913,
+              "errors": {
+                "btc_score": 95.59365079365081,
+                "btc_quantile_mae": 67.02222222222224,
+                "btc_coverage_deficit": 0.11428571428571428,
+                "dilution_log_mae": 0.7241527615177406,
+                "pair_quantile_mae": 2.975905951197246,
+                "reaction_abs_error": 0.016666666666666663
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.75,
+                "knn_conditional": 0.25,
+                "hybrid": 0.0,
+                "pair_rerank": 0.0
+              },
+              "score": 260.56036250993,
+              "errors": {
+                "btc_score": 108.20846560846564,
+                "btc_quantile_mae": 81.48888888888892,
+                "btc_coverage_deficit": 0.10687830687830686,
+                "dilution_log_mae": 0.6933462201595209,
+                "pair_quantile_mae": 2.707517524116092,
+                "reaction_abs_error": 0.015
+              }
+            }
+          ]
+        }
+      ],
+      "mean_selected_weights": {
+        "gaussian_bayes": 0.5,
+        "knn_conditional": 0.25,
+        "hybrid": 0.25,
+        "pair_rerank": 0.0
+      },
+      "pooled_validation_weights": {
+        "gaussian_bayes": 0.25,
+        "knn_conditional": 0.25,
+        "hybrid": 0.5,
+        "pair_rerank": 0.0
+      },
+      "pooled_validation_top": [
+        {
+          "weights": {
+            "gaussian_bayes": 0.25,
+            "knn_conditional": 0.25,
+            "hybrid": 0.5,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 271.7748989655099
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.25,
+            "knn_conditional": 0.5,
+            "hybrid": 0.25,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 271.8160096281697
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.75,
+            "knn_conditional": 0.25,
+            "hybrid": 0.0,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 273.55313834056295
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.5,
+            "knn_conditional": 0.25,
+            "hybrid": 0.0,
+            "pair_rerank": 0.25
+          },
+          "mean_score": 277.94618828797263
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.0,
+            "knn_conditional": 0.25,
+            "hybrid": 0.75,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 278.01336344696443
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.5,
+            "knn_conditional": 0.5,
+            "hybrid": 0.0,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 279.8573618943029
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.25,
+            "knn_conditional": 0.0,
+            "hybrid": 0.75,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 281.99463727491764
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.5,
+            "knn_conditional": 0.25,
+            "hybrid": 0.25,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 284.2762485678512
+        }
+      ],
+      "test": {
+        "bootstrap_mean_mixture": {
+          "errors": {
+            "btc_score": 164.09166666666667,
+            "btc_quantile_mae": 117.07777777777778,
+            "btc_coverage_deficit": 0.18805555555555556,
+            "dilution_log_mae": 0.5210249227237471,
+            "pair_quantile_mae": 0.9450218838220654,
+            "reaction_abs_error": 0.008333333333333333
+          },
+          "objective": 253.84842840329097,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 33.0,
+                "coverage": 0.4125,
+                "q10": 90.6,
+                "q50": 309.0,
+                "q90": 440.8
+              },
+              "10.0": {
+                "count": 19.0,
+                "coverage": 0.2375,
+                "q10": 195.6,
+                "q50": 340.0,
+                "q90": 500.4
+              },
+              "14.0": {
+                "count": 9.0,
+                "coverage": 0.1125,
+                "q10": 308.0,
+                "q50": 397.0,
+                "q90": 479.8
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 71.0,
+                "entropy": 4.202199237736837,
+                "dilution_index": 1804.49509115012
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 72.0,
+                "entropy": 4.230315994967778,
+                "dilution_index": 1855.9516474236373
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 73.0,
+                "entropy": 4.247644674481777,
+                "dilution_index": 1888.3931107780766
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 74.0,
+                "entropy": 4.264973353995775,
+                "dilution_index": 1921.4016409233102
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 35.195593627925035,
+                "q10": 12.815011614364243,
+                "q50": 33.22273232384911,
+                "q90": 58.45437700628806
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 35.58389329885488,
+                "q10": 12.940179583185929,
+                "q50": 34.14229159140879,
+                "q90": 59.87112964335869
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 36.064556681514176,
+                "q10": 13.216572600349211,
+                "q50": 34.674855271548566,
+                "q90": 60.64081488389362
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 36.71400081301557,
+                "q10": 13.408864088306535,
+                "q50": 35.41141035227976,
+                "q90": 61.947447776887344
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 27.0,
+              "probability": 0.0225
+            }
+          },
+          "rank": 1
+        },
+        "pooled_validation_mixture": {
+          "errors": {
+            "btc_score": 192.79722222222222,
+            "btc_quantile_mae": 143.70000000000002,
+            "btc_coverage_deficit": 0.19638888888888886,
+            "dilution_log_mae": 0.5006422594019766,
+            "pair_quantile_mae": 0.2835152553874353,
+            "reaction_abs_error": 0.009166666666666668
+          },
+          "objective": 267.7112651248748,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 33.0,
+                "coverage": 0.4125,
+                "q10": 94.8,
+                "q50": 279.0,
+                "q90": 473.2
+              },
+              "10.0": {
+                "count": 19.0,
+                "coverage": 0.2375,
+                "q10": 168.8,
+                "q50": 347.0,
+                "q90": 457.4
+              },
+              "14.0": {
+                "count": 7.0,
+                "coverage": 0.0875,
+                "q10": 195.4,
+                "q50": 272.0,
+                "q90": 423.00000000000006
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 71.0,
+                "entropy": 4.202199237736837,
+                "dilution_index": 1804.49509115012
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 72.0,
+                "entropy": 4.236856596764835,
+                "dilution_index": 1868.1304731116707
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 74.0,
+                "entropy": 4.246779406118752,
+                "dilution_index": 1886.7598506684164
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 78.0,
+                "entropy": 4.340828673848826,
+                "dilution_index": 2072.8205428043675
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 35.156113906764546,
+                "q10": 12.710943165955756,
+                "q50": 33.25823667057499,
+                "q90": 58.48894902024073
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 35.43868946285856,
+                "q10": 13.342566179223532,
+                "q50": 33.92698425911711,
+                "q90": 58.53844692846427
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 35.90150047115509,
+                "q10": 14.007948063308275,
+                "q50": 34.49402998718706,
+                "q90": 58.81433544924661
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 36.29747063494665,
+                "q10": 14.181768929404274,
+                "q50": 34.77063180122534,
+                "q90": 59.41275144698368
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 28.0,
+              "probability": 0.023333333333333334
+            }
+          },
+          "rank": 3
+        },
+        "gaussian_bayes": {
+          "errors": {
+            "btc_score": 177.11111111111111,
+            "btc_quantile_mae": 133.22222222222223,
+            "btc_coverage_deficit": 0.17555555555555555,
+            "dilution_log_mae": 0.5369347688792383,
+            "pair_quantile_mae": 0.6776980958739703,
+            "reaction_abs_error": 0.01
+          },
+          "objective": 265.09724529409914,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 33.0,
+                "coverage": 0.4125,
+                "q10": 87.4,
+                "q50": 319.0,
+                "q90": 508.6
+              },
+              "10.0": {
+                "count": 20.0,
+                "coverage": 0.25,
+                "q10": 123.9,
+                "q50": 359.5,
+                "q90": 509.5
+              },
+              "14.0": {
+                "count": 11.0,
+                "coverage": 0.1375,
+                "q10": 193.0,
+                "q50": 319.0,
+                "q90": 465.0
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 66.0,
+                "entropy": 4.095068766412649,
+                "dilution_index": 1621.1736357133448
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 70.0,
+                "entropy": 4.19565863593978,
+                "dilution_index": 1792.731120974405
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 75.0,
+                "entropy": 4.295383237103887,
+                "dilution_index": 1980.728733322087
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 75.0,
+                "entropy": 4.295383237103887,
+                "dilution_index": 1980.728733322087
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 35.13882908451758,
+                "q10": 12.604944725684271,
+                "q50": 33.667312006510215,
+                "q90": 58.18263627325622
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 35.575116474724105,
+                "q10": 12.625259506021859,
+                "q50": 34.14319194577385,
+                "q90": 59.66206532014752
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 35.87380892062749,
+                "q10": 12.667066685976424,
+                "q50": 34.37155932402433,
+                "q90": 59.872477665606326
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 36.35286302580258,
+                "q10": 13.984803650392248,
+                "q50": 34.623951160577505,
+                "q90": 60.76039924636759
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 29.0,
+              "probability": 0.024166666666666666
+            }
+          },
+          "rank": 2
+        },
+        "knn_conditional": {
+          "errors": {
+            "btc_score": 226.5416666666667,
+            "btc_quantile_mae": 156.61111111111114,
+            "btc_coverage_deficit": 0.27972222222222226,
+            "dilution_log_mae": 0.4987907918619561,
+            "pair_quantile_mae": 0.31079885324405837,
+            "reaction_abs_error": 0.011666666666666667
+          },
+          "objective": 304.2792054216493,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 23.0,
+                "coverage": 0.2875,
+                "q10": 109.0,
+                "q50": 288.0,
+                "q90": 436.40000000000003
+              },
+              "10.0": {
+                "count": 13.0,
+                "coverage": 0.1625,
+                "q10": 160.0,
+                "q50": 317.0,
+                "q90": 504.8
+              },
+              "14.0": {
+                "count": 3.0,
+                "coverage": 0.0375,
+                "q10": 201.2,
+                "q50": 258.0,
+                "q90": 338.0
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 69.0,
+                "entropy": 4.171789354628725,
+                "dilution_index": 1750.4465759724517
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 72.0,
+                "entropy": 4.243397198561892,
+                "dilution_index": 1880.3892167196273
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 74.0,
+                "entropy": 4.271513955792832,
+                "dilution_index": 1934.0099519717096
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 78.0,
+                "entropy": 4.347369275645883,
+                "dilution_index": 2086.422470477663
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 35.17414104204004,
+                "q10": 13.021442190930141,
+                "q50": 33.72073667154219,
+                "q90": 58.50557198474824
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 35.70355872547224,
+                "q10": 13.349470947425235,
+                "q50": 34.30348764277595,
+                "q90": 58.63311516492553
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 36.088972008553085,
+                "q10": 13.782302631927859,
+                "q50": 34.68000633766662,
+                "q90": 59.273407339731406
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 36.24739016078152,
+                "q10": 14.449033239696169,
+                "q50": 34.68474231794939,
+                "q90": 59.385905194986684
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 31.0,
+              "probability": 0.025833333333333333
+            }
+          },
+          "rank": 6
+        },
+        "hybrid": {
+          "errors": {
+            "btc_score": 190.39444444444447,
+            "btc_quantile_mae": 148.5888888888889,
+            "btc_coverage_deficit": 0.16722222222222224,
+            "dilution_log_mae": 0.48742943267572136,
+            "pair_quantile_mae": 1.2366954174963822,
+            "reaction_abs_error": 0.010833333333333335
+          },
+          "objective": 284.453218048792,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 33.0,
+                "coverage": 0.4125,
+                "q10": 75.0,
+                "q50": 246.0,
+                "q90": 393.6
+              },
+              "10.0": {
+                "count": 19.0,
+                "coverage": 0.2375,
+                "q10": 122.0,
+                "q50": 304.0,
+                "q90": 399.8
+              },
+              "14.0": {
+                "count": 14.0,
+                "coverage": 0.175,
+                "q10": 198.4,
+                "q50": 439.0,
+                "q90": 472.8
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 69.0,
+                "entropy": 4.171789354628725,
+                "dilution_index": 1750.4465759724517
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 76.0,
+                "entropy": 4.306171314820829,
+                "dilution_index": 2002.2126656364574
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 76.0,
+                "entropy": 4.312711916617886,
+                "dilution_index": 2015.3512617195013
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 75.0,
+                "entropy": 4.288842635306831,
+                "dilution_index": 1967.815850455707
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 35.282536543005584,
+                "q10": 12.915325127928863,
+                "q50": 33.828852640970034,
+                "q90": 58.80760085608674
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 35.75327648570153,
+                "q10": 12.917843078106158,
+                "q50": 34.63305999665503,
+                "q90": 59.51402498167772
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 36.44245393061066,
+                "q10": 12.98589273599199,
+                "q50": 35.39476731559524,
+                "q90": 61.18050553005876
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 37.19497863491141,
+                "q10": 13.811316101154446,
+                "q50": 36.338582995929855,
+                "q90": 62.84069926758513
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 30.0,
+              "probability": 0.025
+            }
+          },
+          "rank": 4
+        },
+        "pair_rerank": {
+          "errors": {
+            "btc_score": 217.47222222222223,
+            "btc_quantile_mae": 150.66666666666666,
+            "btc_coverage_deficit": 0.26722222222222225,
+            "dilution_log_mae": 0.5274808305621899,
+            "pair_quantile_mae": 0.5391226038121838,
+            "reaction_abs_error": 0.01
+          },
+          "objective": 301.55237396592867,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 23.0,
+                "coverage": 0.2875,
+                "q10": 82.4,
+                "q50": 271.0,
+                "q90": 449.20000000000005
+              },
+              "10.0": {
+                "count": 14.0,
+                "coverage": 0.175,
+                "q10": 163.7,
+                "q50": 324.5,
+                "q90": 460.7
+              },
+              "14.0": {
+                "count": 5.0,
+                "coverage": 0.0625,
+                "q10": 231.8,
+                "q50": 268.0,
+                "q90": 380.6
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 67.0,
+                "entropy": 4.132884519680843,
+                "dilution_index": 1683.6534531092818
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 70.0,
+                "entropy": 4.184870558222838,
+                "dilution_index": 1773.4949455561275
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 75.0,
+                "entropy": 4.295383237103887,
+                "dilution_index": 1980.728733322087
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 76.0,
+                "entropy": 4.306171314820829,
+                "dilution_index": 2002.2126656364574
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 35.21892546962307,
+                "q10": 12.679553371213062,
+                "q50": 33.56789312147883,
+                "q90": 58.60883478635866
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 35.52636321990433,
+                "q10": 13.136044887000187,
+                "q50": 34.15384414869156,
+                "q90": 59.10712740258749
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 35.97632391202749,
+                "q10": 13.391663734515914,
+                "q50": 34.48138047583044,
+                "q90": 59.46527291087348
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 36.363367762918855,
+                "q10": 13.395701666767813,
+                "q50": 34.98979182044506,
+                "q90": 59.96743146267877
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 29.0,
+              "probability": 0.024166666666666666
+            }
+          },
+          "rank": 5
+        }
+      },
+      "ranking": [
+        {
+          "sampler": "bootstrap_mean_mixture",
+          "objective": 253.84842840329097,
+          "rank": 1
+        },
+        {
+          "sampler": "gaussian_bayes",
+          "objective": 265.09724529409914,
+          "rank": 2
+        },
+        {
+          "sampler": "pooled_validation_mixture",
+          "objective": 267.7112651248748,
+          "rank": 3
+        },
+        {
+          "sampler": "hybrid",
+          "objective": 284.453218048792,
+          "rank": 4
+        },
+        {
+          "sampler": "pair_rerank",
+          "objective": 301.55237396592867,
+          "rank": 5
+        },
+        {
+          "sampler": "knn_conditional",
+          "objective": 304.2792054216493,
+          "rank": 6
+        }
+      ]
+    },
+    {
+      "outer_index": 1,
+      "seed": 8042,
+      "splits": {
+        "train_pool": 350,
+        "test": 150,
+        "test_fraction": 0.3,
+        "seed": 8042
+      },
+      "archive": {
+        "size": 16800,
+        "segment_steps": 36,
+        "match_steps": 20
+      },
+      "repeat_results": [
+        {
+          "repeat": 0,
+          "seed": 8042,
+          "split": {
+            "fit": 245,
+            "validation": 105,
+            "validation_fraction": 0.3
+          },
+          "archive_size": 11760,
+          "selected_weights": {
+            "gaussian_bayes": 0.75,
+            "knn_conditional": 0.0,
+            "hybrid": 0.0,
+            "pair_rerank": 0.25
+          },
+          "selected_score": 243.3653769233358,
+          "validation_top": [
+            {
+              "weights": {
+                "gaussian_bayes": 0.75,
+                "knn_conditional": 0.0,
+                "hybrid": 0.0,
+                "pair_rerank": 0.25
+              },
+              "score": 243.3653769233358,
+              "errors": {
+                "btc_score": 111.80423280423283,
+                "btc_quantile_mae": 95.66666666666669,
+                "btc_coverage_deficit": 0.06455026455026454,
+                "dilution_log_mae": 0.7602122995416476,
+                "pair_quantile_mae": 1.8501167420385958,
+                "reaction_abs_error": 0.0033333333333333322
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 1.0,
+                "knn_conditional": 0.0,
+                "hybrid": 0.0,
+                "pair_rerank": 0.0
+              },
+              "score": 265.8967373734868,
+              "errors": {
+                "btc_score": 131.026455026455,
+                "btc_quantile_mae": 103.77777777777777,
+                "btc_coverage_deficit": 0.10899470899470898,
+                "dilution_log_mae": 0.7342004593909575,
+                "pair_quantile_mae": 2.1716446943391783,
+                "reaction_abs_error": 0.0033333333333333322
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.25,
+                "knn_conditional": 0.25,
+                "hybrid": 0.5,
+                "pair_rerank": 0.0
+              },
+              "score": 278.31313058204404,
+              "errors": {
+                "btc_score": 147.76349206349207,
+                "btc_quantile_mae": 83.47777777777779,
+                "btc_coverage_deficit": 0.2571428571428571,
+                "dilution_log_mae": 0.780410271428287,
+                "pair_quantile_mae": 1.6783536306912101,
+                "reaction_abs_error": 0.0033333333333333322
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.25,
+                "knn_conditional": 0.0,
+                "hybrid": 0.25,
+                "pair_rerank": 0.5
+              },
+              "score": 287.06385278010976,
+              "errors": {
+                "btc_score": 147.45238095238096,
+                "btc_quantile_mae": 88.72222222222223,
+                "btc_coverage_deficit": 0.2349206349206349,
+                "dilution_log_mae": 0.7496037300700673,
+                "pair_quantile_mae": 2.31628454429937,
+                "reaction_abs_error": 0.0033333333333333322
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.0,
+                "knn_conditional": 0.25,
+                "hybrid": 0.75,
+                "pair_rerank": 0.0
+              },
+              "score": 290.0324007612078,
+              "errors": {
+                "btc_score": 152.94497354497355,
+                "btc_quantile_mae": 96.06666666666668,
+                "btc_coverage_deficit": 0.22751322751322753,
+                "dilution_log_mae": 0.7602122995416474,
+                "pair_quantile_mae": 2.0847642302284943,
+                "reaction_abs_error": 0.004166666666666666
+              }
+            }
+          ]
+        },
+        {
+          "repeat": 1,
+          "seed": 9051,
+          "split": {
+            "fit": 245,
+            "validation": 105,
+            "validation_fraction": 0.3
+          },
+          "archive_size": 11760,
+          "selected_weights": {
+            "gaussian_bayes": 0.0,
+            "knn_conditional": 0.25,
+            "hybrid": 0.75,
+            "pair_rerank": 0.0
+          },
+          "selected_score": 234.10884404514118,
+          "validation_top": [
+            {
+              "weights": {
+                "gaussian_bayes": 0.0,
+                "knn_conditional": 0.25,
+                "hybrid": 0.75,
+                "pair_rerank": 0.0
+              },
+              "score": 234.10884404514118,
+              "errors": {
+                "btc_score": 115.5164021164021,
+                "btc_quantile_mae": 102.28888888888888,
+                "btc_coverage_deficit": 0.05291005291005291,
+                "dilution_log_mae": 0.7107017866445084,
+                "pair_quantile_mae": 1.415411376569903,
+                "reaction_abs_error": 0.005000000000000001
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.25,
+                "knn_conditional": 0.0,
+                "hybrid": 0.5,
+                "pair_rerank": 0.25
+              },
+              "score": 265.08148701703277,
+              "errors": {
+                "btc_score": 127.0253968253968,
+                "btc_quantile_mae": 124.64444444444442,
+                "btc_coverage_deficit": 0.009523809523809545,
+                "dilution_log_mae": 0.7627254669458889,
+                "pair_quantile_mae": 2.1181183745731325,
+                "reaction_abs_error": 0.004166666666666666
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.0,
+                "knn_conditional": 0.75,
+                "hybrid": 0.25,
+                "pair_rerank": 0.0
+              },
+              "score": 265.50514006818565,
+              "errors": {
+                "btc_score": 139.77195767195767,
+                "btc_quantile_mae": 109.87777777777777,
+                "btc_coverage_deficit": 0.1195767195767196,
+                "dilution_log_mae": 0.7569115986818384,
+                "pair_quantile_mae": 1.4535228610537025,
+                "reaction_abs_error": 0.005833333333333333
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 1.0,
+                "knn_conditional": 0.0,
+                "hybrid": 0.0,
+                "pair_rerank": 0.0
+              },
+              "score": 273.4299425548732,
+              "errors": {
+                "btc_score": 147.36613756613755,
+                "btc_quantile_mae": 137.57777777777775,
+                "btc_coverage_deficit": 0.03915343915343916,
+                "dilution_log_mae": 0.7415083280027281,
+                "pair_quantile_mae": 1.6874736147537481,
+                "reaction_abs_error": 0.003333333333333334
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.0,
+                "knn_conditional": 0.0,
+                "hybrid": 0.75,
+                "pair_rerank": 0.25
+              },
+              "score": 277.28216655410097,
+              "errors": {
+                "btc_score": 142.69576719576716,
+                "btc_quantile_mae": 125.49999999999997,
+                "btc_coverage_deficit": 0.0687830687830688,
+                "dilution_log_mae": 0.7723148693609483,
+                "pair_quantile_mae": 1.7620974184176657,
+                "reaction_abs_error": 0.006666666666666668
+              }
+            }
+          ]
+        },
+        {
+          "repeat": 2,
+          "seed": 10060,
+          "split": {
+            "fit": 245,
+            "validation": 105,
+            "validation_fraction": 0.3
+          },
+          "archive_size": 11760,
+          "selected_weights": {
+            "gaussian_bayes": 0.75,
+            "knn_conditional": 0.25,
+            "hybrid": 0.0,
+            "pair_rerank": 0.0
+          },
+          "selected_score": 252.9295695747459,
+          "validation_top": [
+            {
+              "weights": {
+                "gaussian_bayes": 0.75,
+                "knn_conditional": 0.25,
+                "hybrid": 0.0,
+                "pair_rerank": 0.0
+              },
+              "score": 252.9295695747459,
+              "errors": {
+                "btc_score": 129.73756613756615,
+                "btc_quantile_mae": 91.37777777777778,
+                "btc_coverage_deficit": 0.1534391534391534,
+                "dilution_log_mae": 0.7606060662694312,
+                "pair_quantile_mae": 1.3459637742424013,
+                "reaction_abs_error": 0.005000000000000001
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.75,
+                "knn_conditional": 0.0,
+                "hybrid": 0.25,
+                "pair_rerank": 0.0
+              },
+              "score": 257.5924706301864,
+              "errors": {
+                "btc_score": 145.17089947089946,
+                "btc_quantile_mae": 106.8111111111111,
+                "btc_coverage_deficit": 0.1534391534391534,
+                "dilution_log_mae": 0.7066946188925467,
+                "pair_quantile_mae": 1.2142441779424027,
+                "reaction_abs_error": 0.003333333333333334
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.5,
+                "knn_conditional": 0.0,
+                "hybrid": 0.5,
+                "pair_rerank": 0.0
+              },
+              "score": 259.75820476346365,
+              "errors": {
+                "btc_score": 133.82275132275132,
+                "btc_quantile_mae": 93.61111111111111,
+                "btc_coverage_deficit": 0.16084656084656082,
+                "dilution_log_mae": 0.7297995249112115,
+                "pair_quantile_mae": 1.6263088559016803,
+                "reaction_abs_error": 0.005833333333333333
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.0,
+                "knn_conditional": 0.25,
+                "hybrid": 0.75,
+                "pair_rerank": 0.0
+              },
+              "score": 261.88435249331724,
+              "errors": {
+                "btc_score": 143.57460317460317,
+                "btc_quantile_mae": 101.5111111111111,
+                "btc_coverage_deficit": 0.16825396825396824,
+                "dilution_log_mae": 0.7250048237036817,
+                "pair_quantile_mae": 1.3571251903802786,
+                "reaction_abs_error": 0.004166666666666666
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.0,
+                "knn_conditional": 0.75,
+                "hybrid": 0.25,
+                "pair_rerank": 0.0
+              },
+              "score": 264.09497355925595,
+              "errors": {
+                "btc_score": 141.68941798941796,
+                "btc_quantile_mae": 90.36666666666666,
+                "btc_coverage_deficit": 0.20529100529100527,
+                "dilution_log_mae": 0.7375011602507664,
+                "pair_quantile_mae": 1.4869374836539666,
+                "reaction_abs_error": 0.004166666666666666
+              }
+            }
+          ]
+        }
+      ],
+      "mean_selected_weights": {
+        "gaussian_bayes": 0.5,
+        "knn_conditional": 0.16666666666666666,
+        "hybrid": 0.25,
+        "pair_rerank": 0.08333333333333333
+      },
+      "pooled_validation_weights": {
+        "gaussian_bayes": 0.0,
+        "knn_conditional": 0.25,
+        "hybrid": 0.75,
+        "pair_rerank": 0.0
+      },
+      "pooled_validation_top": [
+        {
+          "weights": {
+            "gaussian_bayes": 0.0,
+            "knn_conditional": 0.25,
+            "hybrid": 0.75,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 262.00853243322206
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 1.0,
+            "knn_conditional": 0.0,
+            "hybrid": 0.0,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 268.09796061813125
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.75,
+            "knn_conditional": 0.0,
+            "hybrid": 0.0,
+            "pair_rerank": 0.25
+          },
+          "mean_score": 270.5201207092521
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.75,
+            "knn_conditional": 0.25,
+            "hybrid": 0.0,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 276.66295035847145
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.75,
+            "knn_conditional": 0.0,
+            "hybrid": 0.25,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 286.3436409646866
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.0,
+            "knn_conditional": 0.0,
+            "hybrid": 0.75,
+            "pair_rerank": 0.25
+          },
+          "mean_score": 288.0646379912773
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.25,
+            "knn_conditional": 0.0,
+            "hybrid": 0.5,
+            "pair_rerank": 0.25
+          },
+          "mean_score": 288.6962381717038
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.5,
+            "knn_conditional": 0.0,
+            "hybrid": 0.5,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 289.17945561501324
+        }
+      ],
+      "test": {
+        "bootstrap_mean_mixture": {
+          "errors": {
+            "btc_score": 138.35833333333335,
+            "btc_quantile_mae": 99.67777777777779,
+            "btc_coverage_deficit": 0.1547222222222222,
+            "dilution_log_mae": 0.4309098560988074,
+            "pair_quantile_mae": 2.060269298024123,
+            "reaction_abs_error": 0.008333333333333333
+          },
+          "objective": 239.60623535900604,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 32.0,
+                "coverage": 0.4,
+                "q10": 112.3,
+                "q50": 246.0,
+                "q90": 411.1
+              },
+              "10.0": {
+                "count": 16.0,
+                "coverage": 0.2,
+                "q10": 151.0,
+                "q50": 312.5,
+                "q90": 458.5
+              },
+              "14.0": {
+                "count": 13.0,
+                "coverage": 0.1625,
+                "q10": 219.0,
+                "q50": 400.0,
+                "q90": 514.4
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 69.0,
+                "entropy": 4.184870558222839,
+                "dilution_index": 1773.4949455561296
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 72.0,
+                "entropy": 4.236856596764835,
+                "dilution_index": 1868.1304731116707
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 75.0,
+                "entropy": 4.295383237103887,
+                "dilution_index": 1980.728733322087
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 78.0,
+                "entropy": 4.347369275645883,
+                "dilution_index": 2086.422470477663
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 32.427048395772374,
+                "q10": 13.412032536223498,
+                "q50": 30.998883334344317,
+                "q90": 56.74737578122836
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 32.92540926367528,
+                "q10": 13.921651032155545,
+                "q50": 30.91406967102298,
+                "q90": 56.914607701839216
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 33.335778912147596,
+                "q10": 14.418414639028583,
+                "q50": 31.13606043325205,
+                "q90": 56.90687366400682
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 33.86157667320588,
+                "q10": 14.987142285312354,
+                "q50": 31.88064956306771,
+                "q90": 56.97311989522863
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 17.0,
+              "probability": 0.014166666666666666
+            }
+          },
+          "rank": 5
+        },
+        "pooled_validation_mixture": {
+          "errors": {
+            "btc_score": 120.85000000000001,
+            "btc_quantile_mae": 87.3777777777778,
+            "btc_coverage_deficit": 0.13388888888888886,
+            "dilution_log_mae": 0.44987368606207045,
+            "pair_quantile_mae": 2.5375702397541313,
+            "reaction_abs_error": 0.008333333333333333
+          },
+          "objective": 233.91958045586443,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 34.0,
+                "coverage": 0.425,
+                "q10": 132.9,
+                "q50": 254.5,
+                "q90": 442.9
+              },
+              "10.0": {
+                "count": 21.0,
+                "coverage": 0.2625,
+                "q10": 236.0,
+                "q50": 386.0,
+                "q90": 483.0
+              },
+              "14.0": {
+                "count": 11.0,
+                "coverage": 0.1375,
+                "q10": 357.0,
+                "q50": 416.0,
+                "q90": 503.0
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 68.0,
+                "entropy": 4.16754187870884,
+                "dilution_index": 1743.027363908452
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 70.0,
+                "entropy": 4.19565863593978,
+                "dilution_index": 1792.731120974405
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 76.0,
+                "entropy": 4.312711916617886,
+                "dilution_index": 2015.3512617195013
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 76.0,
+                "entropy": 4.312711916617886,
+                "dilution_index": 2015.3512617195013
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 32.467797269451715,
+                "q10": 13.173380643697001,
+                "q50": 30.817744376041702,
+                "q90": 56.5972860089912
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 32.486358130972434,
+                "q10": 13.503058567812221,
+                "q50": 30.53536561124747,
+                "q90": 55.780644527955225
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 32.57972249958148,
+                "q10": 14.231118489290317,
+                "q50": 30.212273670091164,
+                "q90": 56.03782770324139
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 32.85541001299733,
+                "q10": 14.432644031203068,
+                "q50": 30.575658458356333,
+                "q90": 55.46373716845428
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 17.0,
+              "probability": 0.014166666666666666
+            }
+          },
+          "rank": 3
+        },
+        "gaussian_bayes": {
+          "errors": {
+            "btc_score": 106.69999999999999,
+            "btc_quantile_mae": 87.8111111111111,
+            "btc_coverage_deficit": 0.07555555555555556,
+            "dilution_log_mae": 0.4222455163418082,
+            "pair_quantile_mae": 1.7500579500674682,
+            "reaction_abs_error": 0.0066666666666666645
+          },
+          "objective": 199.037287629033,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 38.0,
+                "coverage": 0.475,
+                "q10": 120.80000000000001,
+                "q50": 260.5,
+                "q90": 426.10000000000014
+              },
+              "10.0": {
+                "count": 28.0,
+                "coverage": 0.35,
+                "q10": 225.5,
+                "q50": 358.5,
+                "q90": 469.3
+              },
+              "14.0": {
+                "count": 14.0,
+                "coverage": 0.175,
+                "q10": 304.1,
+                "q50": 397.5,
+                "q90": 501.1
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 73.0,
+                "entropy": 4.254185276278833,
+                "dilution_index": 1900.7848185893074
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 70.0,
+                "entropy": 4.202199237736837,
+                "dilution_index": 1804.49509115012
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 77.0,
+                "entropy": 4.330040596131885,
+                "dilution_index": 2050.5789812531193
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 76.0,
+                "entropy": 4.312711916617886,
+                "dilution_index": 2015.3512617195013
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 32.46256116165744,
+                "q10": 13.35369977807645,
+                "q50": 31.32017684870309,
+                "q90": 56.224884444540145
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 33.135388214014284,
+                "q10": 13.757221741918752,
+                "q50": 31.626433145187995,
+                "q90": 56.728327535894294
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 33.80077615394473,
+                "q10": 13.732965804576407,
+                "q50": 32.286230889473174,
+                "q90": 57.62452872741681
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 34.22447376569717,
+                "q10": 13.964069678266595,
+                "q50": 32.58594308023042,
+                "q90": 58.03384003916426
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 19.0,
+              "probability": 0.015833333333333335
+            }
+          },
+          "rank": 1
+        },
+        "knn_conditional": {
+          "errors": {
+            "btc_score": 112.94444444444444,
+            "btc_quantile_mae": 77.38888888888889,
+            "btc_coverage_deficit": 0.14222222222222222,
+            "dilution_log_mae": 0.4282128366695719,
+            "pair_quantile_mae": 1.9922784548385248,
+            "reaction_abs_error": 0.004166666666666666
+          },
+          "objective": 208.34222060823024,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 32.0,
+                "coverage": 0.4,
+                "q10": 111.8,
+                "q50": 265.5,
+                "q90": 484.30000000000007
+              },
+              "10.0": {
+                "count": 19.0,
+                "coverage": 0.2375,
+                "q10": 192.2,
+                "q50": 347.0,
+                "q90": 513.2
+              },
+              "14.0": {
+                "count": 13.0,
+                "coverage": 0.1625,
+                "q10": 344.6,
+                "q50": 427.0,
+                "q90": 500.6
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 68.0,
+                "entropy": 4.161001276911783,
+                "dilution_index": 1731.6641177433407
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 76.0,
+                "entropy": 4.306171314820829,
+                "dilution_index": 2002.2126656364574
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 74.0,
+                "entropy": 4.278054557589889,
+                "dilution_index": 1946.7009992393914
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 77.0,
+                "entropy": 4.330040596131885,
+                "dilution_index": 2050.5789812531193
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 32.448403107443056,
+                "q10": 13.139066169792867,
+                "q50": 31.05364338123654,
+                "q90": 56.28907543770633
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 32.804261316953635,
+                "q10": 13.501444248774941,
+                "q50": 31.187734159069556,
+                "q90": 56.7644580134455
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 33.14252933521887,
+                "q10": 13.86966378183788,
+                "q50": 31.554928876717668,
+                "q90": 57.13642335398646
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 33.52322501455988,
+                "q10": 14.372969827153687,
+                "q50": 31.91483126043923,
+                "q90": 56.71164671932033
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 22.0,
+              "probability": 0.018333333333333333
+            }
+          },
+          "rank": 2
+        },
+        "hybrid": {
+          "errors": {
+            "btc_score": 139.88611111111112,
+            "btc_quantile_mae": 99.12222222222222,
+            "btc_coverage_deficit": 0.16305555555555554,
+            "dilution_log_mae": 0.38162083698604676,
+            "pair_quantile_mae": 2.275368693075109,
+            "reaction_abs_error": 0.004166666666666666
+          },
+          "objective": 235.35465207760558,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 30.0,
+                "coverage": 0.375,
+                "q10": 89.6,
+                "q50": 209.0,
+                "q90": 497.6
+              },
+              "10.0": {
+                "count": 18.0,
+                "coverage": 0.225,
+                "q10": 167.60000000000002,
+                "q50": 311.5,
+                "q90": 469.5
+              },
+              "14.0": {
+                "count": 11.0,
+                "coverage": 0.1375,
+                "q10": 233.0,
+                "q50": 381.0,
+                "q90": 471.0
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 74.0,
+                "entropy": 4.278054557589889,
+                "dilution_index": 1946.7009992393914
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 75.0,
+                "entropy": 4.295383237103887,
+                "dilution_index": 1980.728733322087
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 76.0,
+                "entropy": 4.306171314820829,
+                "dilution_index": 2002.2126656364574
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 80.0,
+                "entropy": 4.382026634673881,
+                "dilution_index": 2159.999999999999
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 32.33876371111812,
+                "q10": 13.33214678269541,
+                "q50": 30.98411066973533,
+                "q90": 55.91192733819057
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 32.91930321752095,
+                "q10": 13.635378814500728,
+                "q50": 31.450615300409424,
+                "q90": 56.412641755990514
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 33.075315863637805,
+                "q10": 13.555277269008199,
+                "q50": 31.74094677963413,
+                "q90": 56.050368663497
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 33.26647864129222,
+                "q10": 13.592379750826742,
+                "q50": 31.774484658679825,
+                "q90": 56.207523168590704
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 22.0,
+              "probability": 0.018333333333333333
+            }
+          },
+          "rank": 4
+        },
+        "pair_rerank": {
+          "errors": {
+            "btc_score": 163.19166666666666,
+            "btc_quantile_mae": 91.17777777777779,
+            "btc_coverage_deficit": 0.28805555555555556,
+            "dilution_log_mae": 0.4319717250787787,
+            "pair_quantile_mae": 2.547109393133296,
+            "reaction_abs_error": 0.0075
+          },
+          "objective": 273.470461538786,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 20.0,
+                "coverage": 0.25,
+                "q10": 89.7,
+                "q50": 216.5,
+                "q90": 519.1
+              },
+              "10.0": {
+                "count": 6.0,
+                "coverage": 0.075,
+                "q10": 166.5,
+                "q50": 350.5,
+                "q90": 493.0
+              },
+              "14.0": {
+                "count": 3.0,
+                "coverage": 0.0375,
+                "q10": 267.2,
+                "q50": 332.0,
+                "q90": 472.8
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 69.0,
+                "entropy": 4.1914111600198956,
+                "dilution_index": 1785.1326872130956
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 74.0,
+                "entropy": 4.278054557589889,
+                "dilution_index": 1946.7009992393914
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 75.0,
+                "entropy": 4.295383237103887,
+                "dilution_index": 1980.728733322087
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 75.0,
+                "entropy": 4.295383237103887,
+                "dilution_index": 1980.728733322087
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 32.28229382226926,
+                "q10": 13.443290692320309,
+                "q50": 30.714865968383496,
+                "q90": 55.79127213786119
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 32.67883160395262,
+                "q10": 13.857420260203458,
+                "q50": 30.979015336134715,
+                "q90": 55.91211146687551
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 32.68057224577988,
+                "q10": 13.75124800551747,
+                "q50": 30.872314842488976,
+                "q90": 55.93204013941952
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 32.70903843914354,
+                "q10": 13.69718836664118,
+                "q50": 31.02330716377694,
+                "q90": 56.07920888209282
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 18.0,
+              "probability": 0.015
+            }
+          },
+          "rank": 6
+        }
+      },
+      "ranking": [
+        {
+          "sampler": "gaussian_bayes",
+          "objective": 199.037287629033,
+          "rank": 1
+        },
+        {
+          "sampler": "knn_conditional",
+          "objective": 208.34222060823024,
+          "rank": 2
+        },
+        {
+          "sampler": "pooled_validation_mixture",
+          "objective": 233.91958045586443,
+          "rank": 3
+        },
+        {
+          "sampler": "hybrid",
+          "objective": 235.35465207760558,
+          "rank": 4
+        },
+        {
+          "sampler": "bootstrap_mean_mixture",
+          "objective": 239.60623535900604,
+          "rank": 5
+        },
+        {
+          "sampler": "pair_rerank",
+          "objective": 273.470461538786,
+          "rank": 6
+        }
+      ]
+    },
+    {
+      "outer_index": 2,
+      "seed": 15961,
+      "splits": {
+        "train_pool": 350,
+        "test": 150,
+        "test_fraction": 0.3,
+        "seed": 15961
+      },
+      "archive": {
+        "size": 16800,
+        "segment_steps": 36,
+        "match_steps": 20
+      },
+      "repeat_results": [
+        {
+          "repeat": 0,
+          "seed": 15961,
+          "split": {
+            "fit": 245,
+            "validation": 105,
+            "validation_fraction": 0.3
+          },
+          "archive_size": 11760,
+          "selected_weights": {
+            "gaussian_bayes": 1.0,
+            "knn_conditional": 0.0,
+            "hybrid": 0.0,
+            "pair_rerank": 0.0
+          },
+          "selected_score": 312.65216548605247,
+          "validation_top": [
+            {
+              "weights": {
+                "gaussian_bayes": 1.0,
+                "knn_conditional": 0.0,
+                "hybrid": 0.0,
+                "pair_rerank": 0.0
+              },
+              "score": 312.65216548605247,
+              "errors": {
+                "btc_score": 134.0026455026455,
+                "btc_quantile_mae": 99.6111111111111,
+                "btc_coverage_deficit": 0.1375661375661376,
+                "dilution_log_mae": 0.7633889146844592,
+                "pair_quantile_mae": 4.018809177730259,
+                "reaction_abs_error": 0.0066666666666666645
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.0,
+                "knn_conditional": 0.75,
+                "hybrid": 0.0,
+                "pair_rerank": 0.25
+              },
+              "score": 315.5038326486305,
+              "errors": {
+                "btc_score": 152.29894179894177,
+                "btc_quantile_mae": 93.83333333333331,
+                "btc_coverage_deficit": 0.23386243386243386,
+                "dilution_log_mae": 0.7325823733262395,
+                "pair_quantile_mae": 3.514750302527002,
+                "reaction_abs_error": 0.0049999999999999975
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.75,
+                "knn_conditional": 0.0,
+                "hybrid": 0.0,
+                "pair_rerank": 0.25
+              },
+              "score": 325.04006096478776,
+              "errors": {
+                "btc_score": 136.81005291005292,
+                "btc_quantile_mae": 100.56666666666666,
+                "btc_coverage_deficit": 0.14497354497354498,
+                "dilution_log_mae": 0.7816991194955945,
+                "pair_quantile_mae": 4.471305685763176,
+                "reaction_abs_error": 0.0049999999999999975
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.5,
+                "knn_conditional": 0.0,
+                "hybrid": 0.25,
+                "pair_rerank": 0.25
+              },
+              "score": 328.2848619558979,
+              "errors": {
+                "btc_score": 142.66190476190476,
+                "btc_quantile_mae": 93.45555555555556,
+                "btc_coverage_deficit": 0.19682539682539682,
+                "dilution_log_mae": 0.7816991194955945,
+                "pair_quantile_mae": 4.34095314272609,
+                "reaction_abs_error": 0.0049999999999999975
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.0,
+                "knn_conditional": 0.0,
+                "hybrid": 1.0,
+                "pair_rerank": 0.0
+              },
+              "score": 330.13348941170824,
+              "errors": {
+                "btc_score": 153.7804232804233,
+                "btc_quantile_mae": 108.27777777777777,
+                "btc_coverage_deficit": 0.18201058201058204,
+                "dilution_log_mae": 0.7662958488164846,
+                "pair_quantile_mae": 3.886544880332007,
+                "reaction_abs_error": 0.0066666666666666645
+              }
+            }
+          ]
+        },
+        {
+          "repeat": 1,
+          "seed": 16970,
+          "split": {
+            "fit": 245,
+            "validation": 105,
+            "validation_fraction": 0.3
+          },
+          "archive_size": 11760,
+          "selected_weights": {
+            "gaussian_bayes": 0.0,
+            "knn_conditional": 0.5,
+            "hybrid": 0.5,
+            "pair_rerank": 0.0
+          },
+          "selected_score": 261.12587714690267,
+          "validation_top": [
+            {
+              "weights": {
+                "gaussian_bayes": 0.0,
+                "knn_conditional": 0.5,
+                "hybrid": 0.5,
+                "pair_rerank": 0.0
+              },
+              "score": 261.12587714690267,
+              "errors": {
+                "btc_score": 129.93544973544977,
+                "btc_quantile_mae": 85.75555555555557,
+                "btc_coverage_deficit": 0.17671957671957675,
+                "dilution_log_mae": 0.7022721748360101,
+                "pair_quantile_mae": 2.2208883215565836,
+                "reaction_abs_error": 0.0024999999999999988
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.0,
+                "knn_conditional": 0.25,
+                "hybrid": 0.75,
+                "pair_rerank": 0.0
+              },
+              "score": 261.90607562438646,
+              "errors": {
+                "btc_score": 127.8650793650794,
+                "btc_quantile_mae": 81.83333333333336,
+                "btc_coverage_deficit": 0.18412698412698414,
+                "dilution_log_mae": 0.7070668760435397,
+                "pair_quantile_mae": 2.4179818900374475,
+                "reaction_abs_error": 0.0008333333333333318
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.5,
+                "knn_conditional": 0.5,
+                "hybrid": 0.0,
+                "pair_rerank": 0.0
+              },
+              "score": 262.110318538327,
+              "errors": {
+                "btc_score": 123.93174603174606,
+                "btc_quantile_mae": 83.45555555555558,
+                "btc_coverage_deficit": 0.16190476190476188,
+                "dilution_log_mae": 0.67626033468532,
+                "pair_quantile_mae": 2.7263666172171273,
+                "reaction_abs_error": 0.0024999999999999988
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 1.0,
+                "knn_conditional": 0.0,
+                "hybrid": 0.0,
+                "pair_rerank": 0.0
+              },
+              "score": 263.7541626934947,
+              "errors": {
+                "btc_score": 133.7873015873016,
+                "btc_quantile_mae": 93.31111111111113,
+                "btc_coverage_deficit": 0.1619047619047619,
+                "dilution_log_mae": 0.6608570640062101,
+                "pair_quantile_mae": 2.491534004605727,
+                "reaction_abs_error": 0.0008333333333333318
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.25,
+                "knn_conditional": 0.0,
+                "hybrid": 0.75,
+                "pair_rerank": 0.0
+              },
+              "score": 265.18337932798704,
+              "errors": {
+                "btc_score": 131.57619047619048,
+                "btc_quantile_mae": 102.21111111111112,
+                "btc_coverage_deficit": 0.11746031746031745,
+                "dilution_log_mae": 0.6916636053644298,
+                "pair_quantile_mae": 2.363711143736581,
+                "reaction_abs_error": 0.003333333333333334
+              }
+            }
+          ]
+        },
+        {
+          "repeat": 2,
+          "seed": 17979,
+          "split": {
+            "fit": 245,
+            "validation": 105,
+            "validation_fraction": 0.3
+          },
+          "archive_size": 11760,
+          "selected_weights": {
+            "gaussian_bayes": 0.5,
+            "knn_conditional": 0.0,
+            "hybrid": 0.5,
+            "pair_rerank": 0.0
+          },
+          "selected_score": 331.24345327918496,
+          "validation_top": [
+            {
+              "weights": {
+                "gaussian_bayes": 0.5,
+                "knn_conditional": 0.0,
+                "hybrid": 0.5,
+                "pair_rerank": 0.0
+              },
+              "score": 331.24345327918496,
+              "errors": {
+                "btc_score": 165.04179894179893,
+                "btc_quantile_mae": 132.76666666666665,
+                "btc_coverage_deficit": 0.1291005291005291,
+                "dilution_log_mae": 0.7090406814262082,
+                "pair_quantile_mae": 3.764171961645386,
+                "reaction_abs_error": 0.005833333333333333
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.25,
+                "knn_conditional": 0.25,
+                "hybrid": 0.5,
+                "pair_rerank": 0.0
+              },
+              "score": 331.2602412532264,
+              "errors": {
+                "btc_score": 153.83068783068785,
+                "btc_quantile_mae": 121.55555555555556,
+                "btc_coverage_deficit": 0.1291005291005291,
+                "dilution_log_mae": 0.7013390460866533,
+                "pair_quantile_mae": 4.121776727940342,
+                "reaction_abs_error": 0.010833333333333334
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.5,
+                "knn_conditional": 0.25,
+                "hybrid": 0.0,
+                "pair_rerank": 0.25
+              },
+              "score": 336.02535610521784,
+              "errors": {
+                "btc_score": 169.43068783068787,
+                "btc_quantile_mae": 131.60000000000002,
+                "btc_coverage_deficit": 0.15132275132275133,
+                "dilution_log_mae": 0.7013390460866533,
+                "pair_quantile_mae": 3.7050324705399102,
+                "reaction_abs_error": 0.008333333333333333
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.75,
+                "knn_conditional": 0.0,
+                "hybrid": 0.25,
+                "pair_rerank": 0.0
+              },
+              "score": 346.8212776800586,
+              "errors": {
+                "btc_score": 180.43809523809523,
+                "btc_quantile_mae": 140.75555555555556,
+                "btc_coverage_deficit": 0.15873015873015872,
+                "dilution_log_mae": 0.6859357754075435,
+                "pair_quantile_mae": 3.828544469652907,
+                "reaction_abs_error": 0.0075
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.0,
+                "knn_conditional": 1.0,
+                "hybrid": 0.0,
+                "pair_rerank": 0.0
+              },
+              "score": 350.92347744815095,
+              "errors": {
+                "btc_score": 183.40105820105822,
+                "btc_quantile_mae": 125.20000000000002,
+                "btc_coverage_deficit": 0.2328042328042328,
+                "dilution_log_mae": 0.7013390460866533,
+                "pair_quantile_mae": 3.8764200191680493,
+                "reaction_abs_error": 0.005833333333333333
+              }
+            }
+          ]
+        }
+      ],
+      "mean_selected_weights": {
+        "gaussian_bayes": 0.5,
+        "knn_conditional": 0.16666666666666666,
+        "hybrid": 0.3333333333333333,
+        "pair_rerank": 0.0
+      },
+      "pooled_validation_weights": {
+        "gaussian_bayes": 1.0,
+        "knn_conditional": 0.0,
+        "hybrid": 0.0,
+        "pair_rerank": 0.0
+      },
+      "pooled_validation_top": [
+        {
+          "weights": {
+            "gaussian_bayes": 1.0,
+            "knn_conditional": 0.0,
+            "hybrid": 0.0,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 312.0634217322482
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.5,
+            "knn_conditional": 0.0,
+            "hybrid": 0.5,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 316.88120923965243
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.75,
+            "knn_conditional": 0.0,
+            "hybrid": 0.25,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 319.8778267253503
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.5,
+            "knn_conditional": 0.0,
+            "hybrid": 0.25,
+            "pair_rerank": 0.25
+          },
+          "mean_score": 321.1642934940364
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.25,
+            "knn_conditional": 0.5,
+            "hybrid": 0.25,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 321.8646499893164
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.25,
+            "knn_conditional": 0.25,
+            "hybrid": 0.5,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 322.02228489538066
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.25,
+            "knn_conditional": 0.0,
+            "hybrid": 0.75,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 322.62065246814217
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.5,
+            "knn_conditional": 0.0,
+            "hybrid": 0.0,
+            "pair_rerank": 0.5
+          },
+          "mean_score": 325.07085094143434
+        }
+      ],
+      "test": {
+        "bootstrap_mean_mixture": {
+          "errors": {
+            "btc_score": 194.30833333333334,
+            "btc_quantile_mae": 128.54444444444445,
+            "btc_coverage_deficit": 0.26305555555555554,
+            "dilution_log_mae": 0.44517133388640184,
+            "pair_quantile_mae": 2.867146017327922,
+            "reaction_abs_error": 0.01
+          },
+          "objective": 315.07181374626,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 29.0,
+                "coverage": 0.3625,
+                "q10": 131.6,
+                "q50": 281.0,
+                "q90": 464.0
+              },
+              "10.0": {
+                "count": 13.0,
+                "coverage": 0.1625,
+                "q10": 169.20000000000002,
+                "q50": 311.0,
+                "q90": 430.0
+              },
+              "14.0": {
+                "count": 9.0,
+                "coverage": 0.1125,
+                "q10": 244.6,
+                "q50": 352.0,
+                "q90": 442.2
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 69.0,
+                "entropy": 4.184870558222839,
+                "dilution_index": 1773.4949455561296
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 77.0,
+                "entropy": 4.330040596131885,
+                "dilution_index": 2050.5789812531193
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 75.0,
+                "entropy": 4.288842635306831,
+                "dilution_index": 1967.815850455707
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 77.0,
+                "entropy": 4.330040596131885,
+                "dilution_index": 2050.5789812531193
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 33.43193577474284,
+                "q10": 12.395964324785064,
+                "q50": 30.82260976634647,
+                "q90": 57.723446788691554
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 33.637577031512656,
+                "q10": 12.839338629024777,
+                "q50": 31.231206696874878,
+                "q90": 57.38938701364259
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 33.90181084813429,
+                "q10": 13.014846325039988,
+                "q50": 31.224368142257994,
+                "q90": 57.59762245562512
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 34.77636816602665,
+                "q10": 14.312084547192233,
+                "q50": 32.2132152226003,
+                "q90": 59.029173569027115
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 16.0,
+              "probability": 0.013333333333333334
+            }
+          },
+          "rank": 3
+        },
+        "pooled_validation_mixture": {
+          "errors": {
+            "btc_score": 197.06944444444446,
+            "btc_quantile_mae": 133.38888888888889,
+            "btc_coverage_deficit": 0.25472222222222224,
+            "dilution_log_mae": 0.49282520254989826,
+            "pair_quantile_mae": 3.0933148677068374,
+            "reaction_abs_error": 0.0075
+          },
+          "objective": 325.574766104569,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 33.0,
+                "coverage": 0.4125,
+                "q10": 150.8,
+                "q50": 287.0,
+                "q90": 471.8
+              },
+              "10.0": {
+                "count": 15.0,
+                "coverage": 0.1875,
+                "q10": 173.4,
+                "q50": 369.0,
+                "q90": 490.4
+              },
+              "14.0": {
+                "count": 5.0,
+                "coverage": 0.0625,
+                "q10": 198.6,
+                "q50": 239.0,
+                "q90": 430.8
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 67.0,
+                "entropy": 4.143672597397785,
+                "dilution_index": 1701.9151646798455
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 71.0,
+                "entropy": 4.226068519047892,
+                "dilution_index": 1848.0852554744179
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 74.0,
+                "entropy": 4.278054557589889,
+                "dilution_index": 1946.7009992393914
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 75.0,
+                "entropy": 4.295383237103887,
+                "dilution_index": 1980.728733322087
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 33.28775299270072,
+                "q10": 12.563640509721944,
+                "q50": 30.543620475607906,
+                "q90": 57.4012567483916
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 33.44754211980112,
+                "q10": 13.019484408372223,
+                "q50": 31.09585967855443,
+                "q90": 56.9596984282646
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 33.92394050603797,
+                "q10": 13.297020610084626,
+                "q50": 31.155882799056208,
+                "q90": 57.84771324237013
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 34.04936315874669,
+                "q10": 13.319593874812375,
+                "q50": 31.376986021021075,
+                "q90": 58.81244068536563
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 19.0,
+              "probability": 0.015833333333333335
+            }
+          },
+          "rank": 5
+        },
+        "gaussian_bayes": {
+          "errors": {
+            "btc_score": 164.05833333333334,
+            "btc_quantile_mae": 112.87777777777777,
+            "btc_coverage_deficit": 0.20472222222222222,
+            "dilution_log_mae": 0.43487184368013865,
+            "pair_quantile_mae": 3.3243130839139816,
+            "reaction_abs_error": 0.008333333333333335
+          },
+          "objective": 291.06254958656297,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 31.0,
+                "coverage": 0.3875,
+                "q10": 131.0,
+                "q50": 263.0,
+                "q90": 426.0
+              },
+              "10.0": {
+                "count": 23.0,
+                "coverage": 0.2875,
+                "q10": 183.0,
+                "q50": 363.0,
+                "q90": 454.6
+              },
+              "14.0": {
+                "count": 11.0,
+                "coverage": 0.1375,
+                "q10": 277.0,
+                "q50": 367.0,
+                "q90": 502.0
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 69.0,
+                "entropy": 4.184870558222839,
+                "dilution_index": 1773.4949455561296
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 75.0,
+                "entropy": 4.295383237103887,
+                "dilution_index": 1980.728733322087
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 77.0,
+                "entropy": 4.330040596131885,
+                "dilution_index": 2050.5789812531193
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 79.0,
+                "entropy": 4.3646979551598815,
+                "dilution_index": 2122.892492857739
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 33.23247573326639,
+                "q10": 12.240702185772514,
+                "q50": 30.616902222790205,
+                "q90": 57.44775898008881
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 33.53234919260762,
+                "q10": 13.211278652514219,
+                "q50": 30.658357672801042,
+                "q90": 57.79670832601425
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 33.56895991208523,
+                "q10": 13.610428174056372,
+                "q50": 30.826406590616998,
+                "q90": 57.76001019252072
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 33.44940092667081,
+                "q10": 13.321882538250824,
+                "q50": 31.09291131944198,
+                "q90": 56.40239900059772
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 18.0,
+              "probability": 0.015
+            }
+          },
+          "rank": 1
+        },
+        "knn_conditional": {
+          "errors": {
+            "btc_score": 181.27222222222218,
+            "btc_quantile_mae": 114.46666666666664,
+            "btc_coverage_deficit": 0.2672222222222222,
+            "dilution_log_mae": 0.476069804505193,
+            "pair_quantile_mae": 2.946111714225418,
+            "reaction_abs_error": 0.008333333333333335
+          },
+          "objective": 305.65616638068707,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 27.0,
+                "coverage": 0.3375,
+                "q10": 121.6,
+                "q50": 269.0,
+                "q90": 438.00000000000006
+              },
+              "10.0": {
+                "count": 16.0,
+                "coverage": 0.2,
+                "q10": 219.0,
+                "q50": 328.0,
+                "q90": 467.5
+              },
+              "14.0": {
+                "count": 7.0,
+                "coverage": 0.0875,
+                "q10": 281.0,
+                "q50": 360.0,
+                "q90": 468.2
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 71.0,
+                "entropy": 4.2195279172508355,
+                "dilution_index": 1836.0371097442335
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 70.0,
+                "entropy": 4.189118034142723,
+                "dilution_index": 1781.0438431626508
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 75.0,
+                "entropy": 4.295383237103887,
+                "dilution_index": 1980.728733322087
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 76.0,
+                "entropy": 4.306171314820829,
+                "dilution_index": 2002.2126656364574
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 33.4765424467601,
+                "q10": 12.452339696502943,
+                "q50": 30.64764203897734,
+                "q90": 57.61862104386489
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 33.608546483915184,
+                "q10": 13.202512263361777,
+                "q50": 30.87058984459504,
+                "q90": 58.2945968657446
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 33.83690279835641,
+                "q10": 13.582336071630593,
+                "q50": 31.42754521285049,
+                "q90": 58.17581645291578
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 34.18011962782797,
+                "q10": 14.08915606967331,
+                "q50": 31.442779001362823,
+                "q90": 58.56996110711166
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 18.0,
+              "probability": 0.015
+            }
+          },
+          "rank": 2
+        },
+        "hybrid": {
+          "errors": {
+            "btc_score": 184.47499999999997,
+            "btc_quantile_mae": 110.37777777777777,
+            "btc_coverage_deficit": 0.29638888888888887,
+            "dilution_log_mae": 0.4901281831206623,
+            "pair_quantile_mae": 3.125276349044585,
+            "reaction_abs_error": 0.01
+          },
+          "objective": 315.79590895537115,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 21.0,
+                "coverage": 0.2625,
+                "q10": 116.0,
+                "q50": 302.0,
+                "q90": 478.0
+              },
+              "10.0": {
+                "count": 14.0,
+                "coverage": 0.175,
+                "q10": 161.9,
+                "q50": 368.0,
+                "q90": 496.5
+              },
+              "14.0": {
+                "count": 8.0,
+                "coverage": 0.1,
+                "q10": 214.0,
+                "q50": 346.0,
+                "q90": 506.7
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 69.0,
+                "entropy": 4.1914111600198956,
+                "dilution_index": 1785.1326872130956
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 73.0,
+                "entropy": 4.260725878075891,
+                "dilution_index": 1913.2578412610985
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 72.0,
+                "entropy": 4.230315994967778,
+                "dilution_index": 1855.9516474236373
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 74.0,
+                "entropy": 4.271513955792832,
+                "dilution_index": 1934.0099519717096
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 33.24481306517071,
+                "q10": 12.600084864652075,
+                "q50": 30.608306950895013,
+                "q90": 57.15816042148122
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 33.69803816615192,
+                "q10": 13.613385522924474,
+                "q50": 30.99693210562915,
+                "q90": 57.5994277381627
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 34.034838202335344,
+                "q10": 14.160562793450628,
+                "q50": 31.752894603065442,
+                "q90": 58.15010507957089
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 34.327657332701364,
+                "q10": 13.87029155177621,
+                "q50": 31.975373151431086,
+                "q90": 57.57435653099188
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 16.0,
+              "probability": 0.013333333333333334
+            }
+          },
+          "rank": 4
+        },
+        "pair_rerank": {
+          "errors": {
+            "btc_score": 238.9138888888889,
+            "btc_quantile_mae": 158.56666666666666,
+            "btc_coverage_deficit": 0.3213888888888889,
+            "dilution_log_mae": 0.5350850323549234,
+            "pair_quantile_mae": 3.1420845911118964,
+            "reaction_abs_error": 0.01
+          },
+          "objective": 375.9657845937176,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 21.0,
+                "coverage": 0.2625,
+                "q10": 94.0,
+                "q50": 237.0,
+                "q90": 503.0
+              },
+              "10.0": {
+                "count": 11.0,
+                "coverage": 0.1375,
+                "q10": 140.0,
+                "q50": 215.0,
+                "q90": 415.0
+              },
+              "14.0": {
+                "count": 5.0,
+                "coverage": 0.0625,
+                "q10": 204.0,
+                "q50": 264.0,
+                "q90": 483.40000000000003
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 66.0,
+                "entropy": 4.126343917883786,
+                "dilution_index": 1672.6772808238848
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 68.0,
+                "entropy": 4.16754187870884,
+                "dilution_index": 1743.027363908452
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 73.0,
+                "entropy": 4.260725878075891,
+                "dilution_index": 1913.2578412610985
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 71.0,
+                "entropy": 4.2195279172508355,
+                "dilution_index": 1836.0371097442335
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 33.179681513770156,
+                "q10": 12.738290569040714,
+                "q50": 30.42945737689785,
+                "q90": 57.3198792012435
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 33.4351460546359,
+                "q10": 13.210728590077997,
+                "q50": 30.802741440998773,
+                "q90": 57.2715692280478
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 33.721635458266924,
+                "q10": 13.316901180589408,
+                "q50": 31.276485149080955,
+                "q90": 57.62387560781498
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 34.048626148006015,
+                "q10": 13.58306863564338,
+                "q50": 31.413539519648303,
+                "q90": 58.59297392473703
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 16.0,
+              "probability": 0.013333333333333334
+            }
+          },
+          "rank": 6
+        }
+      },
+      "ranking": [
+        {
+          "sampler": "gaussian_bayes",
+          "objective": 291.06254958656297,
+          "rank": 1
+        },
+        {
+          "sampler": "knn_conditional",
+          "objective": 305.65616638068707,
+          "rank": 2
+        },
+        {
+          "sampler": "bootstrap_mean_mixture",
+          "objective": 315.07181374626,
+          "rank": 3
+        },
+        {
+          "sampler": "hybrid",
+          "objective": 315.79590895537115,
+          "rank": 4
+        },
+        {
+          "sampler": "pooled_validation_mixture",
+          "objective": 325.574766104569,
+          "rank": 5
+        },
+        {
+          "sampler": "pair_rerank",
+          "objective": 375.9657845937176,
+          "rank": 6
+        }
+      ]
+    },
+    {
+      "outer_index": 3,
+      "seed": 23880,
+      "splits": {
+        "train_pool": 350,
+        "test": 150,
+        "test_fraction": 0.3,
+        "seed": 23880
+      },
+      "archive": {
+        "size": 16800,
+        "segment_steps": 36,
+        "match_steps": 20
+      },
+      "repeat_results": [
+        {
+          "repeat": 0,
+          "seed": 23880,
+          "split": {
+            "fit": 245,
+            "validation": 105,
+            "validation_fraction": 0.3
+          },
+          "archive_size": 11760,
+          "selected_weights": {
+            "gaussian_bayes": 0.25,
+            "knn_conditional": 0.25,
+            "hybrid": 0.0,
+            "pair_rerank": 0.5
+          },
+          "selected_score": 267.92223710404426,
+          "validation_top": [
+            {
+              "weights": {
+                "gaussian_bayes": 0.25,
+                "knn_conditional": 0.25,
+                "hybrid": 0.0,
+                "pair_rerank": 0.5
+              },
+              "score": 267.92223710404426,
+              "errors": {
+                "btc_score": 138.4767195767196,
+                "btc_quantile_mae": 124.45555555555558,
+                "btc_coverage_deficit": 0.05608465608465609,
+                "dilution_log_mae": 0.6954010921056053,
+                "pair_quantile_mae": 2.1748693237325996,
+                "reaction_abs_error": 0.0025000000000000005
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.0,
+                "knn_conditional": 1.0,
+                "hybrid": 0.0,
+                "pair_rerank": 0.0
+              },
+              "score": 271.3444477651983,
+              "errors": {
+                "btc_score": 148.53597883597885,
+                "btc_quantile_mae": 136.36666666666667,
+                "btc_coverage_deficit": 0.04867724867724868,
+                "dilution_log_mae": 0.7185059981242699,
+                "pair_quantile_mae": 1.7877207910486863,
+                "reaction_abs_error": 0.0008333333333333335
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.25,
+                "knn_conditional": 0.5,
+                "hybrid": 0.25,
+                "pair_rerank": 0.0
+              },
+              "score": 282.5722031048944,
+              "errors": {
+                "btc_score": 148.10370370370367,
+                "btc_quantile_mae": 122.17777777777776,
+                "btc_coverage_deficit": 0.1037037037037037,
+                "dilution_log_mae": 0.7108043627847149,
+                "pair_quantile_mae": 2.3335987933512476,
+                "reaction_abs_error": 0.0025000000000000005
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.5,
+                "knn_conditional": 0.5,
+                "hybrid": 0.0,
+                "pair_rerank": 0.0
+              },
+              "score": 284.260047923511,
+              "errors": {
+                "btc_score": 169.30000000000004,
+                "btc_quantile_mae": 147.0777777777778,
+                "btc_coverage_deficit": 0.08888888888888886,
+                "dilution_log_mae": 0.6722961860869405,
+                "pair_quantile_mae": 1.6725586129872385,
+                "reaction_abs_error": 0.0008333333333333318
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.5,
+                "knn_conditional": 0.25,
+                "hybrid": 0.25,
+                "pair_rerank": 0.0
+              },
+              "score": 285.13911568695227,
+              "errors": {
+                "btc_score": 160.03597883597888,
+                "btc_quantile_mae": 136.7555555555556,
+                "btc_coverage_deficit": 0.09312169312169312,
+                "dilution_log_mae": 0.6799978214264952,
+                "pair_quantile_mae": 2.00850324732303,
+                "reaction_abs_error": 0.0033333333333333357
+              }
+            }
+          ]
+        },
+        {
+          "repeat": 1,
+          "seed": 24889,
+          "split": {
+            "fit": 245,
+            "validation": 105,
+            "validation_fraction": 0.3
+          },
+          "archive_size": 11760,
+          "selected_weights": {
+            "gaussian_bayes": 0.25,
+            "knn_conditional": 0.0,
+            "hybrid": 0.75,
+            "pair_rerank": 0.0
+          },
+          "selected_score": 239.28902049319345,
+          "validation_top": [
+            {
+              "weights": {
+                "gaussian_bayes": 0.25,
+                "knn_conditional": 0.0,
+                "hybrid": 0.75,
+                "pair_rerank": 0.0
+              },
+              "score": 239.28902049319345,
+              "errors": {
+                "btc_score": 139.24074074074076,
+                "btc_quantile_mae": 115.16666666666669,
+                "btc_coverage_deficit": 0.09629629629629631,
+                "dilution_log_mae": 0.6331864104862708,
+                "pair_quantile_mae": 1.203295524705009,
+                "reaction_abs_error": 0.0
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.0,
+                "knn_conditional": 0.0,
+                "hybrid": 1.0,
+                "pair_rerank": 0.0
+              },
+              "score": 243.29069931675213,
+              "errors": {
+                "btc_score": 142.9613756613757,
+                "btc_quantile_mae": 106.18888888888893,
+                "btc_coverage_deficit": 0.1470899470899471,
+                "dilution_log_mae": 0.6562913165049356,
+                "pair_quantile_mae": 1.0787182837392069,
+                "reaction_abs_error": 0.0
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.5,
+                "knn_conditional": 0.25,
+                "hybrid": 0.25,
+                "pair_rerank": 0.0
+              },
+              "score": 249.22640407417998,
+              "errors": {
+                "btc_score": 146.64285714285717,
+                "btc_quantile_mae": 106.16666666666669,
+                "btc_coverage_deficit": 0.1619047619047619,
+                "dilution_log_mae": 0.610081504467606,
+                "pair_quantile_mae": 1.4686883197605047,
+                "reaction_abs_error": 0.0
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.75,
+                "knn_conditional": 0.0,
+                "hybrid": 0.0,
+                "pair_rerank": 0.25
+              },
+              "score": 256.81119476552595,
+              "errors": {
+                "btc_score": 147.11322751322754,
+                "btc_quantile_mae": 102.93333333333337,
+                "btc_coverage_deficit": 0.17671957671957675,
+                "dilution_log_mae": 0.6870978578631555,
+                "pair_quantile_mae": 1.3623112154359884,
+                "reaction_abs_error": 0.0
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.0,
+                "knn_conditional": 0.75,
+                "hybrid": 0.25,
+                "pair_rerank": 0.0
+              },
+              "score": 264.1369680741771,
+              "errors": {
+                "btc_score": 165.32433862433862,
+                "btc_quantile_mae": 115.5888888888889,
+                "btc_coverage_deficit": 0.19894179894179895,
+                "dilution_log_mae": 0.6177831398071609,
+                "pair_quantile_mae": 1.1922659669822917,
+                "reaction_abs_error": 0.0008333333333333352
+              }
+            }
+          ]
+        },
+        {
+          "repeat": 2,
+          "seed": 25898,
+          "split": {
+            "fit": 245,
+            "validation": 105,
+            "validation_fraction": 0.3
+          },
+          "archive_size": 11760,
+          "selected_weights": {
+            "gaussian_bayes": 0.75,
+            "knn_conditional": 0.25,
+            "hybrid": 0.0,
+            "pair_rerank": 0.0
+          },
+          "selected_score": 198.872096082253,
+          "validation_top": [
+            {
+              "weights": {
+                "gaussian_bayes": 0.75,
+                "knn_conditional": 0.25,
+                "hybrid": 0.0,
+                "pair_rerank": 0.0
+              },
+              "score": 198.872096082253,
+              "errors": {
+                "btc_score": 89.47089947089947,
+                "btc_quantile_mae": 67.77777777777779,
+                "btc_coverage_deficit": 0.08677248677248676,
+                "dilution_log_mae": 0.7221409087252388,
+                "pair_quantile_mae": 0.9288810448829098,
+                "reaction_abs_error": 0.004166666666666666
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.25,
+                "knn_conditional": 0.0,
+                "hybrid": 0.75,
+                "pair_rerank": 0.0
+              },
+              "score": 201.07113578126132,
+              "errors": {
+                "btc_score": 82.37460317460318,
+                "btc_quantile_mae": 68.0888888888889,
+                "btc_coverage_deficit": 0.057142857142857134,
+                "dilution_log_mae": 0.6990360027065741,
+                "pair_quantile_mae": 1.5322772807601297,
+                "reaction_abs_error": 0.004166666666666666
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.5,
+                "knn_conditional": 0.0,
+                "hybrid": 0.5,
+                "pair_rerank": 0.0
+              },
+              "score": 207.5625946522057,
+              "errors": {
+                "btc_score": 96.48941798941799,
+                "btc_quantile_mae": 72.94444444444444,
+                "btc_coverage_deficit": 0.09417989417989418,
+                "dilution_log_mae": 0.7144392733856839,
+                "pair_quantile_mae": 1.0170231928252818,
+                "reaction_abs_error": 0.0049999999999999975
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.25,
+                "knn_conditional": 0.0,
+                "hybrid": 0.5,
+                "pair_rerank": 0.25
+              },
+              "score": 220.80050841345516,
+              "errors": {
+                "btc_score": 116.55978835978836,
+                "btc_quantile_mae": 78.19999999999999,
+                "btc_coverage_deficit": 0.15343915343915346,
+                "dilution_log_mae": 0.7115323392536586,
+                "pair_quantile_mae": 0.8178419671613891,
+                "reaction_abs_error": 0.0024999999999999988
+              }
+            },
+            {
+              "weights": {
+                "gaussian_bayes": 0.75,
+                "knn_conditional": 0.0,
+                "hybrid": 0.0,
+                "pair_rerank": 0.25
+              },
+              "score": 222.5427603534636,
+              "errors": {
+                "btc_score": 113.48941798941799,
+                "btc_quantile_mae": 84.38888888888889,
+                "btc_coverage_deficit": 0.11640211640211641,
+                "dilution_log_mae": 0.7221409087252388,
+                "pair_quantile_mae": 0.8698216658508469,
+                "reaction_abs_error": 0.0049999999999999975
+              }
+            }
+          ]
+        }
+      ],
+      "mean_selected_weights": {
+        "gaussian_bayes": 0.4166666666666667,
+        "knn_conditional": 0.16666666666666666,
+        "hybrid": 0.25,
+        "pair_rerank": 0.16666666666666666
+      },
+      "pooled_validation_weights": {
+        "gaussian_bayes": 0.75,
+        "knn_conditional": 0.25,
+        "hybrid": 0.0,
+        "pair_rerank": 0.0
+      },
+      "pooled_validation_top": [
+        {
+          "weights": {
+            "gaussian_bayes": 0.75,
+            "knn_conditional": 0.25,
+            "hybrid": 0.0,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 260.90747572068045
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.5,
+            "knn_conditional": 0.0,
+            "hybrid": 0.5,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 266.4171639742185
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.75,
+            "knn_conditional": 0.0,
+            "hybrid": 0.0,
+            "pair_rerank": 0.25
+          },
+          "mean_score": 267.13807282107945
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.25,
+            "knn_conditional": 0.0,
+            "hybrid": 0.75,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 267.863012599669
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.0,
+            "knn_conditional": 1.0,
+            "hybrid": 0.0,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 268.2565066430286
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.25,
+            "knn_conditional": 0.25,
+            "hybrid": 0.5,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 268.905760151058
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.25,
+            "knn_conditional": 0.5,
+            "hybrid": 0.25,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 276.7566172220109
+        },
+        {
+          "weights": {
+            "gaussian_bayes": 0.0,
+            "knn_conditional": 0.5,
+            "hybrid": 0.5,
+            "pair_rerank": 0.0
+          },
+          "mean_score": 276.79317137671416
+        }
+      ],
+      "test": {
+        "bootstrap_mean_mixture": {
+          "errors": {
+            "btc_score": 157.46944444444446,
+            "btc_quantile_mae": 114.90000000000002,
+            "btc_coverage_deficit": 0.17027777777777778,
+            "dilution_log_mae": 0.5547750188459573,
+            "pair_quantile_mae": 2.357688246380958,
+            "reaction_abs_error": 0.009166666666666667
+          },
+          "objective": 280.36287830024514,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 36.0,
+                "coverage": 0.45,
+                "q10": 100.0,
+                "q50": 227.0,
+                "q90": 507.0
+              },
+              "10.0": {
+                "count": 16.0,
+                "coverage": 0.2,
+                "q10": 161.5,
+                "q50": 271.0,
+                "q90": 409.0
+              },
+              "14.0": {
+                "count": 9.0,
+                "coverage": 0.1125,
+                "q10": 243.8,
+                "q50": 338.0,
+                "q90": 391.4
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 65.0,
+                "entropy": 4.1024746365727305,
+                "dilution_index": 1633.224405304938
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 69.0,
+                "entropy": 4.184870558222839,
+                "dilution_index": 1773.4949455561296
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 75.0,
+                "entropy": 4.295383237103887,
+                "dilution_index": 1980.728733322087
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 78.0,
+                "entropy": 4.347369275645883,
+                "dilution_index": 2086.422470477663
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 32.967541404512055,
+                "q10": 12.426063632749345,
+                "q50": 31.245472120303425,
+                "q90": 56.4894806964694
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 33.4211503898325,
+                "q10": 12.85246662401106,
+                "q50": 31.776455331679884,
+                "q90": 57.31364200137283
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 34.01294785098453,
+                "q10": 13.204533574214533,
+                "q50": 32.219585964629644,
+                "q90": 57.92062153657432
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 34.656030870792385,
+                "q10": 14.38179564741784,
+                "q50": 32.75586641768088,
+                "q90": 58.332508413393114
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 26.0,
+              "probability": 0.021666666666666667
+            }
+          },
+          "rank": 5
+        },
+        "pooled_validation_mixture": {
+          "errors": {
+            "btc_score": 122.3277777777778,
+            "btc_quantile_mae": 93.30000000000001,
+            "btc_coverage_deficit": 0.11611111111111112,
+            "dilution_log_mae": 0.5314790190041945,
+            "pair_quantile_mae": 2.7178989456973763,
+            "reaction_abs_error": 0.008333333333333331
+          },
+          "objective": 248.796572305562,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 43.0,
+                "coverage": 0.5375,
+                "q10": 112.8,
+                "q50": 241.0,
+                "q90": 471.40000000000003
+              },
+              "10.0": {
+                "count": 24.0,
+                "coverage": 0.3,
+                "q10": 162.4,
+                "q50": 303.0,
+                "q90": 509.4
+              },
+              "14.0": {
+                "count": 10.0,
+                "coverage": 0.125,
+                "q10": 204.2,
+                "q50": 343.0,
+                "q90": 495.9
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 65.0,
+                "entropy": 4.1024746365727305,
+                "dilution_index": 1633.224405304938
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 74.0,
+                "entropy": 4.278054557589889,
+                "dilution_index": 1946.7009992393914
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 76.0,
+                "entropy": 4.312711916617886,
+                "dilution_index": 2015.3512617195013
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 77.0,
+                "entropy": 4.330040596131885,
+                "dilution_index": 2050.5789812531193
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 33.11139722468092,
+                "q10": 12.649476868788224,
+                "q50": 31.547404516324296,
+                "q90": 57.18349298976746
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 33.38297614261737,
+                "q10": 12.895447116663801,
+                "q50": 31.509656230739004,
+                "q90": 57.13234648725883
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 33.68072810802819,
+                "q10": 12.975236758530947,
+                "q50": 31.65394998029481,
+                "q90": 56.48074422360983
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 34.29092998741403,
+                "q10": 13.674009099967348,
+                "q50": 32.4983594873677,
+                "q90": 56.395839809387
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 25.0,
+              "probability": 0.020833333333333332
+            }
+          },
+          "rank": 2
+        },
+        "gaussian_bayes": {
+          "errors": {
+            "btc_score": 135.9361111111111,
+            "btc_quantile_mae": 101.69999999999999,
+            "btc_coverage_deficit": 0.13694444444444445,
+            "dilution_log_mae": 0.535811188882694,
+            "pair_quantile_mae": 2.6826735625311406,
+            "reaction_abs_error": 0.0125
+          },
+          "objective": 266.3869250276572,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 36.0,
+                "coverage": 0.45,
+                "q10": 77.0,
+                "q50": 240.5,
+                "q90": 468.0
+              },
+              "10.0": {
+                "count": 25.0,
+                "coverage": 0.3125,
+                "q10": 178.20000000000002,
+                "q50": 289.0,
+                "q90": 475.8
+              },
+              "14.0": {
+                "count": 8.0,
+                "coverage": 0.1,
+                "q10": 191.3,
+                "q50": 345.0,
+                "q90": 502.7
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 71.0,
+                "entropy": 4.226068519047892,
+                "dilution_index": 1848.0852554744179
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 72.0,
+                "entropy": 4.236856596764835,
+                "dilution_index": 1868.1304731116707
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 73.0,
+                "entropy": 4.254185276278833,
+                "dilution_index": 1900.7848185893074
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 75.0,
+                "entropy": 4.288842635306831,
+                "dilution_index": 1967.815850455707
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 32.98869720127358,
+                "q10": 12.37954914478307,
+                "q50": 31.024896976964442,
+                "q90": 57.05392876287889
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 33.1510637930624,
+                "q10": 13.005483099335983,
+                "q50": 31.300691624348353,
+                "q90": 57.08336008514991
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 33.33269133590887,
+                "q10": 13.737569570221973,
+                "q50": 31.65455562419183,
+                "q90": 56.98704955918331
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 33.6465924669548,
+                "q10": 14.035022901589945,
+                "q50": 31.738447937814865,
+                "q90": 57.018112880231506
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 30.0,
+              "probability": 0.025
+            }
+          },
+          "rank": 3
+        },
+        "knn_conditional": {
+          "errors": {
+            "btc_score": 147.7722222222222,
+            "btc_quantile_mae": 97.9111111111111,
+            "btc_coverage_deficit": 0.19944444444444445,
+            "dilution_log_mae": 0.5704685479106912,
+            "pair_quantile_mae": 2.5964336052430776,
+            "reaction_abs_error": 0.009166666666666667
+          },
+          "objective": 277.3237867430334,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 32.0,
+                "coverage": 0.4,
+                "q10": 90.3,
+                "q50": 278.5,
+                "q90": 482.2000000000001
+              },
+              "10.0": {
+                "count": 17.0,
+                "coverage": 0.2125,
+                "q10": 165.4,
+                "q50": 351.0,
+                "q90": 466.0
+              },
+              "14.0": {
+                "count": 5.0,
+                "coverage": 0.0625,
+                "q10": 196.2,
+                "q50": 344.0,
+                "q90": 495.0
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 68.0,
+                "entropy": 4.161001276911783,
+                "dilution_index": 1731.6641177433407
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 72.0,
+                "entropy": 4.236856596764835,
+                "dilution_index": 1868.1304731116707
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 71.0,
+                "entropy": 4.226068519047892,
+                "dilution_index": 1848.0852554744179
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 72.0,
+                "entropy": 4.243397198561892,
+                "dilution_index": 1880.3892167196273
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 33.181662626706036,
+                "q10": 12.536859533984735,
+                "q50": 31.19609218789646,
+                "q90": 56.98433259664905
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 33.39152751582822,
+                "q10": 12.898831529905678,
+                "q50": 31.700471339701483,
+                "q90": 57.05950861220487
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 33.66673096457204,
+                "q10": 13.52667313231866,
+                "q50": 31.841407086699554,
+                "q90": 57.2726154305875
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 33.77782422337964,
+                "q10": 14.007610837473422,
+                "q50": 32.14554570861131,
+                "q90": 56.883599658118115
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 26.0,
+              "probability": 0.021666666666666667
+            }
+          },
+          "rank": 4
+        },
+        "hybrid": {
+          "errors": {
+            "btc_score": 109.96666666666667,
+            "btc_quantile_mae": 91.35555555555555,
+            "btc_coverage_deficit": 0.07444444444444445,
+            "dilution_log_mae": 0.5298438685549305,
+            "pair_quantile_mae": 2.3263346010586474,
+            "reaction_abs_error": 0.018333333333333333
+          },
+          "objective": 238.40795624776462,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 41.0,
+                "coverage": 0.5125,
+                "q10": 96.0,
+                "q50": 275.0,
+                "q90": 489.0
+              },
+              "10.0": {
+                "count": 27.0,
+                "coverage": 0.3375,
+                "q10": 161.8,
+                "q50": 298.0,
+                "q90": 479.6
+              },
+              "14.0": {
+                "count": 17.0,
+                "coverage": 0.2125,
+                "q10": 207.2,
+                "q50": 400.0,
+                "q90": 514.0
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 68.0,
+                "entropy": 4.16754187870884,
+                "dilution_index": 1743.027363908452
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 71.0,
+                "entropy": 4.2195279172508355,
+                "dilution_index": 1836.0371097442335
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 77.0,
+                "entropy": 4.330040596131885,
+                "dilution_index": 2050.5789812531193
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 76.0,
+                "entropy": 4.312711916617886,
+                "dilution_index": 2015.3512617195013
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 33.062774199107174,
+                "q10": 12.34491764521456,
+                "q50": 31.115836414418094,
+                "q90": 56.98491788218002
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 33.37299652563239,
+                "q10": 13.172205716041855,
+                "q50": 31.353430642457273,
+                "q90": 57.42963642496914
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 33.878266102925224,
+                "q10": 13.806050242533898,
+                "q50": 32.1394264628549,
+                "q90": 57.98828465972284
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 34.14178907004121,
+                "q10": 15.033745216189589,
+                "q50": 32.5542293758046,
+                "q90": 57.37205502197723
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 37.0,
+              "probability": 0.030833333333333334
+            }
+          },
+          "rank": 1
+        },
+        "pair_rerank": {
+          "errors": {
+            "btc_score": 195.95277777777778,
+            "btc_quantile_mae": 130.46666666666667,
+            "btc_coverage_deficit": 0.2619444444444444,
+            "dilution_log_mae": 0.5455373976196649,
+            "pair_quantile_mae": 3.054525518900668,
+            "reaction_abs_error": 0.009166666666666667
+          },
+          "objective": 331.6744425368176,
+          "metrics": {
+            "breakthrough": {
+              "6.0": {
+                "count": 22.0,
+                "coverage": 0.275,
+                "q10": 74.5,
+                "q50": 183.5,
+                "q90": 523.6
+              },
+              "10.0": {
+                "count": 11.0,
+                "coverage": 0.1375,
+                "q10": 136.0,
+                "q50": 265.0,
+                "q90": 371.0
+              },
+              "14.0": {
+                "count": 6.0,
+                "coverage": 0.075,
+                "q10": 206.5,
+                "q50": 316.5,
+                "q90": 432.0
+              }
+            },
+            "dilution": {
+              "100": {
+                "n_particles": 80.0,
+                "occupied_bins": 70.0,
+                "entropy": 4.2087398395338935,
+                "dilution_index": 1816.3362569480203
+              },
+              "200": {
+                "n_particles": 80.0,
+                "occupied_bins": 70.0,
+                "entropy": 4.191411160019895,
+                "dilution_index": 1785.1326872130935
+              },
+              "300": {
+                "n_particles": 80.0,
+                "occupied_bins": 74.0,
+                "entropy": 4.278054557589889,
+                "dilution_index": 1946.7009992393914
+              },
+              "400": {
+                "n_particles": 80.0,
+                "occupied_bins": 75.0,
+                "entropy": 4.288842635306831,
+                "dilution_index": 1967.815850455707
+              }
+            },
+            "pair_separation": {
+              "100": {
+                "count": 1200.0,
+                "mean": 32.922410419778885,
+                "q10": 12.36576253924843,
+                "q50": 31.188496570225258,
+                "q90": 56.64948649807065
+              },
+              "200": {
+                "count": 1200.0,
+                "mean": 32.95279495265472,
+                "q10": 12.400853897752013,
+                "q50": 31.285089535060454,
+                "q90": 56.16670440974344
+              },
+              "300": {
+                "count": 1200.0,
+                "mean": 33.22624489326383,
+                "q10": 12.854451303336848,
+                "q50": 31.520982813826514,
+                "q90": 56.48813285702636
+              },
+              "400": {
+                "count": 1200.0,
+                "mean": 33.438323488127836,
+                "q10": 13.190901786578184,
+                "q50": 31.940935930738704,
+                "q90": 56.5046465486529
+              }
+            },
+            "reaction": {
+              "reaction_radius": 3.0,
+              "pair_count": 1200.0,
+              "encounter_count": 26.0,
+              "probability": 0.021666666666666667
+            }
+          },
+          "rank": 6
+        }
+      },
+      "ranking": [
+        {
+          "sampler": "hybrid",
+          "objective": 238.40795624776462,
+          "rank": 1
+        },
+        {
+          "sampler": "pooled_validation_mixture",
+          "objective": 248.796572305562,
+          "rank": 2
+        },
+        {
+          "sampler": "gaussian_bayes",
+          "objective": 266.3869250276572,
+          "rank": 3
+        },
+        {
+          "sampler": "knn_conditional",
+          "objective": 277.3237867430334,
+          "rank": 4
+        },
+        {
+          "sampler": "bootstrap_mean_mixture",
+          "objective": 280.36287830024514,
+          "rank": 5
+        },
+        {
+          "sampler": "pair_rerank",
+          "objective": 331.6744425368176,
+          "rank": 6
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "samplers": {
+      "bootstrap_mean_mixture": {
+        "mean_objective": 272.2223389522005,
+        "std_objective": 33.18512052845935,
+        "min_objective": 239.60623535900604,
+        "max_objective": 315.07181374626,
+        "mean_rank": 3.5,
+        "wins": 1,
+        "beats_gaussian_bayes": 1,
+        "beats_hybrid": 2
+      },
+      "pooled_validation_mixture": {
+        "mean_objective": 269.00054599771755,
+        "std_objective": 40.17121408077162,
+        "min_objective": 233.91958045586443,
+        "max_objective": 325.574766104569,
+        "mean_rank": 3.25,
+        "wins": 0,
+        "beats_gaussian_bayes": 1,
+        "beats_hybrid": 2
+      },
+      "gaussian_bayes": {
+        "mean_objective": 255.39600188433806,
+        "std_objective": 39.42639476604471,
+        "min_objective": 199.037287629033,
+        "max_objective": 291.06254958656297,
+        "mean_rank": 1.75,
+        "wins": 2,
+        "beats_gaussian_bayes": 0,
+        "beats_hybrid": 3
+      },
+      "knn_conditional": {
+        "mean_objective": 273.9003447884,
+        "std_objective": 45.61028750627375,
+        "min_objective": 208.34222060823024,
+        "max_objective": 305.65616638068707,
+        "mean_rank": 3.5,
+        "wins": 0,
+        "beats_gaussian_bayes": 0,
+        "beats_hybrid": 2
+      },
+      "hybrid": {
+        "mean_objective": 268.50293383238335,
+        "std_objective": 38.710693275805994,
+        "min_objective": 235.35465207760558,
+        "max_objective": 315.79590895537115,
+        "mean_rank": 3.25,
+        "wins": 1,
+        "beats_gaussian_bayes": 1,
+        "beats_hybrid": 0
+      },
+      "pair_rerank": {
+        "mean_objective": 320.6657656588125,
+        "std_objective": 43.86343022683238,
+        "min_objective": 273.470461538786,
+        "max_objective": 375.9657845937176,
+        "mean_rank": 5.75,
+        "wins": 0,
+        "beats_gaussian_bayes": 0,
+        "beats_hybrid": 0
+      }
+    },
+    "mean_selected_weights": {
+      "gaussian_bayes": 0.4791666666666667,
+      "knn_conditional": 0.18749999999999997,
+      "hybrid": 0.2708333333333333,
+      "pair_rerank": 0.0625
+    },
+    "std_selected_weights": {
+      "gaussian_bayes": 0.04166666666666666,
+      "knn_conditional": 0.04166666666666667,
+      "hybrid": 0.04166666666666666,
+      "pair_rerank": 0.07978559231302818
+    }
+  }
+}

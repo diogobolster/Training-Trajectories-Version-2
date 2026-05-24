@@ -1,0 +1,13 @@
+[project]
+name = "training-trajectories-neural-net"
+version = "0.1.0"
+description = "Prototype tools for physics-constrained generative training trajectories."
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+

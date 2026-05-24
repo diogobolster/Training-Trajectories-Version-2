@@ -1,0 +1,5075 @@
+{
+  "input": "data/processed/bentheimer_6um_downsample3_trajectories.npz",
+  "n_train": 210,
+  "n_reference": 90,
+  "planes": [
+    6.0,
+    10.0,
+    14.0
+  ],
+  "reference": {
+    "6.0": {
+      "count": 49.0,
+      "coverage": 0.5444444444444444,
+      "q10": 121.60000000000001,
+      "q50": 221.0,
+      "q90": 409.0
+    },
+    "10.0": {
+      "count": 37.0,
+      "coverage": 0.4111111111111111,
+      "q10": 185.0,
+      "q50": 325.0,
+      "q90": 438.2
+    },
+    "14.0": {
+      "count": 23.0,
+      "coverage": 0.25555555555555554,
+      "q10": 222.8,
+      "q50": 402.0,
+      "q90": 463.4
+    }
+  },
+  "results": [
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 32.511111111111106,
+      "coverage_deficit": 0.041269841269841255,
+      "score": 42.82857142857142,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 5,
+        "archive_size": 6930,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.005
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 51.0,
+          "coverage": 0.7285714285714285,
+          "q10": 147.0,
+          "q50": 305.0,
+          "q90": 447.0
+        },
+        "10.0": {
+          "count": 27.0,
+          "coverage": 0.38571428571428573,
+          "q10": 209.4,
+          "q50": 372.0,
+          "q90": 440.4
+        },
+        "14.0": {
+          "count": 11.0,
+          "coverage": 0.15714285714285714,
+          "q10": 248.0,
+          "q50": 369.0,
+          "q90": 450.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 50.82222222222222,
+      "coverage_deficit": 0.0,
+      "score": 50.82222222222222,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 6,
+        "archive_size": 5670,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.004564354645876384
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 54.0,
+          "coverage": 0.7714285714285715,
+          "q10": 131.3,
+          "q50": 315.5,
+          "q90": 534.5
+        },
+        "10.0": {
+          "count": 37.0,
+          "coverage": 0.5285714285714286,
+          "q10": 204.2,
+          "q50": 326.0,
+          "q90": 539.8
+        },
+        "14.0": {
+          "count": 18.0,
+          "coverage": 0.2571428571428571,
+          "q10": 244.9,
+          "q50": 388.5,
+          "q90": 533.7
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 31.41111111111111,
+      "coverage_deficit": 0.10317460317460318,
+      "score": 57.20476190476191,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 6,
+        "archive_size": 7350,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.009128709291752768
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 40.0,
+          "coverage": 0.5714285714285714,
+          "q10": 129.9,
+          "q50": 255.5,
+          "q90": 405.0
+        },
+        "10.0": {
+          "count": 21.0,
+          "coverage": 0.3,
+          "q10": 214.0,
+          "q50": 359.0,
+          "q90": 424.0
+        },
+        "14.0": {
+          "count": 4.0,
+          "coverage": 0.05714285714285714,
+          "q10": 202.1,
+          "q50": 307.5,
+          "q90": 419.9
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 29.22222222222221,
+      "coverage_deficit": 0.1126984126984127,
+      "score": 57.396825396825385,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 6,
+        "archive_size": 7350,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.004564354645876384
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 47.0,
+          "coverage": 0.6714285714285714,
+          "q10": 148.0,
+          "q50": 267.0,
+          "q90": 423.79999999999995
+        },
+        "10.0": {
+          "count": 19.0,
+          "coverage": 0.2714285714285714,
+          "q10": 149.4,
+          "q50": 342.0,
+          "q90": 429.2
+        },
+        "14.0": {
+          "count": 4.0,
+          "coverage": 0.05714285714285714,
+          "q10": 241.7,
+          "q50": 348.0,
+          "q90": 422.1
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 56.622222222222234,
+      "coverage_deficit": 0.02222222222222221,
+      "score": 62.177777777777784,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 6,
+        "archive_size": 5670,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 50.0,
+          "coverage": 0.7142857142857143,
+          "q10": 127.7,
+          "q50": 317.0,
+          "q90": 489.1000000000001
+        },
+        "10.0": {
+          "count": 27.0,
+          "coverage": 0.38571428571428573,
+          "q10": 187.8,
+          "q50": 407.0,
+          "q90": 548.6
+        },
+        "14.0": {
+          "count": 15.0,
+          "coverage": 0.21428571428571427,
+          "q10": 253.0,
+          "q50": 436.0,
+          "q90": 531.4
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 41.25555555555556,
+      "coverage_deficit": 0.09365079365079365,
+      "score": 64.66825396825396,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 4,
+        "archive_size": 6510,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.011180339887498949
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 49.0,
+          "coverage": 0.7,
+          "q10": 149.0,
+          "q50": 315.0,
+          "q90": 474.2
+        },
+        "10.0": {
+          "count": 20.0,
+          "coverage": 0.2857142857142857,
+          "q10": 223.3,
+          "q50": 338.5,
+          "q90": 454.90000000000003
+        },
+        "14.0": {
+          "count": 7.0,
+          "coverage": 0.1,
+          "q10": 294.0,
+          "q50": 427.0,
+          "q90": 483.40000000000003
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 39.03333333333333,
+      "coverage_deficit": 0.1365079365079365,
+      "score": 73.16031746031746,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 5,
+        "archive_size": 6930,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.01
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 41.0,
+          "coverage": 0.5857142857142857,
+          "q10": 157.0,
+          "q50": 352.0,
+          "q90": 428.0
+        },
+        "10.0": {
+          "count": 14.0,
+          "coverage": 0.2,
+          "q10": 192.8,
+          "q50": 410.0,
+          "q90": 456.1
+        },
+        "14.0": {
+          "count": 4.0,
+          "coverage": 0.05714285714285714,
+          "q10": 262.9,
+          "q50": 393.0,
+          "q90": 457.3
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 50.611111111111114,
+      "coverage_deficit": 0.09365079365079365,
+      "score": 74.02380952380952,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 5,
+        "archive_size": 6930,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 50.0,
+          "coverage": 0.7142857142857143,
+          "q10": 168.9,
+          "q50": 340.0,
+          "q90": 458.1
+        },
+        "10.0": {
+          "count": 21.0,
+          "coverage": 0.3,
+          "q10": 197.0,
+          "q50": 388.0,
+          "q90": 473.0
+        },
+        "14.0": {
+          "count": 6.0,
+          "coverage": 0.08571428571428572,
+          "q10": 306.0,
+          "q50": 445.5,
+          "q90": 467.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 61.3111111111111,
+      "coverage_deficit": 0.055555555555555546,
+      "score": 75.19999999999999,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 6,
+        "archive_size": 5670,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.009128709291752768
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 49.0,
+          "coverage": 0.7,
+          "q10": 138.4,
+          "q50": 285.0,
+          "q90": 517.0
+        },
+        "10.0": {
+          "count": 24.0,
+          "coverage": 0.34285714285714286,
+          "q10": 213.8,
+          "q50": 360.0,
+          "q90": 546.5999999999999
+        },
+        "14.0": {
+          "count": 11.0,
+          "coverage": 0.15714285714285714,
+          "q10": 308.0,
+          "q50": 424.0,
+          "q90": 547.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 37.87777777777777,
+      "coverage_deficit": 0.15079365079365079,
+      "score": 75.57619047619048,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 5,
+        "archive_size": 6930,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.02
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 42.0,
+          "coverage": 0.6,
+          "q10": 132.70000000000002,
+          "q50": 359.0,
+          "q90": 442.9
+        },
+        "10.0": {
+          "count": 12.0,
+          "coverage": 0.17142857142857143,
+          "q10": 168.3,
+          "q50": 351.0,
+          "q90": 468.0
+        },
+        "14.0": {
+          "count": 3.0,
+          "coverage": 0.04285714285714286,
+          "q10": 237.2,
+          "q50": 378.0,
+          "q90": 416.4
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 26.53333333333333,
+      "coverage_deficit": 0.20846560846560847,
+      "score": 78.64973544973545,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 6,
+        "archive_size": 7350,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.03651483716701107
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 36.0,
+          "coverage": 0.5142857142857142,
+          "q10": 145.5,
+          "q50": 286.5,
+          "q90": 434.0
+        },
+        "10.0": {
+          "count": 5.0,
+          "coverage": 0.07142857142857142,
+          "q10": 187.8,
+          "q50": 326.0,
+          "q90": 397.2
+        },
+        "14.0": {
+          "count": 0.0,
+          "coverage": 0.0,
+          "q10": NaN,
+          "q50": NaN,
+          "q90": NaN
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 45.133333333333326,
+      "coverage_deficit": 0.13703703703703704,
+      "score": 79.39259259259259,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 6,
+        "archive_size": 7350,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 36.0,
+          "coverage": 0.5142857142857142,
+          "q10": 187.0,
+          "q50": 278.5,
+          "q90": 400.0
+        },
+        "10.0": {
+          "count": 12.0,
+          "coverage": 0.17142857142857143,
+          "q10": 270.8,
+          "q50": 343.0,
+          "q90": 446.0
+        },
+        "14.0": {
+          "count": 8.0,
+          "coverage": 0.11428571428571428,
+          "q10": 344.7,
+          "q50": 397.0,
+          "q90": 427.6
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 62.766666666666666,
+      "coverage_deficit": 0.07460317460317459,
+      "score": 81.41746031746031,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 4,
+        "archive_size": 6510,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.005590169943749474
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 48.0,
+          "coverage": 0.6857142857142857,
+          "q10": 126.5,
+          "q50": 311.5,
+          "q90": 469.8
+        },
+        "10.0": {
+          "count": 25.0,
+          "coverage": 0.35714285714285715,
+          "q10": 217.0,
+          "q50": 355.0,
+          "q90": 485.6
+        },
+        "14.0": {
+          "count": 6.0,
+          "coverage": 0.08571428571428572,
+          "q10": 409.0,
+          "q50": 465.0,
+          "q90": 513.5
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 55.75555555555555,
+      "coverage_deficit": 0.13703703703703704,
+      "score": 90.01481481481481,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 5,
+        "archive_size": 9450,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.005
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 38.0,
+          "coverage": 0.5428571428571428,
+          "q10": 115.2,
+          "q50": 231.0,
+          "q90": 338.6
+        },
+        "10.0": {
+          "count": 15.0,
+          "coverage": 0.21428571428571427,
+          "q10": 177.6,
+          "q50": 267.0,
+          "q90": 343.8
+        },
+        "14.0": {
+          "count": 3.0,
+          "coverage": 0.04285714285714286,
+          "q10": 249.0,
+          "q50": 305.0,
+          "q90": 331.4
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 50.988888888888894,
+      "coverage_deficit": 0.1603174603174603,
+      "score": 91.06825396825397,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 5,
+        "archive_size": 6930,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.08
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 40.0,
+          "coverage": 0.5714285714285714,
+          "q10": 197.5,
+          "q50": 310.0,
+          "q90": 437.1
+        },
+        "10.0": {
+          "count": 10.0,
+          "coverage": 0.14285714285714285,
+          "q10": 204.4,
+          "q50": 342.5,
+          "q90": 431.4
+        },
+        "14.0": {
+          "count": 3.0,
+          "coverage": 0.04285714285714286,
+          "q10": 374.8,
+          "q50": 386.0,
+          "q90": 409.2
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 83.56666666666666,
+      "coverage_deficit": 0.03650793650793649,
+      "score": 92.69365079365079,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 3,
+        "archive_size": 6090,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 57.0,
+          "coverage": 0.8142857142857143,
+          "q10": 145.0,
+          "q50": 354.0,
+          "q90": 515.2
+        },
+        "10.0": {
+          "count": 28.0,
+          "coverage": 0.4,
+          "q10": 277.3,
+          "q50": 374.5,
+          "q90": 493.1
+        },
+        "14.0": {
+          "count": 11.0,
+          "coverage": 0.15714285714285714,
+          "q10": 380.0,
+          "q50": 471.0,
+          "q90": 530.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 46.31111111111111,
+      "coverage_deficit": 0.1894179894179894,
+      "score": 93.66560846560846,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 5,
+        "archive_size": 6930,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.04
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 35.0,
+          "coverage": 0.5,
+          "q10": 136.4,
+          "q50": 317.0,
+          "q90": 447.40000000000003
+        },
+        "10.0": {
+          "count": 8.0,
+          "coverage": 0.11428571428571428,
+          "q10": 265.7,
+          "q50": 369.5,
+          "q90": 425.0
+        },
+        "14.0": {
+          "count": 2.0,
+          "coverage": 0.02857142857142857,
+          "q10": 275.8,
+          "q50": 355.0,
+          "q90": 434.2
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 80.66666666666669,
+      "coverage_deficit": 0.055555555555555546,
+      "score": 94.55555555555557,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 3,
+        "archive_size": 6090,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.006454972243679028
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 59.0,
+          "coverage": 0.8428571428571429,
+          "q10": 165.8,
+          "q50": 341.0,
+          "q90": 493.20000000000005
+        },
+        "10.0": {
+          "count": 25.0,
+          "coverage": 0.35714285714285715,
+          "q10": 238.4,
+          "q50": 438.0,
+          "q90": 492.8
+        },
+        "14.0": {
+          "count": 10.0,
+          "coverage": 0.14285714285714285,
+          "q10": 347.7,
+          "q50": 455.5,
+          "q90": 541.6
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 41.71111111111111,
+      "coverage_deficit": 0.2132275132275132,
+      "score": 95.01798941798941,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 5,
+        "archive_size": 6930,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.16
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 30.0,
+          "coverage": 0.42857142857142855,
+          "q10": 149.5,
+          "q50": 352.5,
+          "q90": 454.7
+        },
+        "10.0": {
+          "count": 8.0,
+          "coverage": 0.11428571428571428,
+          "q10": 209.5,
+          "q50": 328.0,
+          "q90": 415.2
+        },
+        "14.0": {
+          "count": 2.0,
+          "coverage": 0.02857142857142857,
+          "q10": 311.6,
+          "q50": 382.0,
+          "q90": 452.4
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 74.72222222222224,
+      "coverage_deficit": 0.08412698412698412,
+      "score": 95.75396825396828,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 4,
+        "archive_size": 6510,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 49.0,
+          "coverage": 0.7,
+          "q10": 169.00000000000003,
+          "q50": 337.0,
+          "q90": 472.20000000000005
+        },
+        "10.0": {
+          "count": 20.0,
+          "coverage": 0.2857142857142857,
+          "q10": 265.7,
+          "q50": 379.5,
+          "q90": 484.3
+        },
+        "14.0": {
+          "count": 9.0,
+          "coverage": 0.12857142857142856,
+          "q10": 391.0,
+          "q50": 476.0,
+          "q90": 485.8
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 81.02222222222223,
+      "coverage_deficit": 0.06507936507936507,
+      "score": 97.29206349206349,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 3,
+        "archive_size": 6090,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.051639777949432225
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 57.0,
+          "coverage": 0.8142857142857143,
+          "q10": 166.8,
+          "q50": 369.0,
+          "q90": 510.59999999999997
+        },
+        "10.0": {
+          "count": 25.0,
+          "coverage": 0.35714285714285715,
+          "q10": 255.20000000000002,
+          "q50": 408.0,
+          "q90": 538.2
+        },
+        "14.0": {
+          "count": 8.0,
+          "coverage": 0.11428571428571428,
+          "q10": 329.1,
+          "q50": 414.5,
+          "q90": 525.8
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 65.88888888888889,
+      "coverage_deficit": 0.13174603174603172,
+      "score": 98.82539682539681,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 3,
+        "archive_size": 7980,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.006454972243679028
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 51.0,
+          "coverage": 0.7285714285714285,
+          "q10": 186.0,
+          "q50": 294.0,
+          "q90": 385.0
+        },
+        "10.0": {
+          "count": 17.0,
+          "coverage": 0.24285714285714285,
+          "q10": 315.4,
+          "q50": 380.0,
+          "q90": 405.2
+        },
+        "14.0": {
+          "count": 2.0,
+          "coverage": 0.02857142857142857,
+          "q10": 299.8,
+          "q50": 343.0,
+          "q90": 386.2
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 94.66666666666667,
+      "coverage_deficit": 0.018518518518518507,
+      "score": 99.2962962962963,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 5,
+        "archive_size": 5460,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.005
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 62.0,
+          "coverage": 0.8857142857142857,
+          "q10": 170.6,
+          "q50": 348.0,
+          "q90": 507.4
+        },
+        "10.0": {
+          "count": 40.0,
+          "coverage": 0.5714285714285714,
+          "q10": 284.2,
+          "q50": 449.5,
+          "q90": 588.3
+        },
+        "14.0": {
+          "count": 14.0,
+          "coverage": 0.2,
+          "q10": 278.3,
+          "q50": 436.0,
+          "q90": 577.7
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 55.66666666666666,
+      "coverage_deficit": 0.1751322751322751,
+      "score": 99.44973544973544,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 6,
+        "archive_size": 7350,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.018257418583505537
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 35.0,
+          "coverage": 0.5,
+          "q10": 159.60000000000002,
+          "q50": 307.0,
+          "q90": 415.40000000000003
+        },
+        "10.0": {
+          "count": 10.0,
+          "coverage": 0.14285714285714285,
+          "q10": 274.7,
+          "q50": 369.5,
+          "q90": 430.8
+        },
+        "14.0": {
+          "count": 3.0,
+          "coverage": 0.04285714285714286,
+          "q10": 327.2,
+          "q50": 328.0,
+          "q90": 412.8
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 57.94444444444444,
+      "coverage_deficit": 0.17037037037037037,
+      "score": 100.53703703703704,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 3,
+        "archive_size": 7980,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 38.0,
+          "coverage": 0.5428571428571428,
+          "q10": 183.1,
+          "q50": 261.0,
+          "q90": 375.20000000000005
+        },
+        "10.0": {
+          "count": 10.0,
+          "coverage": 0.14285714285714285,
+          "q10": 254.0,
+          "q50": 305.5,
+          "q90": 398.09999999999997
+        },
+        "14.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 419.0,
+          "q50": 419.0,
+          "q90": 419.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 79.33333333333333,
+      "coverage_deficit": 0.08888888888888886,
+      "score": 101.55555555555554,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 5,
+        "archive_size": 5460,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.02
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 49.0,
+          "coverage": 0.7,
+          "q10": 154.4,
+          "q50": 345.0,
+          "q90": 541.4
+        },
+        "10.0": {
+          "count": 21.0,
+          "coverage": 0.3,
+          "q10": 273.0,
+          "q50": 381.0,
+          "q90": 559.0
+        },
+        "14.0": {
+          "count": 7.0,
+          "coverage": 0.1,
+          "q10": 290.4,
+          "q50": 465.0,
+          "q90": 492.8
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 71.71111111111111,
+      "coverage_deficit": 0.12275132275132274,
+      "score": 102.39894179894179,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 4,
+        "archive_size": 6510,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.17888543819998318
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 38.0,
+          "coverage": 0.5428571428571428,
+          "q10": 191.2,
+          "q50": 350.0,
+          "q90": 479.6
+        },
+        "10.0": {
+          "count": 16.0,
+          "coverage": 0.22857142857142856,
+          "q10": 246.5,
+          "q50": 389.5,
+          "q90": 502.0
+        },
+        "14.0": {
+          "count": 5.0,
+          "coverage": 0.07142857142857142,
+          "q10": 358.2,
+          "q50": 406.0,
+          "q90": 510.4
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 82.10000000000001,
+      "coverage_deficit": 0.08888888888888886,
+      "score": 104.32222222222222,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 3,
+        "archive_size": 6090,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.025819888974716113
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 53.0,
+          "coverage": 0.7571428571428571,
+          "q10": 155.2,
+          "q50": 332.0,
+          "q90": 501.00000000000017
+        },
+        "10.0": {
+          "count": 24.0,
+          "coverage": 0.34285714285714286,
+          "q10": 337.3,
+          "q50": 449.0,
+          "q90": 521.3
+        },
+        "14.0": {
+          "count": 4.0,
+          "coverage": 0.05714285714285714,
+          "q10": 290.8,
+          "q50": 443.5,
+          "q90": 496.8
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 54.266666666666666,
+      "coverage_deficit": 0.2132275132275132,
+      "score": 107.57354497354497,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 4,
+        "archive_size": 8610,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 33.0,
+          "coverage": 0.4714285714285714,
+          "q10": 104.2,
+          "q50": 261.0,
+          "q90": 362.8
+        },
+        "10.0": {
+          "count": 6.0,
+          "coverage": 0.08571428571428572,
+          "q10": 191.0,
+          "q50": 346.0,
+          "q90": 373.0
+        },
+        "14.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 350.0,
+          "q50": 350.0,
+          "q90": 350.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 73.04444444444445,
+      "coverage_deficit": 0.14126984126984124,
+      "score": 108.36190476190475,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 4,
+        "archive_size": 6510,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.08944271909999159
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 46.0,
+          "coverage": 0.6571428571428571,
+          "q10": 197.5,
+          "q50": 337.0,
+          "q90": 453.0
+        },
+        "10.0": {
+          "count": 13.0,
+          "coverage": 0.18571428571428572,
+          "q10": 261.8,
+          "q50": 402.0,
+          "q90": 485.6
+        },
+        "14.0": {
+          "count": 4.0,
+          "coverage": 0.05714285714285714,
+          "q10": 402.8,
+          "q50": 438.5,
+          "q90": 467.2
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 57.53333333333333,
+      "coverage_deficit": 0.21798941798941796,
+      "score": 112.03068783068781,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 4,
+        "archive_size": 8610,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.005590169943749474
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 32.0,
+          "coverage": 0.45714285714285713,
+          "q10": 124.3,
+          "q50": 286.0,
+          "q90": 386.7
+        },
+        "10.0": {
+          "count": 6.0,
+          "coverage": 0.08571428571428572,
+          "q10": 180.0,
+          "q50": 269.5,
+          "q90": 325.5
+        },
+        "14.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 388.0,
+          "q50": 388.0,
+          "q90": 388.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 69.55555555555554,
+      "coverage_deficit": 0.17037037037037037,
+      "score": 112.14814814814812,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 3,
+        "archive_size": 7980,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.012909944487358056
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 35.0,
+          "coverage": 0.5,
+          "q10": 182.0,
+          "q50": 282.0,
+          "q90": 366.20000000000005
+        },
+        "10.0": {
+          "count": 13.0,
+          "coverage": 0.18571428571428572,
+          "q10": 242.0,
+          "q50": 302.0,
+          "q90": 404.0
+        },
+        "14.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 295.0,
+          "q50": 295.0,
+          "q90": 295.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 50.96666666666666,
+      "coverage_deficit": 0.2465608465608465,
+      "score": 112.60687830687829,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 4,
+        "archive_size": 8610,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.17888543819998318
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 29.0,
+          "coverage": 0.4142857142857143,
+          "q10": 178.8,
+          "q50": 320.0,
+          "q90": 373.8
+        },
+        "10.0": {
+          "count": 4.0,
+          "coverage": 0.05714285714285714,
+          "q10": 227.0,
+          "q50": 305.0,
+          "q90": 385.8
+        },
+        "14.0": {
+          "count": 0.0,
+          "coverage": 0.0,
+          "q10": NaN,
+          "q50": NaN,
+          "q90": NaN
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 107.75555555555556,
+      "coverage_deficit": 0.028042328042328035,
+      "score": 114.76613756613757,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 4,
+        "archive_size": 5040,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.011180339887498949
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 57.0,
+          "coverage": 0.8142857142857143,
+          "q10": 135.2,
+          "q50": 399.0,
+          "q90": 594.8
+        },
+        "10.0": {
+          "count": 31.0,
+          "coverage": 0.44285714285714284,
+          "q10": 234.0,
+          "q50": 446.0,
+          "q90": 628.0
+        },
+        "14.0": {
+          "count": 12.0,
+          "coverage": 0.17142857142857143,
+          "q10": 272.1,
+          "q50": 465.0,
+          "q90": 583.7
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 55.45555555555555,
+      "coverage_deficit": 0.24179894179894176,
+      "score": 115.90529100529099,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 4,
+        "archive_size": 8610,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.08944271909999159
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 26.0,
+          "coverage": 0.37142857142857144,
+          "q10": 184.5,
+          "q50": 260.0,
+          "q90": 350.0
+        },
+        "10.0": {
+          "count": 6.0,
+          "coverage": 0.08571428571428572,
+          "q10": 212.0,
+          "q50": 299.5,
+          "q90": 360.5
+        },
+        "14.0": {
+          "count": 2.0,
+          "coverage": 0.02857142857142857,
+          "q10": 228.2,
+          "q50": 297.0,
+          "q90": 365.8
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 97.32222222222222,
+      "coverage_deficit": 0.07460317460317459,
+      "score": 115.97301587301587,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 5,
+        "archive_size": 5460,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.04
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 52.0,
+          "coverage": 0.7428571428571429,
+          "q10": 113.30000000000001,
+          "q50": 365.5,
+          "q90": 555.1999999999999
+        },
+        "10.0": {
+          "count": 24.0,
+          "coverage": 0.34285714285714286,
+          "q10": 292.20000000000005,
+          "q50": 490.0,
+          "q90": 567.1
+        },
+        "14.0": {
+          "count": 7.0,
+          "coverage": 0.1,
+          "q10": 214.6,
+          "q50": 424.0,
+          "q90": 609.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 84.98888888888888,
+      "coverage_deficit": 0.13174603174603172,
+      "score": 117.9253968253968,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 4,
+        "archive_size": 6510,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.044721359549995794
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 44.0,
+          "coverage": 0.6285714285714286,
+          "q10": 126.5,
+          "q50": 368.5,
+          "q90": 475.1
+        },
+        "10.0": {
+          "count": 14.0,
+          "coverage": 0.2,
+          "q10": 237.1,
+          "q50": 353.5,
+          "q90": 476.4
+        },
+        "14.0": {
+          "count": 5.0,
+          "coverage": 0.07142857142857142,
+          "q10": 490.8,
+          "q50": 511.0,
+          "q90": 514.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 54.583333333333336,
+      "coverage_deficit": 0.2560846560846561,
+      "score": 118.60449735449737,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 5,
+        "archive_size": 9450,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.02
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 26.0,
+          "coverage": 0.37142857142857144,
+          "q10": 121.0,
+          "q50": 246.5,
+          "q90": 343.0
+        },
+        "10.0": {
+          "count": 5.0,
+          "coverage": 0.07142857142857142,
+          "q10": 211.2,
+          "q50": 243.0,
+          "q90": 311.0
+        },
+        "14.0": {
+          "count": 0.0,
+          "coverage": 0.0,
+          "q10": NaN,
+          "q50": NaN,
+          "q90": NaN
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 70.25555555555555,
+      "coverage_deficit": 0.19417989417989415,
+      "score": 118.80052910052908,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 4,
+        "archive_size": 8610,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.022360679774997897
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 33.0,
+          "coverage": 0.4714285714285714,
+          "q10": 179.6,
+          "q50": 275.0,
+          "q90": 359.4
+        },
+        "10.0": {
+          "count": 8.0,
+          "coverage": 0.11428571428571428,
+          "q10": 231.6,
+          "q50": 281.5,
+          "q90": 312.8
+        },
+        "14.0": {
+          "count": 3.0,
+          "coverage": 0.04285714285714286,
+          "q10": 289.0,
+          "q50": 337.0,
+          "q90": 339.4
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 79.61666666666667,
+      "coverage_deficit": 0.16507936507936508,
+      "score": 120.88650793650794,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 4,
+        "archive_size": 6510,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.022360679774997897
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 39.0,
+          "coverage": 0.5571428571428572,
+          "q10": 188.40000000000003,
+          "q50": 367.0,
+          "q90": 482.0
+        },
+        "10.0": {
+          "count": 12.0,
+          "coverage": 0.17142857142857143,
+          "q10": 281.3,
+          "q50": 414.5,
+          "q90": 444.3
+        },
+        "14.0": {
+          "count": 0.0,
+          "coverage": 0.0,
+          "q10": NaN,
+          "q50": NaN,
+          "q90": NaN
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 65.08888888888889,
+      "coverage_deficit": 0.22751322751322747,
+      "score": 121.96719576719576,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 4,
+        "archive_size": 8610,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.011180339887498949
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 30.0,
+          "coverage": 0.42857142857142855,
+          "q10": 178.70000000000002,
+          "q50": 278.5,
+          "q90": 375.1
+        },
+        "10.0": {
+          "count": 6.0,
+          "coverage": 0.08571428571428572,
+          "q10": 256.5,
+          "q50": 320.0,
+          "q90": 365.0
+        },
+        "14.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 355.0,
+          "q50": 355.0,
+          "q90": 355.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 55.449999999999996,
+      "coverage_deficit": 0.2703703703703703,
+      "score": 123.04259259259257,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 3,
+        "archive_size": 7980,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.10327955589886445
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 26.0,
+          "coverage": 0.37142857142857144,
+          "q10": 198.0,
+          "q50": 313.5,
+          "q90": 405.0
+        },
+        "10.0": {
+          "count": 2.0,
+          "coverage": 0.02857142857142857,
+          "q10": 240.8,
+          "q50": 300.0,
+          "q90": 359.2
+        },
+        "14.0": {
+          "count": 0.0,
+          "coverage": 0.0,
+          "q10": NaN,
+          "q50": NaN,
+          "q90": NaN
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 122.07777777777781,
+      "coverage_deficit": 0.004232804232804227,
+      "score": 123.13597883597888,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 3,
+        "archive_size": 4830,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.006454972243679028
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 64.0,
+          "coverage": 0.9142857142857143,
+          "q10": 133.3,
+          "q50": 355.5,
+          "q90": 559.7
+        },
+        "10.0": {
+          "count": 43.0,
+          "coverage": 0.6142857142857143,
+          "q10": 263.8,
+          "q50": 526.0,
+          "q90": 649.8
+        },
+        "14.0": {
+          "count": 17.0,
+          "coverage": 0.24285714285714285,
+          "q10": 310.40000000000003,
+          "q50": 489.0,
+          "q90": 599.2
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 99.35555555555555,
+      "coverage_deficit": 0.0984126984126984,
+      "score": 123.95873015873015,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 6,
+        "archive_size": 5670,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.03651483716701107
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 48.0,
+          "coverage": 0.6857142857142857,
+          "q10": 160.9,
+          "q50": 341.0,
+          "q90": 556.3
+        },
+        "10.0": {
+          "count": 19.0,
+          "coverage": 0.2714285714285714,
+          "q10": 259.8,
+          "q50": 412.0,
+          "q90": 536.4
+        },
+        "14.0": {
+          "count": 7.0,
+          "coverage": 0.1,
+          "q10": 394.8,
+          "q50": 463.0,
+          "q90": 558.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 70.66666666666667,
+      "coverage_deficit": 0.2132275132275132,
+      "score": 123.97354497354497,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 3,
+        "archive_size": 7980,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.2065591117977289
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 33.0,
+          "coverage": 0.4714285714285714,
+          "q10": 197.20000000000002,
+          "q50": 331.0,
+          "q90": 395.4
+        },
+        "10.0": {
+          "count": 6.0,
+          "coverage": 0.08571428571428572,
+          "q10": 298.5,
+          "q50": 333.0,
+          "q90": 388.5
+        },
+        "14.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 377.0,
+          "q50": 377.0,
+          "q90": 377.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 94.78888888888889,
+      "coverage_deficit": 0.12222222222222222,
+      "score": 125.34444444444445,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 3,
+        "archive_size": 6090,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.012909944487358056
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 50.0,
+          "coverage": 0.7142857142857143,
+          "q10": 179.5,
+          "q50": 364.5,
+          "q90": 507.5
+        },
+        "10.0": {
+          "count": 16.0,
+          "coverage": 0.22857142857142856,
+          "q10": 264.5,
+          "q50": 358.0,
+          "q90": 522.5
+        },
+        "14.0": {
+          "count": 5.0,
+          "coverage": 0.07142857142857142,
+          "q10": 456.0,
+          "q50": 473.0,
+          "q90": 515.6
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 126.30000000000001,
+      "coverage_deficit": 0.004232804232804227,
+      "score": 127.35820105820108,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 4,
+        "archive_size": 5040,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.005590169943749474
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 55.0,
+          "coverage": 0.7857142857142857,
+          "q10": 218.4,
+          "q50": 374.0,
+          "q90": 533.2
+        },
+        "10.0": {
+          "count": 34.0,
+          "coverage": 0.4857142857142857,
+          "q10": 271.3,
+          "q50": 462.5,
+          "q90": 576.5
+        },
+        "14.0": {
+          "count": 17.0,
+          "coverage": 0.24285714285714285,
+          "q10": 323.8,
+          "q50": 559.0,
+          "q90": 606.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 74.02222222222221,
+      "coverage_deficit": 0.22275132275132273,
+      "score": 129.7100529100529,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 3,
+        "archive_size": 7980,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.051639777949432225
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 32.0,
+          "coverage": 0.45714285714285713,
+          "q10": 207.6,
+          "q50": 346.0,
+          "q90": 391.40000000000003
+        },
+        "10.0": {
+          "count": 5.0,
+          "coverage": 0.07142857142857142,
+          "q10": 289.8,
+          "q50": 320.0,
+          "q90": 370.0
+        },
+        "14.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 383.0,
+          "q50": 383.0,
+          "q90": 383.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 106.11111111111111,
+      "coverage_deficit": 0.0984126984126984,
+      "score": 130.71428571428572,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 3,
+        "archive_size": 6090,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.10327955589886445
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 53.0,
+          "coverage": 0.7571428571428571,
+          "q10": 166.0,
+          "q50": 319.0,
+          "q90": 479.0
+        },
+        "10.0": {
+          "count": 22.0,
+          "coverage": 0.3142857142857143,
+          "q10": 350.0,
+          "q50": 455.5,
+          "q90": 532.5
+        },
+        "14.0": {
+          "count": 4.0,
+          "coverage": 0.05714285714285714,
+          "q10": 420.4,
+          "q50": 499.0,
+          "q90": 521.6
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 65.93333333333334,
+      "coverage_deficit": 0.2608465608465608,
+      "score": 131.14497354497354,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 5,
+        "archive_size": 9450,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.08
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 24.0,
+          "coverage": 0.34285714285714286,
+          "q10": 153.20000000000002,
+          "q50": 248.5,
+          "q90": 340.7
+        },
+        "10.0": {
+          "count": 5.0,
+          "coverage": 0.07142857142857142,
+          "q10": 249.6,
+          "q50": 319.0,
+          "q90": 328.4
+        },
+        "14.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 357.0,
+          "q50": 357.0,
+          "q90": 357.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 75.89999999999999,
+      "coverage_deficit": 0.22751322751322747,
+      "score": 132.77830687830686,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 5,
+        "archive_size": 9450,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.01
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 27.0,
+          "coverage": 0.38571428571428573,
+          "q10": 148.8,
+          "q50": 275.0,
+          "q90": 334.8
+        },
+        "10.0": {
+          "count": 8.0,
+          "coverage": 0.11428571428571428,
+          "q10": 180.4,
+          "q50": 259.0,
+          "q90": 352.3
+        },
+        "14.0": {
+          "count": 2.0,
+          "coverage": 0.02857142857142857,
+          "q10": 163.8,
+          "q50": 239.0,
+          "q90": 314.2
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 73.55555555555554,
+      "coverage_deficit": 0.23703703703703702,
+      "score": 132.81481481481478,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 3,
+        "archive_size": 7980,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.025819888974716113
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 31.0,
+          "coverage": 0.44285714285714284,
+          "q10": 206.0,
+          "q50": 294.0,
+          "q90": 393.0
+        },
+        "10.0": {
+          "count": 3.0,
+          "coverage": 0.04285714285714286,
+          "q10": 333.8,
+          "q50": 389.0,
+          "q90": 413.0
+        },
+        "14.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 392.0,
+          "q50": 392.0,
+          "q90": 392.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 63.283333333333324,
+      "coverage_deficit": 0.27989417989417986,
+      "score": 133.2568783068783,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 6,
+        "archive_size": 10290,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.1460593486680443
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 22.0,
+          "coverage": 0.3142857142857143,
+          "q10": 131.0,
+          "q50": 237.0,
+          "q90": 301.0
+        },
+        "10.0": {
+          "count": 4.0,
+          "coverage": 0.05714285714285714,
+          "q10": 201.6,
+          "q50": 238.5,
+          "q90": 295.0
+        },
+        "14.0": {
+          "count": 0.0,
+          "coverage": 0.0,
+          "q10": NaN,
+          "q50": NaN,
+          "q90": NaN
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 120.35555555555555,
+      "coverage_deficit": 0.05185185185185184,
+      "score": 133.31851851851852,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 5,
+        "archive_size": 5460,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 52.0,
+          "coverage": 0.7428571428571429,
+          "q10": 134.60000000000002,
+          "q50": 373.0,
+          "q90": 543.0
+        },
+        "10.0": {
+          "count": 29.0,
+          "coverage": 0.4142857142857143,
+          "q10": 306.6,
+          "q50": 479.0,
+          "q90": 571.0
+        },
+        "14.0": {
+          "count": 7.0,
+          "coverage": 0.1,
+          "q10": 429.8,
+          "q50": 471.0,
+          "q90": 563.2
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 121.39999999999999,
+      "coverage_deficit": 0.05079365079365078,
+      "score": 134.0984126984127,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 5,
+        "archive_size": 5460,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.16
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 51.0,
+          "coverage": 0.7285714285714285,
+          "q10": 220.0,
+          "q50": 404.0,
+          "q90": 521.0
+        },
+        "10.0": {
+          "count": 25.0,
+          "coverage": 0.35714285714285715,
+          "q10": 255.6,
+          "q50": 466.0,
+          "q90": 583.0
+        },
+        "14.0": {
+          "count": 11.0,
+          "coverage": 0.15714285714285714,
+          "q10": 301.0,
+          "q50": 533.0,
+          "q90": 597.0
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 73.93333333333332,
+      "coverage_deficit": 0.24179894179894176,
+      "score": 134.38306878306878,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 5,
+        "archive_size": 9450,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 26.0,
+          "coverage": 0.37142857142857144,
+          "q10": 127.0,
+          "q50": 248.5,
+          "q90": 332.5
+        },
+        "10.0": {
+          "count": 7.0,
+          "coverage": 0.1,
+          "q10": 203.2,
+          "q50": 264.0,
+          "q90": 354.0
+        },
+        "14.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 250.0,
+          "q50": 250.0,
+          "q90": 250.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 76.4111111111111,
+      "coverage_deficit": 0.23227513227513227,
+      "score": 134.47989417989416,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 6,
+        "archive_size": 7350,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.07302967433402215
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 27.0,
+          "coverage": 0.38571428571428573,
+          "q10": 180.8,
+          "q50": 342.0,
+          "q90": 444.0
+        },
+        "10.0": {
+          "count": 8.0,
+          "coverage": 0.11428571428571428,
+          "q10": 337.4,
+          "q50": 382.5,
+          "q90": 417.2
+        },
+        "14.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 403.0,
+          "q50": 403.0,
+          "q90": 403.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 64.56666666666665,
+      "coverage_deficit": 0.28465608465608466,
+      "score": 135.73068783068783,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 4,
+        "archive_size": 8610,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.044721359549995794
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 20.0,
+          "coverage": 0.2857142857142857,
+          "q10": 169.2,
+          "q50": 300.0,
+          "q90": 355.6
+        },
+        "10.0": {
+          "count": 5.0,
+          "coverage": 0.07142857142857142,
+          "q10": 302.2,
+          "q50": 339.0,
+          "q90": 362.0
+        },
+        "14.0": {
+          "count": 0.0,
+          "coverage": 0.0,
+          "q10": NaN,
+          "q50": NaN,
+          "q90": NaN
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 69.75555555555555,
+      "coverage_deficit": 0.2656084656084656,
+      "score": 136.15767195767194,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 6,
+        "archive_size": 10290,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.009128709291752768
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 21.0,
+          "coverage": 0.3,
+          "q10": 88.0,
+          "q50": 232.0,
+          "q90": 313.0
+        },
+        "10.0": {
+          "count": 7.0,
+          "coverage": 0.1,
+          "q10": 193.2,
+          "q50": 296.0,
+          "q90": 310.8
+        },
+        "14.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 320.0,
+          "q50": 320.0,
+          "q90": 320.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 58.666666666666664,
+      "coverage_deficit": 0.31322751322751324,
+      "score": 136.973544973545,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 6,
+        "archive_size": 10290,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.018257418583505537
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 19.0,
+          "coverage": 0.2714285714285714,
+          "q10": 180.0,
+          "q50": 239.0,
+          "q90": 309.4
+        },
+        "10.0": {
+          "count": 0.0,
+          "coverage": 0.0,
+          "q10": NaN,
+          "q50": NaN,
+          "q90": NaN
+        },
+        "14.0": {
+          "count": 0.0,
+          "coverage": 0.0,
+          "q10": NaN,
+          "q50": NaN,
+          "q90": NaN
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 72.7,
+      "coverage_deficit": 0.2608465608465608,
+      "score": 137.9116402116402,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 6,
+        "archive_size": 7350,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.1460593486680443
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 24.0,
+          "coverage": 0.34285714285714286,
+          "q10": 189.5,
+          "q50": 326.5,
+          "q90": 435.0
+        },
+        "10.0": {
+          "count": 6.0,
+          "coverage": 0.08571428571428572,
+          "q10": 326.0,
+          "q50": 420.5,
+          "q90": 438.5
+        },
+        "14.0": {
+          "count": 0.0,
+          "coverage": 0.0,
+          "q10": NaN,
+          "q50": NaN,
+          "q90": NaN
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 138.77777777777777,
+      "coverage_deficit": 0.0,
+      "score": 138.77777777777777,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 6,
+        "archive_size": 4200,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.009128709291752768
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 63.0,
+          "coverage": 0.9,
+          "q10": 146.8,
+          "q50": 365.0,
+          "q90": 588.8
+        },
+        "10.0": {
+          "count": 43.0,
+          "coverage": 0.6142857142857143,
+          "q10": 259.2,
+          "q50": 459.0,
+          "q90": 666.2
+        },
+        "14.0": {
+          "count": 31.0,
+          "coverage": 0.44285714285714284,
+          "q10": 374.0,
+          "q50": 472.0,
+          "q90": 706.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 123.81111111111113,
+      "coverage_deficit": 0.060317460317460304,
+      "score": 138.8904761904762,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 5,
+        "archive_size": 5460,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.01
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 47.0,
+          "coverage": 0.6714285714285714,
+          "q10": 163.6,
+          "q50": 370.0,
+          "q90": 553.6
+        },
+        "10.0": {
+          "count": 24.0,
+          "coverage": 0.34285714285714286,
+          "q10": 287.6,
+          "q50": 439.0,
+          "q90": 559.0
+        },
+        "14.0": {
+          "count": 10.0,
+          "coverage": 0.14285714285714285,
+          "q10": 424.9,
+          "q50": 521.0,
+          "q90": 583.6
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 85.72222222222223,
+      "coverage_deficit": 0.22275132275132273,
+      "score": 141.4100529100529,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 6,
+        "archive_size": 10290,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.004564354645876384
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 25.0,
+          "coverage": 0.35714285714285715,
+          "q10": 93.0,
+          "q50": 218.0,
+          "q90": 310.8
+        },
+        "10.0": {
+          "count": 9.0,
+          "coverage": 0.12857142857142856,
+          "q10": 162.8,
+          "q50": 194.0,
+          "q90": 264.2
+        },
+        "14.0": {
+          "count": 4.0,
+          "coverage": 0.05714285714285714,
+          "q10": 316.1,
+          "q50": 321.5,
+          "q90": 322.7
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 58.633333333333326,
+      "coverage_deficit": 0.337037037037037,
+      "score": 142.89259259259256,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 6,
+        "archive_size": 10290,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.07302967433402215
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 14.0,
+          "coverage": 0.2,
+          "q10": 173.3,
+          "q50": 238.0,
+          "q90": 301.8
+        },
+        "10.0": {
+          "count": 0.0,
+          "coverage": 0.0,
+          "q10": NaN,
+          "q50": NaN,
+          "q90": NaN
+        },
+        "14.0": {
+          "count": 0.0,
+          "coverage": 0.0,
+          "q10": NaN,
+          "q50": NaN,
+          "q90": NaN
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 140.83333333333334,
+      "coverage_deficit": 0.018518518518518507,
+      "score": 145.46296296296296,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 4,
+        "archive_size": 5040,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 59.0,
+          "coverage": 0.8428571428571429,
+          "q10": 194.0,
+          "q50": 385.0,
+          "q90": 529.0
+        },
+        "10.0": {
+          "count": 32.0,
+          "coverage": 0.45714285714285713,
+          "q10": 276.8,
+          "q50": 450.5,
+          "q90": 611.2
+        },
+        "14.0": {
+          "count": 14.0,
+          "coverage": 0.2,
+          "q10": 449.5,
+          "q50": 552.5,
+          "q90": 607.0
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 81.08888888888887,
+      "coverage_deficit": 0.2656084656084656,
+      "score": 147.49100529100528,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 6,
+        "archive_size": 10290,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 23.0,
+          "coverage": 0.32857142857142857,
+          "q10": 160.8,
+          "q50": 240.0,
+          "q90": 316.6
+        },
+        "10.0": {
+          "count": 5.0,
+          "coverage": 0.07142857142857142,
+          "q10": 211.0,
+          "q50": 249.0,
+          "q90": 280.6
+        },
+        "14.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 323.0,
+          "q50": 323.0,
+          "q90": 323.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 122.5888888888889,
+      "coverage_deficit": 0.10793650793650793,
+      "score": 149.5730158730159,
+      "params": {
+        "segment_steps": 20,
+        "match_steps": 3,
+        "archive_size": 6090,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.2065591117977289
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 58.0,
+          "coverage": 0.8285714285714286,
+          "q10": 221.2,
+          "q50": 375.5,
+          "q90": 484.30000000000007
+        },
+        "10.0": {
+          "count": 22.0,
+          "coverage": 0.3142857142857143,
+          "q10": 318.7,
+          "q50": 468.5,
+          "q90": 529.1
+        },
+        "14.0": {
+          "count": 2.0,
+          "coverage": 0.02857142857142857,
+          "q10": 493.2,
+          "q50": 498.0,
+          "q90": 502.8
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 156.9888888888889,
+      "coverage_deficit": 0.0,
+      "score": 156.9888888888889,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 5,
+        "archive_size": 3990,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.005
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 66.0,
+          "coverage": 0.9428571428571428,
+          "q10": 178.5,
+          "q50": 377.0,
+          "q90": 615.0
+        },
+        "10.0": {
+          "count": 47.0,
+          "coverage": 0.6714285714285714,
+          "q10": 225.0,
+          "q50": 504.0,
+          "q90": 741.4
+        },
+        "14.0": {
+          "count": 26.0,
+          "coverage": 0.37142857142857144,
+          "q10": 332.5,
+          "q50": 554.5,
+          "q90": 673.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 79.55,
+      "coverage_deficit": 0.31322751322751324,
+      "score": 157.85687830687831,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 5,
+        "archive_size": 9450,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.16
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 18.0,
+          "coverage": 0.2571428571428571,
+          "q10": 191.5,
+          "q50": 263.5,
+          "q90": 327.3
+        },
+        "10.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 355.0,
+          "q50": 355.0,
+          "q90": 355.0
+        },
+        "14.0": {
+          "count": 0.0,
+          "coverage": 0.0,
+          "q10": NaN,
+          "q50": NaN,
+          "q90": NaN
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 144.42222222222222,
+      "coverage_deficit": 0.055555555555555546,
+      "score": 158.3111111111111,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 4,
+        "archive_size": 5040,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.17888543819998318
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 57.0,
+          "coverage": 0.8142857142857143,
+          "q10": 173.20000000000002,
+          "q50": 375.0,
+          "q90": 555.4
+        },
+        "10.0": {
+          "count": 27.0,
+          "coverage": 0.38571428571428573,
+          "q10": 280.6,
+          "q50": 489.0,
+          "q90": 605.8000000000001
+        },
+        "14.0": {
+          "count": 8.0,
+          "coverage": 0.11428571428571428,
+          "q10": 455.7,
+          "q50": 546.5,
+          "q90": 606.6
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 130.42222222222225,
+      "coverage_deficit": 0.11746031746031745,
+      "score": 159.7873015873016,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 6,
+        "archive_size": 5670,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.018257418583505537
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 47.0,
+          "coverage": 0.6714285714285714,
+          "q10": 207.20000000000002,
+          "q50": 401.0,
+          "q90": 530.0
+        },
+        "10.0": {
+          "count": 17.0,
+          "coverage": 0.24285714285714285,
+          "q10": 360.8,
+          "q50": 460.0,
+          "q90": 547.0
+        },
+        "14.0": {
+          "count": 5.0,
+          "coverage": 0.07142857142857142,
+          "q10": 389.6,
+          "q50": 509.0,
+          "q90": 557.2
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 130.85555555555553,
+      "coverage_deficit": 0.11746031746031745,
+      "score": 160.2206349206349,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 6,
+        "archive_size": 5670,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.1460593486680443
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 45.0,
+          "coverage": 0.6428571428571429,
+          "q10": 191.0,
+          "q50": 411.0,
+          "q90": 540.6
+        },
+        "10.0": {
+          "count": 18.0,
+          "coverage": 0.2571428571428571,
+          "q10": 270.90000000000003,
+          "q50": 457.0,
+          "q90": 559.3
+        },
+        "14.0": {
+          "count": 4.0,
+          "coverage": 0.05714285714285714,
+          "q10": 450.1,
+          "q50": 522.0,
+          "q90": 563.8
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 157.06666666666666,
+      "coverage_deficit": 0.028042328042328035,
+      "score": 164.07724867724866,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 3,
+        "archive_size": 4830,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.025819888974716113
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 56.0,
+          "coverage": 0.8,
+          "q10": 156.5,
+          "q50": 342.0,
+          "q90": 526.5
+        },
+        "10.0": {
+          "count": 36.0,
+          "coverage": 0.5142857142857142,
+          "q10": 318.5,
+          "q50": 529.0,
+          "q90": 641.5
+        },
+        "14.0": {
+          "count": 12.0,
+          "coverage": 0.17142857142857143,
+          "q10": 486.4,
+          "q50": 561.5,
+          "q90": 639.7
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 136.16666666666666,
+      "coverage_deficit": 0.11269841269841269,
+      "score": 164.34126984126982,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 6,
+        "archive_size": 5670,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.07302967433402215
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 46.0,
+          "coverage": 0.6571428571428571,
+          "q10": 193.5,
+          "q50": 341.0,
+          "q90": 534.5
+        },
+        "10.0": {
+          "count": 21.0,
+          "coverage": 0.3,
+          "q10": 375.0,
+          "q50": 498.0,
+          "q90": 549.0
+        },
+        "14.0": {
+          "count": 2.0,
+          "coverage": 0.02857142857142857,
+          "q10": 507.1,
+          "q50": 507.5,
+          "q90": 507.9
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 160.74444444444447,
+      "coverage_deficit": 0.018518518518518507,
+      "score": 165.3740740740741,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 3,
+        "archive_size": 4830,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.051639777949432225
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 63.0,
+          "coverage": 0.9,
+          "q10": 210.4,
+          "q50": 428.0,
+          "q90": 582.6
+        },
+        "10.0": {
+          "count": 35.0,
+          "coverage": 0.5,
+          "q10": 280.6,
+          "q50": 531.0,
+          "q90": 652.6
+        },
+        "14.0": {
+          "count": 14.0,
+          "coverage": 0.2,
+          "q10": 350.3,
+          "q50": 538.5,
+          "q90": 660.7
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 93.05555555555554,
+      "coverage_deficit": 0.2989417989417989,
+      "score": 167.79100529100526,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 5,
+        "archive_size": 9450,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.04
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 20.0,
+          "coverage": 0.2857142857142857,
+          "q10": 163.3,
+          "q50": 261.0,
+          "q90": 333.0
+        },
+        "10.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 227.0,
+          "q50": 227.0,
+          "q90": 227.0
+        },
+        "14.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 314.0,
+          "q50": 314.0,
+          "q90": 314.0
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 167.73333333333332,
+      "coverage_deficit": 0.013756613756613753,
+      "score": 171.17248677248676,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 3,
+        "archive_size": 4830,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 58.0,
+          "coverage": 0.8285714285714286,
+          "q10": 201.1,
+          "q50": 370.0,
+          "q90": 568.8000000000001
+        },
+        "10.0": {
+          "count": 36.0,
+          "coverage": 0.5142857142857142,
+          "q10": 370.0,
+          "q50": 509.5,
+          "q90": 642.0
+        },
+        "14.0": {
+          "count": 15.0,
+          "coverage": 0.21428571428571427,
+          "q10": 406.4,
+          "q50": 574.0,
+          "q90": 655.8
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 171.30000000000004,
+      "coverage_deficit": 0.0,
+      "score": 171.30000000000004,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 6,
+        "archive_size": 4200,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.004564354645876384
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 65.0,
+          "coverage": 0.9285714285714286,
+          "q10": 140.0,
+          "q50": 380.0,
+          "q90": 677.0
+        },
+        "10.0": {
+          "count": 44.0,
+          "coverage": 0.6285714285714286,
+          "q10": 231.1,
+          "q50": 499.0,
+          "q90": 665.6000000000001
+        },
+        "14.0": {
+          "count": 29.0,
+          "coverage": 0.4142857142857143,
+          "q10": 354.2,
+          "q50": 630.0,
+          "q90": 752.8
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 94.26666666666667,
+      "coverage_deficit": 0.30846560846560844,
+      "score": 171.38306878306878,
+      "params": {
+        "segment_steps": 16,
+        "match_steps": 6,
+        "archive_size": 10290,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.03651483716701107
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 19.0,
+          "coverage": 0.2714285714285714,
+          "q10": 163.4,
+          "q50": 241.0,
+          "q90": 285.4
+        },
+        "10.0": {
+          "count": 1.0,
+          "coverage": 0.014285714285714285,
+          "q10": 198.0,
+          "q50": 198.0,
+          "q90": 198.0
+        },
+        "14.0": {
+          "count": 0.0,
+          "coverage": 0.0,
+          "q10": NaN,
+          "q50": NaN,
+          "q90": NaN
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 174.2111111111111,
+      "coverage_deficit": 0.0,
+      "score": 174.2111111111111,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 6,
+        "archive_size": 4200,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 61.0,
+          "coverage": 0.8714285714285714,
+          "q10": 159.0,
+          "q50": 362.0,
+          "q90": 654.0
+        },
+        "10.0": {
+          "count": 44.0,
+          "coverage": 0.6285714285714286,
+          "q10": 241.0,
+          "q50": 515.0,
+          "q90": 722.6
+        },
+        "14.0": {
+          "count": 24.0,
+          "coverage": 0.34285714285714286,
+          "q10": 374.40000000000003,
+          "q50": 581.5,
+          "q90": 746.4
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 160.06666666666666,
+      "coverage_deficit": 0.05661375661375661,
+      "score": 174.2201058201058,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 4,
+        "archive_size": 5040,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.022360679774997897
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 59.0,
+          "coverage": 0.8428571428571429,
+          "q10": 199.8,
+          "q50": 357.0,
+          "q90": 596.0
+        },
+        "10.0": {
+          "count": 32.0,
+          "coverage": 0.45714285714285713,
+          "q10": 355.4,
+          "q50": 529.5,
+          "q90": 638.9
+        },
+        "14.0": {
+          "count": 6.0,
+          "coverage": 0.08571428571428572,
+          "q10": 398.0,
+          "q50": 549.5,
+          "q90": 604.5
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 166.61111111111111,
+      "coverage_deficit": 0.0328042328042328,
+      "score": 174.81216931216932,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 3,
+        "archive_size": 4830,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.012909944487358056
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 61.0,
+          "coverage": 0.8714285714285714,
+          "q10": 186.0,
+          "q50": 374.0,
+          "q90": 604.0
+        },
+        "10.0": {
+          "count": 36.0,
+          "coverage": 0.5142857142857142,
+          "q10": 348.5,
+          "q50": 467.5,
+          "q90": 626.5
+        },
+        "14.0": {
+          "count": 11.0,
+          "coverage": 0.15714285714285714,
+          "q10": 466.0,
+          "q50": 568.0,
+          "q90": 647.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 174.11111111111111,
+      "coverage_deficit": 0.023280423280423273,
+      "score": 179.93121693121694,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 3,
+        "archive_size": 4830,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.2065591117977289
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 56.0,
+          "coverage": 0.8,
+          "q10": 211.0,
+          "q50": 427.5,
+          "q90": 604.0
+        },
+        "10.0": {
+          "count": 32.0,
+          "coverage": 0.45714285714285713,
+          "q10": 327.2,
+          "q50": 509.0,
+          "q90": 657.1
+        },
+        "14.0": {
+          "count": 13.0,
+          "coverage": 0.18571428571428572,
+          "q10": 445.4,
+          "q50": 513.0,
+          "q90": 660.8
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 181.23333333333332,
+      "coverage_deficit": 0.0,
+      "score": 181.23333333333332,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 5,
+        "archive_size": 3990,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 67.0,
+          "coverage": 0.9571428571428572,
+          "q10": 174.6,
+          "q50": 391.0,
+          "q90": 696.1999999999999
+        },
+        "10.0": {
+          "count": 46.0,
+          "coverage": 0.6571428571428571,
+          "q10": 228.0,
+          "q50": 543.5,
+          "q90": 744.5
+        },
+        "14.0": {
+          "count": 24.0,
+          "coverage": 0.34285714285714286,
+          "q10": 299.2,
+          "q50": 581.0,
+          "q90": 761.1
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 160.86666666666667,
+      "coverage_deficit": 0.08412698412698412,
+      "score": 181.8984126984127,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 4,
+        "archive_size": 5040,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.044721359549995794
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 58.0,
+          "coverage": 0.8285714285714286,
+          "q10": 246.6,
+          "q50": 417.0,
+          "q90": 572.3
+        },
+        "10.0": {
+          "count": 22.0,
+          "coverage": 0.3142857142857143,
+          "q10": 359.3,
+          "q50": 516.5,
+          "q90": 599.3000000000001
+        },
+        "14.0": {
+          "count": 7.0,
+          "coverage": 0.1,
+          "q10": 362.40000000000003,
+          "q50": 557.0,
+          "q90": 605.4
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 172.36666666666667,
+      "coverage_deficit": 0.042328042328042326,
+      "score": 182.94867724867726,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 3,
+        "archive_size": 4830,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.10327955589886445
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 59.0,
+          "coverage": 0.8428571428571429,
+          "q10": 187.0,
+          "q50": 376.0,
+          "q90": 606.2
+        },
+        "10.0": {
+          "count": 30.0,
+          "coverage": 0.42857142857142855,
+          "q10": 359.5,
+          "q50": 522.0,
+          "q90": 616.0
+        },
+        "14.0": {
+          "count": 9.0,
+          "coverage": 0.12857142857142856,
+          "q10": 443.6,
+          "q50": 579.0,
+          "q90": 650.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 176.7555555555556,
+      "coverage_deficit": 0.0603174603174603,
+      "score": 191.83492063492065,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 4,
+        "archive_size": 5040,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.08944271909999159
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 58.0,
+          "coverage": 0.8285714285714286,
+          "q10": 232.8,
+          "q50": 427.0,
+          "q90": 602.8000000000001
+        },
+        "10.0": {
+          "count": 28.0,
+          "coverage": 0.4,
+          "q10": 368.9,
+          "q50": 523.0,
+          "q90": 638.3
+        },
+        "14.0": {
+          "count": 6.0,
+          "coverage": 0.08571428571428572,
+          "q10": 450.5,
+          "q50": 545.5,
+          "q90": 590.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 166.74444444444444,
+      "coverage_deficit": 0.11269841269841269,
+      "score": 194.9190476190476,
+      "params": {
+        "segment_steps": 24,
+        "match_steps": 5,
+        "archive_size": 5460,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.08
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 51.0,
+          "coverage": 0.7285714285714285,
+          "q10": 197.0,
+          "q50": 410.0,
+          "q90": 524.0
+        },
+        "10.0": {
+          "count": 20.0,
+          "coverage": 0.2857142857142857,
+          "q10": 355.3,
+          "q50": 494.5,
+          "q90": 574.3000000000001
+        },
+        "14.0": {
+          "count": 3.0,
+          "coverage": 0.04285714285714286,
+          "q10": 556.0,
+          "q50": 576.0,
+          "q90": 601.6
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 193.82222222222222,
+      "coverage_deficit": 0.008994708994708991,
+      "score": 196.07089947089946,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 6,
+        "archive_size": 4200,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.1460593486680443
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 65.0,
+          "coverage": 0.9285714285714286,
+          "q10": 198.6,
+          "q50": 408.0,
+          "q90": 620.2
+        },
+        "10.0": {
+          "count": 40.0,
+          "coverage": 0.5714285714285714,
+          "q10": 334.90000000000003,
+          "q50": 557.0,
+          "q90": 734.7
+        },
+        "14.0": {
+          "count": 16.0,
+          "coverage": 0.22857142857142856,
+          "q10": 397.0,
+          "q50": 561.5,
+          "q90": 720.5
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 198.55555555555554,
+      "coverage_deficit": 0.0,
+      "score": 198.55555555555554,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 5,
+        "archive_size": 3990,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.01
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 63.0,
+          "coverage": 0.9,
+          "q10": 154.0,
+          "q50": 377.0,
+          "q90": 701.2
+        },
+        "10.0": {
+          "count": 45.0,
+          "coverage": 0.6428571428571429,
+          "q10": 322.0,
+          "q50": 504.0,
+          "q90": 748.6
+        },
+        "14.0": {
+          "count": 24.0,
+          "coverage": 0.34285714285714286,
+          "q10": 432.5,
+          "q50": 583.5,
+          "q90": 752.1999999999999
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 199.85555555555553,
+      "coverage_deficit": 0.0,
+      "score": 199.85555555555553,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 3,
+        "archive_size": 3780,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 62.0,
+          "coverage": 0.8857142857142857,
+          "q10": 165.3,
+          "q50": 379.0,
+          "q90": 630.0
+        },
+        "10.0": {
+          "count": 47.0,
+          "coverage": 0.6714285714285714,
+          "q10": 321.6,
+          "q50": 522.0,
+          "q90": 769.1999999999999
+        },
+        "14.0": {
+          "count": 30.0,
+          "coverage": 0.42857142857142855,
+          "q10": 364.4,
+          "q50": 604.5,
+          "q90": 830.7
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 209.3777777777778,
+      "coverage_deficit": 0.0,
+      "score": 209.3777777777778,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 3,
+        "archive_size": 3780,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.012909944487358056
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 69.0,
+          "coverage": 0.9857142857142858,
+          "q10": 181.8,
+          "q50": 383.0,
+          "q90": 663.6
+        },
+        "10.0": {
+          "count": 52.0,
+          "coverage": 0.7428571428571429,
+          "q10": 282.0,
+          "q50": 574.5,
+          "q90": 809.1
+        },
+        "14.0": {
+          "count": 32.0,
+          "coverage": 0.45714285714285713,
+          "q10": 363.0,
+          "q50": 570.0,
+          "q90": 845.4
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 211.39999999999998,
+      "coverage_deficit": 0.0,
+      "score": 211.39999999999998,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 3,
+        "archive_size": 3780,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.006454972243679028
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 67.0,
+          "coverage": 0.9571428571428572,
+          "q10": 163.4,
+          "q50": 357.0,
+          "q90": 617.8
+        },
+        "10.0": {
+          "count": 61.0,
+          "coverage": 0.8714285714285714,
+          "q10": 312.0,
+          "q50": 565.0,
+          "q90": 777.0
+        },
+        "14.0": {
+          "count": 43.0,
+          "coverage": 0.6142857142857143,
+          "q10": 448.8,
+          "q50": 630.0,
+          "q90": 819.6
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 211.98888888888888,
+      "coverage_deficit": 0.0,
+      "score": 211.98888888888888,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 4,
+        "archive_size": 3990,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.005590169943749474
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 67.0,
+          "coverage": 0.9571428571428572,
+          "q10": 170.20000000000002,
+          "q50": 390.0,
+          "q90": 637.4
+        },
+        "10.0": {
+          "count": 51.0,
+          "coverage": 0.7285714285714285,
+          "q10": 328.0,
+          "q50": 562.0,
+          "q90": 735.0
+        },
+        "14.0": {
+          "count": 30.0,
+          "coverage": 0.42857142857142855,
+          "q10": 369.2,
+          "q50": 695.0,
+          "q90": 809.1
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 213.7111111111111,
+      "coverage_deficit": 0.0,
+      "score": 213.7111111111111,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 5,
+        "archive_size": 3990,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.02
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 64.0,
+          "coverage": 0.9142857142857143,
+          "q10": 241.8,
+          "q50": 435.5,
+          "q90": 697.3000000000001
+        },
+        "10.0": {
+          "count": 37.0,
+          "coverage": 0.5285714285714286,
+          "q10": 310.0,
+          "q50": 528.0,
+          "q90": 747.4
+        },
+        "14.0": {
+          "count": 20.0,
+          "coverage": 0.2857142857142857,
+          "q10": 382.1,
+          "q50": 596.5,
+          "q90": 772.8
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 209.20000000000002,
+      "coverage_deficit": 0.0328042328042328,
+      "score": 217.40105820105822,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 6,
+        "archive_size": 4200,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.03651483716701107
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 54.0,
+          "coverage": 0.7714285714285715,
+          "q10": 178.1,
+          "q50": 431.5,
+          "q90": 658.5000000000001
+        },
+        "10.0": {
+          "count": 34.0,
+          "coverage": 0.4857142857142857,
+          "q10": 332.8,
+          "q50": 600.5,
+          "q90": 699.4
+        },
+        "14.0": {
+          "count": 11.0,
+          "coverage": 0.15714285714285714,
+          "q10": 411.0,
+          "q50": 654.0,
+          "q90": 705.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 220.7111111111111,
+      "coverage_deficit": 0.0,
+      "score": 220.7111111111111,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 4,
+        "archive_size": 3990,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.08944271909999159
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 66.0,
+          "coverage": 0.9428571428571428,
+          "q10": 198.5,
+          "q50": 434.0,
+          "q90": 669.0
+        },
+        "10.0": {
+          "count": 47.0,
+          "coverage": 0.6714285714285714,
+          "q10": 341.6,
+          "q50": 536.0,
+          "q90": 770.8
+        },
+        "14.0": {
+          "count": 24.0,
+          "coverage": 0.34285714285714286,
+          "q10": 459.90000000000003,
+          "q50": 594.5,
+          "q90": 770.1
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 212.4111111111111,
+      "coverage_deficit": 0.05185185185185184,
+      "score": 225.37407407407406,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 6,
+        "archive_size": 4200,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.07302967433402215
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 62.0,
+          "coverage": 0.8857142857142857,
+          "q10": 194.0,
+          "q50": 406.5,
+          "q90": 651.3
+        },
+        "10.0": {
+          "count": 34.0,
+          "coverage": 0.4857142857142857,
+          "q10": 407.9,
+          "q50": 577.5,
+          "q90": 733.7
+        },
+        "14.0": {
+          "count": 7.0,
+          "coverage": 0.1,
+          "q10": 391.4,
+          "q50": 626.0,
+          "q90": 711.4
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 225.64444444444445,
+      "coverage_deficit": 0.0,
+      "score": 225.64444444444445,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 4,
+        "archive_size": 3990,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 66.0,
+          "coverage": 0.9428571428571428,
+          "q10": 178.5,
+          "q50": 396.5,
+          "q90": 653.5
+        },
+        "10.0": {
+          "count": 54.0,
+          "coverage": 0.7714285714285715,
+          "q10": 295.90000000000003,
+          "q50": 587.5,
+          "q90": 791.7
+        },
+        "14.0": {
+          "count": 32.0,
+          "coverage": 0.45714285714285713,
+          "q10": 418.6,
+          "q50": 689.5,
+          "q90": 807.1
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 224.4,
+      "coverage_deficit": 0.013756613756613753,
+      "score": 227.83915343915345,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 6,
+        "archive_size": 4200,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.018257418583505537
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 55.0,
+          "coverage": 0.7857142857142857,
+          "q10": 156.4,
+          "q50": 422.0,
+          "q90": 653.2
+        },
+        "10.0": {
+          "count": 34.0,
+          "coverage": 0.4857142857142857,
+          "q10": 346.6,
+          "q50": 613.5,
+          "q90": 755.3
+        },
+        "14.0": {
+          "count": 15.0,
+          "coverage": 0.21428571428571427,
+          "q10": 497.0,
+          "q50": 661.0,
+          "q90": 702.6
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 228.26666666666668,
+      "coverage_deficit": 0.0,
+      "score": 228.26666666666668,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 6,
+        "archive_size": 3360,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.004564354645876384
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 69.0,
+          "coverage": 0.9857142857142858,
+          "q10": 132.4,
+          "q50": 389.0,
+          "q90": 778.4000000000001
+        },
+        "10.0": {
+          "count": 56.0,
+          "coverage": 0.8,
+          "q10": 278.0,
+          "q50": 549.5,
+          "q90": 899.5
+        },
+        "14.0": {
+          "count": 42.0,
+          "coverage": 0.6,
+          "q10": 283.00000000000006,
+          "q50": 640.5,
+          "q90": 892.0999999999999
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 231.4777777777778,
+      "coverage_deficit": 0.0,
+      "score": 231.4777777777778,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 4,
+        "archive_size": 3990,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.011180339887498949
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 63.0,
+          "coverage": 0.9,
+          "q10": 182.8,
+          "q50": 386.0,
+          "q90": 663.0000000000001
+        },
+        "10.0": {
+          "count": 48.0,
+          "coverage": 0.6857142857142857,
+          "q10": 378.9,
+          "q50": 572.0,
+          "q90": 776.6
+        },
+        "14.0": {
+          "count": 31.0,
+          "coverage": 0.44285714285714284,
+          "q10": 463.0,
+          "q50": 656.0,
+          "q90": 793.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 233.03333333333336,
+      "coverage_deficit": 0.0,
+      "score": 233.03333333333336,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 6,
+        "archive_size": 3360,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.018257418583505537
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 68.0,
+          "coverage": 0.9714285714285714,
+          "q10": 175.8,
+          "q50": 425.0,
+          "q90": 739.6000000000001
+        },
+        "10.0": {
+          "count": 50.0,
+          "coverage": 0.7142857142857143,
+          "q10": 281.4,
+          "q50": 569.5,
+          "q90": 865.0
+        },
+        "14.0": {
+          "count": 31.0,
+          "coverage": 0.44285714285714284,
+          "q10": 316.0,
+          "q50": 652.0,
+          "q90": 861.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 233.79999999999998,
+      "coverage_deficit": 0.0,
+      "score": 233.79999999999998,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 4,
+        "archive_size": 3990,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.022360679774997897
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 63.0,
+          "coverage": 0.9,
+          "q10": 163.0,
+          "q50": 400.0,
+          "q90": 692.8
+        },
+        "10.0": {
+          "count": 45.0,
+          "coverage": 0.6428571428571429,
+          "q10": 359.2,
+          "q50": 594.0,
+          "q90": 794.2
+        },
+        "14.0": {
+          "count": 21.0,
+          "coverage": 0.3,
+          "q10": 426.0,
+          "q50": 643.0,
+          "q90": 820.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 237.94444444444446,
+      "coverage_deficit": 0.0,
+      "score": 237.94444444444446,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 5,
+        "archive_size": 3990,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.04
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 63.0,
+          "coverage": 0.9,
+          "q10": 221.2,
+          "q50": 397.0,
+          "q90": 736.4
+        },
+        "10.0": {
+          "count": 40.0,
+          "coverage": 0.5714285714285714,
+          "q10": 391.1,
+          "q50": 552.5,
+          "q90": 705.2
+        },
+        "14.0": {
+          "count": 18.0,
+          "coverage": 0.2571428571428571,
+          "q10": 517.3,
+          "q50": 619.0,
+          "q90": 789.8
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 245.07777777777775,
+      "coverage_deficit": 0.0,
+      "score": 245.07777777777775,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 4,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.005590169943749474
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 68.0,
+          "coverage": 0.9714285714285714,
+          "q10": 132.2,
+          "q50": 341.0,
+          "q90": 672.2
+        },
+        "10.0": {
+          "count": 66.0,
+          "coverage": 0.9428571428571428,
+          "q10": 300.5,
+          "q50": 627.0,
+          "q90": 901.0
+        },
+        "14.0": {
+          "count": 42.0,
+          "coverage": 0.6,
+          "q10": 419.2,
+          "q50": 633.0,
+          "q90": 967.5999999999999
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 247.5888888888889,
+      "coverage_deficit": 0.0,
+      "score": 247.5888888888889,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 6,
+        "archive_size": 3360,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.009128709291752768
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 65.0,
+          "coverage": 0.9285714285714286,
+          "q10": 145.4,
+          "q50": 445.0,
+          "q90": 692.6
+        },
+        "10.0": {
+          "count": 52.0,
+          "coverage": 0.7428571428571429,
+          "q10": 269.3,
+          "q50": 608.5,
+          "q90": 852.0
+        },
+        "14.0": {
+          "count": 34.0,
+          "coverage": 0.4857142857142857,
+          "q10": 414.8,
+          "q50": 701.0,
+          "q90": 887.7
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 247.64444444444447,
+      "coverage_deficit": 0.0,
+      "score": 247.64444444444447,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 3,
+        "archive_size": 3780,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.051639777949432225
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 65.0,
+          "coverage": 0.9285714285714286,
+          "q10": 194.60000000000002,
+          "q50": 387.0,
+          "q90": 622.2
+        },
+        "10.0": {
+          "count": 52.0,
+          "coverage": 0.7428571428571429,
+          "q10": 347.1,
+          "q50": 590.0,
+          "q90": 796.6
+        },
+        "14.0": {
+          "count": 32.0,
+          "coverage": 0.45714285714285713,
+          "q10": 522.2,
+          "q50": 709.0,
+          "q90": 848.1
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 248.92222222222225,
+      "coverage_deficit": 0.0,
+      "score": 248.92222222222225,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 5,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.005
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 69.0,
+          "coverage": 0.9857142857142858,
+          "q10": 154.8,
+          "q50": 385.0,
+          "q90": 667.2
+        },
+        "10.0": {
+          "count": 60.0,
+          "coverage": 0.8571428571428571,
+          "q10": 299.2,
+          "q50": 590.5,
+          "q90": 912.2
+        },
+        "14.0": {
+          "count": 47.0,
+          "coverage": 0.6714285714285714,
+          "q10": 396.8,
+          "q50": 699.0,
+          "q90": 923.6
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 250.23333333333332,
+      "coverage_deficit": 0.0,
+      "score": 250.23333333333332,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 5,
+        "archive_size": 3990,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.08
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 62.0,
+          "coverage": 0.8857142857142857,
+          "q10": 137.9,
+          "q50": 405.0,
+          "q90": 700.0
+        },
+        "10.0": {
+          "count": 42.0,
+          "coverage": 0.6,
+          "q10": 422.8,
+          "q50": 573.0,
+          "q90": 760.4
+        },
+        "14.0": {
+          "count": 18.0,
+          "coverage": 0.2571428571428571,
+          "q10": 579.0,
+          "q50": 676.0,
+          "q90": 786.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 255.66666666666666,
+      "coverage_deficit": 0.0,
+      "score": 255.66666666666666,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 3,
+        "archive_size": 3780,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.10327955589886445
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 69.0,
+          "coverage": 0.9857142857142858,
+          "q10": 215.20000000000002,
+          "q50": 427.0,
+          "q90": 712.0
+        },
+        "10.0": {
+          "count": 41.0,
+          "coverage": 0.5857142857142857,
+          "q10": 377.0,
+          "q50": 573.0,
+          "q90": 770.0
+        },
+        "14.0": {
+          "count": 25.0,
+          "coverage": 0.35714285714285715,
+          "q10": 502.0,
+          "q50": 703.0,
+          "q90": 809.8
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 255.73333333333338,
+      "coverage_deficit": 0.0,
+      "score": 255.73333333333338,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 3,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.2065591117977289
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 68.0,
+          "coverage": 0.9714285714285714,
+          "q10": 145.4,
+          "q50": 377.5,
+          "q90": 752.6000000000001
+        },
+        "10.0": {
+          "count": 60.0,
+          "coverage": 0.8571428571428571,
+          "q10": 273.40000000000003,
+          "q50": 582.0,
+          "q90": 818.9
+        },
+        "14.0": {
+          "count": 47.0,
+          "coverage": 0.6714285714285714,
+          "q10": 443.8,
+          "q50": 701.0,
+          "q90": 995.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 251.48888888888885,
+      "coverage_deficit": 0.023280423280423273,
+      "score": 257.30899470899465,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 4,
+        "archive_size": 3990,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.044721359549995794
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 67.0,
+          "coverage": 0.9571428571428572,
+          "q10": 197.00000000000003,
+          "q50": 450.0,
+          "q90": 711.0
+        },
+        "10.0": {
+          "count": 43.0,
+          "coverage": 0.6142857142857143,
+          "q10": 368.4,
+          "q50": 612.0,
+          "q90": 798.0
+        },
+        "14.0": {
+          "count": 13.0,
+          "coverage": 0.18571428571428572,
+          "q10": 471.6,
+          "q50": 668.0,
+          "q90": 775.4
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 265.4,
+      "coverage_deficit": 0.0,
+      "score": 265.4,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 3,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 0.25,
+        "sigma_velocity": 0.006454972243679028
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 70.0,
+          "coverage": 1.0,
+          "q10": 174.1,
+          "q50": 393.5,
+          "q90": 693.7
+        },
+        "10.0": {
+          "count": 65.0,
+          "coverage": 0.9285714285714286,
+          "q10": 277.0,
+          "q50": 589.0,
+          "q90": 874.8
+        },
+        "14.0": {
+          "count": 56.0,
+          "coverage": 0.8,
+          "q10": 473.5,
+          "q50": 747.5,
+          "q90": 953.5
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 268.2444444444444,
+      "coverage_deficit": 0.0,
+      "score": 268.2444444444444,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 6,
+        "archive_size": 3360,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 66.0,
+          "coverage": 0.9428571428571428,
+          "q10": 223.5,
+          "q50": 397.0,
+          "q90": 757.0
+        },
+        "10.0": {
+          "count": 52.0,
+          "coverage": 0.7428571428571429,
+          "q10": 328.0,
+          "q50": 604.0,
+          "q90": 900.6999999999999
+        },
+        "14.0": {
+          "count": 31.0,
+          "coverage": 0.44285714285714284,
+          "q10": 380.0,
+          "q50": 676.0,
+          "q90": 936.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 268.94444444444446,
+      "coverage_deficit": 0.018518518518518507,
+      "score": 273.5740740740741,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 5,
+        "archive_size": 3990,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.16
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 61.0,
+          "coverage": 0.8714285714285714,
+          "q10": 272.0,
+          "q50": 452.0,
+          "q90": 704.0
+        },
+        "10.0": {
+          "count": 35.0,
+          "coverage": 0.5,
+          "q10": 401.0,
+          "q50": 629.0,
+          "q90": 760.2
+        },
+        "14.0": {
+          "count": 14.0,
+          "coverage": 0.2,
+          "q10": 573.2,
+          "q50": 659.5,
+          "q90": 757.6
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 274.8666666666667,
+      "coverage_deficit": 0.0,
+      "score": 274.8666666666667,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 5,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.01
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 68.0,
+          "coverage": 0.9714285714285714,
+          "q10": 145.8,
+          "q50": 433.0,
+          "q90": 765.5000000000001
+        },
+        "10.0": {
+          "count": 56.0,
+          "coverage": 0.8,
+          "q10": 308.0,
+          "q50": 673.5,
+          "q90": 883.0
+        },
+        "14.0": {
+          "count": 43.0,
+          "coverage": 0.6142857142857143,
+          "q10": 383.0,
+          "q50": 732.0,
+          "q90": 938.0
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 278.7222222222223,
+      "coverage_deficit": 0.0,
+      "score": 278.7222222222223,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 5,
+        "archive_size": 3150,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 65.0,
+          "coverage": 0.9285714285714286,
+          "q10": 178.6,
+          "q50": 439.0,
+          "q90": 774.2
+        },
+        "10.0": {
+          "count": 54.0,
+          "coverage": 0.7714285714285715,
+          "q10": 313.1,
+          "q50": 629.0,
+          "q90": 915.8000000000001
+        },
+        "14.0": {
+          "count": 35.0,
+          "coverage": 0.5,
+          "q10": 435.0,
+          "q50": 711.0,
+          "q90": 900.8000000000001
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 286.26666666666665,
+      "coverage_deficit": 0.0,
+      "score": 286.26666666666665,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 4,
+        "archive_size": 3150,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 69.0,
+          "coverage": 0.9857142857142858,
+          "q10": 202.00000000000003,
+          "q50": 425.0,
+          "q90": 820.4000000000001
+        },
+        "10.0": {
+          "count": 55.0,
+          "coverage": 0.7857142857142857,
+          "q10": 300.4,
+          "q50": 582.0,
+          "q90": 949.6
+        },
+        "14.0": {
+          "count": 41.0,
+          "coverage": 0.5857142857142857,
+          "q10": 349.0,
+          "q50": 763.0,
+          "q90": 973.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 288.5444444444445,
+      "coverage_deficit": 0.0,
+      "score": 288.5444444444445,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 3,
+        "archive_size": 3780,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.025819888974716113
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 66.0,
+          "coverage": 0.9428571428571428,
+          "q10": 221.0,
+          "q50": 483.5,
+          "q90": 711.0
+        },
+        "10.0": {
+          "count": 45.0,
+          "coverage": 0.6428571428571429,
+          "q10": 393.40000000000003,
+          "q50": 662.0,
+          "q90": 816.0
+        },
+        "14.0": {
+          "count": 26.0,
+          "coverage": 0.37142857142857144,
+          "q10": 495.0,
+          "q50": 744.0,
+          "q90": 859.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 294.7111111111111,
+      "coverage_deficit": 0.0,
+      "score": 294.7111111111111,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 3,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.025819888974716113
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 67.0,
+          "coverage": 0.9571428571428572,
+          "q10": 208.20000000000002,
+          "q50": 445.0,
+          "q90": 751.8
+        },
+        "10.0": {
+          "count": 56.0,
+          "coverage": 0.8,
+          "q10": 387.0,
+          "q50": 573.5,
+          "q90": 900.5
+        },
+        "14.0": {
+          "count": 38.0,
+          "coverage": 0.5428571428571428,
+          "q10": 544.2,
+          "q50": 688.0,
+          "q90": 942.2
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 295.3333333333333,
+      "coverage_deficit": 0.0,
+      "score": 295.3333333333333,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 3,
+        "archive_size": 3780,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.2065591117977289
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 67.0,
+          "coverage": 0.9571428571428572,
+          "q10": 207.2,
+          "q50": 457.0,
+          "q90": 750.6
+        },
+        "10.0": {
+          "count": 48.0,
+          "coverage": 0.6857142857142857,
+          "q10": 420.5,
+          "q50": 652.5,
+          "q90": 817.0
+        },
+        "14.0": {
+          "count": 24.0,
+          "coverage": 0.34285714285714286,
+          "q10": 560.1,
+          "q50": 730.5,
+          "q90": 850.6
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 297.35555555555555,
+      "coverage_deficit": 0.0,
+      "score": 297.35555555555555,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 6,
+        "archive_size": 3360,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.03651483716701107
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 63.0,
+          "coverage": 0.9,
+          "q10": 161.6,
+          "q50": 420.0,
+          "q90": 799.6
+        },
+        "10.0": {
+          "count": 46.0,
+          "coverage": 0.6571428571428571,
+          "q10": 370.0,
+          "q50": 622.0,
+          "q90": 875.0
+        },
+        "14.0": {
+          "count": 31.0,
+          "coverage": 0.44285714285714284,
+          "q10": 509.0,
+          "q50": 757.0,
+          "q90": 950.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 297.68888888888887,
+      "coverage_deficit": 0.0,
+      "score": 297.68888888888887,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 6,
+        "archive_size": 3360,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.07302967433402215
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 65.0,
+          "coverage": 0.9285714285714286,
+          "q10": 190.4,
+          "q50": 411.0,
+          "q90": 705.8
+        },
+        "10.0": {
+          "count": 50.0,
+          "coverage": 0.7142857142857143,
+          "q10": 369.8,
+          "q50": 682.0,
+          "q90": 891.2
+        },
+        "14.0": {
+          "count": 26.0,
+          "coverage": 0.37142857142857144,
+          "q10": 563.5,
+          "q50": 715.5,
+          "q90": 938.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 298.8777777777778,
+      "coverage_deficit": 0.0,
+      "score": 298.8777777777778,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 4,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.044721359549995794
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 65.0,
+          "coverage": 0.9285714285714286,
+          "q10": 214.20000000000002,
+          "q50": 403.0,
+          "q90": 744.2
+        },
+        "10.0": {
+          "count": 52.0,
+          "coverage": 0.7428571428571429,
+          "q10": 350.00000000000006,
+          "q50": 603.0,
+          "q90": 924.5
+        },
+        "14.0": {
+          "count": 36.0,
+          "coverage": 0.5142857142857142,
+          "q10": 548.5,
+          "q50": 716.5,
+          "q90": 974.0
+        }
+      }
+    },
+    {
+      "sampler": "knn_conditional",
+      "quantile_mae": 300.3333333333333,
+      "coverage_deficit": 0.0,
+      "score": 300.3333333333333,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 3,
+        "archive_size": 3150,
+        "k": 96,
+        "temperature": 0.8
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 70.0,
+          "coverage": 1.0,
+          "q10": 188.5,
+          "q50": 396.5,
+          "q90": 688.5
+        },
+        "10.0": {
+          "count": 66.0,
+          "coverage": 0.9428571428571428,
+          "q10": 397.5,
+          "q50": 633.5,
+          "q90": 944.5
+        },
+        "14.0": {
+          "count": 41.0,
+          "coverage": 0.5857142857142857,
+          "q10": 550.0,
+          "q50": 715.0,
+          "q90": 977.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 301.3333333333333,
+      "coverage_deficit": 0.004232804232804227,
+      "score": 302.3915343915344,
+      "params": {
+        "segment_steps": 30,
+        "match_steps": 4,
+        "archive_size": 3990,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.17888543819998318
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 69.0,
+          "coverage": 0.9857142857142858,
+          "q10": 223.60000000000002,
+          "q50": 521.0,
+          "q90": 705.6000000000001
+        },
+        "10.0": {
+          "count": 45.0,
+          "coverage": 0.6428571428571429,
+          "q10": 399.40000000000003,
+          "q50": 669.0,
+          "q90": 808.0
+        },
+        "14.0": {
+          "count": 17.0,
+          "coverage": 0.24285714285714285,
+          "q10": 608.4,
+          "q50": 747.0,
+          "q90": 818.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 303.0,
+      "coverage_deficit": 0.0,
+      "score": 303.0,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 4,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.08944271909999159
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 70.0,
+          "coverage": 1.0,
+          "q10": 241.8,
+          "q50": 478.5,
+          "q90": 699.5
+        },
+        "10.0": {
+          "count": 52.0,
+          "coverage": 0.7428571428571429,
+          "q10": 326.5,
+          "q50": 657.0,
+          "q90": 942.2
+        },
+        "14.0": {
+          "count": 36.0,
+          "coverage": 0.5142857142857142,
+          "q10": 376.5,
+          "q50": 781.5,
+          "q90": 1011.5
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 309.1444444444444,
+      "coverage_deficit": 0.0,
+      "score": 309.1444444444444,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 5,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.04
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 69.0,
+          "coverage": 0.9857142857142858,
+          "q10": 233.4,
+          "q50": 420.0,
+          "q90": 802.0
+        },
+        "10.0": {
+          "count": 48.0,
+          "coverage": 0.6857142857142857,
+          "q10": 406.4,
+          "q50": 555.0,
+          "q90": 920.0
+        },
+        "14.0": {
+          "count": 32.0,
+          "coverage": 0.45714285714285713,
+          "q10": 494.5,
+          "q50": 751.0,
+          "q90": 988.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 310.22222222222223,
+      "coverage_deficit": 0.0,
+      "score": 310.22222222222223,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 5,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.02
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 65.0,
+          "coverage": 0.9285714285714286,
+          "q10": 179.20000000000002,
+          "q50": 451.0,
+          "q90": 807.2
+        },
+        "10.0": {
+          "count": 53.0,
+          "coverage": 0.7571428571428571,
+          "q10": 330.4,
+          "q50": 607.0,
+          "q90": 886.2
+        },
+        "14.0": {
+          "count": 40.0,
+          "coverage": 0.5714285714285714,
+          "q10": 555.0,
+          "q50": 790.0,
+          "q90": 974.0
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 313.3777777777778,
+      "coverage_deficit": 0.0,
+      "score": 313.3777777777778,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 3,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.10327955589886445
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 70.0,
+          "coverage": 1.0,
+          "q10": 190.9,
+          "q50": 423.0,
+          "q90": 752.5
+        },
+        "10.0": {
+          "count": 64.0,
+          "coverage": 0.9142857142857143,
+          "q10": 324.3,
+          "q50": 604.0,
+          "q90": 946.4000000000001
+        },
+        "14.0": {
+          "count": 44.0,
+          "coverage": 0.6285714285714286,
+          "q10": 481.8,
+          "q50": 855.0,
+          "q90": 1030.5
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 313.8888888888889,
+      "coverage_deficit": 0.0,
+      "score": 313.8888888888889,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 3,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.012909944487358056
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 69.0,
+          "coverage": 0.9857142857142858,
+          "q10": 195.20000000000002,
+          "q50": 458.0,
+          "q90": 809.0
+        },
+        "10.0": {
+          "count": 61.0,
+          "coverage": 0.8714285714285714,
+          "q10": 319.0,
+          "q50": 644.0,
+          "q90": 888.0
+        },
+        "14.0": {
+          "count": 44.0,
+          "coverage": 0.6285714285714286,
+          "q10": 508.9,
+          "q50": 790.5,
+          "q90": 1000.4
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 315.73333333333335,
+      "coverage_deficit": 0.0,
+      "score": 315.73333333333335,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 4,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 0.5,
+        "sigma_velocity": 0.011180339887498949
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 66.0,
+          "coverage": 0.9428571428571428,
+          "q10": 160.0,
+          "q50": 457.0,
+          "q90": 759.5
+        },
+        "10.0": {
+          "count": 60.0,
+          "coverage": 0.8571428571428571,
+          "q10": 402.40000000000003,
+          "q50": 677.5,
+          "q90": 958.8000000000001
+        },
+        "14.0": {
+          "count": 39.0,
+          "coverage": 0.5571428571428572,
+          "q10": 471.6,
+          "q50": 774.0,
+          "q90": 968.8000000000001
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 316.0666666666667,
+      "coverage_deficit": 0.0,
+      "score": 316.0666666666667,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 6,
+        "archive_size": 3360,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.1460593486680443
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 64.0,
+          "coverage": 0.9142857142857143,
+          "q10": 206.00000000000003,
+          "q50": 443.5,
+          "q90": 831.7
+        },
+        "10.0": {
+          "count": 48.0,
+          "coverage": 0.6857142857142857,
+          "q10": 350.1,
+          "q50": 655.0,
+          "q90": 910.3000000000002
+        },
+        "14.0": {
+          "count": 27.0,
+          "coverage": 0.38571428571428573,
+          "q10": 497.6,
+          "q50": 788.0,
+          "q90": 950.4
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 316.5777777777778,
+      "coverage_deficit": 0.0,
+      "score": 316.5777777777778,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 5,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 4.0,
+        "sigma_velocity": 0.08
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 68.0,
+          "coverage": 0.9714285714285714,
+          "q10": 161.4,
+          "q50": 428.0,
+          "q90": 751.1
+        },
+        "10.0": {
+          "count": 51.0,
+          "coverage": 0.7285714285714285,
+          "q10": 432.0,
+          "q50": 638.0,
+          "q90": 907.0
+        },
+        "14.0": {
+          "count": 28.0,
+          "coverage": 0.4,
+          "q10": 539.9,
+          "q50": 802.5,
+          "q90": 977.3
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 324.62222222222215,
+      "coverage_deficit": 0.0,
+      "score": 324.62222222222215,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 5,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.16
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 67.0,
+          "coverage": 0.9571428571428572,
+          "q10": 249.0,
+          "q50": 437.0,
+          "q90": 788.5999999999999
+        },
+        "10.0": {
+          "count": 55.0,
+          "coverage": 0.7857142857142857,
+          "q10": 432.8,
+          "q50": 662.0,
+          "q90": 957.2
+        },
+        "14.0": {
+          "count": 30.0,
+          "coverage": 0.42857142857142855,
+          "q10": 499.9,
+          "q50": 780.5,
+          "q90": 902.6
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 326.40000000000003,
+      "coverage_deficit": 0.0,
+      "score": 326.40000000000003,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 4,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 1.0,
+        "sigma_velocity": 0.022360679774997897
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 69.0,
+          "coverage": 0.9857142857142858,
+          "q10": 239.4,
+          "q50": 468.0,
+          "q90": 771.2
+        },
+        "10.0": {
+          "count": 53.0,
+          "coverage": 0.7571428571428571,
+          "q10": 410.4,
+          "q50": 672.0,
+          "q90": 888.2
+        },
+        "14.0": {
+          "count": 35.0,
+          "coverage": 0.5,
+          "q10": 502.2,
+          "q50": 804.0,
+          "q90": 970.2
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 335.66666666666674,
+      "coverage_deficit": 0.0,
+      "score": 335.66666666666674,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 4,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 8.0,
+        "sigma_velocity": 0.17888543819998318
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 69.0,
+          "coverage": 0.9857142857142858,
+          "q10": 234.80000000000004,
+          "q50": 478.0,
+          "q90": 864.4000000000001
+        },
+        "10.0": {
+          "count": 53.0,
+          "coverage": 0.7571428571428571,
+          "q10": 351.6,
+          "q50": 690.0,
+          "q90": 924.6
+        },
+        "14.0": {
+          "count": 33.0,
+          "coverage": 0.4714285714285714,
+          "q10": 512.8,
+          "q50": 798.0,
+          "q90": 954.8
+        }
+      }
+    },
+    {
+      "sampler": "gaussian_bayes",
+      "quantile_mae": 381.22222222222223,
+      "coverage_deficit": 0.0,
+      "score": 381.22222222222223,
+      "params": {
+        "segment_steps": 36,
+        "match_steps": 3,
+        "archive_size": 3150,
+        "bandwidth_multiplier": 2.0,
+        "sigma_velocity": 0.051639777949432225
+      },
+      "breakthrough": {
+        "6.0": {
+          "count": 68.0,
+          "coverage": 0.9714285714285714,
+          "q10": 218.9,
+          "q50": 456.0,
+          "q90": 687.1000000000003
+        },
+        "10.0": {
+          "count": 62.0,
+          "coverage": 0.8857142857142857,
+          "q10": 485.40000000000003,
+          "q50": 754.0,
+          "q90": 999.0999999999999
+        },
+        "14.0": {
+          "count": 32.0,
+          "coverage": 0.45714285714285713,
+          "q10": 679.6,
+          "q50": 908.0,
+          "q90": 1030.9
+        }
+      }
+    }
+  ]
+}

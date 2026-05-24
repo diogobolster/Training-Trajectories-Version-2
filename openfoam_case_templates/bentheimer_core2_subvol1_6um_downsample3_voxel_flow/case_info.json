@@ -1,0 +1,31 @@
+{
+  "raw": "data/raw/Core2_Subvol1_6micron_225cube_16bit_LE.raw",
+  "input_shape": [
+    225,
+    225,
+    225
+  ],
+  "case_shape": [
+    75,
+    75,
+    75
+  ],
+  "voxel_size": 1.8e-05,
+  "downsample_factor": 3,
+  "flow_axis": 0,
+  "raw_porosity": 0.23552948148148148,
+  "connected_porosity": 0.2329362962962963,
+  "n_cells": 98270,
+  "n_points": 184515,
+  "n_faces": 373175,
+  "n_internal_faces": 216445,
+  "patches": {
+    "inlet": 1415,
+    "outlet": 1226,
+    "walls": 154089
+  },
+  "pressure_inlet": 1e-06,
+  "pressure_outlet": 0.0,
+  "nu": 1e-06,
+  "output_dir": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/openfoam_cases/bentheimer_core2_subvol1_6um_downsample3_voxel_flow"
+}

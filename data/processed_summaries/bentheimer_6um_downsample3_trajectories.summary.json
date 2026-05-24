@@ -1,0 +1,24 @@
+{
+  "raw": "data/raw/Core1_Subvol1_6micron_225cube_16bit_LE.raw",
+  "input_shape": [
+    225,
+    225,
+    225
+  ],
+  "simulation_shape": [
+    75,
+    75,
+    75
+  ],
+  "voxel_size": 1.8e-05,
+  "downsample_factor": 3,
+  "raw_porosity": 0.22794192592592594,
+  "connected_porosity": 0.22543170370370372,
+  "pressure_solver": {
+    "iterations": 800.0,
+    "last_delta": 0.0004117121839773974
+  },
+  "n_trajectories": 300,
+  "mean_trajectory_length": 501.0,
+  "output": "data/processed/bentheimer_6um_downsample3_trajectories.npz"
+}

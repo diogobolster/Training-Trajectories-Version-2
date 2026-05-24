@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this code or data package, please cite the manuscript and the archived Open Research release."
+title: "What Must a Pore-Scale Transport Model Remember? Memory Adequacy in Non-Fickian Transport"
+authors:
+  - family-names: Bolster
+    given-names: Diogo
+date-released: "2026-05-24"
+version: "0.1.0"
+repository-code: "https://github.com/REPLACE-WITH-FINAL-REPOSITORY"
+abstract: "Open Research companion package for trajectory-memory and validation-driven memory-adequacy analyses of non-Fickian transport in porous media."
+keywords:
+  - non-Fickian transport
+  - porous media
+  - Lagrangian particle tracking
+  - OpenFOAM
+  - scientific machine learning

@@ -1,0 +1,405 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{natbib}
+\usepackage[hidelinks]{hyperref}
+
+\raggedbottom
+\emergencystretch=2em
+
+\newcommand{\tta}{TTA-v2}
+\newcommand{\gb}{Gaussian/Bayes}
+\newcommand{\knn}{kNN}
+\newcommand{\hybrid}{hybrid}
+\newcommand{\pair}{pair-rerank}
+\newcommand{\plotfigure}[2]{%
+  \IfFileExists{figures/#1}{%
+    \includegraphics[width=#2\linewidth]{figures/#1}%
+  }{%
+    \fbox{\begin{minipage}[c][1.7in][c]{#2\linewidth}\centering Figure file pending.\end{minipage}}%
+  }%
+}
+
+\title{Validation-Driven Training Trajectories for Non-Fickian Transport in Porous Media}
+\author{Sebastian Most\\Diogo Bolster\\Branko Bijeljic\\Wolfgang Nowak\\Collaborators to be determined}
+\date{Draft: May 17, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Non-Fickian transport in porous media is controlled by persistent Lagrangian memory: particles retain information about pore-scale velocity structures, diffusive exchanges, and spatial organization sampled along their paths. Continuous time random walks and spatial Markov models have provided powerful descriptions of anomalous breakthrough and dispersion, but reduced-state closures can lose particle-level information needed for dilution, pair separation, and reaction-relevant encounter statistics. We revisit the training-trajectory method of \citet{Most2019}, which treats resolved particle trajectories as the primitive training data for generating new advective-diffusive paths. In current language, that method is a nonparametric, physics-constrained generative model over trajectory segments.
+
+We introduce a validation-driven extension of training trajectories. Candidate transition samplers include the original \gb{} velocity-continuity kernel, \knn{} conditional resampling, a learned contrastive hybrid transition rule, pair-aware reranking, and mixtures of these components. Mixture weights are selected using held-out validation trajectories and multi-objective scores based on breakthrough, dilution, pair-separation, and reaction-encounter metrics. Tests on segmented Bentheimer sandstone trajectories show that validation-selected mixtures are competitive with, and sometimes better than, the strongest fixed sampler, but no component dominates universally. A Peclet-regime sweep shifts selected weights from velocity-matching mechanisms toward learned hybrid context as diffusion increases. A second Bentheimer geometry and an OpenFOAM finite-volume velocity field strengthen the original \gb{} kernel, while pair-heavy objectives still favor learned transition context. These results support a methodological conclusion: modern machine learning is most useful here as a disciplined mechanism-selection layer inside a physically constrained Lagrangian generative framework, not as an unvalidated replacement for the physics kernel.
+\end{abstract}
+
+\noindent\textbf{Keywords:} non-Fickian transport; porous media; Lagrangian models; training trajectories; validation-driven model selection; scientific machine learning
+
+\section{Introduction}
+
+Solute transport in porous and fractured media is often non-Fickian. Breakthrough curves can show early arrival and late-time tailing, plume spreading can remain pre-asymptotic over experimentally relevant distances, and particle velocities can retain memory of the pore-scale structures through which they have traveled. These behaviors motivate transport models that start from Lagrangian particles rather than only from Eulerian concentration closures. Continuous time random walks represent anomalous waiting and transition statistics \citep{Berkowitz2006,Bijeljic2006}, while spatial Markov and correlated CTRW models recognize that velocity histories may be more naturally structured in distance than in time \citep{LeBorgne2008a,LeBorgne2008b,Dentz2016,Sherman2021}.
+
+The Lagrangian point of view is especially important when the target is more than a breakthrough curve. A breakthrough curve can be approximately correct while dilution, pair separation, or reaction-relevant encounter rates are wrong. In pore-scale transport, the relevant memory is not only scalar velocity correlation; it can include direction changes, local stretching, diffusive exchange across streamlines, and the proximity history of particle pairs. Recent mixing reviews emphasize that spreading, stirring, and molecular diffusion are distinct processes whose relative importance depends on pore geometry and flow conditions \citep{Dentz2023}. Any upscaled model intended for mixing or reactive transport must therefore preserve more particle history than arrival-time statistics alone.
+
+\citet{Most2019} proposed a direct way to retain that information. Instead of estimating a high-dimensional transition matrix over reduced states, they treated resolved particle trajectories as training images for transport. Direct numerical simulation trajectories were cut into short segments, archived, and reassembled into longer synthetic trajectories using transition rules based on velocity continuity and diffusive plausibility. The original method was designed to avoid three common simplifications: reducing finite-Peclet three-dimensional transport to lower-dimensional state spaces, neglecting diffusion in the transition rule, and discarding spatial resolution needed for mixing and reaction metrics.
+
+That idea looks different in the current scientific machine-learning era. Training trajectories can be read as a physics-constrained generative model over Lagrangian path segments: the method has an archive of observed motifs, a transition distribution, and a generation procedure. Meanwhile, physics-informed machine learning has emphasized constraints, conservation laws, and measurement operators \citep{Raissi2019,Karniadakis2021}. Neural operators learn solution maps for families of differential equations \citep{Li2021,Lu2021}. Score-based and diffusion models have normalized stochastic generation as a core machine-learning primitive \citep{Ho2020,Song2021}. Learned particle and graph-network simulators have also made Lagrangian state representations a serious machine-learning object, from graph-network physics simulators to dedicated Lagrangian fluid benchmarks \citep{SanchezGonzalez2020,Toshev2023}.
+
+Porous-media machine learning has advanced in parallel. Recent work includes image-based prediction, pore-scale flow surrogates, physics-informed porous-flow models, and generative reconstruction, from GAN-based porous-media reconstruction \citep{Mosser2017} to physics-informed flow-field prediction \citep{Wang2021,Kashefi2023}, diffusion-based pore-scale image generation \citep{Zhu2025}, and broader reviews of data-driven flow and transport \citep{Yang2024}. At the same time, recent pore-scale modeling and computational-microfluidics reviews emphasize that resolved simulations remain expensive but scientifically valuable because they expose local velocity, concentration, interface, and reaction structures that continuum closures struggle to retain \citep{Chen2022,Soulaine2021}. OpenFOAM-based pore-scale tools such as GeoChemFoam further illustrate the increasing maturity of image-based CFD and reactive-transport workflows \citep{MaesMenke2021}, while machine-learning-accelerated CFD points toward hybrid learned/numerical solvers \citep{Kochkov2021}.
+
+These advances create an opportunity, but also a trap. The opportunity is to learn transition scores, embeddings, uncertainty estimates, or generative segment models that augment the original training-trajectory framework. The trap is to assume that a learned sampler should automatically replace the physics-informed \gb{} kernel. Reported limitations of physics-informed learning for nonlinear two-phase transport in porous media reinforce the same caution: embedding physics in a neural model is not the same as validating the transport statistics that matter \citep{FuksTchelepi2020}. For non-Fickian transport, the question is not simply whether a learned model can generate plausible paths. The question is which transition mechanism preserves the transport statistics that matter for a given physical regime and scientific objective.
+
+We therefore frame \tta{} as validation-driven physics/ML mechanism selection. The candidate mechanisms are physics-informed kernels, learned transition rules, conditional resamplers, and mixtures. The selection criterion is not visual plausibility or training likelihood, but held-out performance on transport metrics: breakthrough, dilution, pair separation, and reaction-encounter probability. This framing is intentionally modest and testable. It asks modern machine learning to expand the space of mechanisms and expose tradeoffs, not to win a rhetorical contest against physics.
+
+The contributions are:
+\begin{enumerate}
+  \item We recast the 2019 training-trajectory method as a physics-constrained Lagrangian generative model.
+  \item We implement a sampler ladder: unconditional resampling, \knn{} conditional resampling, the original \gb{} transition kernel, learned contrastive hybrid scoring, pair-aware reranking, and validation-selected mixtures.
+  \item We evaluate generated trajectories using breakthrough, dilution, pair-separation, and reaction-encounter metrics.
+  \item We show that validation-selected mixtures are competitive with the strongest fixed kernel, but no sampler dominates across held-out splits.
+  \item We show that selected mechanisms shift with objective weights, Peclet regime, second geometry, and OpenFOAM flow fidelity.
+  \item We identify the most defensible AI-era claim: learned transition context is valuable when validated against the right objective, while the original physics-informed kernel remains a strong and often dominant component.
+\end{enumerate}
+
+\section{Methods}
+
+\subsection{Training-trajectory archive}
+
+A resolved particle trajectory is a sequence
+\[
+  \mathbf{x}_i(t_0), \mathbf{x}_i(t_1), \ldots, \mathbf{x}_i(t_T)
+\]
+in two or three spatial dimensions. Following \citet{Most2019}, each trajectory is divided into overlapping segments of fixed duration. For each archived segment, we store the relative path, initial and final positions, and estimates of the starting and ending velocities over a shorter matching window. The archive is therefore a set of local transport motifs that retain pore-scale path structure.
+
+Generation begins from an archive segment and recursively chooses a next segment. The candidate segment is shifted so that its matching point joins the current endpoint, and the overlapping portion is discarded to avoid duplicating time samples. This cut-copy-paste construction preserves observed segment shapes while producing arbitrary-length synthetic trajectories.
+
+\subsection{Candidate transition samplers}
+
+We compare six transition mechanisms (Table~\ref{tab:samplers}). The unconditional sampler draws the next segment uniformly from the archive and acts as a memory-destroying baseline. The \knn{} conditional sampler selects candidate segments whose initial velocity is near the current ending velocity and samples them with distance-weighted probabilities. The \gb{} sampler follows the original training-trajectory logic: an interface velocity mismatch is plausible if it can be explained by diffusion over the matching interval, yielding a physically scaled likelihood.
+
+The learned hybrid sampler trains a contrastive transition scorer from observed adjacent archive segments and negative samples. In the current prototype, the learned score is combined with the \gb{} likelihood rather than used alone. The pair-aware reranking sampler modifies \gb{} candidates using archive descriptors intended to preserve short-horizon pair behavior. Finally, a mixture sampler combines transition distributions,
+\begin{equation}
+  p(s_{n+1} \mid h_n) =
+  \sum_m w_m p_m(s_{n+1} \mid h_n),
+  \qquad
+  w_m \geq 0,\quad \sum_m w_m = 1,
+  \label{eq:mixture}
+\end{equation}
+where $s_{n+1}$ is the next segment, $h_n$ is the generated trajectory history, and weights are selected by validation.
+
+\begin{table}[t]
+\centering
+\caption{Transition mechanisms evaluated in this study.}
+\label{tab:samplers}
+\small
+\begin{tabular}{p{0.23\linewidth}p{0.33\linewidth}p{0.34\linewidth}}
+\toprule
+Sampler & Primary information used & Role in the ladder \\
+\midrule
+Unconditional & Archive frequency & Memory-free baseline \\
+\knn{} conditional & Local velocity proximity & Nonparametric velocity matching \\
+\gb{} & Diffusion-scaled velocity continuity & Original physics kernel \\
+\hybrid{} & Contrastive learned score plus \gb{} & Learned transition context \\
+\pair{} & Pair-behavior descriptors plus \gb{} & Short-horizon spatial organization \\
+Mixture & Validation-selected component weights & Objective-aware mechanism selection \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Validation-driven mixture selection}
+
+For a fixed archive and a fixed set of component samplers, we search a simplex grid over mixture weights. Each candidate mixture generates a validation ensemble from training-origin initial positions. Generated metrics are compared with a held-out validation ensemble using
+\begin{equation}
+  J =
+  a_{\mathrm{BTC}} E_{\mathrm{BTC}}
+  + a_{\mathrm{pair}} E_{\mathrm{pair}}
+  + a_{\mathrm{dil}} E_{\mathrm{dil}}
+  + a_{\mathrm{react}} E_{\mathrm{react}} .
+  \label{eq:objective}
+\end{equation}
+Here $E_{\mathrm{BTC}}$ is a breakthrough quantile and coverage score, $E_{\mathrm{pair}}$ is a pair-separation quantile error, $E_{\mathrm{dil}}$ is a log-error in dilution index, and $E_{\mathrm{react}}$ is an absolute error in encounter probability.
+
+We use two mixture aggregation rules. The pooled-validation mixture selects the grid point with the best mean validation score across repeated inner splits. The bootstrap-mean mixture averages the best weights selected independently across repeated inner validation splits. The second rule is less aggressive and can act as a regularized summary when validation ensembles are small.
+
+\subsection{Trajectory data and velocity fields}
+
+The original DNS trajectories from \citet{Most2019} are not available in this workspace, so we use public Bentheimer sandstone micro-CT volumes from the multi-resolution Bentheimer dataset. The workflow thresholds pore space, extracts the inlet-outlet connected pore network, computes a velocity field, and tracks advective-diffusive particles.
+
+The first velocity field is a graph-Laplace pressure approximation on the connected pore voxels. It is a bootstrap generator for method development, not a final DNS replacement. The main Core1 volume is downsampled by a factor of three to a $75^3$ grid. We generate trajectories at three diffusivities, $D=3\times 10^{-4}$, $10^{-3}$, and $3\times 10^{-3}$, representing high-Peclet, baseline, and lower-Peclet conditions in the present nondimensionalization.
+
+The second geometry is a second Bentheimer subvolume downsampled in the same way. Its connected porosity is 0.23294, compared with 0.22543 for the Core1 baseline. For the high-fidelity-flow test, we export the connected Core2 pore voxels as an OpenFOAM finite-volume mesh. Each pore voxel is one hexahedral cell. Pore-solid faces are no-slip walls; inlet and outlet faces are fixed kinematic pressure patches. The OpenFOAM case contains 98,270 cells, passes \texttt{checkMesh}, and converges with \texttt{simpleFoam} in 103 SIMPLE iterations. The solved velocity field is mapped back onto the connected voxel mask and normalized to the same mean advective speed used in the graph-flow particle tracker.
+
+\subsection{Evaluation metrics}
+
+Generated ensembles are evaluated against held-out reference trajectories using breakthrough quantiles and crossing coverage at multiple control planes, dilution index at selected times, particle-pair separation quantiles, reaction-encounter probability for a fixed encounter radius, and velocity autocorrelation for direct trajectory-set comparison. Pair and reaction metrics are included because a sampler can match arrival statistics while corrupting spatial organization, mixing, or encounter structure.
+
+\section{Results}
+
+\subsection{Validation mixtures are competitive, but not universal winners}
+
+The first question is whether validation can combine physics-informed and learned transition mechanisms into a useful generator. In a repeated-validation experiment on the Core1 baseline trajectory set, the bootstrap-mean mixture selected substantial \gb{}, \knn{}, and hybrid contributions: 0.35, 0.25, and 0.35, respectively, with 0.05 assigned to pair-aware reranking. On the held-out split, this mixture achieved the lowest multi-objective score, outperforming both the hybrid sampler and the \gb{} kernel.
+
+The more important test is outer-split robustness. Across five independent held-out test splits, the pooled-validation mixture had the best mean objective and tied \gb{} on mean rank (Table~\ref{tab:outer}). \gb{} remained extremely competitive. This result sets the tone for the paper. The mixture does not prove that learned components universally beat the physics kernel. It shows that held-out validation can identify useful combinations, and that the original \gb{} sampler is a strong baseline rather than a straw man.
+
+\begin{table}[t]
+\centering
+\caption{Outer-split robustness on Core1 baseline trajectories. Lower objective and rank are better.}
+\label{tab:outer}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Sampler & Mean obj. & Std. obj. & Mean rank & Wins & Beats G/H \\
+\midrule
+Pooled validation mixture & 121.64 & 47.75 & 2.00 & 2 & 3/3 \\
+\gb{} & 125.48 & 50.22 & 2.00 & 2 & --/4 \\
+\hybrid{} & 127.71 & 57.25 & 3.20 & 1 & 1/-- \\
+Bootstrap mean mixture & 132.05 & 50.44 & 3.20 & 0 & 1/3 \\
+\knn{} conditional & 142.47 & 38.49 & 4.80 & 0 & 0/1 \\
+\pair{} & 167.72 & 60.16 & 5.80 & 0 & 0/0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\plotfigure{run_005_outer_split_summary.svg.png}{0.92}
+\caption{Outer-split robustness of validation-selected samplers. Mean held-out multi-objective transport error is computed over five independent outer train/test splits. Lower is better.}
+\label{fig:outer}
+\end{figure}
+
+\subsection{Scientific objective changes the preferred mechanism}
+
+A single scalar objective is convenient, but it can hide scientific priorities. We therefore repeated selection under seven objective-weight regimes. In the Core1 baseline sensitivity run, \gb{} was the most stable mean performer, but the preferred sampler changed with metric priorities (Table~\ref{tab:objective}). Pair-, dilution-, and reaction-sensitive objectives generally increased the hybrid contribution, while balanced and no-reaction objectives retained substantial \gb{} mass.
+
+\begin{table}[t]
+\centering
+\caption{Best mean sampler under different Core1 objective-weight regimes.}
+\label{tab:objective}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Regime & Best mean sampler & Mean obj. & Mean rank \\
+\midrule
+Balanced & \gb{} & 145.26 & 2.25 \\
+BTC heavy & \gb{} & 188.73 & 2.25 \\
+Pair heavy & \knn{} conditional & 204.41 & 2.75 \\
+Dilution heavy & \hybrid{} & 170.07 & 2.50 \\
+Reaction light & \gb{} & 140.53 & 2.25 \\
+Reaction heavy & \gb{} & 85.75 & 1.75 \\
+No reaction & \gb{} & 140.01 & 2.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}
+\centering
+\plotfigure{run_006_weight_sensitivity_heatmap.svg.png}{1.0}
+\caption{Mean sampler rank under objective-weight regimes.}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\linewidth}
+\centering
+\plotfigure{run_006_selected_weights.svg.png}{1.0}
+\caption{Validation-selected mixture weights.}
+\end{subfigure}
+\caption{Objective-weight sensitivity. The preferred transition mechanism changes with the scientific metric being emphasized, which supports a multi-objective validation layer rather than a single canonical sampler.}
+\label{fig:objective}
+\end{figure}
+
+The balanced objective can also be unpacked into a Pareto-style view. No sampler simultaneously minimizes breakthrough, pair-separation, and dilution errors. This is why the validation layer should remain multi-objective rather than being reduced to one canonical scalar score (Figure~\ref{fig:pareto}).
+
+\begin{figure}[t]
+\centering
+\plotfigure{run_006_pareto_tradeoff.svg.png}{0.78}
+\caption{Balanced-objective Pareto tradeoff. Each point is averaged over four outer held-out splits. Lower-left is better; marker size indicates dilution log-error.}
+\label{fig:pareto}
+\end{figure}
+
+\subsection{Peclet regime shifts the selected mixture}
+
+The Core1 Peclet sweep tests whether the selected mechanism is tied to one transport condition. We regenerated trajectories at $D=3\times 10^{-4}$, $10^{-3}$, and $3\times 10^{-3}$ on the same geometry and graph-flow field. Mean selected weights shifted systematically (Table~\ref{tab:peclet}). At high Peclet, the pooled-validation mixture remained the best mean-objective sampler and \knn{} conditional matching became more competitive. At lower Peclet, the hybrid sampler became the best mean-objective sampler.
+
+\begin{table}[t]
+\centering
+\caption{Mean selected mixture weights across the Core1 Peclet sweep.}
+\label{tab:peclet}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Condition & \gb{} & \knn{} & \hybrid{} & \pair{} \\
+\midrule
+$D=3\times 10^{-4}$ & 0.4375 & 0.1875 & 0.3333 & 0.0417 \\
+$D=10^{-3}$ & 0.4125 & 0.1500 & 0.4125 & 0.0250 \\
+$D=3\times 10^{-3}$ & 0.2708 & 0.0000 & 0.7083 & 0.0208 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This is a mechanistic result. As diffusion increases, strict local velocity matching carries less predictive information, and validation shifts weight toward the learned hybrid transition rule. The selected sampler is therefore not a fixed model choice; it responds to the physical regime.
+
+\begin{figure}[t]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}
+\centering
+\plotfigure{run_009_peclet_sampler_ranks.svg.png}{1.0}
+\caption{Mean held-out sampler rank.}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\linewidth}
+\centering
+\plotfigure{run_009_peclet_selected_weights.svg.png}{1.0}
+\caption{Selected mixture weights.}
+\end{subfigure}
+\caption{Peclet-regime sensitivity. Increasing diffusivity shifts weight away from strict velocity matching and toward learned hybrid context.}
+\label{fig:peclet}
+\end{figure}
+
+\subsection{Second geometry and OpenFOAM flow strengthen the physics kernel}
+
+The next test changes the geometry and then the velocity solver. On Core2 graph-flow trajectories, \gb{} becomes the best mean sampler. The selected mixture still uses multiple mechanisms, with mean weights 0.4792 for \gb{}, 0.1875 for \knn{}, 0.2708 for hybrid, and 0.0625 for pair reranking.
+
+The OpenFOAM-derived trajectory set gives a sharper version of the same result. On trajectories generated from the finite-volume velocity field, \gb{} wins three of four held-out splits (Table~\ref{tab:openfoam}). This is not a problem for the thesis. It is one of the strongest results. The higher-fidelity velocity field makes the original physics-informed \gb{} kernel more valuable, which confirms that the 2019 transition logic still captures real transport structure.
+
+\begin{table}[t]
+\centering
+\caption{Core2 OpenFOAM outer-split sampler performance.}
+\label{tab:openfoam}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Sampler & Mean obj. & Std. obj. & Mean rank & Wins \\
+\midrule
+\gb{} & 261.39 & 28.17 & 1.25 & 3 \\
+\hybrid{} & 273.63 & 28.38 & 2.50 & 1 \\
+Bootstrap mean mixture & 285.49 & 17.76 & 3.75 & 0 \\
+Pooled validation mixture & 299.46 & 33.33 & 3.50 & 0 \\
+\knn{} conditional & 311.05 & 19.82 & 4.50 & 0 \\
+\pair{} & 317.19 & 31.80 & 5.50 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}
+\centering
+\plotfigure{run_010_generalization_sampler_ranks.svg.png}{1.0}
+\caption{Sampler ranks across conditions.}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\linewidth}
+\centering
+\plotfigure{run_010_generalization_selected_weights.svg.png}{1.0}
+\caption{Selected mixture weights.}
+\end{subfigure}
+\caption{Geometry and flow-fidelity generalization. The selected mechanism shifts with geometry and velocity-field fidelity; OpenFOAM strengthens the original physics kernel.}
+\label{fig:generalization}
+\end{figure}
+
+\subsection{Why OpenFOAM changes the ranking}
+
+The direct Core2 graph-flow versus OpenFOAM comparison explains why \gb{} becomes stronger. Both trajectory sets were normalized to the same mean advective speed, so differences are not simply bulk-speed changes. OpenFOAM produces a slightly fatter high-displacement tail, slightly larger downstream spread, increased dilution, and slightly increased late-time pair separation. Most importantly, OpenFOAM has higher axial velocity autocorrelation at every checked lag. This is exactly the condition under which a velocity-continuity transition kernel should be useful. The OpenFOAM field gives the \gb{} sampler a stronger physically meaningful signal to condition on.
+
+\begin{figure}[t]
+\centering
+\begin{subfigure}[t]{0.49\linewidth}
+\centering
+\plotfigure{run_012_core2_graph_vs_openfoam_btc_speed.svg.png}{1.0}
+\caption{Step displacement and breakthrough.}
+\end{subfigure}
+\hfill
+\begin{subfigure}[t]{0.49\linewidth}
+\centering
+\plotfigure{run_012_core2_graph_vs_openfoam_mixing_memory.svg.png}{1.0}
+\caption{Mixing, pair separation, reaction, and memory.}
+\end{subfigure}
+\caption{Core2 graph flow versus OpenFOAM flow. The OpenFOAM field increases velocity memory, which explains why the velocity-continuity kernel becomes more valuable.}
+\label{fig:flowcompare}
+\end{figure}
+
+\subsection{Pair-heavy OpenFOAM objectives still favor learned context}
+
+The OpenFOAM objective-weight sensitivity run prevents the high-fidelity result from becoming too simple. \gb{} is the best mean sampler in six of seven objective regimes, but the pair-heavy regime selects the hybrid sampler. The pair-heavy result is important because reaction opportunity depends on spatial organization and encounter history, not only arrival times. Higher-fidelity flow does not erase the value of learned transition context; it clarifies where learned context matters.
+
+\begin{figure}[t]
+\centering
+\plotfigure{run_011_openfoam_weight_sensitivity_heatmap.svg.png}{0.82}
+\caption{OpenFOAM objective sensitivity. \gb{} is most stable overall, while the pair-heavy regime favors the hybrid sampler.}
+\label{fig:openfoamobjective}
+\end{figure}
+
+\subsection{Evidence synthesis}
+
+The current evidence is summarized in Table~\ref{tab:evidence} and Figure~\ref{fig:evidence}. Across Peclet regime, geometry, and flow fidelity, no sampler wins universally. Peclet regime changes the selected mixture. Second geometry and OpenFOAM flow strengthen \gb{}. Pair-heavy objectives preserve a clear role for learned transition context.
+
+\begin{table}[t]
+\centering
+\caption{Master evidence matrix across physical conditions. Weights are ordered as \gb{}, \knn{}, hybrid, pair-rerank.}
+\label{tab:evidence}
+\small
+\begin{tabular}{llrrl}
+\toprule
+Condition & Best mean sampler & Mean obj. & Mean rank & Selected weights \\
+\midrule
+Core1 high Pe & Pooled validation mixture & 276.15 & 2.00 & 0.438, 0.188, 0.333, 0.042 \\
+Core1 baseline & Pooled validation mixture & 121.64 & 2.00 & 0.413, 0.150, 0.413, 0.025 \\
+Core1 low Pe & Hybrid & 243.53 & 2.50 & 0.271, 0.000, 0.708, 0.021 \\
+Core2 graph & \gb{} & 255.40 & 1.75 & 0.479, 0.188, 0.271, 0.063 \\
+Core2 OpenFOAM & \gb{} & 261.39 & 1.25 & 0.333, 0.167, 0.417, 0.083 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\plotfigure{run_013_master_evidence_matrix.svg.png}{0.95}
+\caption{Master evidence matrix. Across Peclet regime, geometry, and flow fidelity, no sampler wins universally. The selected mechanism changes with physical regime and objective.}
+\label{fig:evidence}
+\end{figure}
+
+\section{Discussion}
+
+The main result is not that a learned model beats the original physics kernel. The main result is that training trajectories provide a natural scaffold for validation-driven physics/ML mechanism selection. The original \gb{} transition kernel remains hard to beat, especially when the velocity field has stronger physical memory. Learned transition context becomes important under objectives that emphasize pair organization, dilution, or other statistics not reducible to breakthrough alone.
+
+This shifts the story from replacement to selection. A black-box learned sampler might look more modern, but it would obscure a key fact: different mechanisms preserve different transport statistics. The validation layer makes those tradeoffs visible. It allows the model to say that a velocity-continuity physics kernel is best for one regime, a learned contextual sampler is better for another objective, and a mixture is appropriate when target metrics are complementary.
+
+This is especially relevant for reactive transport. Reaction opportunity depends on spatial organization and encounter history, not only arrival times. The pair-heavy OpenFOAM result is therefore not a small technical exception. It is evidence that learned context can matter exactly where classical breakthrough-focused calibration may be insufficient.
+
+The OpenFOAM result also changes how the 2019 method should be presented. Rather than describing \gb{} as an old baseline to be beaten, we should treat it as a strong physics-informed component. Its success under OpenFOAM is an asset. It shows that the original method encoded useful interface physics, and that modern ML should build around that structure rather than discard it.
+
+\subsection{Limitations}
+
+This is still a methods and proof-of-concept paper, not a complete cross-lithology validation study. The graph-flow trajectory sets use an approximate pressure solver and a simple voxel particle tracker. The OpenFOAM validation uses a stair-step voxel mesh at $75^3$, not a smoothed high-resolution DNS or LBM calculation. The second geometry is another Bentheimer subvolume, not a different rock type. The learned transition model is intentionally lightweight and does not yet use a geometry-conditioned sequence model, diffusion segment generator, or calibrated uncertainty model.
+
+These limitations set the boundary of the claim. The supported claim is that validation-driven training trajectories can expose and select among physics and learned transition mechanisms across several controlled conditions. The unsupported claim would be that the present implementation is a final universal pore-scale transport simulator.
+
+\subsection{Next validation steps}
+
+The strongest next physical validation would be a less-downsampled OpenFOAM case, a smoothed \texttt{snappyHexMesh} OpenFOAM workflow, an LBM or GeoChemFoam velocity field, or a cross-lithology dataset with comparable particle trajectories. The strongest next ML step would be a more expressive learned transition rule while keeping the same validation protocol: geometry-conditioned segment embeddings, a neural transition scorer over short histories, a diffusion or flow model for segment generation, and archive-support diagnostics to detect extrapolative generated paths. The validation protocol should not change. Stronger learned models should compete against the same physics kernels under the same held-out multi-objective metrics.
+
+\section{Conclusions}
+
+The 2019 training-trajectory method anticipated a central idea of modern scientific generative modeling: resolved examples can be recombined under physical constraints to generate new dynamics. Reopening the idea in the AI era does not require replacing the physics-informed transition kernel. The evidence here suggests the opposite. The original \gb{} kernel remains a strong and often dominant component, especially under higher-fidelity OpenFOAM flow.
+
+Modern machine learning adds value when it is used to learn complementary transition context and, more importantly, when it is embedded in a validation-driven framework that can select the right mechanism for the physical regime and scientific objective. Across Peclet regimes, a second geometry, OpenFOAM flow, and objective-weight sweeps, no sampler wins universally. That is not a weakness. It is the reason validation-driven mechanism selection is needed.
+
+\section*{Acknowledgments}
+
+Placeholder for data sources, software, and funding. The current prototype uses the multi-resolution Bentheimer sandstone image data and locally developed NumPy, OpenFOAM, and trajectory-generation scripts.
+
+\section*{Data and Code Availability}
+
+Current code, processed trajectories, run outputs, and figures are organized in the project workspace. Before submission, the exact scripts, processed trajectory data, JSON outputs, OpenFOAM case configuration, and figure-generation workflow should be archived in a DOI-bearing repository.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

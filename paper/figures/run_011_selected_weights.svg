@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="560" viewBox="0 0 1040 560">
+<style>
+  .title { font: 700 20px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; }
+  .subtitle { font: 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #4b5563; }
+  .axis { stroke: #374151; stroke-width: 1.2; }
+  .grid { stroke: #e5e7eb; stroke-width: 1; }
+  .tick { font: 11px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #4b5563; }
+  .label { font: 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #374151; }
+  .legend { font: 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #374151; }
+  .small { font: 10.5px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #374151; }
+  .cell { font: 700 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; text-anchor: middle; }
+  .stacklabel { font: 700 11px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+</style>
+<rect width="100%" height="100%" fill="#ffffff" />
+<text x="520.0" y="28" text-anchor="middle" class="title">Validation changes the mixture weights by objective</text>
+<text x="80.0" y="50.0" class="subtitle">Stacked bars show pooled-validation mixture weights selected under each objective regime.</text>
+<line x1="80" y1="424" x2="820" y2="424" class="axis" />
+<line x1="80" y1="424" x2="80" y2="76" class="axis" />
+<text x="20" y="250.0" text-anchor="middle" class="label" transform="rotate(-90 20,250.0)">weight</text>
+<line x1="80" y1="424.0" x2="820.0" y2="424.0" class="grid" />
+<text x="72" y="428.0" class="tick" text-anchor="end">0.0</text>
+<line x1="80" y1="354.4" x2="820.0" y2="354.4" class="grid" />
+<text x="72" y="358.4" class="tick" text-anchor="end">0.2</text>
+<line x1="80" y1="284.8" x2="820.0" y2="284.8" class="grid" />
+<text x="72" y="288.8" class="tick" text-anchor="end">0.4</text>
+<line x1="80" y1="215.2" x2="820.0" y2="215.2" class="grid" />
+<text x="72" y="219.2" class="tick" text-anchor="end">0.6</text>
+<line x1="80" y1="145.6" x2="820.0" y2="145.6" class="grid" />
+<text x="72" y="149.6" class="tick" text-anchor="end">0.8</text>
+<line x1="80" y1="76.0" x2="820.0" y2="76.0" class="grid" />
+<text x="72" y="80.0" class="tick" text-anchor="end">1.0</text>
+<rect x="100.1" y="315.2" width="65.5" height="108.8" fill="#111827" />
+<text x="132.9" y="373.6" class="stacklabel" text-anchor="middle">0.31</text>
+<rect x="100.1" y="271.8" width="65.5" height="43.5" fill="#d97706" />
+<text x="132.9" y="297.5" class="stacklabel" text-anchor="middle">0.12</text>
+<rect x="100.1" y="76.0" width="65.5" height="195.8" fill="#7c3aed" />
+<text x="132.9" y="177.9" class="stacklabel" text-anchor="middle">0.56</text>
+<rect x="100.1" y="76.0" width="65.5" height="0.0" fill="#be123c" />
+<text x="132.9" y="446" class="tick" text-anchor="end" transform="rotate(-33 132.9,446)">balanced</text>
+<rect x="205.8" y="315.2" width="65.5" height="108.8" fill="#111827" />
+<text x="238.6" y="373.6" class="stacklabel" text-anchor="middle">0.31</text>
+<rect x="205.8" y="271.8" width="65.5" height="43.5" fill="#d97706" />
+<text x="238.6" y="297.5" class="stacklabel" text-anchor="middle">0.12</text>
+<rect x="205.8" y="76.0" width="65.5" height="195.8" fill="#7c3aed" />
+<text x="238.6" y="177.9" class="stacklabel" text-anchor="middle">0.56</text>
+<rect x="205.8" y="76.0" width="65.5" height="0.0" fill="#be123c" />
+<text x="238.6" y="446" class="tick" text-anchor="end" transform="rotate(-33 238.6,446)">BTC-heavy</text>
+<rect x="311.5" y="271.8" width="65.5" height="152.2" fill="#111827" />
+<text x="344.3" y="351.9" class="stacklabel" text-anchor="middle">0.44</text>
+<rect x="311.5" y="250.0" width="65.5" height="21.8" fill="#d97706" />
+<rect x="311.5" y="97.8" width="65.5" height="152.2" fill="#7c3aed" />
+<text x="344.3" y="177.9" class="stacklabel" text-anchor="middle">0.44</text>
+<rect x="311.5" y="76.0" width="65.5" height="21.8" fill="#be123c" />
+<text x="344.3" y="446" class="tick" text-anchor="end" transform="rotate(-33 344.3,446)">pair-heavy</text>
+<rect x="417.2" y="315.2" width="65.5" height="108.8" fill="#111827" />
+<text x="450.0" y="373.6" class="stacklabel" text-anchor="middle">0.31</text>
+<rect x="417.2" y="293.5" width="65.5" height="21.8" fill="#d97706" />
+<rect x="417.2" y="76.0" width="65.5" height="217.5" fill="#7c3aed" />
+<text x="450.0" y="188.8" class="stacklabel" text-anchor="middle">0.62</text>
+<rect x="417.2" y="76.0" width="65.5" height="0.0" fill="#be123c" />
+<text x="450.0" y="446" class="tick" text-anchor="end" transform="rotate(-33 450.0,446)">dilution-heavy</text>
+<rect x="522.9" y="315.2" width="65.5" height="108.8" fill="#111827" />
+<text x="555.7" y="373.6" class="stacklabel" text-anchor="middle">0.31</text>
+<rect x="522.9" y="271.8" width="65.5" height="43.5" fill="#d97706" />
+<text x="555.7" y="297.5" class="stacklabel" text-anchor="middle">0.12</text>
+<rect x="522.9" y="76.0" width="65.5" height="195.8" fill="#7c3aed" />
+<text x="555.7" y="177.9" class="stacklabel" text-anchor="middle">0.56</text>
+<rect x="522.9" y="76.0" width="65.5" height="0.0" fill="#be123c" />
+<text x="555.7" y="446" class="tick" text-anchor="end" transform="rotate(-33 555.7,446)">reaction-light</text>
+<rect x="628.7" y="250.0" width="65.5" height="174.0" fill="#111827" />
+<text x="661.4" y="341.0" class="stacklabel" text-anchor="middle">0.50</text>
+<rect x="628.7" y="206.5" width="65.5" height="43.5" fill="#d97706" />
+<text x="661.4" y="232.2" class="stacklabel" text-anchor="middle">0.12</text>
+<rect x="628.7" y="76.0" width="65.5" height="130.5" fill="#7c3aed" />
+<text x="661.4" y="145.2" class="stacklabel" text-anchor="middle">0.38</text>
+<rect x="628.7" y="76.0" width="65.5" height="0.0" fill="#be123c" />
+<text x="661.4" y="446" class="tick" text-anchor="end" transform="rotate(-33 661.4,446)">reaction-heavy</text>
+<rect x="734.4" y="315.2" width="65.5" height="108.8" fill="#111827" />
+<text x="767.1" y="373.6" class="stacklabel" text-anchor="middle">0.31</text>
+<rect x="734.4" y="271.8" width="65.5" height="43.5" fill="#d97706" />
+<text x="767.1" y="297.5" class="stacklabel" text-anchor="middle">0.12</text>
+<rect x="734.4" y="76.0" width="65.5" height="195.8" fill="#7c3aed" />
+<text x="767.1" y="177.9" class="stacklabel" text-anchor="middle">0.56</text>
+<rect x="734.4" y="76.0" width="65.5" height="0.0" fill="#be123c" />
+<text x="767.1" y="446" class="tick" text-anchor="end" transform="rotate(-33 767.1,446)">no reaction</text>
+<text x="856.0" y="94.0" class="label" font-weight="700">components</text>
+<rect x="856" y="108" width="22" height="16" fill="#111827" />
+<text x="888" y="122" class="legend">Gaussian/Bayes</text>
+<rect x="856" y="136" width="22" height="16" fill="#d97706" />
+<text x="888" y="150" class="legend">kNN</text>
+<rect x="856" y="164" width="22" height="16" fill="#7c3aed" />
+<text x="888" y="178" class="legend">hybrid</text>
+<rect x="856" y="192" width="22" height="16" fill="#be123c" />
+<text x="888" y="206" class="legend">pair rerank</text>
+</svg>

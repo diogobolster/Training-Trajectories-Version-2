@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="842" viewBox="0 0 1320 842">
+<style>
+  .title { font: 700 22px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; }
+  .subtitle { font: 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #4b5563; }
+  .header { font: 700 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #374151; text-transform: uppercase; }
+  .rowlabel { font: 700 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; }
+  .cell { font: 13px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; }
+  .smallcell { font: 12px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; }
+  .muted { font: 11.5px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #6b7280; }
+  .legend { font: 11.5px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #374151; }
+  .barlabel { font: 700 10.5px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+</style>
+<rect x="0" y="0" width="1320" height="842" fill="#ffffff" stroke="#fdfdfd" stroke-width="1" />
+<rect x="1319" y="841" width="1" height="1" fill="#f8f8f8" />
+<text x="660.0" y="30" text-anchor="middle" class="title">Master evidence table: validation selects by regime</text>
+<text x="56.0" y="52.0" class="subtitle">Across Peclet, geometry, and flow fidelity, no sampler wins universally; the original physics kernel remains a strong component.</text>
+<text x="56.0" y="84.0" class="header">condition</text>
+<text x="250.0" y="84.0" class="header">best mean sampler</text>
+<text x="420.0" y="84.0" class="header">rank / wins</text>
+<text x="535.0" y="84.0" class="header">mean selected weights</text>
+<text x="790.0" y="84.0" class="header">interpretation</text>
+<rect x="40" y="74" width="1240" height="76" fill="#f9fafb" />
+<text x="56.0" y="104.0" class="rowlabel">Core1 high Pe</text>
+<circle cx="258" cy="100" r="6" fill="#2563eb" />
+<text x="274.0" y="104.0" class="cell">pooled mix</text>
+<text x="420.0" y="104.0" class="cell">2.00 / 2</text>
+<rect x="535" y="86" width="210" height="24" fill="#ffffff" stroke="#d1d5db" />
+<rect x="535.0" y="86" width="91.9" height="24" fill="#111827" />
+<text x="580.9" y="102" class="barlabel" text-anchor="middle">0.44</text>
+<rect x="626.9" y="86" width="39.4" height="24" fill="#d97706" />
+<text x="646.6" y="102" class="barlabel" text-anchor="middle">0.19</text>
+<rect x="666.2" y="86" width="70.0" height="24" fill="#7c3aed" />
+<text x="701.2" y="102" class="barlabel" text-anchor="middle">0.33</text>
+<rect x="736.2" y="86" width="8.8" height="24" fill="#be123c" />
+<text x="790.0" y="96.0" class="smallcell">low diffusion favors velocity matching and validation mixtures</text>
+<text x="790.0" y="116.0" class="muted">dominant selected weight: Gaussian (0.44)</text>
+<rect x="40" y="158" width="1240" height="76" fill="#ffffff" />
+<text x="56.0" y="188.0" class="rowlabel">Core1 baseline</text>
+<circle cx="258" cy="184" r="6" fill="#2563eb" />
+<text x="274.0" y="188.0" class="cell">pooled mix</text>
+<text x="420.0" y="188.0" class="cell">2.00 / 2</text>
+<rect x="535" y="170" width="210" height="24" fill="#ffffff" stroke="#d1d5db" />
+<rect x="535.0" y="170" width="86.6" height="24" fill="#111827" />
+<text x="578.3" y="186" class="barlabel" text-anchor="middle">0.41</text>
+<rect x="621.6" y="170" width="31.5" height="24" fill="#d97706" />
+<rect x="653.1" y="170" width="86.6" height="24" fill="#7c3aed" />
+<text x="696.4" y="186" class="barlabel" text-anchor="middle">0.41</text>
+<rect x="739.8" y="170" width="5.2" height="24" fill="#be123c" />
+<text x="790.0" y="180.0" class="smallcell">pooled mixture and Gaussian/Bayes are co-best by rank</text>
+<text x="790.0" y="200.0" class="muted">dominant selected weight: Gaussian (0.41)</text>
+<rect x="40" y="242" width="1240" height="76" fill="#f9fafb" />
+<text x="56.0" y="272.0" class="rowlabel">Core1 low Pe</text>
+<circle cx="258" cy="268" r="6" fill="#7c3aed" />
+<text x="274.0" y="272.0" class="cell">hybrid</text>
+<text x="420.0" y="272.0" class="cell">2.50 / 1</text>
+<rect x="535" y="254" width="210" height="24" fill="#ffffff" stroke="#d1d5db" />
+<rect x="535.0" y="254" width="56.9" height="24" fill="#111827" />
+<text x="563.4" y="270" class="barlabel" text-anchor="middle">0.27</text>
+<rect x="591.9" y="254" width="148.8" height="24" fill="#7c3aed" />
+<text x="666.2" y="270" class="barlabel" text-anchor="middle">0.71</text>
+<rect x="740.6" y="254" width="4.4" height="24" fill="#be123c" />
+<text x="790.0" y="264.0" class="smallcell">higher diffusion shifts selected weight toward hybrid context</text>
+<text x="790.0" y="284.0" class="muted">dominant selected weight: hybrid (0.71)</text>
+<rect x="40" y="326" width="1240" height="76" fill="#ffffff" />
+<text x="56.0" y="356.0" class="rowlabel">Core2 graph</text>
+<circle cx="258" cy="352" r="6" fill="#111827" />
+<text x="274.0" y="356.0" class="cell">Gaussian/Bayes</text>
+<text x="420.0" y="356.0" class="cell">1.75 / 2</text>
+<rect x="535" y="338" width="210" height="24" fill="#ffffff" stroke="#d1d5db" />
+<rect x="535.0" y="338" width="100.6" height="24" fill="#111827" />
+<text x="585.3" y="354" class="barlabel" text-anchor="middle">0.48</text>
+<rect x="635.6" y="338" width="39.4" height="24" fill="#d97706" />
+<text x="655.3" y="354" class="barlabel" text-anchor="middle">0.19</text>
+<rect x="675.0" y="338" width="56.9" height="24" fill="#7c3aed" />
+<text x="703.4" y="354" class="barlabel" text-anchor="middle">0.27</text>
+<rect x="731.9" y="338" width="13.1" height="24" fill="#be123c" />
+<text x="790.0" y="348.0" class="smallcell">second geometry restores Gaussian/Bayes as the best mean sampler</text>
+<text x="790.0" y="368.0" class="muted">dominant selected weight: Gaussian (0.48)</text>
+<rect x="40" y="410" width="1240" height="76" fill="#f9fafb" />
+<text x="56.0" y="440.0" class="rowlabel">Core2 OF 18 um</text>
+<circle cx="258" cy="436" r="6" fill="#d97706" />
+<text x="274.0" y="440.0" class="cell">kNN</text>
+<text x="420.0" y="440.0" class="cell">2.75 / 1</text>
+<rect x="535" y="422" width="210" height="24" fill="#ffffff" stroke="#d1d5db" />
+<rect x="535.0" y="422" width="35.0" height="24" fill="#111827" />
+<text x="552.5" y="438" class="barlabel" text-anchor="middle">0.17</text>
+<rect x="570.0" y="422" width="87.5" height="24" fill="#d97706" />
+<text x="613.8" y="438" class="barlabel" text-anchor="middle">0.42</text>
+<rect x="657.5" y="422" width="17.5" height="24" fill="#7c3aed" />
+<rect x="675.0" y="422" width="70.0" height="24" fill="#be123c" />
+<text x="710.0" y="438" class="barlabel" text-anchor="middle">0.33</text>
+<text x="790.0" y="432.0" class="smallcell">tight coarse OpenFOAM favors archive proximity</text>
+<text x="790.0" y="452.0" class="muted">dominant selected weight: kNN (0.42)</text>
+<rect x="40" y="494" width="1240" height="76" fill="#ffffff" />
+<text x="56.0" y="524.0" class="rowlabel">Core2 OF 12 um</text>
+<circle cx="258" cy="520" r="6" fill="#2563eb" />
+<text x="274.0" y="524.0" class="cell">pooled mix</text>
+<text x="420.0" y="524.0" class="cell">1.50 / 3</text>
+<rect x="535" y="506" width="210" height="24" fill="#ffffff" stroke="#d1d5db" />
+<rect x="535.0" y="506" width="13.1" height="24" fill="#111827" />
+<rect x="548.1" y="506" width="100.6" height="24" fill="#d97706" />
+<text x="598.4" y="522" class="barlabel" text-anchor="middle">0.48</text>
+<rect x="648.8" y="506" width="26.2" height="24" fill="#7c3aed" />
+<rect x="675.0" y="506" width="70.0" height="24" fill="#be123c" />
+<text x="710.0" y="522" class="barlabel" text-anchor="middle">0.33</text>
+<text x="790.0" y="516.0" class="smallcell">tighter resolution favors validation-selected mixtures</text>
+<text x="790.0" y="536.0" class="muted">dominant selected weight: kNN (0.48)</text>
+<rect x="40" y="578" width="1240" height="76" fill="#f9fafb" />
+<text x="56.0" y="608.0" class="rowlabel">Core2 OF 6 um</text>
+<circle cx="258" cy="604" r="6" fill="#2563eb" />
+<text x="274.0" y="608.0" class="cell">pooled mix</text>
+<text x="420.0" y="608.0" class="cell">2.50 / 2</text>
+<rect x="535" y="590" width="210" height="24" fill="#ffffff" stroke="#d1d5db" />
+<rect x="535.0" y="590" width="56.9" height="24" fill="#111827" />
+<text x="563.4" y="606" class="barlabel" text-anchor="middle">0.27</text>
+<rect x="591.9" y="590" width="87.5" height="24" fill="#d97706" />
+<text x="635.6" y="606" class="barlabel" text-anchor="middle">0.42</text>
+<rect x="679.4" y="590" width="21.9" height="24" fill="#7c3aed" />
+<rect x="701.2" y="590" width="43.7" height="24" fill="#be123c" />
+<text x="723.1" y="606" class="barlabel" text-anchor="middle">0.21</text>
+<text x="790.0" y="600.0" class="smallcell">strict full-resolution flow keeps multiple memories alive</text>
+<text x="790.0" y="620.0" class="muted">dominant selected weight: kNN (0.42)</text>
+<rect x="40" y="700" width="1240" height="92" fill="#f8fafc" stroke="#e5e7eb" />
+<text x="56.0" y="724.0" class="header">OpenFOAM objective sensitivity</text>
+<text x="56.0" y="750.0" class="cell">Gaussian/Bayes is best in 1/8 objective regimes; pair-heavy selects Gaussian/Bayes.</text>
+<text x="56.0" y="774.0" class="muted">Interpretation: high-fidelity flow reinforces the 2019 physics kernel, while pair/mixing priorities preserve a role for learned context.</text>
+<rect x="960" y="734" width="18" height="12" fill="#111827" />
+<text x="986.0" y="744.0" class="legend">Gaussian</text>
+<rect x="960" y="754" width="18" height="12" fill="#d97706" />
+<text x="986.0" y="764.0" class="legend">kNN</text>
+<rect x="960" y="774" width="18" height="12" fill="#7c3aed" />
+<text x="986.0" y="784.0" class="legend">hybrid</text>
+<rect x="960" y="794" width="18" height="12" fill="#be123c" />
+<text x="986.0" y="804.0" class="legend">pair</text>
+</svg>

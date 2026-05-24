@@ -1,0 +1,438 @@
+{
+  "description": "Resolution ladder for Core2 OpenFOAM trajectory-memory tests using tight dt=0.1, n=5000 particle archives.",
+  "trajectory_protocol": {
+    "particles": 5000,
+    "dt": 0.1,
+    "steps": 4000,
+    "segment_steps": 160,
+    "segment_stride": 400
+  },
+  "autocorrelation_lags": [
+    10,
+    20,
+    40,
+    80
+  ],
+  "cases": {
+    "downsample3": {
+      "label": "18 um voxel OpenFOAM",
+      "case_dir": "openfoam_cases/bentheimer_core2_subvol1_6um_downsample3_voxel_flow",
+      "flow_summary": "openfoam_cases/bentheimer_core2_subvol1_6um_downsample3_voxel_flow/flow_summary.json",
+      "trajectory": "data/processed/bentheimer_core2_subvol1_6um_downsample3_D001_openfoam_dt010_n5000_trajectories.npz",
+      "n_cells": 98270,
+      "solve_time_step": "103",
+      "apparent_permeability": 4.276829542051207e-12,
+      "darcy_velocity_bulk_area": 3.1680218830008943e-09,
+      "autocorrelation": {
+        "10": 0.109914307847548,
+        "20": 0.10499124609922436,
+        "40": 0.09816053624172526,
+        "80": 0.08782606518212739
+      },
+      "balanced": {
+        "best_sampler": "knn_conditional",
+        "best_mean_objective": 1567.4216253466207,
+        "best_mean_rank": 2.75,
+        "best_wins": 1,
+        "samplers": {
+          "bootstrap_mean_mixture": {
+            "mean_objective": 1619.4713288408907,
+            "std_objective": 87.59774173809872,
+            "min_objective": 1567.993331842627,
+            "max_objective": 1750.4067791098548,
+            "mean_rank": 3.0,
+            "wins": 1,
+            "beats_gaussian_bayes": 3,
+            "beats_hybrid": 3
+          },
+          "pooled_validation_mixture": {
+            "mean_objective": 1595.513966393737,
+            "std_objective": 164.09348286987245,
+            "min_objective": 1389.389882768934,
+            "max_objective": 1788.2547487359698,
+            "mean_rank": 3.0,
+            "wins": 1,
+            "beats_gaussian_bayes": 2,
+            "beats_hybrid": 3
+          },
+          "gaussian_bayes": {
+            "mean_objective": 1614.3890599695517,
+            "std_objective": 112.04164189501367,
+            "min_objective": 1446.6116718791407,
+            "max_objective": 1676.0323001605661,
+            "mean_rank": 4.0,
+            "wins": 1,
+            "beats_gaussian_bayes": 0,
+            "beats_hybrid": 1
+          },
+          "knn_conditional": {
+            "mean_objective": 1567.4216253466207,
+            "std_objective": 101.69917919124397,
+            "min_objective": 1425.138216193912,
+            "max_objective": 1647.4770797493502,
+            "mean_rank": 2.75,
+            "wins": 1,
+            "beats_gaussian_bayes": 3,
+            "beats_hybrid": 3
+          },
+          "hybrid": {
+            "mean_objective": 1657.5456949655986,
+            "std_objective": 16.50551384487185,
+            "min_objective": 1634.264009748988,
+            "max_objective": 1672.1500869181066,
+            "mean_rank": 4.0,
+            "wins": 0,
+            "beats_gaussian_bayes": 3,
+            "beats_hybrid": 0
+          },
+          "pair_rerank": {
+            "mean_objective": 1650.901644433608,
+            "std_objective": 57.192756266055646,
+            "min_objective": 1595.8451871131647,
+            "max_objective": 1703.7760673006933,
+            "mean_rank": 4.25,
+            "wins": 0,
+            "beats_gaussian_bayes": 1,
+            "beats_hybrid": 2
+          }
+        },
+        "mean_selected_weights": {
+          "gaussian_bayes": 0.16666666666666666,
+          "knn_conditional": 0.41666666666666663,
+          "hybrid": 0.08333333333333333,
+          "pair_rerank": 0.33333333333333337
+        }
+      },
+      "objective_winners": {
+        "balanced": {
+          "best_sampler": "knn_conditional",
+          "mean_objective": 1567.4216253466207,
+          "mean_rank": 2.75,
+          "wins": 1
+        },
+        "breakthrough_only": {
+          "best_sampler": "knn_conditional",
+          "mean_objective": 1341.5513888888888,
+          "mean_rank": 2.75,
+          "wins": 1
+        },
+        "btc_heavy": {
+          "best_sampler": "knn_conditional",
+          "mean_objective": 4137.589284895533,
+          "mean_rank": 2.5,
+          "wins": 1
+        },
+        "pair_heavy": {
+          "best_sampler": "knn_conditional",
+          "mean_objective": 856.9402610335318,
+          "mean_rank": 2.75,
+          "wins": 1
+        },
+        "dilution_heavy": {
+          "best_sampler": "knn_conditional",
+          "mean_objective": 1306.2423942277119,
+          "mean_rank": 2.75,
+          "wins": 1
+        },
+        "reaction_light": {
+          "best_sampler": "knn_conditional",
+          "mean_objective": 1566.0716253466207,
+          "mean_rank": 2.75,
+          "wins": 1
+        },
+        "reaction_heavy": {
+          "best_sampler": "knn_conditional",
+          "mean_objective": 787.4608126733103,
+          "mean_rank": 2.75,
+          "wins": 1
+        },
+        "no_reaction": {
+          "best_sampler": "knn_conditional",
+          "mean_objective": 1565.9216253466207,
+          "mean_rank": 2.75,
+          "wins": 1
+        }
+      }
+    },
+    "downsample2": {
+      "label": "12 um voxel OpenFOAM",
+      "case_dir": "openfoam_cases/bentheimer_core2_subvol1_6um_downsample2_voxel_flow",
+      "flow_summary": "openfoam_cases/bentheimer_core2_subvol1_6um_downsample2_voxel_flow/flow_summary.json",
+      "trajectory": "data/processed/bentheimer_core2_subvol1_6um_downsample2_D00225_openfoam_phys_scaled_dt010_n5000_trajectories.npz",
+      "n_cells": 322524,
+      "solve_time_step": "105",
+      "apparent_permeability": 3.690355965303494e-12,
+      "darcy_velocity_bulk_area": 2.7458005694222425e-09,
+      "autocorrelation": {
+        "10": 0.12586698746192393,
+        "20": 0.12115931758147577,
+        "40": 0.11434752912774186,
+        "80": 0.10188649704424148
+      },
+      "balanced": {
+        "best_sampler": "pooled_validation_mixture",
+        "best_mean_objective": 1593.6922452583835,
+        "best_mean_rank": 1.5,
+        "best_wins": 3,
+        "samplers": {
+          "bootstrap_mean_mixture": {
+            "mean_objective": 1642.061348937083,
+            "std_objective": 100.32716329882831,
+            "min_objective": 1498.4849183536844,
+            "max_objective": 1731.0790286409053,
+            "mean_rank": 3.25,
+            "wins": 0,
+            "beats_gaussian_bayes": 3,
+            "beats_hybrid": 2
+          },
+          "pooled_validation_mixture": {
+            "mean_objective": 1593.6922452583835,
+            "std_objective": 69.65767118101404,
+            "min_objective": 1495.7756825916633,
+            "max_objective": 1660.1224892128694,
+            "mean_rank": 1.5,
+            "wins": 3,
+            "beats_gaussian_bayes": 4,
+            "beats_hybrid": 4
+          },
+          "gaussian_bayes": {
+            "mean_objective": 1712.893085288261,
+            "std_objective": 34.779115961876904,
+            "min_objective": 1678.614874446682,
+            "max_objective": 1759.8638298257906,
+            "mean_rank": 4.25,
+            "wins": 0,
+            "beats_gaussian_bayes": 0,
+            "beats_hybrid": 2
+          },
+          "knn_conditional": {
+            "mean_objective": 1713.199263016596,
+            "std_objective": 46.18752764201723,
+            "min_objective": 1667.3711028009598,
+            "max_objective": 1773.6744563933999,
+            "mean_rank": 5.0,
+            "wins": 0,
+            "beats_gaussian_bayes": 1,
+            "beats_hybrid": 1
+          },
+          "hybrid": {
+            "mean_objective": 1692.2321521213566,
+            "std_objective": 35.397459824199046,
+            "min_objective": 1652.5726895827625,
+            "max_objective": 1738.6275080429782,
+            "mean_rank": 3.75,
+            "wins": 0,
+            "beats_gaussian_bayes": 2,
+            "beats_hybrid": 0
+          },
+          "pair_rerank": {
+            "mean_objective": 1650.5674822451829,
+            "std_objective": 44.11560617535973,
+            "min_objective": 1607.3461318605027,
+            "max_objective": 1691.7933087188717,
+            "mean_rank": 3.25,
+            "wins": 1,
+            "beats_gaussian_bayes": 3,
+            "beats_hybrid": 2
+          }
+        },
+        "mean_selected_weights": {
+          "gaussian_bayes": 0.06250000000000001,
+          "knn_conditional": 0.4791666666666667,
+          "hybrid": 0.125,
+          "pair_rerank": 0.3333333333333333
+        }
+      },
+      "objective_winners": {
+        "balanced": {
+          "best_sampler": "pooled_validation_mixture",
+          "mean_objective": 1593.6922452583835,
+          "mean_rank": 1.25,
+          "wins": 3
+        },
+        "breakthrough_only": {
+          "best_sampler": "pooled_validation_mixture",
+          "mean_objective": 1326.7749999999999,
+          "mean_rank": 1.5,
+          "wins": 3
+        },
+        "btc_heavy": {
+          "best_sampler": "pooled_validation_mixture",
+          "mean_objective": 4113.783622629191,
+          "mean_rank": 1.25,
+          "wins": 3
+        },
+        "pair_heavy": {
+          "best_sampler": "pooled_validation_mixture",
+          "mean_objective": 956.6719530487114,
+          "mean_rank": 2.75,
+          "wins": 1
+        },
+        "dilution_heavy": {
+          "best_sampler": "pooled_validation_mixture",
+          "mean_objective": 1326.7041994104443,
+          "mean_rank": 1.25,
+          "wins": 3
+        },
+        "reaction_light": {
+          "best_sampler": "pooled_validation_mixture",
+          "mean_objective": 1589.1922452583833,
+          "mean_rank": 1.25,
+          "wins": 3
+        },
+        "reaction_heavy": {
+          "best_sampler": "pooled_validation_mixture",
+          "mean_objective": 817.3028362758429,
+          "mean_rank": 1.5,
+          "wins": 2
+        },
+        "no_reaction": {
+          "best_sampler": "pooled_validation_mixture",
+          "mean_objective": 1588.6922452583835,
+          "mean_rank": 1.25,
+          "wins": 3
+        }
+      }
+    },
+    "fullres": {
+      "label": "6 um voxel OpenFOAM",
+      "case_dir": "openfoam_cases/bentheimer_core2_subvol1_6um_fullres_voxel_flow_strict",
+      "flow_summary": "outputs/bentheimer_core2_subvol1_6um_fullres_openfoam_strict_converged_flow_summary.json",
+      "trajectory": "data/processed/bentheimer_core2_subvol1_6um_fullres_D009_openfoam_strict_dt010_n5000_trajectories.npz",
+      "n_cells": 2650688,
+      "solve_time_step": "604",
+      "apparent_permeability": 3.491974667385844e-12,
+      "darcy_velocity_bulk_area": 0.002586647901767292,
+      "autocorrelation": {
+        "10": 0.12602006752105213,
+        "20": 0.12304210028399888,
+        "40": 0.11665923720271677,
+        "80": 0.10430948790338815
+      },
+      "balanced": {
+        "best_sampler": "pooled_validation_mixture",
+        "best_mean_objective": 1695.1789547064195,
+        "best_mean_rank": 2.5,
+        "best_wins": 2,
+        "samplers": {
+          "bootstrap_mean_mixture": {
+            "mean_objective": 1726.4638061968008,
+            "std_objective": 81.07127730666053,
+            "min_objective": 1625.261855631449,
+            "max_objective": 1813.500511689097,
+            "mean_rank": 2.5,
+            "wins": 1,
+            "beats_gaussian_bayes": 3,
+            "beats_hybrid": 4
+          },
+          "pooled_validation_mixture": {
+            "mean_objective": 1695.1789547064195,
+            "std_objective": 126.55957285519536,
+            "min_objective": 1572.4341731745649,
+            "max_objective": 1855.261058498247,
+            "mean_rank": 2.5,
+            "wins": 2,
+            "beats_gaussian_bayes": 3,
+            "beats_hybrid": 3
+          },
+          "gaussian_bayes": {
+            "mean_objective": 1756.0394119783218,
+            "std_objective": 102.42353935946436,
+            "min_objective": 1609.7992818774983,
+            "max_objective": 1847.806521382122,
+            "mean_rank": 4.0,
+            "wins": 0,
+            "beats_gaussian_bayes": 0,
+            "beats_hybrid": 3
+          },
+          "knn_conditional": {
+            "mean_objective": 1741.6078476132604,
+            "std_objective": 106.97712556825239,
+            "min_objective": 1639.1028057178871,
+            "max_objective": 1839.7699298244158,
+            "mean_rank": 4.0,
+            "wins": 1,
+            "beats_gaussian_bayes": 2,
+            "beats_hybrid": 1
+          },
+          "hybrid": {
+            "mean_objective": 1781.1815536142933,
+            "std_objective": 95.15562761388726,
+            "min_objective": 1640.6871242326688,
+            "max_objective": 1845.5691118339262,
+            "mean_rank": 4.5,
+            "wins": 0,
+            "beats_gaussian_bayes": 1,
+            "beats_hybrid": 0
+          },
+          "pair_rerank": {
+            "mean_objective": 1735.2513543624111,
+            "std_objective": 154.19720918513593,
+            "min_objective": 1594.1764046205462,
+            "max_objective": 1944.1108767833462,
+            "mean_rank": 3.5,
+            "wins": 0,
+            "beats_gaussian_bayes": 3,
+            "beats_hybrid": 3
+          }
+        },
+        "mean_selected_weights": {
+          "gaussian_bayes": 0.27083333333333337,
+          "knn_conditional": 0.4166666666666667,
+          "hybrid": 0.10416666666666666,
+          "pair_rerank": 0.20833333333333331
+        }
+      },
+      "objective_winners": {
+        "balanced": {
+          "best_sampler": "pooled_validation_mixture",
+          "mean_objective": 1695.1789547064195,
+          "mean_rank": 2.5,
+          "wins": 2
+        },
+        "breakthrough_only": {
+          "best_sampler": "pooled_validation_mixture",
+          "mean_objective": 1388.3083333333334,
+          "mean_rank": 2.5,
+          "wins": 2
+        },
+        "btc_heavy": {
+          "best_sampler": "pooled_validation_mixture",
+          "mean_objective": 4318.360310686543,
+          "mean_rank": 2.5,
+          "wins": 2
+        },
+        "pair_heavy": {
+          "best_sampler": "gaussian_bayes",
+          "mean_objective": 1083.024733923804,
+          "mean_rank": 2.75,
+          "wins": 0
+        },
+        "dilution_heavy": {
+          "best_sampler": "pooled_validation_mixture",
+          "mean_objective": 1388.4969219610803,
+          "mean_rank": 2.75,
+          "wins": 1
+        },
+        "reaction_light": {
+          "best_sampler": "pooled_validation_mixture",
+          "mean_objective": 1688.2039547064194,
+          "mean_rank": 2.5,
+          "wins": 2
+        },
+        "reaction_heavy": {
+          "best_sampler": "pooled_validation_mixture",
+          "mean_objective": 866.9644773532098,
+          "mean_rank": 2.5,
+          "wins": 2
+        },
+        "no_reaction": {
+          "best_sampler": "pooled_validation_mixture",
+          "mean_objective": 1687.4289547064195,
+          "mean_rank": 2.5,
+          "wins": 2
+        }
+      }
+    }
+  }
+}

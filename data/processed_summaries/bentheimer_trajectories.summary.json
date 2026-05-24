@@ -1,0 +1,18 @@
+{
+  "raw": "data/raw/Core1_Subvol1_18micron_75cube_16bit_LE.raw",
+  "shape": [
+    75,
+    75,
+    75
+  ],
+  "voxel_size": 1.8e-05,
+  "raw_porosity": 0.26965333333333336,
+  "connected_porosity": 0.26643674074074075,
+  "pressure_solver": {
+    "iterations": 800.0,
+    "last_delta": 0.0002248319185204628
+  },
+  "n_trajectories": 300,
+  "mean_trajectory_length": 501.0,
+  "output": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/data/processed/bentheimer_trajectories.npz"
+}

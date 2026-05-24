@@ -1,0 +1,132 @@
+{
+  "input": "data/processed/bentheimer_6um_downsample3_trajectories.npz",
+  "archive_size": 6300,
+  "segment_steps": 36,
+  "match_steps": 20,
+  "horizon_segments": 3,
+  "neighbor_k": 32,
+  "descriptor_names": [
+    "median_future_divergence",
+    "q90_future_divergence",
+    "median_growth",
+    "convergence_fraction",
+    "future_divergence_std"
+  ],
+  "global_median": {
+    "median_future_divergence": 0.014554842404390837,
+    "q90_future_divergence": 0.02424535224085503,
+    "median_growth": 0.009434853090842684,
+    "convergence_fraction": 0.03125,
+    "future_divergence_std": 0.007131271694776694
+  },
+  "by_speed_bin": [
+    {
+      "bin": 0,
+      "count": 1575,
+      "speed_min": 0.0,
+      "speed_max": 0.011083315308483494,
+      "descriptor_median": {
+        "median_future_divergence": 0.00844564583786303,
+        "q90_future_divergence": 0.014087111971275813,
+        "median_growth": 0.006219926826962232,
+        "convergence_fraction": 0.0,
+        "future_divergence_std": 0.004161423077139907
+      },
+      "descriptor_q10": {
+        "median_future_divergence": 0.00631046342203759,
+        "q90_future_divergence": 0.010597349752619787,
+        "median_growth": 0.004042378184485772,
+        "convergence_fraction": 0.0,
+        "future_divergence_std": 0.002976034683174509
+      },
+      "descriptor_q90": {
+        "median_future_divergence": 0.013044507377801327,
+        "q90_future_divergence": 0.01991579656811801,
+        "median_growth": 0.010758960839827539,
+        "convergence_fraction": 0.0625,
+        "future_divergence_std": 0.007027673228896063
+      }
+    },
+    {
+      "bin": 1,
+      "count": 1575,
+      "speed_min": 0.011086559868183724,
+      "speed_max": 0.019871671028897923,
+      "descriptor_median": {
+        "median_future_divergence": 0.011127105708378722,
+        "q90_future_divergence": 0.01878154515832058,
+        "median_growth": 0.007828646348672481,
+        "convergence_fraction": 0.03125,
+        "future_divergence_std": 0.005374878055838105
+      },
+      "descriptor_q10": {
+        "median_future_divergence": 0.007317231103291092,
+        "q90_future_divergence": 0.012257544386855269,
+        "median_growth": 0.0035215927185943126,
+        "convergence_fraction": 0.0,
+        "future_divergence_std": 0.0033292236111655995
+      },
+      "descriptor_q90": {
+        "median_future_divergence": 0.01841320703511557,
+        "q90_future_divergence": 0.02763099818037589,
+        "median_growth": 0.014788262763195925,
+        "convergence_fraction": 0.125,
+        "future_divergence_std": 0.008369458558576874
+      }
+    },
+    {
+      "bin": 2,
+      "count": 1575,
+      "speed_min": 0.019872469083758157,
+      "speed_max": 0.0383282195082362,
+      "descriptor_median": {
+        "median_future_divergence": 0.01710978655508389,
+        "q90_future_divergence": 0.02877863292995573,
+        "median_growth": 0.011798340620999055,
+        "convergence_fraction": 0.03125,
+        "future_divergence_std": 0.008218687716565545
+      },
+      "descriptor_q10": {
+        "median_future_divergence": 0.01205294732870203,
+        "q90_future_divergence": 0.021002340389925957,
+        "median_growth": 0.006543284780419537,
+        "convergence_fraction": 0.0,
+        "future_divergence_std": 0.005939691983629737
+      },
+      "descriptor_q90": {
+        "median_future_divergence": 0.02865101343552445,
+        "q90_future_divergence": 0.041513646901292764,
+        "median_growth": 0.02194004917250775,
+        "convergence_fraction": 0.125,
+        "future_divergence_std": 0.011765610897432043
+      }
+    },
+    {
+      "bin": 3,
+      "count": 1575,
+      "speed_min": 0.03833047917588388,
+      "speed_max": 0.19276000387537537,
+      "descriptor_median": {
+        "median_future_divergence": 0.028391586013234348,
+        "q90_future_divergence": 0.047178776889399504,
+        "median_growth": 0.015241499059384073,
+        "convergence_fraction": 0.0625,
+        "future_divergence_std": 0.013005187635830012
+      },
+      "descriptor_q10": {
+        "median_future_divergence": 0.01810375664314724,
+        "q90_future_divergence": 0.03366994644874088,
+        "median_growth": 0.005953825390308455,
+        "convergence_fraction": 0.0,
+        "future_divergence_std": 0.009380474538173929
+      },
+      "descriptor_q90": {
+        "median_future_divergence": 0.04642837695061163,
+        "q90_future_divergence": 0.06665882524771499,
+        "median_growth": 0.031137026017263918,
+        "convergence_fraction": 0.28125,
+        "future_divergence_std": 0.01704719296982633
+      }
+    }
+  ]
+}

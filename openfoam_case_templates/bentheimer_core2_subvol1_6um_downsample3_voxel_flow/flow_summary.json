@@ -1,0 +1,21 @@
+{
+  "case_dir": "openfoam_cases/bentheimer_core2_subvol1_6um_downsample3_voxel_flow",
+  "time": "103",
+  "n_cells": 98270,
+  "speed_mean": 2.284451544908429e-08,
+  "speed_median": 1.3455209220010238e-08,
+  "speed_p95": 7.715998538747605e-08,
+  "speed_max": 4.7666646741183005e-07,
+  "axial_velocity_mean": 1.4658955648424602e-08,
+  "axial_velocity_median": 6.24524165e-09,
+  "inlet_flux": -5.772947848969913e-15,
+  "outlet_flux": 5.7737198817691305e-15,
+  "wall_flux": 0.0,
+  "net_boundary_flux": 7.720327992175442e-19,
+  "bulk_cross_section_area": 1.8225000000000001e-06,
+  "pore_inlet_area": 4.5846000000000004e-07,
+  "pore_outlet_area": 3.97224e-07,
+  "darcy_velocity_bulk_area": 3.1680218830008943e-09,
+  "outlet_interstitial_velocity": 1.4535173810668868e-08,
+  "apparent_permeability": 4.276829542051207e-12
+}

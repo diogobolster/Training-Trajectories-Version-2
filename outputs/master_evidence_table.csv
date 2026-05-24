@@ -1,0 +1,8 @@
+label,best_sampler,best_mean_objective,best_mean_rank,best_wins,gaussian_weight,knn_weight,hybrid_weight,pair_weight,interpretation
+Core1 high Pe,pooled_validation_mixture,276.1499699681123,2.0,2,0.4375,0.1875,0.33333333333333337,0.04166666666666667,low diffusion favors velocity matching and validation mixtures
+Core1 baseline,pooled_validation_mixture,121.6368448240576,2.0,2,0.4125,0.15,0.4125,0.025,pooled mixture and Gaussian/Bayes are co-best by rank
+Core1 low Pe,hybrid,243.5256243863843,2.5,1,0.2708333333333333,0.0,0.7083333333333334,0.020833333333333332,higher diffusion shifts selected weight toward hybrid context
+Core2 graph flow,gaussian_bayes,255.39600188433806,1.75,2,0.4791666666666667,0.18749999999999997,0.2708333333333333,0.0625,second geometry restores Gaussian/Bayes as the best mean sampler
+Core2 OpenFOAM 18 um,knn_conditional,1567.4216253466207,2.75,1,0.16666666666666666,0.41666666666666663,0.08333333333333333,0.33333333333333337,tight coarse OpenFOAM favors archive proximity
+Core2 OpenFOAM 12 um,pooled_validation_mixture,1593.6922452583835,1.5,3,0.06250000000000001,0.4791666666666667,0.125,0.3333333333333333,tighter resolution favors validation-selected mixtures
+Core2 OpenFOAM 6 um,pooled_validation_mixture,1695.1789547064195,2.5,2,0.27083333333333337,0.4166666666666667,0.10416666666666666,0.20833333333333331,strict full-resolution flow keeps multiple memories alive

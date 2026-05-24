@@ -1,0 +1,869 @@
+{
+  "input": "data/processed/bentheimer_6um_downsample3_trajectories.npz",
+  "splits": {
+    "fit": 150,
+    "validation": 60,
+    "test": 90
+  },
+  "archive": {
+    "size": 4500,
+    "segment_steps": 36,
+    "match_steps": 20
+  },
+  "component_order": [
+    "gaussian_bayes",
+    "knn_conditional",
+    "hybrid",
+    "pair_rerank"
+  ],
+  "objective_weights": {
+    "btc": 1.0,
+    "pair": 20.0,
+    "dilution": 120.0,
+    "reaction": 1000.0
+  },
+  "validation_top": [
+    {
+      "weights": {
+        "gaussian_bayes": 0.0,
+        "knn_conditional": 0.5,
+        "hybrid": 0.5,
+        "pair_rerank": 0.0
+      },
+      "score": 242.15613887559135,
+      "errors": {
+        "btc_score": 50.2,
+        "btc_quantile_mae": 29.36666666666666,
+        "btc_coverage_deficit": 0.08333333333333336,
+        "dilution_log_mae": 0.6975075817579832,
+        "pair_quantile_mae": 4.996094786565002,
+        "reaction_abs_error": 0.008333333333333331
+      }
+    },
+    {
+      "weights": {
+        "gaussian_bayes": 0.5,
+        "knn_conditional": 0.5,
+        "hybrid": 0.0,
+        "pair_rerank": 0.0
+      },
+      "score": 245.7126154094671,
+      "errors": {
+        "btc_score": 65.56666666666666,
+        "btc_quantile_mae": 41.95555555555555,
+        "btc_coverage_deficit": 0.09444444444444446,
+        "dilution_log_mae": 0.727804539587942,
+        "pair_quantile_mae": 4.223803532945703,
+        "reaction_abs_error": 0.008333333333333331
+      }
+    },
+    {
+      "weights": {
+        "gaussian_bayes": 0.5,
+        "knn_conditional": 0.0,
+        "hybrid": 0.0,
+        "pair_rerank": 0.5
+      },
+      "score": 254.63104156890017,
+      "errors": {
+        "btc_score": 81.95555555555555,
+        "btc_quantile_mae": 41.67777777777778,
+        "btc_coverage_deficit": 0.16111111111111112,
+        "dilution_log_mae": 0.6931471805599447,
+        "pair_quantile_mae": 4.0582245506408965,
+        "reaction_abs_error": 0.008333333333333331
+      }
+    },
+    {
+      "weights": {
+        "gaussian_bayes": 0.0,
+        "knn_conditional": 0.0,
+        "hybrid": 0.5,
+        "pair_rerank": 0.5
+      },
+      "score": 259.48195975218067,
+      "errors": {
+        "btc_score": 77.30000000000001,
+        "btc_quantile_mae": 45.355555555555554,
+        "btc_coverage_deficit": 0.1277777777777778,
+        "dilution_log_mae": 0.6815947275506125,
+        "pair_quantile_mae": 4.352862955638692,
+        "reaction_abs_error": 0.013333333333333336
+      }
+    },
+    {
+      "weights": {
+        "gaussian_bayes": 0.0,
+        "knn_conditional": 1.0,
+        "hybrid": 0.0,
+        "pair_rerank": 0.0
+      },
+      "score": 263.4818348832955,
+      "errors": {
+        "btc_score": 65.34444444444446,
+        "btc_quantile_mae": 33.400000000000006,
+        "btc_coverage_deficit": 0.1277777777777778,
+        "dilution_log_mae": 0.7552698468046448,
+        "pair_quantile_mae": 4.958583774448015,
+        "reaction_abs_error": 0.008333333333333331
+      }
+    },
+    {
+      "weights": {
+        "gaussian_bayes": 0.0,
+        "knn_conditional": 0.5,
+        "hybrid": 0.0,
+        "pair_rerank": 0.5
+      },
+      "score": 267.652455128908,
+      "errors": {
+        "btc_score": 76.37777777777777,
+        "btc_quantile_mae": 38.877777777777766,
+        "btc_coverage_deficit": 0.15000000000000002,
+        "dilution_log_mae": 0.7437173937953125,
+        "pair_quantile_mae": 4.351429504784636,
+        "reaction_abs_error": 0.015
+      }
+    },
+    {
+      "weights": {
+        "gaussian_bayes": 0.0,
+        "knn_conditional": 0.0,
+        "hybrid": 1.0,
+        "pair_rerank": 0.0
+      },
+      "score": 277.79544842795826,
+      "errors": {
+        "btc_score": 97.64444444444445,
+        "btc_quantile_mae": 57.366666666666674,
+        "btc_coverage_deficit": 0.16111111111111112,
+        "dilution_log_mae": 0.6815947275506125,
+        "pair_quantile_mae": 4.667981833872017,
+        "reaction_abs_error": 0.005000000000000001
+      }
+    },
+    {
+      "weights": {
+        "gaussian_bayes": 0.5,
+        "knn_conditional": 0.0,
+        "hybrid": 0.5,
+        "pair_rerank": 0.0
+      },
+      "score": 297.16513339086265,
+      "errors": {
+        "btc_score": 104.69999999999999,
+        "btc_quantile_mae": 64.42222222222222,
+        "btc_coverage_deficit": 0.16111111111111112,
+        "dilution_log_mae": 0.697507581757983,
+        "pair_quantile_mae": 4.854877845661901,
+        "reaction_abs_error": 0.011666666666666665
+      }
+    },
+    {
+      "weights": {
+        "gaussian_bayes": 1.0,
+        "knn_conditional": 0.0,
+        "hybrid": 0.0,
+        "pair_rerank": 0.0
+      },
+      "score": 300.33434780018683,
+      "errors": {
+        "btc_score": 113.66666666666666,
+        "btc_quantile_mae": 56.722222222222214,
+        "btc_coverage_deficit": 0.22777777777777777,
+        "dilution_log_mae": 0.6744026757393182,
+        "pair_quantile_mae": 5.0369680022400996,
+        "reaction_abs_error": 0.005000000000000001
+      }
+    },
+    {
+      "weights": {
+        "gaussian_bayes": 0.0,
+        "knn_conditional": 0.0,
+        "hybrid": 0.0,
+        "pair_rerank": 1.0
+      },
+      "score": 304.6992448530831,
+      "errors": {
+        "btc_score": 127.28888888888889,
+        "btc_quantile_mae": 56.455555555555556,
+        "btc_coverage_deficit": 0.2833333333333334,
+        "dilution_log_mae": 0.73216494078598,
+        "pair_quantile_mae": 4.227528153493828,
+        "reaction_abs_error": 0.005000000000000001
+      }
+    }
+  ],
+  "selected_weights": {
+    "gaussian_bayes": 0.0,
+    "knn_conditional": 0.5,
+    "hybrid": 0.5,
+    "pair_rerank": 0.0
+  },
+  "validation_reference": {
+    "breakthrough": {
+      "6.0": {
+        "count": 41.0,
+        "coverage": 0.6833333333333333,
+        "q10": 106.0,
+        "q50": 239.0,
+        "q90": 428.0
+      },
+      "10.0": {
+        "count": 30.0,
+        "coverage": 0.5,
+        "q10": 215.1,
+        "q50": 303.0,
+        "q90": 470.3
+      },
+      "14.0": {
+        "count": 14.0,
+        "coverage": 0.23333333333333334,
+        "q10": 238.2,
+        "q50": 349.0,
+        "q90": 433.8
+      }
+    },
+    "dilution": {
+      "100": {
+        "n_particles": 60.0,
+        "occupied_bins": 58.0,
+        "entropy": 4.04813475018477,
+        "dilution_index": 1546.8433983348739
+      },
+      "200": {
+        "n_particles": 60.0,
+        "occupied_bins": 57.0,
+        "entropy": 4.025029844166106,
+        "dilution_index": 1511.5134462896276
+      },
+      "300": {
+        "n_particles": 60.0,
+        "occupied_bins": 58.0,
+        "entropy": 4.04813475018477,
+        "dilution_index": 1546.8433983348739
+      },
+      "400": {
+        "n_particles": 60.0,
+        "occupied_bins": 57.0,
+        "entropy": 4.025029844166106,
+        "dilution_index": 1511.5134462896276
+      }
+    },
+    "pair_separation": {
+      "100": {
+        "count": 600.0,
+        "mean": 36.53243243152774,
+        "q10": 12.429783817979176,
+        "q50": 35.65873302972993,
+        "q90": 64.58033969929815
+      },
+      "200": {
+        "count": 600.0,
+        "mean": 36.67547684211147,
+        "q10": 13.384489024551206,
+        "q50": 35.47759412431867,
+        "q90": 64.44176746007045
+      },
+      "300": {
+        "count": 600.0,
+        "mean": 36.89079203162552,
+        "q10": 13.939224298865255,
+        "q50": 35.25324442867452,
+        "q90": 64.39699048201638
+      },
+      "400": {
+        "count": 600.0,
+        "mean": 37.592876504199694,
+        "q10": 15.18512612930948,
+        "q50": 35.605356313335975,
+        "q90": 64.54673538227703
+      }
+    },
+    "reaction": {
+      "reaction_radius": 3.0,
+      "pair_count": 600.0,
+      "encounter_count": 13.0,
+      "probability": 0.021666666666666667
+    }
+  },
+  "test_reference": {
+    "breakthrough": {
+      "6.0": {
+        "count": 49.0,
+        "coverage": 0.5444444444444444,
+        "q10": 121.60000000000001,
+        "q50": 221.0,
+        "q90": 409.0
+      },
+      "10.0": {
+        "count": 37.0,
+        "coverage": 0.4111111111111111,
+        "q10": 185.0,
+        "q50": 325.0,
+        "q90": 438.2
+      },
+      "14.0": {
+        "count": 23.0,
+        "coverage": 0.25555555555555554,
+        "q10": 222.8,
+        "q50": 402.0,
+        "q90": 463.4
+      }
+    },
+    "dilution": {
+      "100": {
+        "n_particles": 90.0,
+        "occupied_bins": 73.0,
+        "entropy": 4.220512463993245,
+        "dilution_index": 1837.845664256711
+      },
+      "200": {
+        "n_particles": 90.0,
+        "occupied_bins": 76.0,
+        "entropy": 4.262946741879567,
+        "dilution_index": 1917.511648162344
+      },
+      "300": {
+        "n_particles": 90.0,
+        "occupied_bins": 81.0,
+        "entropy": 4.355366365954225,
+        "dilution_index": 2103.1746745598693
+      },
+      "400": {
+        "n_particles": 90.0,
+        "occupied_bins": 80.0,
+        "entropy": 4.339963095275116,
+        "dilution_index": 2071.027130037175
+      }
+    },
+    "pair_separation": {
+      "100": {
+        "count": 600.0,
+        "mean": 35.19523537289267,
+        "q10": 12.794861479947562,
+        "q50": 33.51925126132586,
+        "q90": 60.79401684067949
+      },
+      "200": {
+        "count": 600.0,
+        "mean": 35.52325761434469,
+        "q10": 13.157865508490401,
+        "q50": 33.712417639418916,
+        "q90": 60.375653591257766
+      },
+      "300": {
+        "count": 600.0,
+        "mean": 36.125806503440515,
+        "q10": 13.227617598210442,
+        "q50": 34.32897180731666,
+        "q90": 60.34247783800429
+      },
+      "400": {
+        "count": 600.0,
+        "mean": 36.25304685175945,
+        "q10": 13.85524084431607,
+        "q50": 35.18303607470504,
+        "q90": 61.1475884863163
+      }
+    },
+    "reaction": {
+      "reaction_radius": 3.0,
+      "pair_count": 600.0,
+      "encounter_count": 14.0,
+      "probability": 0.023333333333333334
+    }
+  },
+  "test": {
+    "selected_mixture": {
+      "errors": {
+        "btc_score": 25.20185185185186,
+        "btc_quantile_mae": 22.655555555555566,
+        "btc_coverage_deficit": 0.010185185185185177,
+        "dilution_log_mae": 0.6524097123451262,
+        "pair_quantile_mae": 3.254429968897228,
+        "reaction_abs_error": 0.003333333333333334
+      },
+      "objective": 171.9129500445449,
+      "metrics": {
+        "breakthrough": {
+          "6.0": {
+            "count": 27.0,
+            "coverage": 0.675,
+            "q10": 117.4,
+            "q50": 243.0,
+            "q90": 430.20000000000005
+          },
+          "10.0": {
+            "count": 18.0,
+            "coverage": 0.45,
+            "q10": 165.3,
+            "q50": 348.5,
+            "q90": 497.9
+          },
+          "14.0": {
+            "count": 9.0,
+            "coverage": 0.225,
+            "q10": 254.4,
+            "q50": 412.0,
+            "q90": 475.40000000000003
+          }
+        },
+        "dilution": {
+          "100": {
+            "n_particles": 40.0,
+            "occupied_bins": 37.0,
+            "entropy": 3.5718261734358316,
+            "dilution_index": 960.7008204616566
+          },
+          "200": {
+            "n_particles": 40.0,
+            "occupied_bins": 38.0,
+            "entropy": 3.619564736057943,
+            "dilution_index": 1007.6756308597533
+          },
+          "300": {
+            "n_particles": 40.0,
+            "occupied_bins": 40.0,
+            "entropy": 3.6888794541139363,
+            "dilution_index": 1080.0
+          },
+          "400": {
+            "n_particles": 40.0,
+            "occupied_bins": 40.0,
+            "entropy": 3.6888794541139363,
+            "dilution_index": 1080.0
+          }
+        },
+        "pair_separation": {
+          "100": {
+            "count": 600.0,
+            "mean": 37.9947875353444,
+            "q10": 10.491476341416986,
+            "q50": 40.028612894521274,
+            "q90": 61.87184320711033
+          },
+          "200": {
+            "count": 600.0,
+            "mean": 38.426598946289005,
+            "q10": 11.373655895564196,
+            "q50": 40.61011367364736,
+            "q90": 62.51503848849865
+          },
+          "300": {
+            "count": 600.0,
+            "mean": 38.66183257599818,
+            "q10": 12.272882255610059,
+            "q50": 40.18104134545355,
+            "q90": 62.83480513199285
+          },
+          "400": {
+            "count": 600.0,
+            "mean": 38.86286279130621,
+            "q10": 12.21695404095548,
+            "q50": 40.58806050905808,
+            "q90": 63.146441018091224
+          }
+        },
+        "reaction": {
+          "reaction_radius": 3.0,
+          "pair_count": 600.0,
+          "encounter_count": 12.0,
+          "probability": 0.02
+        }
+      }
+    },
+    "gaussian_bayes": {
+      "errors": {
+        "btc_score": 71.36111111111111,
+        "btc_quantile_mae": 55.388888888888886,
+        "btc_coverage_deficit": 0.06388888888888888,
+        "dilution_log_mae": 0.6837967704745949,
+        "pair_quantile_mae": 3.674261160409145,
+        "reaction_abs_error": 0.001666666666666667
+      },
+      "objective": 228.56861344291207,
+      "metrics": {
+        "breakthrough": {
+          "6.0": {
+            "count": 26.0,
+            "coverage": 0.65,
+            "q10": 124.0,
+            "q50": 292.5,
+            "q90": 483.0
+          },
+          "10.0": {
+            "count": 12.0,
+            "coverage": 0.3,
+            "q10": 246.3,
+            "q50": 395.0,
+            "q90": 467.7
+          },
+          "14.0": {
+            "count": 7.0,
+            "coverage": 0.175,
+            "q10": 341.6,
+            "q50": 444.0,
+            "q90": 492.4
+          }
+        },
+        "dilution": {
+          "100": {
+            "n_particles": 40.0,
+            "occupied_bins": 36.0,
+            "entropy": 3.5502500180019485,
+            "dilution_index": 940.1946083598152
+          },
+          "200": {
+            "n_particles": 40.0,
+            "occupied_bins": 37.0,
+            "entropy": 3.5849073770299458,
+            "dilution_index": 973.3504996196979
+          },
+          "300": {
+            "n_particles": 40.0,
+            "occupied_bins": 40.0,
+            "entropy": 3.6888794541139363,
+            "dilution_index": 1080.0
+          },
+          "400": {
+            "n_particles": 40.0,
+            "occupied_bins": 38.0,
+            "entropy": 3.619564736057943,
+            "dilution_index": 1007.6756308597533
+          }
+        },
+        "pair_separation": {
+          "100": {
+            "count": 600.0,
+            "mean": 37.825941898307185,
+            "q10": 9.997977093051611,
+            "q50": 40.99447577566109,
+            "q90": 61.3886918541803
+          },
+          "200": {
+            "count": 600.0,
+            "mean": 38.17833414086827,
+            "q10": 10.277708472298551,
+            "q50": 41.42141115635246,
+            "q90": 62.41926038303901
+          },
+          "300": {
+            "count": 600.0,
+            "mean": 38.30542253615481,
+            "q10": 10.472246494989953,
+            "q50": 41.549532932415985,
+            "q90": 61.74874564414941
+          },
+          "400": {
+            "count": 600.0,
+            "mean": 38.75338086247846,
+            "q10": 11.808316215211404,
+            "q50": 41.84026730693308,
+            "q90": 61.652825255789786
+          }
+        },
+        "reaction": {
+          "reaction_radius": 3.0,
+          "pair_count": 600.0,
+          "encounter_count": 13.0,
+          "probability": 0.021666666666666667
+        }
+      }
+    },
+    "knn_conditional": {
+      "errors": {
+        "btc_score": 40.51111111111111,
+        "btc_quantile_mae": 26.622222222222224,
+        "btc_coverage_deficit": 0.05555555555555555,
+        "dilution_log_mae": 0.7217244304011208,
+        "pair_quantile_mae": 3.4132267699029275,
+        "reaction_abs_error": 0.005000000000000001
+      },
+      "objective": 200.38257815730415,
+      "metrics": {
+        "breakthrough": {
+          "6.0": {
+            "count": 25.0,
+            "coverage": 0.625,
+            "q10": 95.8,
+            "q50": 277.0,
+            "q90": 468.0
+          },
+          "10.0": {
+            "count": 14.0,
+            "coverage": 0.35,
+            "q10": 179.7,
+            "q50": 287.0,
+            "q90": 435.5
+          },
+          "14.0": {
+            "count": 6.0,
+            "coverage": 0.15,
+            "q10": 251.0,
+            "q50": 397.0,
+            "q90": 483.0
+          }
+        },
+        "dilution": {
+          "100": {
+            "n_particles": 40.0,
+            "occupied_bins": 35.0,
+            "entropy": 3.5025114553798367,
+            "dilution_index": 896.3655604872044
+          },
+          "200": {
+            "n_particles": 40.0,
+            "occupied_bins": 38.0,
+            "entropy": 3.619564736057943,
+            "dilution_index": 1007.6756308597533
+          },
+          "300": {
+            "n_particles": 40.0,
+            "occupied_bins": 37.0,
+            "entropy": 3.5849073770299453,
+            "dilution_index": 973.3504996196975
+          },
+          "400": {
+            "n_particles": 40.0,
+            "occupied_bins": 37.0,
+            "entropy": 3.5849073770299458,
+            "dilution_index": 973.3504996196979
+          }
+        },
+        "pair_separation": {
+          "100": {
+            "count": 600.0,
+            "mean": 38.152849544626804,
+            "q10": 10.487276321214162,
+            "q50": 40.82562447902579,
+            "q90": 61.82122984350895
+          },
+          "200": {
+            "count": 600.0,
+            "mean": 38.64439897122952,
+            "q10": 11.633572214624154,
+            "q50": 40.56195310354619,
+            "q90": 62.24963538253311
+          },
+          "300": {
+            "count": 600.0,
+            "mean": 39.428259586030954,
+            "q10": 12.598446125085266,
+            "q50": 40.75074570723989,
+            "q90": 63.772205257701614
+          },
+          "400": {
+            "count": 600.0,
+            "mean": 39.88723955668075,
+            "q10": 13.302948320234737,
+            "q50": 41.041929213221735,
+            "q90": 64.32546934127603
+          }
+        },
+        "reaction": {
+          "reaction_radius": 3.0,
+          "pair_count": 600.0,
+          "encounter_count": 11.0,
+          "probability": 0.018333333333333333
+        }
+      }
+    },
+    "hybrid": {
+      "errors": {
+        "btc_score": 78.43333333333334,
+        "btc_quantile_mae": 64.54444444444445,
+        "btc_coverage_deficit": 0.055555555555555546,
+        "dilution_log_mae": 0.6578037512035968,
+        "pair_quantile_mae": 3.7397768672958285,
+        "reaction_abs_error": 0.003333333333333334
+      },
+      "objective": 235.49865415701487,
+      "metrics": {
+        "breakthrough": {
+          "6.0": {
+            "count": 22.0,
+            "coverage": 0.55,
+            "q10": 120.8,
+            "q50": 320.5,
+            "q90": 462.40000000000003
+          },
+          "10.0": {
+            "count": 13.0,
+            "coverage": 0.325,
+            "q10": 301.2,
+            "q50": 388.0,
+            "q90": 473.8
+          },
+          "14.0": {
+            "count": 7.0,
+            "coverage": 0.175,
+            "q10": 326.8,
+            "q50": 471.0,
+            "q90": 502.8
+          }
+        },
+        "dilution": {
+          "100": {
+            "n_particles": 40.0,
+            "occupied_bins": 37.0,
+            "entropy": 3.5849073770299458,
+            "dilution_index": 973.3504996196979
+          },
+          "200": {
+            "n_particles": 40.0,
+            "occupied_bins": 38.0,
+            "entropy": 3.619564736057943,
+            "dilution_index": 1007.6756308597533
+          },
+          "300": {
+            "n_particles": 40.0,
+            "occupied_bins": 39.0,
+            "entropy": 3.6542220950859408,
+            "dilution_index": 1043.211235238835
+          },
+          "400": {
+            "n_particles": 40.0,
+            "occupied_bins": 40.0,
+            "entropy": 3.6888794541139363,
+            "dilution_index": 1080.0
+          }
+        },
+        "pair_separation": {
+          "100": {
+            "count": 600.0,
+            "mean": 37.77655683749361,
+            "q10": 10.11087674956284,
+            "q50": 40.272056102479354,
+            "q90": 62.040734033760025
+          },
+          "200": {
+            "count": 600.0,
+            "mean": 37.743247055101065,
+            "q10": 10.085500369036001,
+            "q50": 41.31547658489755,
+            "q90": 61.8476869433485
+          },
+          "300": {
+            "count": 600.0,
+            "mean": 38.1375045974485,
+            "q10": 10.193722601144263,
+            "q50": 41.173224786365786,
+            "q90": 61.72018401638965
+          },
+          "400": {
+            "count": 600.0,
+            "mean": 38.5799785176546,
+            "q10": 11.675177308822523,
+            "q50": 42.2086087521143,
+            "q90": 62.73245632482026
+          }
+        },
+        "reaction": {
+          "reaction_radius": 3.0,
+          "pair_count": 600.0,
+          "encounter_count": 12.0,
+          "probability": 0.02
+        }
+      }
+    },
+    "pair_rerank": {
+      "errors": {
+        "btc_score": 66.74259259259259,
+        "btc_quantile_mae": 38.73333333333333,
+        "btc_coverage_deficit": 0.11203703703703703,
+        "dilution_log_mae": 0.6491394114465969,
+        "pair_quantile_mae": 3.3055136910573073,
+        "reaction_abs_error": 0.008333333333333335
+      },
+      "objective": 219.0829291206637,
+      "metrics": {
+        "breakthrough": {
+          "6.0": {
+            "count": 19.0,
+            "coverage": 0.475,
+            "q10": 118.6,
+            "q50": 338.0,
+            "q90": 483.4
+          },
+          "10.0": {
+            "count": 9.0,
+            "coverage": 0.225,
+            "q10": 195.2,
+            "q50": 340.0,
+            "q90": 448.4
+          },
+          "14.0": {
+            "count": 7.0,
+            "coverage": 0.175,
+            "q10": 302.0,
+            "q50": 406.0,
+            "q90": 499.0
+          }
+        },
+        "dilution": {
+          "100": {
+            "n_particles": 40.0,
+            "occupied_bins": 38.0,
+            "entropy": 3.619564736057943,
+            "dilution_index": 1007.6756308597533
+          },
+          "200": {
+            "n_particles": 40.0,
+            "occupied_bins": 39.0,
+            "entropy": 3.6542220950859408,
+            "dilution_index": 1043.211235238835
+          },
+          "300": {
+            "n_particles": 40.0,
+            "occupied_bins": 39.0,
+            "entropy": 3.6542220950859408,
+            "dilution_index": 1043.211235238835
+          },
+          "400": {
+            "n_particles": 40.0,
+            "occupied_bins": 39.0,
+            "entropy": 3.6542220950859408,
+            "dilution_index": 1043.211235238835
+          }
+        },
+        "pair_separation": {
+          "100": {
+            "count": 600.0,
+            "mean": 37.72707916716035,
+            "q10": 10.342848442439255,
+            "q50": 40.285579732417766,
+            "q90": 61.520218305928864
+          },
+          "200": {
+            "count": 600.0,
+            "mean": 37.82395166661525,
+            "q10": 10.564077882453113,
+            "q50": 40.053241373042326,
+            "q90": 61.52661287096749
+          },
+          "300": {
+            "count": 600.0,
+            "mean": 38.197454500289886,
+            "q10": 11.615521212177322,
+            "q50": 40.69433018672662,
+            "q90": 61.77651146336447
+          },
+          "400": {
+            "count": 600.0,
+            "mean": 38.85762723054159,
+            "q10": 11.823178284321456,
+            "q50": 41.615433580338426,
+            "q90": 62.907690709352735
+          }
+        },
+        "reaction": {
+          "reaction_radius": 3.0,
+          "pair_count": 600.0,
+          "encounter_count": 9.0,
+          "probability": 0.015
+        }
+      }
+    }
+  }
+}

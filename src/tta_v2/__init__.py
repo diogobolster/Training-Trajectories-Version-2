@@ -1,0 +1,78 @@
+"""Prototype tools for training-trajectory transport models."""
+
+from .metrics import (
+    breakthrough_coverage_deficit,
+    breakthrough_quantile_mae,
+    breakthrough_score,
+    breakthrough_times,
+    adjacent_segment_velocity_correlation,
+    suggest_segment_scales,
+    dilution_index,
+    pair_separation_summary,
+    quantile_curve_mae,
+    reaction_encounter_probability,
+    scalar_curve_log_mae,
+    summarize_breakthroughs,
+    velocity_autocorrelation,
+)
+from .io import load_trajectories, save_trajectories_npz
+from .evaluation import (
+    MetricSettings,
+    ObjectiveWeights,
+    choose_origin_pool,
+    compare_metrics,
+    evaluate_ensemble,
+    generate_with_origins,
+    multi_objective_score,
+    split_three_way,
+)
+from .sampler import (
+    ConditionalSegmentSampler,
+    ContrastiveTransitionSampler,
+    AdaptiveGaussianBayesSegmentSampler,
+    GaussianBayesSegmentSampler,
+    HybridContrastiveGaussianSampler,
+    MixtureSegmentSampler,
+    PairAwareRerankGaussianSampler,
+    ShortHorizonRerankGaussianSampler,
+    UnconditionalSegmentSampler,
+)
+from .segments import SegmentArchive
+from .synthetic import generate_channel_trajectories
+
+__all__ = [
+    "ConditionalSegmentSampler",
+    "ContrastiveTransitionSampler",
+    "AdaptiveGaussianBayesSegmentSampler",
+    "GaussianBayesSegmentSampler",
+    "HybridContrastiveGaussianSampler",
+    "MixtureSegmentSampler",
+    "PairAwareRerankGaussianSampler",
+    "ShortHorizonRerankGaussianSampler",
+    "SegmentArchive",
+    "UnconditionalSegmentSampler",
+    "breakthrough_coverage_deficit",
+    "breakthrough_quantile_mae",
+    "breakthrough_score",
+    "breakthrough_times",
+    "adjacent_segment_velocity_correlation",
+    "dilution_index",
+    "generate_channel_trajectories",
+    "load_trajectories",
+    "MetricSettings",
+    "ObjectiveWeights",
+    "pair_separation_summary",
+    "quantile_curve_mae",
+    "reaction_encounter_probability",
+    "save_trajectories_npz",
+    "choose_origin_pool",
+    "compare_metrics",
+    "evaluate_ensemble",
+    "generate_with_origins",
+    "multi_objective_score",
+    "scalar_curve_log_mae",
+    "split_three_way",
+    "suggest_segment_scales",
+    "summarize_breakthroughs",
+    "velocity_autocorrelation",
+]
