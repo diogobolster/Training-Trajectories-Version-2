@@ -51,4 +51,4 @@ That claim is now supported by the manuscript text, SI uncertainty language, Ope
 - Run or explicitly defer bin-size and encounter-radius sensitivity.
 - Decide whether to add a CTRW/spatial-Markov benchmark before first submission or frame it as future work.
 - Revise every main-text figure for publication-grade typography, uncertainty display, and data-first hierarchy.
-- Replace development repository language with final DOI and license information.
+- Replace development repository language with final DOI information before formal submission; repository licensing is now MIT.

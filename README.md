@@ -44,6 +44,10 @@ The LaTeX manuscript and supporting information can be compiled from `paper/` wi
 
 The tight 5000-particle OpenFOAM trajectory archives are approximately 409-410 MB each, the Core1 20k particle-count convergence archive is approximately 206 MB, and the full OpenFOAM mesh/field directories are several GB. Those files should be archived before submission or made available to reviewers through Zenodo, OSF, HydroShare, or another DOI-bearing repository. The exact filenames, roles, and included checksums for smaller files are recorded in `DATA_MANIFEST.md`.
 
+## License
+
+This repository is released under the MIT License. See `LICENSE`.
+
 ## Status
 
-This package is prepared for manuscript development and Open Research review. The manuscript Open Research section records the preserved repository/data archive, large-artifact access record, and code/data license fields that must match the final DOI-bearing release.
+This package is prepared for manuscript development and Open Research review. The manuscript Open Research section records the active repository and the large-artifact access record that must match the final DOI-bearing release.
