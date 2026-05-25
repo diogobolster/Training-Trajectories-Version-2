@@ -1,0 +1,159 @@
+{
+  "benchmark": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_6um_downsample3_D001_n20000_stride400_outer_split_mixture_benchmark.json",
+  "settings": {
+    "pair_samples": 3000,
+    "inlet_neighborhood_radius": 6.0,
+    "encounter_radius": 3.0,
+    "generated_trajectories_per_sampler": 120,
+    "note": "The inlet-neighborhood strategy samples pairs whose initial transverse separation is within the listed radius. It is a sensitivity diagnostic, not a labeled-reactant construction."
+  },
+  "summary": {
+    "uniform": [
+      {
+        "sampler": "bootstrap_mean_mixture",
+        "pair_quantile_mae_mean": 1.5507980622753657,
+        "pair_quantile_mae_std": 0.5609818353338594,
+        "encounter_abs_error_mean": 0.004416666666666667,
+        "encounter_abs_error_std": 0.0026016376608817976,
+        "reference_encounter_probability_mean": 0.020583333333333332,
+        "generated_encounter_probability_mean": 0.02,
+        "pair_quantile_mae_mean_rank": 3,
+        "encounter_abs_error_mean_rank": 5
+      },
+      {
+        "sampler": "pooled_validation_mixture",
+        "pair_quantile_mae_mean": 1.483719686356538,
+        "pair_quantile_mae_std": 0.5612325439710044,
+        "encounter_abs_error_mean": 0.005,
+        "encounter_abs_error_std": 0.002828427124746189,
+        "reference_encounter_probability_mean": 0.020583333333333332,
+        "generated_encounter_probability_mean": 0.019083333333333334,
+        "pair_quantile_mae_mean_rank": 2,
+        "encounter_abs_error_mean_rank": 6
+      },
+      {
+        "sampler": "gaussian_bayes",
+        "pair_quantile_mae_mean": 1.6318306336642232,
+        "pair_quantile_mae_std": 0.753846495991521,
+        "encounter_abs_error_mean": 0.0035833333333333333,
+        "encounter_abs_error_std": 0.0017924739783224094,
+        "reference_encounter_probability_mean": 0.020583333333333332,
+        "generated_encounter_probability_mean": 0.019833333333333335,
+        "pair_quantile_mae_mean_rank": 5,
+        "encounter_abs_error_mean_rank": 1
+      },
+      {
+        "sampler": "knn_conditional",
+        "pair_quantile_mae_mean": 1.6450773610519491,
+        "pair_quantile_mae_std": 0.8630882022119953,
+        "encounter_abs_error_mean": 0.00425,
+        "encounter_abs_error_std": 0.0017924739783224076,
+        "reference_encounter_probability_mean": 0.020583333333333332,
+        "generated_encounter_probability_mean": 0.019,
+        "pair_quantile_mae_mean_rank": 6,
+        "encounter_abs_error_mean_rank": 3
+      },
+      {
+        "sampler": "hybrid",
+        "pair_quantile_mae_mean": 1.4593335154056561,
+        "pair_quantile_mae_std": 0.6502025560381518,
+        "encounter_abs_error_mean": 0.004,
+        "encounter_abs_error_std": 0.0029689753813083083,
+        "reference_encounter_probability_mean": 0.020583333333333332,
+        "generated_encounter_probability_mean": 0.01941666666666667,
+        "pair_quantile_mae_mean_rank": 1,
+        "encounter_abs_error_mean_rank": 2
+      },
+      {
+        "sampler": "pair_rerank",
+        "pair_quantile_mae_mean": 1.6109487719733848,
+        "pair_quantile_mae_std": 0.59619733688597,
+        "encounter_abs_error_mean": 0.004416666666666666,
+        "encounter_abs_error_std": 0.0019124349420064995,
+        "reference_encounter_probability_mean": 0.020583333333333332,
+        "generated_encounter_probability_mean": 0.0195,
+        "pair_quantile_mae_mean_rank": 4,
+        "encounter_abs_error_mean_rank": 4
+      }
+    ],
+    "inlet_neighborhood": [
+      {
+        "sampler": "bootstrap_mean_mixture",
+        "pair_quantile_mae_mean": 0.9521684043106975,
+        "pair_quantile_mae_std": 0.3843240711996659,
+        "encounter_abs_error_mean": 0.013749999999999998,
+        "encounter_abs_error_std": 0.007800166190062393,
+        "reference_encounter_probability_mean": 0.4624166666666667,
+        "generated_encounter_probability_mean": 0.4725,
+        "pair_quantile_mae_mean_rank": 4,
+        "encounter_abs_error_mean_rank": 2
+      },
+      {
+        "sampler": "pooled_validation_mixture",
+        "pair_quantile_mae_mean": 0.8505022774897578,
+        "pair_quantile_mae_std": 0.1932098317632772,
+        "encounter_abs_error_mean": 0.02091666666666668,
+        "encounter_abs_error_std": 0.0027267535981795525,
+        "reference_encounter_probability_mean": 0.4624166666666667,
+        "generated_encounter_probability_mean": 0.4728333333333333,
+        "pair_quantile_mae_mean_rank": 3,
+        "encounter_abs_error_mean_rank": 4
+      },
+      {
+        "sampler": "gaussian_bayes",
+        "pair_quantile_mae_mean": 1.255537272722272,
+        "pair_quantile_mae_std": 0.3775015408718424,
+        "encounter_abs_error_mean": 0.01808333333333334,
+        "encounter_abs_error_std": 0.018712988161325984,
+        "reference_encounter_probability_mean": 0.4624166666666667,
+        "generated_encounter_probability_mean": 0.48050000000000004,
+        "pair_quantile_mae_mean_rank": 6,
+        "encounter_abs_error_mean_rank": 3
+      },
+      {
+        "sampler": "knn_conditional",
+        "pair_quantile_mae_mean": 0.5449251193121185,
+        "pair_quantile_mae_std": 0.16356431863151372,
+        "encounter_abs_error_mean": 0.028333333333333335,
+        "encounter_abs_error_std": 0.009217535623091622,
+        "reference_encounter_probability_mean": 0.4624166666666667,
+        "generated_encounter_probability_mean": 0.49075,
+        "pair_quantile_mae_mean_rank": 2,
+        "encounter_abs_error_mean_rank": 6
+      },
+      {
+        "sampler": "hybrid",
+        "pair_quantile_mae_mean": 1.2221777600935972,
+        "pair_quantile_mae_std": 0.37425490502429304,
+        "encounter_abs_error_mean": 0.01125000000000001,
+        "encounter_abs_error_std": 0.014833333333333322,
+        "reference_encounter_probability_mean": 0.4624166666666667,
+        "generated_encounter_probability_mean": 0.4711666666666667,
+        "pair_quantile_mae_mean_rank": 5,
+        "encounter_abs_error_mean_rank": 1
+      },
+      {
+        "sampler": "pair_rerank",
+        "pair_quantile_mae_mean": 0.5357440009277663,
+        "pair_quantile_mae_std": 0.305744671846958,
+        "encounter_abs_error_mean": 0.022750000000000006,
+        "encounter_abs_error_std": 0.003499999999999981,
+        "reference_encounter_probability_mean": 0.4624166666666667,
+        "generated_encounter_probability_mean": 0.48516666666666663,
+        "pair_quantile_mae_mean_rank": 1,
+        "encounter_abs_error_mean_rank": 5
+      }
+    ]
+  },
+  "qualitative": {
+    "uniform": {
+      "lowest_pair_error": "hybrid",
+      "lowest_encounter_error": "gaussian_bayes"
+    },
+    "inlet_neighborhood": {
+      "lowest_pair_error": "pair_rerank",
+      "lowest_encounter_error": "hybrid"
+    },
+    "note": "This sensitivity check conditions sampled pairs on common inlet neighborhoods. It is used only to test whether the ensemble-level pair/encounter interpretation is fragile to one simple pair-sampling rule."
+  }
+}

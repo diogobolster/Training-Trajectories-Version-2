@@ -1,0 +1,106 @@
+{
+  "benchmark": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_6um_downsample3_D001_n20000_stride400_outer_split_mixture_benchmark.json",
+  "bin_sizes": [
+    2.0,
+    3.0,
+    4.0
+  ],
+  "reaction_radii": [
+    2.0,
+    3.0,
+    4.0
+  ],
+  "reference_vs_reference": {
+    "btc_score": {
+      "mean": 7.302777777777777,
+      "std": 1.82157565313171,
+      "min": 5.511111111111126,
+      "max": 8.911111111111078
+    },
+    "dilution_log_mae": {
+      "mean": 0.017281976982940872,
+      "std": 0.006027828593703822,
+      "min": 0.01120097776722151,
+      "max": 0.025248470827102576
+    },
+    "pair_quantile_mae": {
+      "mean": 0.6803810716347323,
+      "std": 0.2026389294821036,
+      "min": 0.42082076639674587,
+      "max": 0.8691854383811816
+    },
+    "reaction_abs_error": {
+      "mean": 0.004083333333333332,
+      "std": 0.001475102005261306,
+      "min": 0.0026666666666666644,
+      "max": 0.005666666666666664
+    }
+  },
+  "dilution_bin_sensitivity": [
+    {
+      "bin_size": 2.0,
+      "reference_final_mean": 9838.114844526799,
+      "reference_final_sd": 146.34909102299093,
+      "closest_sampler": "gaussian_bayes",
+      "closest_generated_final_mean": 946.4053498231945,
+      "gap_over_reference_sd": 60.75684811261826,
+      "all_generated_below_reference": true
+    },
+    {
+      "bin_size": 3.0,
+      "reference_final_mean": 17423.80026776111,
+      "reference_final_sd": 334.23648726447595,
+      "closest_sampler": "pooled_validation_mixture",
+      "closest_generated_final_mean": 3121.06467535458,
+      "gap_over_reference_sd": 42.792262776173224,
+      "all_generated_below_reference": true
+    },
+    {
+      "bin_size": 4.0,
+      "reference_final_mean": 25358.8996134609,
+      "reference_final_sd": 666.8068955857149,
+      "closest_sampler": "pooled_validation_mixture",
+      "closest_generated_final_mean": 6910.452203015289,
+      "gap_over_reference_sd": 27.666851576633327,
+      "all_generated_below_reference": true
+    }
+  ],
+  "encounter_radius_sensitivity": [
+    {
+      "reaction_radius": 2.0,
+      "reference_probability_mean": 0.0115,
+      "reference_probability_sd": 0.0026457513110645908,
+      "generated_probability_min_mean": 0.010750000000000001,
+      "generated_probability_max_mean": 0.011666666666666665,
+      "lowest_abs_error_sampler": "bootstrap_mean_mixture",
+      "lowest_abs_error": 0.004
+    },
+    {
+      "reaction_radius": 3.0,
+      "reference_probability_mean": 0.020583333333333332,
+      "reference_probability_sd": 0.0024247947603105767,
+      "generated_probability_min_mean": 0.019,
+      "generated_probability_max_mean": 0.02,
+      "lowest_abs_error_sampler": "gaussian_bayes",
+      "lowest_abs_error": 0.0035833333333333333
+    },
+    {
+      "reaction_radius": 4.0,
+      "reference_probability_mean": 0.02991666666666666,
+      "reference_probability_sd": 0.003774917217635374,
+      "generated_probability_min_mean": 0.028583333333333332,
+      "generated_probability_max_mean": 0.030916666666666665,
+      "lowest_abs_error_sampler": "gaussian_bayes",
+      "lowest_abs_error": 0.002166666666666665
+    }
+  ],
+  "qualitative_checks": {
+    "dilution_gap_persists_all_bin_sizes": true,
+    "encounter_lowest_error_samplers": {
+      "2.0": "bootstrap_mean_mixture",
+      "3.0": "gaussian_bayes",
+      "4.0": "gaussian_bayes"
+    },
+    "note": "Sensitivity checks support the proxy-observable interpretation: dilution under-preservation persists under bin-size perturbations, while encounter rankings vary with radius and should be interpreted qualitatively rather than as calibrated reactive-transport rates."
+  }
+}

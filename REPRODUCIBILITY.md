@@ -12,7 +12,7 @@ python -m pip install -e . -r requirements-simulation.txt
 python -m pytest tests
 ```
 
-OpenFOAM was run through the local Docker helper in the development workspace. The GitHub package stores the OpenFOAM case templates, but full mesh and field directories should be regenerated or retrieved from the DOI archive described in `DATA_MANIFEST.md`.
+OpenFOAM was run through the local Docker helper in the development workspace. The GitHub package stores the OpenFOAM case templates, but full mesh and field directories should be regenerated or retrieved from the DOI-bearing review archive described in `DATA_MANIFEST.md`.
 
 ## Tight OpenFOAM Trajectory Protocol
 
@@ -35,7 +35,7 @@ The three tight archives are:
 6 um:  data/processed/bentheimer_core2_subvol1_6um_fullres_D009_openfoam_strict_dt010_n5000_trajectories.npz
 ```
 
-The summary JSON files are included in `data/processed_summaries/`; the binary `.npz` files should be deposited in the companion DOI archive.
+The summary JSON files are included in `data/processed_summaries/`; the binary `.npz` files should be deposited in the companion DOI-bearing review archive.
 
 ## Manuscript-Facing Analyses
 

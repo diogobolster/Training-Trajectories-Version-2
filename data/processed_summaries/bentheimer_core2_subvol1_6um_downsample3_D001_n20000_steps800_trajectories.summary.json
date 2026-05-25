@@ -1,0 +1,29 @@
+{
+  "raw": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/data/raw/Core2_Subvol1_6micron_225cube_16bit_LE.raw",
+  "input_shape": [
+    225,
+    225,
+    225
+  ],
+  "simulation_shape": [
+    75,
+    75,
+    75
+  ],
+  "voxel_size": 1.8e-05,
+  "downsample_factor": 3,
+  "raw_porosity": 0.23552948148148148,
+  "connected_porosity": 0.2329362962962963,
+  "pressure_solver": {
+    "iterations": 1200.0,
+    "last_delta": 0.0001957405261188705
+  },
+  "particles_requested": 20000,
+  "steps_requested": 800,
+  "dt": 0.5,
+  "diffusivity": 0.001,
+  "seed": 20260527,
+  "n_trajectories": 20000,
+  "mean_trajectory_length": 801.0,
+  "output": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/data/processed/bentheimer_core2_subvol1_6um_downsample3_D001_n20000_steps800_trajectories.npz"
+}

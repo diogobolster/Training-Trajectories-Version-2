@@ -4,7 +4,9 @@ This repository is the GitHub-ready Open Research companion for the manuscript:
 
 **What Must a Pore-Scale Transport Model Remember? Memory Adequacy in Non-Fickian Transport**
 
-It contains the analysis code, manuscript sources, figure scripts, small run outputs, raw Bentheimer subvolume inputs, OpenFOAM case templates, and data manifests needed to reproduce the paper workflow. Large generated files are intentionally not stored in this GitHub package because they exceed normal repository limits; they are listed in `DATA_MANIFEST.md` for DOI-bearing archival deposit.
+It contains the analysis code, manuscript sources, figure scripts, small run outputs, raw Bentheimer subvolume inputs, OpenFOAM case templates, and data manifests needed to reproduce the paper workflow. Large generated files are intentionally not stored in this GitHub package because they exceed normal repository limits; they are listed in `DATA_MANIFEST.md` for DOI-bearing archival deposit before journal submission or peer review.
+
+GitHub repository: [diogobolster/Training-Trajectories-Version-2](https://github.com/diogobolster/Training-Trajectories-Version-2/tree/main)
 
 ## Contents
 
@@ -40,8 +42,8 @@ The LaTeX manuscript and supporting information can be compiled from `paper/` wi
 
 ## Large Artifacts
 
-The tight 5000-particle trajectory archives are approximately 409-410 MB each, and the full OpenFOAM mesh/field directories are several GB. Those files should be archived with the final publication in Zenodo, OSF, HydroShare, or another DOI-bearing repository. The exact filenames, roles, and included checksums for smaller files are recorded in `DATA_MANIFEST.md`.
+The tight 5000-particle OpenFOAM trajectory archives are approximately 409-410 MB each, the Core1 20k particle-count convergence archive is approximately 206 MB, and the full OpenFOAM mesh/field directories are several GB. Those files should be archived before submission or made available to reviewers through Zenodo, OSF, HydroShare, or another DOI-bearing repository. The exact filenames, roles, and included checksums for smaller files are recorded in `DATA_MANIFEST.md`.
 
 ## Status
 
-This package is prepared for manuscript development and Open Research review. Before public release, choose and add final code/data licenses and replace draft manuscript language with the accepted citation and repository DOI.
+This package is prepared for manuscript development and Open Research review. The manuscript Open Research section records the preserved repository/data archive, large-artifact access record, and code/data license fields that must match the final DOI-bearing release.

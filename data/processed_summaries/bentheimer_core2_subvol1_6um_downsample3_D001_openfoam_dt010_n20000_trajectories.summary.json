@@ -1,0 +1,45 @@
+{
+  "raw": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/data/raw/Core2_Subvol1_6micron_225cube_16bit_LE.raw",
+  "case_dir": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/openfoam_cases/bentheimer_core2_subvol1_6um_downsample3_voxel_flow",
+  "time": "103",
+  "input_shape": [
+    225,
+    225,
+    225
+  ],
+  "simulation_shape": [
+    75,
+    75,
+    75
+  ],
+  "voxel_size": 1.8e-05,
+  "downsample_factor": 3,
+  "raw_porosity": 0.23552948148148148,
+  "connected_porosity": 0.2329362962962963,
+  "physical_mean_speed_voxels_per_second": 0.0012691397471713494,
+  "target_mean_speed": 0.06,
+  "simulation_mean_speed": 0.06,
+  "particles_requested": 20000,
+  "steps_requested": 4000,
+  "dt": 0.1,
+  "diffusivity": 0.001,
+  "max_advective_step": 0.03333333333333333,
+  "max_diffusive_step": 0.025,
+  "max_substeps": 128,
+  "seed": 20260524,
+  "n_trajectories": 20000,
+  "mean_trajectory_length": 4000.99765,
+  "tracking_diagnostics": {
+    "particles_started": 20000.0,
+    "output_steps_attempted": 79999953.0,
+    "output_steps_completed": 79999953.0,
+    "substeps": 80658013.0,
+    "max_substeps_in_output_step": 4.0,
+    "substep_cap_hits": 0.0,
+    "diffusive_rejections": 1138889.0,
+    "advective_fallback_accepts": 728229.0,
+    "immobile_rejections": 410660.0,
+    "mean_substeps_per_output_step": 1.008225754832631
+  },
+  "output": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/data/processed/bentheimer_core2_subvol1_6um_downsample3_D001_openfoam_dt010_n20000_trajectories.npz"
+}

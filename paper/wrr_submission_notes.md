@@ -19,8 +19,9 @@ Current draft status:
 - `wrr_manuscript.tex` includes three Key Points, all under 140 characters.
 - Abstract is under 250 words.
 - Plain Language Summary is under 200 words.
-- `Open Research` section exists but still needs final DOI-bearing repository
-  language before submission.
+- `Open Research` section lists the GitHub repository
+  `diogobolster/Training-Trajectories-Version-2`; large generated artifacts
+  need a DOI-bearing review archive before WRR submission.
 - The file compiles to `wrr_manuscript.pdf` using local `tectonic`.
 
 Remaining WRR-oriented tightening:
@@ -32,7 +33,7 @@ Remaining WRR-oriented tightening:
 - Convert current PNG figure renderings into publication-quality vector or
   high-resolution raster figures.
 - Archive code, processed trajectory data, OpenFOAM case files, and figure
-  generation scripts in a DOI-bearing repository.
+  generation scripts in a DOI-bearing repository before submission/review.
 - Check whether the official AGU LaTeX class should be used for final upload
   once the manuscript text stabilizes.
 

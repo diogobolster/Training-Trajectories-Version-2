@@ -4,20 +4,28 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amsmath}
+\usepackage{array}
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{placeins}
 \usepackage{natbib}
 \usepackage[hidelinks]{hyperref}
 
 \raggedbottom
 \emergencystretch=2em
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpsep}{10pt plus 2pt minus 2pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
 
 \newcommand{\tta}{TTA-v2}
 \newcommand{\gb}{Gaussian/Bayes}
 \newcommand{\knn}{kNN}
 \newcommand{\hybrid}{hybrid}
 \newcommand{\pair}{pair-rerank}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcommand{\plotfigure}[2]{%
   \IfFileExists{figures/#1}{%
     \includegraphics[width=#2\linewidth]{figures/#1}%
@@ -26,64 +34,160 @@
   }%
 }
 
-\title{Validation-Driven Training Trajectories for Non-Fickian Transport in Porous Media}
-\author{Sebastian Most\\Diogo Bolster\\Branko Bijeljic\\Wolfgang Nowak\\Collaborators to be determined}
-\date{Draft: May 17, 2026}
+\title{What Must a Pore-Scale Transport Model Remember? Memory Adequacy in Non-Fickian Transport}
+\author{Diogo Bolster$^{1}$}
+\date{Draft prepared for a Water Resources Research style submission: May 25, 2026}
 
 \begin{document}
 \maketitle
 
-\begin{abstract}
-Non-Fickian transport in porous media is controlled by persistent Lagrangian memory: particles retain information about pore-scale velocity structures, diffusive exchanges, and spatial organization sampled along their paths. Continuous time random walks and spatial Markov models have provided powerful descriptions of anomalous breakthrough and dispersion, but reduced-state closures can lose particle-level information needed for dilution, pair separation, and reaction-relevant encounter statistics. We revisit the training-trajectory method of \citet{Most2019}, which treats resolved particle trajectories as the primitive training data for generating new advective-diffusive paths. In current language, that method is a nonparametric, physics-constrained generative model over trajectory segments.
+\noindent$^{1}$Department of Civil and Environmental Engineering and Earth Sciences, University of Notre Dame, Notre Dame, Indiana, USA
 
-We introduce a validation-driven extension of training trajectories. Candidate transition samplers include the original \gb{} velocity-continuity kernel, \knn{} conditional resampling, a learned contrastive hybrid transition rule, pair-aware reranking, and mixtures of these components. Mixture weights are selected using held-out validation trajectories and multi-objective scores based on breakthrough, dilution, pair-separation, and reaction-encounter metrics. Tests on segmented Bentheimer sandstone trajectories show that validation-selected mixtures are competitive with, and sometimes better than, the strongest fixed sampler, but no component dominates universally. A Peclet-regime sweep shifts selected weights from velocity-matching mechanisms toward learned hybrid context as diffusion increases. A second Bentheimer geometry and an OpenFOAM finite-volume velocity field strengthen the original \gb{} kernel, while pair-heavy objectives still favor learned transition context. These results support a methodological conclusion: modern machine learning is most useful here as a disciplined mechanism-selection layer inside a physically constrained Lagrangian generative framework, not as an unvalidated replacement for the physics kernel.
+\section*{Key Points}
+\begin{itemize}
+  \item Breakthrough-calibrated trajectory generators can reproduce arrival behavior while under-preserving dilution-relevant plume organization and encounter-opportunity proxies.
+  \item Held-out breakthrough, occupied-volume, pair-separation, and encounter-opportunity proxy metrics favor different retained Lagrangian state information.
+  \item OpenFOAM mesh refinement preserves velocity autocorrelation, while 20,000-particle validation gives different lowest-mean relative summaries across resolution and objective rather than a universal velocity-continuity closure.
+\end{itemize}
+
+\begin{abstract}
+Reduced pore-scale transport models are often judged by breakthrough curves, but arrival timing does not determine whether a model has preserved dilution-relevant plume organization or an encounter-opportunity proxy. We introduce memory adequacy as an observable-conditioned validation principle: a reduced Lagrangian generator should retain the trajectory history needed for the observable it is asked to predict, rather than a generic fit to transport behavior.
+
+We test this idea using resolved advective-diffusive trajectories through three-dimensional Bentheimer sandstone. Trajectories are cut into short path motifs and recombined by transition rules that retain different state information: diffusion-scaled velocity continuity, empirical archive proximity, learned transition context, short-horizon pair organization, and validation mixtures. Held-out breakthrough, entropy-based occupied volume, pair-separation, and encounter-opportunity proxy metrics are used as separate probes, so validation asks which retained history is sufficient for each prediction target.
+
+The results show that arrival-time behavior is easier to preserve than dilution-relevant plume organization. A breakthrough-only counterfactual gives a velocity-weighted bootstrap-mean validation mixture but leaves larger errors in the occupied-volume proxy, pair separation, and encounter-opportunity proxy than the observable-specific lowest-error mechanisms. Changing the validation objective or Peclet regime changes the lowest-mean relative retained-state summary, without producing a single monotone sampler hierarchy. OpenFOAM resolution tests show that axial velocity autocorrelation is physically preserved under mesh refinement, while 20,000-particle validation gives different lowest-mean and mixture-weight summaries at 18, 12, and 6~$\mu$m depending on whether the comparison is a balanced outer-split benchmark or an objective-sensitivity mixture. The contribution is therefore not a new universal sampler. It is a validation framework for determining which Lagrangian histories a reduced pore-scale transport model must retain for the observable it is asked to predict.
 \end{abstract}
 
-\noindent\textbf{Keywords:} non-Fickian transport; porous media; Lagrangian models; training trajectories; validation-driven model selection; scientific machine learning
+\section*{Plain Language Summary}
+
+Water and contaminants moving through rock pores carry histories with them. Some particles stay in fast channels, others wander through slow zones, and encounter-opportunity proxies depend on whether particles that started apart later come close together. Detailed pore-scale simulations contain those histories, but reduced models cannot keep everything. This paper asks which information must be retained for the prediction being made. We reuse pieces of resolved particle paths as a trajectory archive and test which transition rules preserve arrival, dilution-relevant plume organization, and particle-encounter proxies on held-out trajectories. With 20,000 particles in every manuscript-facing case, more resolved OpenFOAM flow calculations make velocity continuity physically meaningful, but the preferred retained state still changes with resolution and objective. Machine learning is therefore most useful here as a way to choose and combine physical transition information, not as a black-box replacement for it.
+
+\noindent\textbf{Keywords:} non-Fickian transport; porous media; Lagrangian particle tracking; anomalous transport; scientific machine learning; model validation
 
 \section{Introduction}
 
-Solute transport in porous and fractured media is often non-Fickian. Breakthrough curves can show early arrival and late-time tailing, plume spreading can remain pre-asymptotic over experimentally relevant distances, and particle velocities can retain memory of the pore-scale structures through which they have traveled. These behaviors motivate transport models that start from Lagrangian particles rather than only from Eulerian concentration closures. Continuous time random walks represent anomalous waiting and transition statistics \citep{Berkowitz2006,Bijeljic2006}, while spatial Markov and correlated CTRW models recognize that velocity histories may be more naturally structured in distance than in time \citep{LeBorgne2008a,LeBorgne2008b,Dentz2016,Sherman2021}.
+Transport through porous rock is usually predicted from reduced descriptions, but particle motion is not born reduced. At the pore scale, each trajectory carries a history. It has sampled fast channels and slow pockets, remained near some particles and separated from others, and passed through gradients that diffusion may later turn into mixing. A reduced model cannot keep all of this state information.
 
-The Lagrangian point of view is especially important when the target is more than a breakthrough curve. A breakthrough curve can be approximately correct while dilution, pair separation, or reaction-relevant encounter rates are wrong. In pore-scale transport, the relevant memory is not only scalar velocity correlation; it can include direction changes, local stretching, diffusive exchange across streamlines, and the proximity history of particle pairs. Recent mixing reviews emphasize that spreading, stirring, and molecular diffusion are distinct processes whose relative importance depends on pore geometry and flow conditions \citep{Dentz2023}. Any upscaled model intended for mixing or reactive transport must therefore preserve more particle history than arrival-time statistics alone.
+The scientific question is therefore not only how accurately mass arrives downstream, but whether the model has retained the state information needed by the target observable. Breakthrough curves answer only part of that question. They ask when mass arrives, but not whether the plume has retained dilution-relevant spatial organization, nor whether particles that began apart later come close enough to satisfy an encounter-opportunity proxy. A model can therefore succeed as an arrival model while failing for plume organization or particle encounters.
 
-\citet{Most2019} proposed a direct way to retain that information. Instead of estimating a high-dimensional transition matrix over reduced states, they treated resolved particle trajectories as training images for transport. Direct numerical simulation trajectories were cut into short segments, archived, and reassembled into longer synthetic trajectories using transition rules based on velocity continuity and diffusive plausibility. The original method was designed to avoid three common simplifications: reducing finite-Peclet three-dimensional transport to lower-dimensional state spaces, neglecting diffusion in the transition rule, and discarding spatial resolution needed for mixing and reaction metrics.
+This distinction matters because non-Fickian transport is not a single observable. Arrival-time tails determine how long contaminants persist. True dilution determines whether concentrations fall below relevant thresholds, while the particle diagnostic used here measures an entropy-based occupied-volume proxy for dilution-relevant plume organization. Particle contact histories set necessary contact conditions in particle-based reaction models; here, encounter probability is used only as a coarse encounter-opportunity proxy. These quantities are related, but they are not protected by the same retained pore-scale state.
 
-That idea looks different in the current scientific machine-learning era. Training trajectories can be read as a physics-constrained generative model over Lagrangian path segments: the method has an archive of observed motifs, a transition distribution, and a generation procedure. Meanwhile, physics-informed machine learning has emphasized constraints, conservation laws, and measurement operators \citep{Raissi2019,Karniadakis2021}. Neural operators learn solution maps for families of differential equations \citep{Li2021,Lu2021}. Score-based and diffusion models have normalized stochastic generation as a core machine-learning primitive \citep{Ho2020,Song2021}. Learned particle and graph-network simulators have also made Lagrangian state representations a serious machine-learning object, from graph-network physics simulators to dedicated Lagrangian fluid benchmarks \citep{SanchezGonzalez2020,Toshev2023}.
+Classical advection-dispersion models provide a useful asymptotic language, but many porous-media experiments and simulations do not reach that asymptotic limit over the distances and times of interest. Breakthrough curves can show early arrivals and long tails, plume growth can remain pre-asymptotic, and fitted dispersion parameters can change with scale, flow condition, or the observable being matched. Continuous time random walks and spatial Markov models addressed this problem by making memory explicit through waiting-time, transition, and velocity-history statistics \citep{Berkowitz2006,Bijeljic2006,LeBorgne2008a,LeBorgne2008b,DeAnna2013,Dentz2016,Sherman2021}. Subsequent pore- and network-scale studies linked non-Fickian spreading to intermittent velocities, recirculation, hydrodynamic memory, and pore-scale mixing mechanisms \citep{Crevacore2016,YangWang2019,Puyguiraud2019,Puyguiraud2021,Liu2024Dispersion}. These approaches changed how non-Fickian transport is represented. They also sharpened a deeper question: which parts of the resolved Lagrangian history can be reduced safely, and which parts must be retained because they control the transport outcome of interest?
 
-Porous-media machine learning has advanced in parallel. Recent work includes image-based prediction, pore-scale flow surrogates, physics-informed porous-flow models, and generative reconstruction, from GAN-based porous-media reconstruction \citep{Mosser2017} to physics-informed flow-field prediction \citep{Wang2021,Kashefi2023}, diffusion-based pore-scale image generation \citep{Zhu2025}, and broader reviews of data-driven flow and transport \citep{Yang2024}. At the same time, recent pore-scale modeling and computational-microfluidics reviews emphasize that resolved simulations remain expensive but scientifically valuable because they expose local velocity, concentration, interface, and reaction structures that continuum closures struggle to retain \citep{Chen2022,Soulaine2021}. OpenFOAM-based pore-scale tools such as GeoChemFoam further illustrate the increasing maturity of image-based CFD and reactive-transport workflows \citep{MaesMenke2021}, while machine-learning-accelerated CFD points toward hybrid learned/numerical solvers \citep{Kochkov2021}.
+The difficulty is that these losses are not visible from arrival statistics alone. Pore-scale flow does more than move mass downstream. It creates persistent velocity histories, stretches and separates particle groups, and brings molecular diffusion into contact with gradients created by stirring. Recent work on mixing in porous media emphasizes that spreading, stirring, and diffusion are related but non-equivalent processes \citep{Valocchi2019,Dentz2023,DePaoli2023,DePaoli2025}. The distinction is especially consequential for mixing-limited reactions, where scalar gradients, contact histories, lamellar deformation, and three-dimensional flow topology can control rates even when plume arrival appears correct \citep{DeAnna2014,Paster2013,Bolster2016,BensonBolster2016,Engdahl2017,LeeKang2020,Shafabakhsh2024,Hallack2025,Farhat2025,Hallack2025Fracture}. To diagnose these losses, one needs access to the histories that breakthrough curves have already compressed away.
 
-These advances create an opportunity, but also a trap. The opportunity is to learn transition scores, embeddings, uncertainty estimates, or generative segment models that augment the original training-trajectory framework. The trap is to assume that a learned sampler should automatically replace the physics-informed \gb{} kernel. Reported limitations of physics-informed learning for nonlinear two-phase transport in porous media reinforce the same caution: embedding physics in a neural model is not the same as validating the transport statistics that matter \citep{FuksTchelepi2020}. For non-Fickian transport, the question is not simply whether a learned model can generate plausible paths. The question is which transition mechanism preserves the transport statistics that matter for a given physical regime and scientific objective.
+Resolved pore-scale imaging and simulation make those histories visible. Micro-CT images, finite-volume and lattice-Boltzmann flow solvers, particle tracking, and hybrid pore-network-continuum models expose the three-dimensional void space through which transport actually occurs \citep{Chen2022,Soulaine2021,MaesMenke2021,SoleMari2023,Zhang2024HybridPNM}. Recent pore-scale studies further show that saturation state, layering, and flow direction can alter the histories available to an upscaled model \citep{Zhang2023Asym,Saeibehrouzi2024}. Figure~\ref{fig:pore3d} shows the type of object at stake: a connected Bentheimer pore volume, not a two-dimensional schematic, with particle trajectories threading through a tortuous three-dimensional geometry. Such simulations can reveal the mechanisms that upscaled models try to summarize. They are also too expensive to use as the repeated engine for prediction, uncertainty quantification, inverse modeling, or broad parameter sweeps. The scientific opportunity is therefore to reuse resolved simulations without flattening them immediately into a small set of fitted transport coefficients.
 
-We therefore frame \tta{} as validation-driven physics/ML mechanism selection. The candidate mechanisms are physics-informed kernels, learned transition rules, conditional resamplers, and mixtures. The selection criterion is not visual plausibility or training likelihood, but held-out performance on transport metrics: breakthrough, dilution, pair separation, and reaction-encounter probability. This framing is intentionally modest and testable. It asks modern machine learning to expand the space of mechanisms and expose tradeoffs, not to win a rhetorical contest against physics.
+In hydrologic terms, the ``memory'' of a trajectory generator is the state information used to condition the next particle displacement. A breakthrough model may need only enough state to reproduce travel-time statistics. A dilution-relevant plume-organization proxy must also preserve the spatial organization of particles within the plume. An encounter-opportunity proxy must preserve relative particle histories at the scale where particles could come close enough to interact. The purpose of the trajectory archive is not to create visually plausible paths, but to test which conditioning information is required by each of these hydrologic observables.
 
-The contributions are:
-\begin{enumerate}
-  \item We recast the 2019 training-trajectory method as a physics-constrained Lagrangian generative model.
-  \item We implement a sampler ladder: unconditional resampling, \knn{} conditional resampling, the original \gb{} transition kernel, learned contrastive hybrid scoring, pair-aware reranking, and validation-selected mixtures.
-  \item We evaluate generated trajectories using breakthrough, dilution, pair-separation, and reaction-encounter metrics.
-  \item We show that validation-selected mixtures are competitive with the strongest fixed kernel, but no sampler dominates across held-out splits.
-  \item We show that selected mechanisms shift with objective weights, Peclet regime, second geometry, and OpenFOAM flow fidelity.
-  \item We identify the most defensible AI-era claim: learned transition context is valuable when validated against the right objective, while the original physics-informed kernel remains a strong and often dominant component.
-\end{enumerate}
+\begin{figure}[!htbp]
+\centering
+\plotfigure{figure1_memory_landscape.png}{0.98}
+\caption{Resolved trajectory state in Bentheimer sandstone. The connected pore volume is shown with sparse reference trajectories colored by local speed. Three measured archive motifs illustrate persistent fast motion, slow/tortuous motion, and a change in velocity class. Pair-distance histories show a diverging pair and a near-encounter pair, with the encounter radius marked. The final panel links the retained state variables used below to arrival, occupied-volume, pair-separation, and encounter-opportunity proxy observables.}
+\label{fig:pore3d}
+\end{figure}
+
+\citet{Most2019} proposed an unusually direct way to reuse resolved transport information. Their training-trajectory method treated particle paths themselves as the data object. Resolved advective-diffusive trajectories were cut into short pieces and reassembled into new displacement histories using a transition rule based on velocity continuity and diffusive plausibility. This avoided building a coarse transition matrix over prescribed states and avoided reducing the simulation to breakthrough or dispersion statistics. The key conceptual move was to preserve path motifs. That move is closely connected to trajectory-based upscaling and Lagrangian reactive-transport methods, which use particles to preserve information about dilution-relevant organization, mixing processes, and chemical contact that Eulerian summaries can hide \citep{Sund2017,Paster2013,Bolster2016,BensonBolster2016,Engdahl2017}. In contemporary language, the original method is a physics-constrained Lagrangian motif-recombination model: an archive of observed displacement motifs, a transition rule for joining them, and an observable test of the recombined paths. In the language of this paper, training trajectories turn pore-scale simulations into memory archives.
+
+This is why the training-trajectory idea is newly timely. Modern scientific machine learning has made it increasingly natural to score, embed, condition, and recombine examples of motion \citep{Ho2020,Li2021,Lu2021,Song2021,SanchezGonzalez2020,Toshev2023}. Physics-informed learning and machine-learning-accelerated fluid solvers have broadened the ways physical constraints and data can be combined \citep{Raissi2019,Karniadakis2021,Kochkov2021}, while porous-media applications have advanced in parallel, including learned pore-scale flow surrogates, graph-based flow prediction, hybrid neural architectures, image reconstruction, pore-network generation, and diffusion-based generation of pore-scale images \citep{FuksTchelepi2020,Mosser2017,Wang2021,Kashefi2023,Alzahrani2023,Delpisheh2024,Guo2024PoreNetwork,Sathujoda2024,Yang2024,Zhang2024HybridPNM,Zhao2025HybridNN,Srikanth2025,Zhu2025}. For transport, however, these tools have a sharper task than generic generation. The aim is not to replace physical transition rules with learned ones. The aim is to put physical and learned memories in competition under transport validation. If velocity continuity carries the signal, the model should discover that. If local context or pair organization matters more, validation should reveal that instead.
+
+In this framing, validation moves from the end of the workflow to the center of the argument: it becomes the assay that reveals which retained state is adequate. We call this requirement \emph{memory adequacy}. A generator is memory-adequate for an observable when it preserves the part of the resolved Lagrangian history needed to reproduce that observable on held-out trajectories. Memory adequacy is therefore not a global property of a model. It is conditional on the observable, the transport regime, and the reference physics. In this first implementation we use a relative version of the concept, identifying the best-supported memory among a finite set of candidates rather than proving absolute adequacy against a prescribed tolerance.
+
+Figure~\ref{fig:assay} summarizes the validation-driven framing developed here. A resolved simulation supplies trajectory motifs. Candidate transition mechanisms propose how motifs should be reassembled. Held-out transport metrics then rank or weight those mechanisms. The question becomes whether the recombined ensemble has preserved the part of the pore-scale past that the prediction still needs.
+
+We develop \tta{} to test memory adequacy on Bentheimer sandstone trajectory ensembles. The study is organized around three questions that the reader should be able to answer by the end of the paper. First, when resolved trajectories are reused as a finite archive, which transport behaviors transfer to held-out particles and which do not? Second, do breakthrough, occupied-volume, pair separation, and encounter-opportunity proxy metrics favor different retained state information when the validation objective or Peclet regime changes? Third, does increasing OpenFOAM flow resolution make learned context obsolete, make velocity continuity sufficient, or sharpen the need for validation-weighted combinations? These questions turn the revival of training trajectories into a test of observable-conditioned reduced transport modeling. We do not claim that the archive generator outperforms established CTRW or spatial-Markov closures; we use it as a controlled retained-state perturbation device because its conditioning information can be changed explicitly. The recombined paths are displacement-motif ensembles rather than pore-mask-constrained particle tracks, so the framework tests retained-state adequacy rather than providing a geometry-resolving simulator. The central claim is not that a particular sampler wins in a given row, but that breakthrough, dilution-relevant occupied volume, pair separation, and encounter-opportunity proxies expose different retained Lagrangian state requirements, and that higher-fidelity flow preserves velocity autocorrelation without making velocity continuity universally sufficient.
+
+\begin{figure}[!htbp]
+\centering
+\plotfigure{figure2_memory_assay.png}{0.98}
+\caption{Validation-driven retained-state assay. Complete trajectories are split by particle into fit/archive, inner-validation, and outer-held-out sets. Archived motifs are recombined by transition rules that condition on different Lagrangian state variables: velocity continuity, archive proximity, learned transition context, and pair organization. Mixture weights are chosen on inner validation trajectories and evaluated on outer held-out breakthrough, occupied-volume, pair-separation, and encounter-opportunity proxy metrics.}
+\label{fig:assay}
+\end{figure}
 
 \section{Methods}
 
-\subsection{Training-trajectory archive}
+The methods are designed to separate three objects that are often collapsed together: the resolved trajectory archive, the retained state used to recombine that archive, and the observable used to judge the recombination. The pore-scale simulations provide the archive. The transition mechanisms encode competing hypotheses about retained Lagrangian state. The validation metrics decide which hypothesis is adequate for a given prediction target. Keeping these pieces separate is what allows the same resolved trajectories to become a reduced-model validation test rather than only a source of plausible-looking recombined paths.
 
-A resolved particle trajectory is a sequence
+\subsection{Porous-media images, velocity fields, and particle trajectories}
+
+The trajectory ensembles were generated from two Bentheimer sandstone micro-CT subvolumes. Each raw image file contains a $225^3$ array of 16-bit little-endian grayscale values at 6~$\mu$m voxel spacing. For the graph-flow and baseline OpenFOAM cases, the images were block averaged by a factor of three before transport simulation, giving a $75^3$ working grid with an effective voxel size of 18~$\mu$m. The OpenFOAM resolution ladder then repeated the finite-volume calculation at 12~$\mu$m and native 6~$\mu$m voxel spacing. Pore space was segmented by Otsu thresholding, with pores treated as the darker phase. Only pores connected to both the inlet and outlet faces in the $x$ direction were retained for flow and particle tracking.
+
+For Core1, the segmented porosity of the downsampled mask was 0.22794 and the inlet-outlet connected porosity was 0.22543. For Core2, the corresponding values were 0.23553 and 0.23294. These values are used only to document the working trajectory-generation volumes; the study does not attempt to infer full-rock hydraulic properties from the downsampled masks.
+
+Two velocity-field approximations were used. The first is a graph-Laplace pressure solve on the connected pore voxels. Inlet and outlet pore voxels were assigned fixed pressures of 1 and 0, respectively. Interior pore pressures were relaxed by Jacobi iteration to the mean of neighboring pore pressures. Velocities were computed from centered pressure differences on the voxel graph and normalized to a target mean speed of 0.06 grid cells per time unit. This field is a controlled bootstrap velocity model used for method development, not a substitute for a resolved Stokes, lattice-Boltzmann, or DNS calculation.
+
+The second velocity-field family was computed for the Core2 geometry with OpenFOAM. The connected pore voxels were exported as finite-volume meshes in which each pore voxel is one hexahedral cell. Pore-solid faces were no-slip walls; inlet and outlet faces were fixed-pressure patches. Three voxel resolutions were tested: a downsample-factor-3 case with 98,270 cells and 18~$\mu$m voxels, a downsample-factor-2 case with 322,524 cells and 12~$\mu$m voxels, and a full image-resolution case with 2,650,688 cells and 6~$\mu$m voxels. All three cases passed \texttt{checkMesh}. A strict convergence check of the full-resolution case used zero relative linear-solver tolerance and SIMPLE residual controls of $10^{-9}$ for both pressure and velocity; it converged with \texttt{simpleFoam} in 604 SIMPLE iterations, with an apparent permeability of $3.49\times 10^{-12}$~m$^2$. The OpenFOAM velocity fields were mapped back to their connected voxel masks and normalized before particle tracking so that changes in retained-state behavior were not interpreted as simple bulk-speed changes.
+
+Particles were initialized uniformly within connected inlet-face pore voxels. At each time step, a particle position was advanced by an advective displacement from the local voxel velocity plus a Gaussian diffusive displacement with variance $2D\Delta t$ per coordinate. Candidate moves into solid voxels were rejected unless the advective-only move remained in pore space. Particles were stopped when they reached the outlet or the maximum number of steps. All manuscript-facing trajectory ensembles now contain 20,000 particles. The graph-flow cases used $\Delta t=0.5$ and 800 tracking steps, while the OpenFOAM resolution ladder used $\Delta t=0.1$ and 4000 saved steps to preserve the same total simulated duration. Internal substeps limited advective and diffusive displacements; no resolution-ladder run hit the substep cap. Across the OpenFOAM ladder, grid-unit diffusivity was scaled as $D_{\mathrm{grid}}\propto\Delta x^{-2}$ and target speed as $u_{\mathrm{grid}}\propto\Delta x^{-1}$, so that the physical diffusivity, physical mean speed, and Peclet number based on the 18~$\mu$m reference length were held fixed. At this stage, the trajectories are reference material containing full Lagrangian histories; the reduced model enters only when the archive is recombined and tested against observables that require different retained state.
+
+\begin{table}[!htbp]
+\centering
+\caption{Trajectory ensembles used for the main validation tests. Peclet number is reported as $Pe=uL/D$ with $L=1$ grid cell for the 18~$\mu$m graph-flow cases and with the 18~$\mu$m reference length for the OpenFOAM resolution ladder. These ensembles vary regime and flow fidelity so that retained-state requirements can be separated from a single sampler ranking.}
+\label{tab:regimes}
+\scriptsize
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}L{0.22\linewidth}L{0.12\linewidth}L{0.15\linewidth}rrrrL{0.18\linewidth}@{}}
+\toprule
+Ensemble & Voxel & Velocity field & $u_{\mathrm{grid}}$ & $D_{\mathrm{grid}}$ & $Pe$ & Particles & Role \\
+\midrule
+Core1 high Pe & 18~$\mu$m & Graph-Laplace & 0.06 & $3\times10^{-4}$ & 200 & 20{,}000 & Diffusion control \\
+Core1 baseline & 18~$\mu$m & Graph-Laplace & 0.06 & $10^{-3}$ & 60 & 20{,}000 & Baseline archive test \\
+Core1 low Pe & 18~$\mu$m & Graph-Laplace & 0.06 & $3\times10^{-3}$ & 20 & 20{,}000 & Diffusion control \\
+Core2 graph & 18~$\mu$m & Graph-Laplace & 0.06 & $10^{-3}$ & 60 & 20{,}000 & Geometry transfer \\
+Core2 OF 18 & 18~$\mu$m & OpenFOAM & 0.06 & $10^{-3}$ & 60 & 20{,}000 & Flow-fidelity test \\
+Core2 OF 12 & 12~$\mu$m & OpenFOAM & 0.09 & $2.25\times10^{-3}$ & 60 & 20{,}000 & Resolution ladder \\
+Core2 OF 6 & 6~$\mu$m & OpenFOAM & 0.18 & $9\times10^{-3}$ & 60 & 20{,}000 & Full-resolution ladder \\
+\bottomrule
+\end{tabular}
+}%
+\end{table}
+
+\subsection{Trajectory archives and transition mechanisms}
+
+A resolved trajectory is a sequence of particle positions
 \[
   \mathbf{x}_i(t_0), \mathbf{x}_i(t_1), \ldots, \mathbf{x}_i(t_T)
 \]
-in two or three spatial dimensions. Following \citet{Most2019}, each trajectory is divided into overlapping segments of fixed duration. For each archived segment, we store the relative path, initial and final positions, and estimates of the starting and ending velocities over a shorter matching window. The archive is therefore a set of local transport motifs that retain pore-scale path structure.
+in three spatial dimensions. Each training trajectory was divided into segments of fixed length. In the main Core1 experiments, each segment contained 36 time increments, and the first and last 20 increments were used to estimate starting and ending velocity descriptors. The tight OpenFOAM resolution-ladder reruns used 160-increment segments, 60--80-increment matching windows selected from the axial velocity-autocorrelation scan, and a 1600-increment archive stride. This strided archive samples motifs from all 20,000 particles while avoiding an over-dense collection of nearly overlapping windows from the same path. With the 70/30 train--test split and three inner validation repeats, the graph-flow benchmarks used 19,600 motifs in each inner fit archive and 28,000 motifs in each final train archive, while the OpenFOAM benchmarks used 29,400 and 42,000 motifs, respectively; full bookkeeping for splits, recombined ensembles, candidate caps, and pair samples is given in the Supporting Information.
 
-Generation begins from an archive segment and recursively chooses a next segment. The candidate segment is shifted so that its matching point joins the current endpoint, and the overlapping portion is discarded to avoid duplicating time samples. This cut-copy-paste construction preserves observed segment shapes while producing arbitrary-length synthetic trajectories.
+For each segment, the archive stores the relative path, the source trajectory identifier, the start index in the source trajectory, and the mean starting and ending velocities. Recombined trajectories were generated by selecting an initial archived segment, placing it at an initial origin drawn from the training origin pool, and recursively sampling a next segment. The next segment was translated so that its matching point joined the current endpoint. The overlapping matching interval was discarded so that time samples were not duplicated. This operation preserves observed local path shapes while allowing new longer displacement histories to be assembled from the archive.
 
-\subsection{Candidate transition samplers}
+\noindent\textbf{Geometric support of recombined trajectories.}
+The archive generator is a Lagrangian displacement-motif recombination model, not a new Eulerian pore-scale particle tracker. Each stored motif is an observed relative displacement history from a pore-admissible resolved trajectory, but after a motif is selected its displacement coordinates are translated to the current recombined endpoint and no pore-mask admissibility check is imposed on every translated point. The recombined paths are therefore represented in physical grid coordinates assembled from displacement-coordinate motifs, and out-of-pore or out-of-domain positions are possible after recombination. This is not a minor implementation detail. The generator is not claimed to solve the pore-scale flow problem or to enforce the original geometry at every time sample; it is a reduced Lagrangian generator whose relative adequacy is judged by held-out breakthrough, occupied-volume, pair-separation, and encounter-opportunity proxy observables. A Core1 baseline diagnostic, using the same floor-voxel occupancy convention as the resolved tracker, found strict connected-mask violation rates of 50.7--54.5\% across the evaluated recombined samplers, compared with 0\% for a held-out resolved reference sample. The \gb{} case had 52.2\% violating points, with 46.5\% in solid voxels inside the image domain and 5.7\% outside the domain. Across the six evaluated samplers, violation rate did not show a positive association with mean held-out occupied-volume log error (Pearson $r=-0.50$, Spearman $r=-0.43$), so geometric violation is a broad support limitation of this recombination protocol rather than a simple explanation for the sampler ranking. The diagnostic reinforces the interpretation of the method: local motifs remain physically observed pore-scale displacements, but recombination can lose geometric organization across joins, and that loss must be evaluated rather than assumed away.
 
-We compare six transition mechanisms (Table~\ref{tab:samplers}). The unconditional sampler draws the next segment uniformly from the archive and acts as a memory-destroying baseline. The \knn{} conditional sampler selects candidate segments whose initial velocity is near the current ending velocity and samples them with distance-weighted probabilities. The \gb{} sampler follows the original training-trajectory logic: an interface velocity mismatch is plausible if it can be explained by diffusion over the matching interval, yielding a physically scaled likelihood.
+\noindent\textbf{Algorithm 1. Trajectory-archive recombination.}
+\begin{enumerate}
+  \item Track particles through a resolved pore-scale velocity field.
+  \item Cut each resolved trajectory into short observed path motifs.
+  \item Store each motif's relative displacement history and descriptors of its initial and final state.
+  \item Start a recombined trajectory by drawing one observed motif from the fit archive and placing it at a training-origin inlet position.
+  \item At the motif endpoint, choose the next observed motif using a transition rule that defines which state information is retained.
+  \item Translate the chosen motif so that its matching point joins the current endpoint, discarding overlapping samples.
+  \item Repeat until the recombined trajectory exits or reaches the evaluation time, then compare the recombined ensemble with held-out reference trajectories.
+\end{enumerate}
 
-The learned hybrid sampler trains a contrastive transition scorer from observed adjacent archive segments and negative samples. In the current prototype, the learned score is combined with the \gb{} likelihood rather than used alone. The pair-aware reranking sampler modifies \gb{} candidates using archive descriptors intended to preserve short-horizon pair behavior. Finally, a mixture sampler combines transition distributions,
+With the archive fixed, the central modeling choice becomes which conditioning information the next segment should be allowed to use. Table~\ref{tab:mechanisms} translates the mechanism names used in the code into hydrologic state information and classical analogues. The unconditioned baseline draws the next segment uniformly from the archive. Archive-proximity conditioning, implemented by the \knn{} conditional sampler, selects candidate segments whose initial velocity is close to the current ending velocity and samples among the nearest neighbors with distance-weighted probabilities. Velocity-continuity conditioning, implemented by the \gb{} sampler, is the original physics kernel: it assigns a Gaussian likelihood to the mismatch between the current ending velocity and candidate starting velocity, with the velocity scale set by the diffusive displacement expected over the matching time.
+
+\begin{table}[!htbp]
+\centering
+\caption{Reader-facing interpretation of the transition mechanisms. Each mechanism defines retained Lagrangian state information used to condition the next archived path motif. The table links each sampler to the state requirement it tests rather than presenting the mechanisms as an algorithmic ranking.}
+\label{tab:mechanisms}
+\scriptsize
+\begin{tabular}{@{}L{0.17\linewidth}L{0.16\linewidth}L{0.33\linewidth}L{0.25\linewidth}@{}}
+\toprule
+Retained-state hypothesis & Implementation & Retained state/history & Classical analogue or intuition \\
+\midrule
+Unconditioned draw & Uniform archive sampler & Archive support only; no conditioning on the current segment & Null model for unconditional resampling \\
+Archive proximity & \knn{} conditional & Candidate motifs beginning in similar velocity state & Analog or nearest-neighbor forecasting from empirical trajectories \\
+Velocity continuity & \gb{} & Current ending velocity and candidate starting velocity, with tolerance scaled by diffusion over the matching window & Lagrangian velocity-correlation or spatial-Markov transition kernel \\
+Learned transition context & \hybrid{} & Endpoint velocity mismatch plus segment-scale context learned from true adjacent motifs & Lightweight contrastive transition score, constrained by the velocity-continuity prior \\
+Pair organization & \pair{} & Short-horizon relative divergence descriptors estimated from local future behavior in archive state space & Relative-dispersion and encounter-relevant organization \\
+Validation mixture & Mixture sampler & Weighted combination of the retained states above & Ensemble/model averaging chosen by held-out transport error \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Learned transition context is implemented by the hybrid sampler, which trains a logistic contrastive transition scorer to distinguish true adjacent archive segments from random negative candidates. The feature vector is explicit: componentwise velocity mismatch between the current segment end and candidate start, squared mismatch, speed mismatch, velocity cosine distance, absolute differences in segment mean velocity, net-displacement velocity, speed mean and standard deviation, start-to-mean and end-to-mean velocity offsets, a curvature proxy, and cosine distances between mean-velocity and displacement directions. The learned score is combined with the \gb{} likelihood rather than used as a standalone black-box rule. Pair-organization conditioning is implemented by the pair-aware reranking sampler, which begins from \gb{} candidates and modifies their weights using short-horizon descriptors: median and 0.9-quantile future separation from neighboring velocity states, median separation growth, contraction fraction, and separation variability over a three-segment horizon. These descriptors are learned from true archive continuations in current-speed bins and act only as a coarse proxy for relative particle organization. Validation mixtures combine component transition distributions as
 \begin{equation}
   p(s_{n+1} \mid h_n) =
   \sum_m w_m p_m(s_{n+1} \mid h_n),
@@ -91,313 +195,193 @@ The learned hybrid sampler trains a contrastive transition scorer from observed 
   w_m \geq 0,\quad \sum_m w_m = 1,
   \label{eq:mixture}
 \end{equation}
-where $s_{n+1}$ is the next segment, $h_n$ is the generated trajectory history, and weights are selected by validation.
+where $s_{n+1}$ is the next segment, $h_n$ is the generated trajectory history, and weights are chosen by validation. The transition mechanisms are therefore candidate retained-state hypotheses whose value must be judged by the transport observable, not by their names or by a single expected outcome.
 
-\begin{table}[t]
-\centering
-\caption{Transition mechanisms evaluated in this study.}
-\label{tab:samplers}
-\small
-\begin{tabular}{p{0.23\linewidth}p{0.33\linewidth}p{0.34\linewidth}}
-\toprule
-Sampler & Primary information used & Role in the ladder \\
-\midrule
-Unconditional & Archive frequency & Memory-free baseline \\
-\knn{} conditional & Local velocity proximity & Nonparametric velocity matching \\
-\gb{} & Diffusion-scaled velocity continuity & Original physics kernel \\
-\hybrid{} & Contrastive learned score plus \gb{} & Learned transition context \\
-\pair{} & Pair-behavior descriptors plus \gb{} & Short-horizon spatial organization \\
-Mixture & Validation-selected component weights & Objective-aware mechanism selection \\
-\bottomrule
-\end{tabular}
-\end{table}
+\subsection{Validation design and evaluation metrics}
 
-\subsection{Validation-driven mixture selection}
-
-For a fixed archive and a fixed set of component samplers, we search a simplex grid over mixture weights. Each candidate mixture generates a validation ensemble from training-origin initial positions. Generated metrics are compared with a held-out validation ensemble using
+The transition mechanisms are not ranked by internal likelihood alone. They are ranked by whether the recombined trajectories preserve held-out transport behavior. For each benchmark, trajectories were split by complete particle trajectory, not by individual segments. Outer splits held out a test set that was not used to build the archive, fit the transition mechanisms, select mixture weights, or choose recombined initial positions. Within each outer split, repeated inner fit-validation splits were used to choose mixture weights; during those inner splits, validation trajectories were absent from the fit archive. Strided archives reduce nearly duplicate windows only within the fit trajectories from which they are built, and pair metrics are evaluated on sampled pairs drawn from the held-out reference and recombined ensembles. Candidate mixture weights were searched on a simplex grid with spacing 0.25 over four components: \gb{}, \knn{}, hybrid, and pair-rerank. Each candidate mixture produced a validation ensemble from training-origin initial positions. Recombined and validation ensembles were compared by the multi-objective score
 \begin{equation}
   J =
   a_{\mathrm{BTC}} E_{\mathrm{BTC}}
   + a_{\mathrm{pair}} E_{\mathrm{pair}}
   + a_{\mathrm{dil}} E_{\mathrm{dil}}
-  + a_{\mathrm{react}} E_{\mathrm{react}} .
+  + a_{\mathrm{enc}} E_{\mathrm{enc}} .
   \label{eq:objective}
 \end{equation}
-Here $E_{\mathrm{BTC}}$ is a breakthrough quantile and coverage score, $E_{\mathrm{pair}}$ is a pair-separation quantile error, $E_{\mathrm{dil}}$ is a log-error in dilution index, and $E_{\mathrm{react}}$ is an absolute error in encounter probability.
+Here $E_{\mathrm{BTC}}$ is a breakthrough quantile and coverage score, $E_{\mathrm{pair}}$ is a pair-separation quantile error, $E_{\mathrm{dil}}$ is a log-error in the entropy-based occupied-volume proxy, and $E_{\mathrm{enc}}$ is an absolute error in the encounter-opportunity proxy.
 
-We use two mixture aggregation rules. The pooled-validation mixture selects the grid point with the best mean validation score across repeated inner splits. The bootstrap-mean mixture averages the best weights selected independently across repeated inner validation splits. The second rule is less aggressive and can act as a regularized summary when validation ensembles are small.
+Operationally, relative adequacy is an observable-conditioned validation statement. For an observable $O$, a generator $G_m$ based on retained-state hypothesis $m$ is adequate relative to a reference ensemble $R$ when the held-out discrepancy
+\begin{equation}
+  d_O(G_m, R)
+\end{equation}
+is within a chosen tolerance or is not distinguishable from reference uncertainty. In this proof-of-concept study, we use a relative version of that criterion: the evidence map records which retained-state hypotheses minimize held-out discrepancies across observables and regimes, and which observables remain inadequately protected even when arrival behavior is reproduced.
 
-\subsection{Trajectory data and velocity fields}
+The default score weights were $a_{\mathrm{BTC}}=1$, $a_{\mathrm{pair}}=20$, $a_{\mathrm{dil}}=120$, and $a_{\mathrm{enc}}=1000$. They were chosen as empirical scale normalizers from pilot candidate errors so that breakthrough, pair separation, occupied-volume, and encounter-opportunity proxy terms contributed comparable magnitudes under the balanced objective rather than being dominated by units. They are not presented as universal preferences. Sensitivity experiments deliberately perturb the weights to ask how the lowest-mean relative retained-state summary changes when the scientific target changes.
 
-The original DNS trajectories from \citet{Most2019} are not available in this workspace, so we use public Bentheimer sandstone micro-CT volumes from the multi-resolution Bentheimer dataset. The workflow thresholds pore space, extracts the inlet-outlet connected pore network, computes a velocity field, and tracks advective-diffusive particles.
+The objective-sensitivity analysis used eight scalar regimes: balanced, breakthrough-only, BTC-heavy, pair-heavy, occupied-volume-heavy, encounter-light, encounter-heavy, and no-encounter. Figure~\ref{fig:outcome-memory} and the Supporting Information use this reader-facing taxonomy; the archived output files retain the legacy internal key names \texttt{dilution\_heavy}, \texttt{reaction\_light}, \texttt{reaction\_heavy}, and \texttt{no\_reaction}.
 
-The first velocity field is a graph-Laplace pressure approximation on the connected pore voxels. It is a bootstrap generator for method development, not a final DNS replacement. The main Core1 volume is downsampled by a factor of three to a $75^3$ grid. We generate trajectories at three diffusivities, $D=3\times 10^{-4}$, $10^{-3}$, and $3\times 10^{-3}$, representing high-Peclet, baseline, and lower-Peclet conditions in the present nondimensionalization.
+Two mixture-weight summaries were retained. The pooled-validation mixture is the simplex-grid point with the lowest mean validation score across repeated inner splits. The bootstrap-mean mixture averages the independently chosen lowest-score weights across inner validation splits and then renormalizes them. In the Results, both are interpreted as validation mixtures; the pooled rule is more decisive, whereas the bootstrap rule is a more regularized summary when validation ensembles are small.
 
-The second geometry is a second Bentheimer subvolume downsampled in the same way. Its connected porosity is 0.23294, compared with 0.22543 for the Core1 baseline. For the high-fidelity-flow test, we export the connected Core2 pore voxels as an OpenFOAM finite-volume mesh. Each pore voxel is one hexahedral cell. Pore-solid faces are no-slip walls; inlet and outlet faces are fixed kinematic pressure patches. The OpenFOAM case contains 98,270 cells, passes \texttt{checkMesh}, and converges with \texttt{simpleFoam} in 103 SIMPLE iterations. The solved velocity field is mapped back onto the connected voxel mask and normalized to the same mean advective speed used in the graph-flow particle tracker.
+\begin{table}[!htbp]
+\centering
+\caption{Selection vocabulary used throughout the manuscript and Supporting Information. The terms separate several related but non-identical summaries, preventing a lowest-mean mechanism, a mean-rank mechanism, and a validation mixture from being read as the same claim.}
+\label{tab:selection-vocabulary}
+\scriptsize
+\begin{tabular}{@{}L{0.22\linewidth}L{0.48\linewidth}L{0.22\linewidth}@{}}
+\toprule
+Term & Meaning & Used in \\
+\midrule
+Lowest mean objective & Mechanism with the smallest mean held-out score across outer test splits & Figure~\ref{fig:evidence}; Tables S10--S11 \\
+Mean-rank favorite & Mechanism with the lowest average rank across outer test splits & Robustness tables \\
+Split winner & Mechanism with the largest number of individual outer-split wins & Robustness tables \\
+Pooled-validation mixture & One simplex weight vector chosen by the pooled validation score across inner splits & Mixture figures \\
+Bootstrap-mean mixture & Average of split-wise chosen mixture weights, renormalized after averaging & Counterfactual and regularized mixture comparisons \\
+Objective-sensitivity favorite & Lowest-mean mechanism under a modified objective-weight regime & Figure~\ref{fig:outcome-memory}; Tables S4 and S7 \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\subsection{Evaluation metrics}
+All reported retained-state comparisons use held-out reference trajectories. Breakthrough was evaluated at control planes $x=6$, 10, and 14 grid cells using coverage and the 0.1, 0.5, and 0.9 quantiles of first-crossing time. Dilution-relevant plume organization was estimated from the entropy of occupied spatial bins at times 100, 200, 300, and 400, using a bin size of three grid cells. We use ``dilution index'' only in this particle-entropy sense: it measures the effective occupied volume of the binned ensemble, not a fully resolved concentration field or scalar-dissipation rate. Pair separation was evaluated from sampled particle pairs at the same times using quantile errors. The encounter-opportunity proxy was represented by the probability that sampled particle pairs came within a radius of three grid cells before the final evaluation time. This is not a reactive-transport simulation; it is a necessary-condition proximity proxy, because particles that never come within the coarse-grained encounter radius cannot satisfy that contact criterion in a particle reaction model using the same radius. For the tight OpenFOAM resolution ladder, the saved-time indices were scaled to 500, 1000, 1500, and 2000 because $\Delta t$ was reduced to 0.1; the control planes, bin size, encounter radius, target mean speed, and grid-based diffusivity were scaled so that each resolution represented the same approximate physical distances and physical diffusion as the 18~$\mu$m reference setup. Velocity autocorrelation was used to compare graph-flow and OpenFOAM reference trajectory sets and to diagnose how OpenFOAM resolution changed Lagrangian velocity persistence.
 
-Generated ensembles are evaluated against held-out reference trajectories using breakthrough quantiles and crossing coverage at multiple control planes, dilution index at selected times, particle-pair separation quantiles, reaction-encounter probability for a fixed encounter radius, and velocity autocorrelation for direct trajectory-set comparison. Pair and reaction metrics are included because a sampler can match arrival statistics while corrupting spatial organization, mixing, or encounter structure.
+\noindent\textbf{Pair and encounter sampling.}
+In the main outer-split transition benchmarks, pair separation and the encounter-opportunity proxy were estimated from 3000 sampled pairs per ensemble; objective-sensitivity runs used 2500 sampled pairs per ensemble, and the particle-count stability diagnostic used 10,000 pairs per subset and 50,000 pairs for the 20,000-particle reference. Pairs were drawn uniformly from all particle indices in the ensemble, not conditioned on common starting neighborhoods, inlet proximity, chemical labels, or any known relation between the two particles. Each draw used two distinct particle indices, but draws were made with replacement across the Monte Carlo pair sample, so a particle or particle pair could be selected more than once. Reference and recombined ensembles generally have different sizes and no one-to-one particle identity, so pair indices are sampled reproducibly within each ensemble using the same random seed and rule; recombined samplers in a given split use the same ensemble-local pair-index sequence, but the reference ensemble does not share literal pair IDs with the recombined ensembles unless the compared ensembles have the same size. Pair-separation error is the mean absolute error in the 0.1, 0.5, and 0.9 quantiles of pair distance at the listed times, whereas the encounter-opportunity proxy records whether a sampled pair ever comes within the encounter radius before the final evaluation time. Thus pair and encounter metrics are ensemble-level proximity diagnostics, not labeled-reactant pair histories. In the OpenFOAM ladder, the encounter radius was scaled in grid cells from 3 at 18~$\mu$m to 4.5 at 12~$\mu$m and 9 at 6~$\mu$m, preserving the same approximate physical radius. The 20,000-particle increase made the pair metrics substantially more stable than the smallest-particle tests: in the Core1 particle-count diagnostic, pair-separation error decreased from 0.59 at $N=500$ to 0.23--0.28 at $N=10{,}000$--20,000, while encounter-opportunity probabilities remained near 0.019--0.020 with 10,000 sampled pairs.
+
+The trajectory ensembles support the hypothesis tests as follows. The Core1 baseline and outer-split benchmarks test whether observed displacement motifs can be recombined into ensembles that reproduce held-out transport observables. The objective-weight and Peclet sweeps test whether the lowest-mean relative retained-state summary changes with the scientific target and transport regime. The Core2 graph-flow and Core2 OpenFOAM cases test whether geometry and velocity-field fidelity alter the physical value of velocity-continuity conditioning. The OpenFOAM resolution ladder then asks whether this interpretation survives a less-downsampled and full-resolution finite-volume reference field. These tests are deliberately modest in scale but deliberately varied in meaning: they ask whether relative evidence for transition states changes when the observable, the diffusion strength, the geometry, the flow solver, or the flow resolution changes, and whether those changes support observable-conditioned retained state rather than a universal sampler.
 
 \section{Results}
 
-\subsection{Validation mixtures are competitive, but not universal winners}
+The Results move from feasibility to interpretation. The first question is deliberately modest: can a finite archive of resolved path motifs generate transport behavior that was not used to build the generator? If it cannot, then retained-state evidence has no physical meaning. If it can, then the errors that remain become informative because they show which conditioning information was not preserved. We then ask whether those errors change when the prediction target changes, when diffusion changes, and when the velocity field is made more faithful to the pore geometry.
 
-The first question is whether validation can combine physics-informed and learned transition mechanisms into a useful generator. In a repeated-validation experiment on the Core1 baseline trajectory set, the bootstrap-mean mixture selected substantial \gb{}, \knn{}, and hybrid contributions: 0.35, 0.25, and 0.35, respectively, with 0.05 assigned to pair-aware reranking. On the held-out split, this mixture achieved the lowest multi-objective score, outperforming both the hybrid sampler and the \gb{} kernel.
+\subsection{Arrival transfers; plume organization does not}
 
-The more important test is outer-split robustness. Across five independent held-out test splits, the pooled-validation mixture had the best mean objective and tied \gb{} on mean rank (Table~\ref{tab:outer}). \gb{} remained extremely competitive. This result sets the tone for the paper. The mixture does not prove that learned components universally beat the physics kernel. It shows that held-out validation can identify useful combinations, and that the original \gb{} sampler is a strong baseline rather than a straw man.
+The archive passes the first test, but not uniformly. When transition mechanisms are evaluated against held-out Core1 baseline trajectories with 20,000 reference particles, recombined paths are competitive with the strongest fixed retained states. The pooled-validation mixture retains substantial velocity-continuity, archive-proximity, learned-context, and pair-organization components, showing that the finite archive is more than a catalog of one simulation. Its observed displacement motifs can be recombined into evaluable transport ensembles.
 
-\begin{table}[t]
+The result becomes more interesting when arrival and dilution-relevant plume organization are viewed together (Figure~\ref{fig:behavior-memory}). Across four independent held-out test splits, \gb{}, \knn{}, hybrid transition scoring, and validation mixtures all remain in the same broad performance band. The mean objective gaps are small relative to split-to-split variability, so the defensible claim is not that one mechanism has been crowned significantly better. The asymmetry is the point: all tested generators sit below the reference entropy-based occupied-volume proxy. The archive retains enough path history to move mass through the rock, but not enough to fully preserve the spatial organization created along the way.
+
+We then made the counterfactual explicit by using breakthrough alone to choose a retained-state summary and evaluating that choice on the other held-out observables. The breakthrough-only objective gave the bootstrap-mean validation mixture, with its largest weight assigned to velocity continuity. That choice was not relatively adequate in general: compared with observable-specific lowest-error mechanisms, it left larger occupied-volume, pair-separation, and encounter-opportunity proxy errors. Arrival validation therefore identifies useful retained state information, but it does not certify that the generator has preserved the plume organization needed by other predictions.
+
+\begin{figure}[!htbp]
 \centering
-\caption{Outer-split robustness on Core1 baseline trajectories. Lower objective and rank are better.}
-\label{tab:outer}
-\small
-\begin{tabular}{lrrrrr}
-\toprule
-Sampler & Mean obj. & Std. obj. & Mean rank & Wins & Beats G/H \\
-\midrule
-Pooled validation mixture & 121.64 & 47.75 & 2.00 & 2 & 3/3 \\
-\gb{} & 125.48 & 50.22 & 2.00 & 2 & --/4 \\
-\hybrid{} & 127.71 & 57.25 & 3.20 & 1 & 1/-- \\
-Bootstrap mean mixture & 132.05 & 50.44 & 3.20 & 0 & 1/3 \\
-\knn{} conditional & 142.47 & 38.49 & 4.80 & 0 & 0/1 \\
-\pair{} & 167.72 & 60.16 & 5.80 & 0 & 0/0 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{figure}[t]
-\centering
-\plotfigure{run_005_outer_split_summary.svg.png}{0.92}
-\caption{Outer-split robustness of validation-selected samplers. Mean held-out multi-objective transport error is computed over five independent outer train/test splits. Lower is better.}
-\label{fig:outer}
+\plotfigure{figure3_arrival_can_lie.png}{0.98}
+\caption{Held-out Core1 baseline comparison of arrival and dilution-relevant plume organization. Breakthrough curves at the downstream control plane are similar for several retained-state generators, with tick marks marking the conditional median first-passage time among particles that crossed the plane by the evaluation time. Final-time occupancy projections compare the reference plume, the pooled-validation mixture plume, and their absolute binned difference; entropy-based occupied volume tracks dilution-relevant organization through time. Panel c is a full-reference comparison, with same-count sensitivity reported in the Supporting Information. A generator chosen by the breakthrough-only objective is then evaluated on all observables, showing larger occupied-volume, pair-separation, and encounter-opportunity proxy errors than observable-specific lowest-error mechanisms. Bands, ticks, and bars show outer-split variability; dilution index is used only as an occupied-volume proxy, not as scalar dissipation or a resolved concentration field.}
+\label{fig:behavior-memory}
 \end{figure}
 
-\subsection{Scientific objective changes the preferred mechanism}
+That gap changes the interpretation of the baseline experiment. The underpredicted occupied-volume proxy is not merely an imperfection in an algorithm comparison; it identifies an outcome that the current archive recombination and evaluation protocol have not protected. A limited archive-density and segment-length diagnostic in the Supporting Information sharpens this point. When recombined ensembles are compared with the full held-out reference, the apparent occupied-volume deficit persists across the tested archive sizes and motif lengths. When the same recombined ensembles are compared with same-count reference subsamples, however, the sign changes. The occupied-volume contrast in Figure~\ref{fig:behavior-memory} should therefore be read as a proxy-observable warning about dilution-relevant plume organization and entropy-estimator support, not as a calibrated universal dilution magnitude. What the result establishes is the observable failure mode: breakthrough-only validation makes the archive look safer than it is because it cannot see the histories needed for dilution-relevant plume organization and pair organization. Detailed outer-split scores, split wins, split-to-split uncertainties, and convergence diagnostics are reported in the Supporting Information, and the local lowest-mean mechanism is secondary to the arrival--occupied-volume separation.
 
-A single scalar objective is convenient, but it can hide scientific priorities. We therefore repeated selection under seven objective-weight regimes. In the Core1 baseline sensitivity run, \gb{} was the most stable mean performer, but the preferred sampler changed with metric priorities (Table~\ref{tab:objective}). Pair-, dilution-, and reaction-sensitive objectives generally increased the hybrid contribution, while balanced and no-reaction objectives retained substantial \gb{} mass.
+\subsection{The prediction target chooses the retained state}
 
-\begin{table}[t]
-\centering
-\caption{Best mean sampler under different Core1 objective-weight regimes.}
-\label{tab:objective}
-\small
-\begin{tabular}{lrrr}
-\toprule
-Regime & Best mean sampler & Mean obj. & Mean rank \\
-\midrule
-Balanced & \gb{} & 145.26 & 2.25 \\
-BTC heavy & \gb{} & 188.73 & 2.25 \\
-Pair heavy & \knn{} conditional & 204.41 & 2.75 \\
-Dilution heavy & \hybrid{} & 170.07 & 2.50 \\
-Reaction light & \gb{} & 140.53 & 2.25 \\
-Reaction heavy & \gb{} & 85.75 & 1.75 \\
-No reaction & \gb{} & 140.01 & 2.00 \\
-\bottomrule
-\end{tabular}
-\end{table}
+Once the archive is shown to support motif recombination, validation choices become diagnostic. We therefore computed lowest-mean relative retained-state summaries under eight scalar objective-weight regimes: balanced, breakthrough-only, BTC-heavy, pair-heavy, occupied-volume-heavy, encounter-light, encounter-heavy, and no-encounter. The weights are not a hidden claim that one scalar objective is universal; they are a controlled way to ask whether a breakthrough model, an occupied-volume proxy model, and an encounter-opportunity proxy model require the same retained state.
 
-\begin{figure}[t]
+The answer is no. In the Core1 baseline sensitivity run, velocity continuity was the most stable fixed retained state by mean objective, but the pooled-validation mixture weights changed with metric priorities (Figure~\ref{fig:outcome-memory}; full regime scores are reported in the Supporting Information). Breakthrough-heavy objectives placed most mixture weight on velocity continuity and learned context while dropping pair organization. Pair-heavy objectives shifted weight toward archive proximity and pair organization. Encounter-heavy objectives increased learned-context weight. Viewed this way, the lowest-mean mechanism and mixture-weight summary are statements about the observable being protected, not statistically certified unique closures.
+
+\begin{figure}[!htbp]
 \centering
-\begin{subfigure}[t]{0.49\linewidth}
-\centering
-\plotfigure{run_006_weight_sensitivity_heatmap.svg.png}{1.0}
-\caption{Mean sampler rank under objective-weight regimes.}
-\end{subfigure}
-\hfill
-\begin{subfigure}[t]{0.49\linewidth}
-\centering
-\plotfigure{run_006_selected_weights.svg.png}{1.0}
-\caption{Validation-selected mixture weights.}
-\end{subfigure}
-\caption{Objective-weight sensitivity. The preferred transition mechanism changes with the scientific metric being emphasized, which supports a multi-objective validation layer rather than a single canonical sampler.}
-\label{fig:objective}
+\plotfigure{figure4_observable_memory_selection.png}{0.98}
+\caption{Objective-sensitivity analysis for the Core1 baseline case. Rows are the eight scalar validation regimes defined in the Methods. The first panel shows objective weights relative to the balanced objective, and the second panel shows the resulting pooled-validation mixture weights. The held-out objective panel reports each mechanism's mean score relative to the lowest-mean mechanism in units of the lowest-mean split standard deviation. Changing the objective shifts both mixture weights and lowest-mean relative mechanisms, while overlap in the right panel indicates non-unique but structured retained-state evidence.}
+\label{fig:outcome-memory}
 \end{figure}
 
-The balanced objective can also be unpacked into a Pareto-style view. No sampler simultaneously minimizes breakthrough, pair-separation, and dilution errors. This is why the validation layer should remain multi-objective rather than being reduced to one canonical scalar score (Figure~\ref{fig:pareto}).
+The balanced objective can also be unpacked into a Pareto-style view. The tradeoff is the scientific point. A generator that is relatively adequate for breakthrough can be wrong for dilution-relevant plume organization or the encounter-opportunity proxy because those quantities are controlled by different parts of the path history. In the baseline results, arrival-favorable velocity continuity tends to be more vulnerable in dilution-relevant organization, consistent with a mechanism that repeatedly chooses velocity-consistent motifs and therefore samples too narrow a part of the archive. The validation objective must therefore be tied to the outcome the prediction is meant to protect. In this sense, validation does more than choose a sampler; it states which retained information the prediction is unwilling to lose.
 
-\begin{figure}[t]
+\subsection{Diffusion provides a regime control}
+
+The same dependence appears when the physical transport regime changes, but the larger 20,000-particle sweep also disciplines the interpretation. We regenerated Core1 trajectories at $D=3\times 10^{-4}$, $10^{-3}$, and $3\times 10^{-3}$ on the same geometry and graph-flow field. The lowest-mean relative retained state changed with Peclet number (Figure~\ref{fig:diffusion-memory}), but it did not collapse into a simple monotone story in which increasing diffusion steadily weakens velocity continuity and hands the prediction to learned context.
+
+That restraint is useful. In the balanced outer-split benchmark, the lowest-mean mechanism changes from hybrid transition context at high Peclet, to \gb{} at the baseline Peclet number, to the pooled-validation mixture at low Peclet. The corresponding pooled-validation mixture weights are broad: velocity/archive/learned/pair weights are 0.229/0.333/0.313/0.125 at high Peclet, 0.250/0.229/0.271/0.250 at baseline, and 0.375/0.229/0.313/0.083 at low Peclet. The lowest-mean relative retained-state summary changes with Peclet regime, while split-level overlap prevents interpreting individual lowest-mean mechanisms as unique closures.
+
+\begin{figure}[!htbp]
 \centering
-\plotfigure{run_006_pareto_tradeoff.svg.png}{0.78}
-\caption{Balanced-objective Pareto tradeoff. Each point is averaged over four outer held-out splits. Lower-left is better; marker size indicates dilution log-error.}
-\label{fig:pareto}
+\plotfigure{figure5_diffusion_memory_erosion.png}{0.98}
+\caption{Core1 Peclet-regime comparison at fixed geometry and graph-flow representation. Reference axial step autocorrelation shows how the Lagrangian regime changes across $Pe=200$, 60, and 20. Pooled-validation mixture weights and held-out objective scores are reported for the same regimes, with split-level points shown behind the means. The relative evidence panel gives $\Delta J$ from the row-best mechanism in units of that mechanism's split standard deviation; lowest-mean relative retained-state summaries change with Peclet regime.}
+\label{fig:diffusion-memory}
 \end{figure}
 
-\subsection{Peclet regime shifts the selected mixture}
+\FloatBarrier
 
-The Core1 Peclet sweep tests whether the selected mechanism is tied to one transport condition. We regenerated trajectories at $D=3\times 10^{-4}$, $10^{-3}$, and $3\times 10^{-3}$ on the same geometry and graph-flow field. Mean selected weights shifted systematically (Table~\ref{tab:peclet}). At high Peclet, the pooled-validation mixture remained the best mean-objective sampler and \knn{} conditional matching became more competitive. At lower Peclet, the hybrid sampler became the best mean-objective sampler.
+The physical meaning is still useful, but it is less tidy than the smaller pilot ensembles suggested. Diffusion changes the relationship between local velocity and future path history; validation detects that change, while the 20,000-particle rerun prevents us from overinterpreting it as a single sampler narrative. Mean pooled-validation weights for the Peclet sweep are reported in the Supporting Information. The relative evidence map is therefore not only objective-dependent; it is regime-dependent, and its purpose is to expose retained-state requirements rather than to declare a diffusion-era closure.
 
-\begin{table}[t]
-\centering
-\caption{Mean selected mixture weights across the Core1 Peclet sweep.}
-\label{tab:peclet}
-\small
-\begin{tabular}{lrrrr}
-\toprule
-Condition & \gb{} & \knn{} & \hybrid{} & \pair{} \\
-\midrule
-$D=3\times 10^{-4}$ & 0.4375 & 0.1875 & 0.3333 & 0.0417 \\
-$D=10^{-3}$ & 0.4125 & 0.1500 & 0.4125 & 0.0250 \\
-$D=3\times 10^{-3}$ & 0.2708 & 0.0000 & 0.7083 & 0.0208 \\
-\bottomrule
-\end{tabular}
-\end{table}
+\subsection{Better flow fidelity strengthens velocity-continuity conditioning without making it universal}
 
-This is a mechanistic result. As diffusion increases, strict local velocity matching carries less predictive information, and validation shifts weight toward the learned hybrid transition rule. The selected sampler is therefore not a fixed model choice; it responds to the physical regime.
+The OpenFOAM experiment turns retained-state evidence from an algorithmic observation into a physical test. The section has three steps. First, graph-flow and OpenFOAM trajectories ask whether a more physical velocity field increases Lagrangian velocity persistence. Second, the 18--12--6~$\mu$m resolution ladder asks whether that persistence survives mesh refinement. Third, held-out validation asks whether persistence makes velocity continuity a sufficient reduced state for all observables.
 
-\begin{figure}[t]
+The first comparison isolates the velocity field rather than the sampler. The Core2 graph-flow and 18~$\mu$m OpenFOAM trajectory sets were normalized to the same mean advective speed, so differences are not simply bulk-speed changes. The physical question in Figure~\ref{fig:openfoam-fidelity} is whether OpenFOAM gives velocity continuity a stronger Lagrangian signal to condition on.
+
+\begin{figure}[!htbp]
 \centering
-\begin{subfigure}[t]{0.49\linewidth}
-\centering
-\plotfigure{run_009_peclet_sampler_ranks.svg.png}{1.0}
-\caption{Mean held-out sampler rank.}
-\end{subfigure}
-\hfill
-\begin{subfigure}[t]{0.49\linewidth}
-\centering
-\plotfigure{run_009_peclet_selected_weights.svg.png}{1.0}
-\caption{Selected mixture weights.}
-\end{subfigure}
-\caption{Peclet-regime sensitivity. Increasing diffusivity shifts weight away from strict velocity matching and toward learned hybrid context.}
-\label{fig:peclet}
+\plotfigure{figure6_openfoam_fidelity_resolution.png}{0.98}
+\caption{Reference-trajectory diagnostics comparing graph-flow and 18~$\mu$m OpenFOAM after mean-speed normalization. Axial velocity autocorrelation and step-displacement exceedance are computed from the reference trajectories, and transport summaries are normalized to graph-flow values with trajectory-split intervals. OpenFOAM increases velocity persistence and modestly shifts displacement, entropy-based occupied volume, and late pair-separation summaries before retained-state validation is applied.}
+\label{fig:openfoam-fidelity}
 \end{figure}
 
-\subsection{Second geometry and OpenFOAM flow strengthen the physics kernel}
+This direct Core2 graph-flow versus OpenFOAM comparison explains why velocity-continuity conditioning becomes stronger. OpenFOAM produces a slightly fatter high-displacement tail, slightly larger downstream spread, increased occupied-volume proxy, and slightly increased late-time pair separation. Most importantly, it has higher axial velocity autocorrelation at every checked lag. That is exactly the condition under which a velocity-continuity transition kernel should become more predictive. The OpenFOAM field gives the \gb{} implementation a stronger physically meaningful signal to condition on.
 
-The next test changes the geometry and then the velocity solver. On Core2 graph-flow trajectories, \gb{} becomes the best mean sampler. The selected mixture still uses multiple mechanisms, with mean weights 0.4792 for \gb{}, 0.1875 for \knn{}, 0.2708 for hybrid, and 0.0625 for pair reranking.
+The 18~$\mu$m OpenFOAM objective-weight sensitivity run prevents the high-fidelity result from becoming too simple. Under objective-sensitivity scoring, hybrid transition context has the lowest mean objective across most tested 18~$\mu$m regimes, while occupied-volume-heavy validation gives the lowest mean objective to \gb{} and the balanced outer-split benchmark gives the lowest mean objective to archive proximity. These differences are small compared with split-to-split variability, but they are scientifically useful: at the coarsest finite-volume resolution, the lowest-mean relative retained-state summary depends on the observable and validation split. Better physics strengthens the state information it actually resolves, while leaving validation to test whether a single physical summary is sufficient.
 
-The OpenFOAM-derived trajectory set gives a sharper version of the same result. On trajectories generated from the finite-volume velocity field, \gb{} wins three of four held-out splits (Table~\ref{tab:openfoam}). This is not a problem for the thesis. It is one of the strongest results. The higher-fidelity velocity field makes the original physics-informed \gb{} kernel more valuable, which confirms that the 2019 transition logic still captures real transport structure.
+The resolution ladder strengthens this interpretation while also preventing it from becoming a slogan. Moving from the 18~$\mu$m OpenFOAM mesh to 12~$\mu$m and then to the full 6~$\mu$m image resolution lowers the apparent permeability from $4.28\times10^{-12}$ to $3.69\times10^{-12}$ and $3.49\times10^{-12}$~m$^2$. The total change is about 18\%, and the last step remains about 5\%, so we interpret this as a substantially tightened hydraulic response rather than a proven asymptotic permeability. In the 20,000-particle archives, axial velocity autocorrelation is essentially unchanged between 12 and 6~$\mu$m: at saved-step lag 10 it changes from 0.108 to 0.124 and 0.120, and at lag 80 from 0.086 to 0.101 and 0.100. Velocity-continuity conditioning is therefore not a numerical accident of the coarse OpenFOAM case; it is a physical signal that persists in the finer fields.
 
-\begin{table}[t]
-\centering
-\caption{Core2 OpenFOAM outer-split sampler performance.}
-\label{tab:openfoam}
-\small
-\begin{tabular}{lrrrr}
-\toprule
-Sampler & Mean obj. & Std. obj. & Mean rank & Wins \\
-\midrule
-\gb{} & 261.39 & 28.17 & 1.25 & 3 \\
-\hybrid{} & 273.63 & 28.38 & 2.50 & 1 \\
-Bootstrap mean mixture & 285.49 & 17.76 & 3.75 & 0 \\
-Pooled validation mixture & 299.46 & 33.33 & 3.50 & 0 \\
-\knn{} conditional & 311.05 & 19.82 & 4.50 & 0 \\
-\pair{} & 317.19 & 31.80 & 5.50 & 0 \\
-\bottomrule
-\end{tabular}
-\end{table}
+The validation result is the more important twist (Figure~\ref{fig:resolution-ladder}). In the balanced outer-split benchmark, the lowest mean objective occurs for archive proximity at 18~$\mu$m, \gb{} at 12~$\mu$m, and pair organization at the full 6~$\mu$m resolution, with split-level overlap shown explicitly in the figure. In the full-resolution objective-sensitivity run, validation mixtures have the lowest mean objective for most regimes, including the balanced objective, and their pooled weights retain velocity continuity (0.313), archive proximity (0.396), learned context (0.083), and pair organization (0.208). The resolution ladder therefore changes the claim from ``better flow makes \gb{} win'' to a more general statement: better flow gives velocity continuity a real physical signal, but it does not make velocity continuity universally sufficient for a multi-objective transport prediction.
 
-\begin{figure}[t]
+\begin{figure}[!htbp]
 \centering
-\begin{subfigure}[t]{0.49\linewidth}
-\centering
-\plotfigure{run_010_generalization_sampler_ranks.svg.png}{1.0}
-\caption{Sampler ranks across conditions.}
-\end{subfigure}
-\hfill
-\begin{subfigure}[t]{0.49\linewidth}
-\centering
-\plotfigure{run_010_generalization_selected_weights.svg.png}{1.0}
-\caption{Selected mixture weights.}
-\end{subfigure}
-\caption{Geometry and flow-fidelity generalization. The selected mechanism shifts with geometry and velocity-field fidelity; OpenFOAM strengthens the original physics kernel.}
-\label{fig:generalization}
+\plotfigure{run_016_openfoam_resolution_ladder.png}{0.98}
+\caption{OpenFOAM resolution ladder for Core2 at 18, 12, and 6~$\mu$m. Permeability is plotted with percent changes and cell counts, while axial velocity autocorrelation is shown only for the three OpenFOAM resolution-ladder trajectory sets. Held-out objective scores show split-level values; top annotations separate the lowest-mean mechanism from the number of individual outer splits won by that mechanism. Mixture-weight panels show pooled and inner-split variability. Permeability tightens and velocity autocorrelation is nearly unchanged between 12 and 6~$\mu$m, while lowest-mean relative retained-state summaries still change across the ladder.}
+\label{fig:resolution-ladder}
 \end{figure}
 
-\subsection{Why OpenFOAM changes the ranking}
+\subsection{The product is a relative retained-state evidence map}
 
-The direct Core2 graph-flow versus OpenFOAM comparison explains why \gb{} becomes stronger. Both trajectory sets were normalized to the same mean advective speed, so differences are not simply bulk-speed changes. OpenFOAM produces a slightly fatter high-displacement tail, slightly larger downstream spread, increased dilution, and slightly increased late-time pair separation. Most importantly, OpenFOAM has higher axial velocity autocorrelation at every checked lag. This is exactly the condition under which a velocity-continuity transition kernel should be useful. The OpenFOAM field gives the \gb{} sampler a stronger physically meaningful signal to condition on.
+The preceding tests point to a common structure. A finite trajectory archive can reproduce some held-out behavior through displacement-motif recombination, but learned components do not become universally dominant, and the original physics kernel does not become obsolete. Instead, the lowest-mean relative mechanism and mixture-weight summaries change with objective, Peclet regime, and flow resolution, because different outcomes depend on different retained state information. OpenFOAM flow strengthens the physical basis of velocity continuity, while the full-resolution benchmark shows that a multi-objective transport target can still require pair organization or mixtures of retained states.
 
-\begin{figure}[t]
-\centering
-\begin{subfigure}[t]{0.49\linewidth}
-\centering
-\plotfigure{run_012_core2_graph_vs_openfoam_btc_speed.svg.png}{1.0}
-\caption{Step displacement and breakthrough.}
-\end{subfigure}
-\hfill
-\begin{subfigure}[t]{0.49\linewidth}
-\centering
-\plotfigure{run_012_core2_graph_vs_openfoam_mixing_memory.svg.png}{1.0}
-\caption{Mixing, pair separation, reaction, and memory.}
-\end{subfigure}
-\caption{Core2 graph flow versus OpenFOAM flow. The OpenFOAM field increases velocity memory, which explains why the velocity-continuity kernel becomes more valuable.}
-\label{fig:flowcompare}
-\end{figure}
+Taken together, the benchmarks produce a relative evidence map (Figure~\ref{fig:evidence}). The map should be read as a structured, non-unique summary of evidence among the candidate mechanisms, with uncertainty on individual cells, not as a universal lookup table for Bentheimer or for porous media in general. Across the conditions tested here, no transition state is universally sufficient. That is the central result, not a caveat; overlapping split distributions and shifting lowest-mean mechanisms both argue against a single closure. The exact condition-by-condition values, ranks, split wins, and mixture weights are reported in the Supporting Information so that each row remains traceable to a mean score while the paper's conclusion remains about observable-conditioned retained state.
 
-\subsection{Pair-heavy OpenFOAM objectives still favor learned context}
-
-The OpenFOAM objective-weight sensitivity run prevents the high-fidelity result from becoming too simple. \gb{} is the best mean sampler in six of seven objective regimes, but the pair-heavy regime selects the hybrid sampler. The pair-heavy result is important because reaction opportunity depends on spatial organization and encounter history, not only arrival times. Higher-fidelity flow does not erase the value of learned transition context; it clarifies where learned context matters.
-
-\begin{figure}[t]
-\centering
-\plotfigure{run_011_openfoam_weight_sensitivity_heatmap.svg.png}{0.82}
-\caption{OpenFOAM objective sensitivity. \gb{} is most stable overall, while the pair-heavy regime favors the hybrid sampler.}
-\label{fig:openfoamobjective}
-\end{figure}
-
-\subsection{Evidence synthesis}
-
-The current evidence is summarized in Table~\ref{tab:evidence} and Figure~\ref{fig:evidence}. Across Peclet regime, geometry, and flow fidelity, no sampler wins universally. Peclet regime changes the selected mixture. Second geometry and OpenFOAM flow strengthen \gb{}. Pair-heavy objectives preserve a clear role for learned transition context.
-
-\begin{table}[t]
-\centering
-\caption{Master evidence matrix across physical conditions. Weights are ordered as \gb{}, \knn{}, hybrid, pair-rerank.}
-\label{tab:evidence}
-\small
-\begin{tabular}{llrrl}
-\toprule
-Condition & Best mean sampler & Mean obj. & Mean rank & Selected weights \\
-\midrule
-Core1 high Pe & Pooled validation mixture & 276.15 & 2.00 & 0.438, 0.188, 0.333, 0.042 \\
-Core1 baseline & Pooled validation mixture & 121.64 & 2.00 & 0.413, 0.150, 0.413, 0.025 \\
-Core1 low Pe & Hybrid & 243.53 & 2.50 & 0.271, 0.000, 0.708, 0.021 \\
-Core2 graph & \gb{} & 255.40 & 1.75 & 0.479, 0.188, 0.271, 0.063 \\
-Core2 OpenFOAM & \gb{} & 261.39 & 1.25 & 0.333, 0.167, 0.417, 0.083 \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{figure}[t]
-\centering
-\plotfigure{run_013_master_evidence_matrix.svg.png}{0.95}
-\caption{Master evidence matrix. Across Peclet regime, geometry, and flow fidelity, no sampler wins universally. The selected mechanism changes with physical regime and objective.}
+\begin{center}
+\plotfigure{figure7_memory_adequacy_atlas.png}{0.98}
+\captionof{figure}{Relative held-out evidence map across Peclet regimes, geometry, and flow representations. Each heatmap cell gives a mechanism's objective error relative to the row-best mechanism, normalized by split variability; outlined cells mark the lowest mean objective and open circles mark mechanisms within one split standard deviation. Side bars show pooled-validation mixture weights for the same rows. Lowest-mean mechanisms shift across conditions and many alternatives remain within split variability, indicating structured but non-unique retained-state evidence rather than a universal closure.}
 \label{fig:evidence}
-\end{figure}
+\end{center}
+
+\clearpage
 
 \section{Discussion}
 
-The main result is not that a learned model beats the original physics kernel. The main result is that training trajectories provide a natural scaffold for validation-driven physics/ML mechanism selection. The original \gb{} transition kernel remains hard to beat, especially when the velocity field has stronger physical memory. Learned transition context becomes important under objectives that emphasize pair organization, dilution, or other statistics not reducible to breakthrough alone.
+The tests show that breakthrough, occupied-volume, pair-separation, and encounter-opportunity proxy metrics expose different retained Lagrangian state requirements, and that higher-fidelity flow preserves velocity autocorrelation without making velocity continuity universally sufficient.
 
-This shifts the story from replacement to selection. A black-box learned sampler might look more modern, but it would obscure a key fact: different mechanisms preserve different transport statistics. The validation layer makes those tradeoffs visible. It allows the model to say that a velocity-continuity physics kernel is best for one regime, a learned contextual sampler is better for another objective, and a mixture is appropriate when target metrics are complementary.
+These experiments point to a different way of thinking about reduced transport models. The usual question is whether a model is physical or learned, mechanistic or data-driven, accurate or inaccurate. The results here suggest that those categories are secondary. A model succeeds when it retains the state information needed by the observable being predicted, and it fails when the reduced state omits information that the observable still depends on. In this implementation, memory adequacy is a relative validation statement among candidate mechanisms; the reference-split sensitivity reported in the Supporting Information supplies an empirical uncertainty scale, while absolute adequacy would require a prescribed tolerance for each observable.
 
-This is especially relevant for reactive transport. Reaction opportunity depends on spatial organization and encounter history, not only arrival times. The pair-heavy OpenFOAM result is therefore not a small technical exception. It is evidence that learned context can matter exactly where classical breakthrough-focused calibration may be insufficient.
+This is why breakthrough, occupied-volume, pair-separation, and encounter-opportunity proxy metrics cannot be treated as interchangeable validation targets. Each asks the trajectory generator to protect a different part of the pore-scale past. Breakthrough rewards arrival timing. The occupied-volume proxy exposes whether dilution-relevant spatial organization has survived. Pair-separation and encounter-opportunity proxy metrics ask whether the relative histories of particles have been preserved. A validation framework that only asks whether arrivals are correct can therefore approve a model that has already lost the information needed for dilution-relevant plume organization or the encounter-opportunity proxy.
 
-The OpenFOAM result also changes how the 2019 method should be presented. Rather than describing \gb{} as an old baseline to be beaten, we should treat it as a strong physics-informed component. Its success under OpenFOAM is an asset. It shows that the original method encoded useful interface physics, and that modern ML should build around that structure rather than discard it.
+A correlated CTRW or spatial-Markov model can be read in the same language. Such models do not discard memory; they choose a particular retained state, often a waiting-time distribution, a velocity class, or a transition-history variable, and then ask that state to close the transport problem. The present framework is not a replacement for those closures. It is a way to test whether the retained state supplied by any closure is adequate for the observable being predicted. A breakthrough-calibrated spatial-Markov model may therefore be memory-adequate for arrival while still requiring additional state information to preserve dilution-relevant occupied volume, pair separation, or the encounter-opportunity proxy.
 
-\subsection{Limitations}
+Training trajectories turn pore-scale simulations into archives of observed Lagrangian motifs, and validation indicates which retained state each transport outcome needs. This reframes the role of modern machine learning. A more flexible learned sampler is not automatically a better hydrologic model, because transport observables do not all reward the same information. The learned model is valuable because it can compete with physical transition rules under the discipline of held-out transport validation. In the tight 20,000-particle OpenFOAM ladder, the balanced outer-split lowest-mean mechanisms are archive proximity at 18~$\mu$m, velocity continuity at 12~$\mu$m, and pair organization at 6~$\mu$m, with split-level overlap shown in the corresponding figure and tables. In the full-resolution objective-sensitivity runs, validation mixtures have the lowest mean objective for most regimes. The useful distinction is therefore not allegiance to physics or learning, but knowing which state information is carrying the prediction.
 
-This is still a methods and proof-of-concept paper, not a complete cross-lithology validation study. The graph-flow trajectory sets use an approximate pressure solver and a simple voxel particle tracker. The OpenFOAM validation uses a stair-step voxel mesh at $75^3$, not a smoothed high-resolution DNS or LBM calculation. The second geometry is another Bentheimer subvolume, not a different rock type. The learned transition model is intentionally lightweight and does not yet use a geometry-conditioned sequence model, diffusion segment generator, or calibrated uncertainty model.
+The OpenFOAM result is the strongest physical check on this interpretation. If \gb{} were merely an old heuristic, increasing flow fidelity would not necessarily make velocity continuity more valuable. Instead, the finite-volume velocity fields show stronger axial velocity autocorrelation than the graph-flow reference, and the 12~$\mu$m and 6~$\mu$m cases preserve that signal while the bulk permeability tightens under mesh refinement and strict residual controls. That agreement is the reason the result matters. It indicates that the original training-trajectory transition rule of \citet{Most2019} encoded a real piece of Lagrangian structure. Better flow fidelity strengthens that physics-informed kernel because the flow field preserves the state variable the kernel was designed to use.
 
-These limitations set the boundary of the claim. The supported claim is that validation-driven training trajectories can expose and select among physics and learned transition mechanisms across several controlled conditions. The unsupported claim would be that the present implementation is a final universal pore-scale transport simulator.
+The full-resolution OpenFOAM result keeps the story from collapsing into a simple defense of the physics kernel. The encounter-opportunity proxy depends on spatial organization and encounter history, not only on downstream arrival, and the balanced full-resolution benchmark assigns substantial weight to archive proximity, pair organization, and velocity continuity. Under objective-sensitivity scoring, validation mixtures then have the lowest mean objective for most full-resolution regimes. This is exactly the kind of distinction that a training-trajectory framework should expose: some predictions are controlled by velocity persistence, others by how particles remain organized relative to one another, and the appropriate generator changes accordingly.
 
-\subsection{Next validation steps}
+The memory-adequacy interpretation is also falsifiable. It would be weakened if the same transition mechanism had the lowest mean objective across all observables and regimes, if a breakthrough-only generator also preserved occupied-volume and encounter-opportunity proxy metrics without multi-objective validation, or if increased flow fidelity did not preserve the physical signal exploited by velocity continuity. The evidence here goes the other way. Objective changes alter lowest-mean relative summaries and mixture weights, breakthrough-oriented validation misses other errors, and the OpenFOAM resolution ladder preserves velocity autocorrelation while showing that the lowest-mean balanced full-resolution generator is not the same as the lowest-mean 18~$\mu$m or 12~$\mu$m generator. The archive-density diagnostic adds an important qualification rather than removing the result: the full-reference occupied-volume gap persists under the tested archive and segment perturbations, but same-count reference comparisons show that the entropy proxy is sensitive to ensemble support. We therefore interpret the occupied-volume gap as a diagnostic of the present recombination and validation protocol, not as a universal limit of trajectory archives.
 
-The strongest next physical validation would be a less-downsampled OpenFOAM case, a smoothed \texttt{snappyHexMesh} OpenFOAM workflow, an LBM or GeoChemFoam velocity field, or a cross-lithology dataset with comparable particle trajectories. The strongest next ML step would be a more expressive learned transition rule while keeping the same validation protocol: geometry-conditioned segment embeddings, a neural transition scorer over short histories, a diffusion or flow model for segment generation, and archive-support diagnostics to detect extrapolative generated paths. The validation protocol should not change. Stronger learned models should compete against the same physics kernels under the same held-out multi-objective metrics.
+The present implementation is deliberately bounded, but the memory-adequacy principle is broader than this implementation. The graph-flow trajectory sets use an approximate pressure solver and a simple voxel particle tracker. The OpenFOAM validation now includes a full image-resolution voxel mesh and tighter particle tracking, but it is still a stair-step finite-volume mesh rather than a smoothed high-resolution DNS or LBM calculation. The strided tight archive samples motifs across all 20,000 particles but does not include every overlapping segment as a transition candidate. The second geometry is another Bentheimer subvolume, not a different rock type. The learned transition model is intentionally lightweight. Most importantly, recombined paths are displacement-coordinate motif recombinations rather than new pore-mask-constrained particle tracks through the original geometry, and strict pore-mask checks show high out-of-pore rates for all tested recombined samplers. These choices define scope rather than unresolved validation gaps: the present model should not be read as a universal pore-scale simulator, a replacement for Stokes or LBM flow simulation, or a calibrated reactive-transport model. It is a validation framework for diagnosing which Lagrangian state variables must be retained by a reduced trajectory generator.
+
+The checks that bear directly on the present claims are treated here as sensitivity diagnostics rather than left as future work. The Supporting Information reports reference-split uncertainty, occupied-volume bin sensitivity, encounter-radius sensitivity, inlet-neighborhood pair-sampling sensitivity, geometric-support diagnostics, and archive-density and segment-length perturbations for the Core1 baseline proxy observables. These checks support the qualitative interpretation but also bound it. The occupied-volume contrast persists when recombined ensembles are compared with the full reference under the tested bin sizes, archive densities, and motif lengths, but same-count comparisons show that the occupied-volume entropy estimator is sensitive to particle support. The geometric-support diagnostic shows that translated motifs frequently leave the connected pore mask under a strict check, while the lack of a positive violation--occupied-volume-error correlation across samplers indicates that this is a broad recombination limitation rather than a simple explanation for one row of the sampler ranking. Encounter rankings likewise vary with radius, and an inlet-neighborhood pair-sampling diagnostic changes row-level pair and encounter lowest-error mechanisms. The sampled pairs are therefore ensemble-level proximity diagnostics rather than labeled-reactant pair histories, so encounter probability is interpreted as a coarse encounter-opportunity proxy rather than a calibrated reaction rate. In this bounded sense, the sensitivity checks protect the central claim while preventing the proxy observables from carrying more physical meaning than they support.
+
+The remaining directions are extensions beyond the present claim. A standard correlated-CTRW or spatial-Markov comparison on the same observables would place the archive generator more directly against established reduced closures. A smoothed \texttt{snappyHexMesh} workflow, LBM or GeoChemFoam velocity fields, and cross-lithology trajectory archives would test how the retained-state evidence protocol transfers across flow solvers and rock types. On the learning side, geometry-conditioned segment embeddings, neural transition models over short histories, diffusion or flow models for segment generation, calibrated uncertainty models, and stronger archive-support diagnostics would test whether more expressive generators can retain state information that the lightweight scorer cannot. The validation principle should remain unchanged: more expressive learned models should compete against the same physics kernels under held-out, multi-objective transport metrics.
 
 \section{Conclusions}
 
-The 2019 training-trajectory method anticipated a central idea of modern scientific generative modeling: resolved examples can be recombined under physical constraints to generate new dynamics. Reopening the idea in the AI era does not require replacing the physics-informed transition kernel. The evidence here suggests the opposite. The original \gb{} kernel remains a strong and often dominant component, especially under higher-fidelity OpenFOAM flow.
+The 2019 training-trajectory method anticipated a central idea of modern scientific generative modeling: resolved examples can be recombined under transition rules informed by physics and tested against held-out behavior. Revisiting that idea now reveals a sharper reduced-modeling problem. The challenge is not to choose once and for all between physics and learning, or to crown a universal transition rule. The challenge is to determine which parts of the pore-scale state must survive reduction for a specified observable.
 
-Modern machine learning adds value when it is used to learn complementary transition context and, more importantly, when it is embedded in a validation-driven framework that can select the right mechanism for the physical regime and scientific objective. Across Peclet regimes, a second geometry, OpenFOAM flow, and objective-weight sweeps, no sampler wins universally. That is not a weakness. It is the reason validation-driven mechanism selection is needed.
+Non-Fickian transport is therefore a problem of observable-conditioned retained state. Arrival, dilution-relevant occupied volume, pair separation, and the encounter-opportunity proxy each preserve a different trace of the resolved trajectory history. A model that predicts arrival may still miss dilution-relevant plume organization; a model that preserves velocity continuity may still miss the pair histories needed for the encounter-opportunity proxy. Training trajectories make these losses visible because they turn resolved paths into an archive and allow competing transition rules to be tested against held-out observables.
+
+The result is a relative retained-state evidence map rather than a universal sampler. It shows where velocity continuity carries useful information, where learned context or pair organization contributes, and why higher-fidelity flow can strengthen a physics-informed kernel without making that kernel universally sufficient. The central question for reduced pore-scale transport is therefore not whether a generated trajectory is plausible in general, but whether the generator is memory-adequate for the observable it is asked to predict.
 
 \section*{Acknowledgments}
 
-Placeholder for data sources, software, and funding. The current prototype uses the multi-resolution Bentheimer sandstone image data and locally developed NumPy, OpenFOAM, and trajectory-generation scripts.
+This work was supported by the U.S. National Science Foundation under grant EAR-2538203.
 
-\section*{Data and Code Availability}
+\section*{Open Research}
 
-Current code, processed trajectories, run outputs, and figures are organized in the project workspace. Before submission, the exact scripts, processed trajectory data, JSON outputs, OpenFOAM case configuration, and figure-generation workflow should be archived in a DOI-bearing repository.
+The code, run scripts, processed summary outputs, manuscript sources, figure workflow, and data manifest are available in the active GitHub repository \url{https://github.com/diogobolster/Training-Trajectories-Version-2/tree/main}. Processed figure data and trajectory-summary files needed to reproduce the main figures are included in that repository. Large binary trajectory archives and OpenFOAM mesh/field artifacts needed for full reruns are listed in \texttt{DATA\_MANIFEST.md} and are kept outside GitHub because of file-size limits; these files will be deposited in the DOI-bearing archive used for the formal WRR submission. The repository currently contains the development code and review-preparation data package.
 
 \bibliographystyle{plainnat}
 \bibliography{references}

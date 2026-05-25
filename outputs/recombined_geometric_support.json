@@ -1,0 +1,210 @@
+{
+  "description": "Representative pore-mask occupancy diagnostic for Core1 baseline recombined trajectories by sampler. Occupancy uses the same floor-position voxel convention as the resolved tracker. Dilution errors are taken from the manuscript-facing 20,000-particle outer-split benchmark.",
+  "raw": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/data/raw/Core1_Subvol1_6micron_225cube_16bit_LE.raw",
+  "trajectory_input": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/data/processed/bentheimer_6um_downsample3_D001_n20000_steps800_trajectories.npz",
+  "benchmark": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_6um_downsample3_D001_n20000_stride400_outer_split_mixture_benchmark.json",
+  "mask_shape": [
+    75,
+    75,
+    75
+  ],
+  "split": {
+    "train_pool": 14000,
+    "test": 6000,
+    "test_fraction": 0.3,
+    "seed": 123
+  },
+  "archive": {
+    "segment_steps": 36,
+    "match_steps": 20,
+    "segment_stride": 400,
+    "archive_segments": 28000,
+    "train_pool": 14000
+  },
+  "diagnostic_settings": {
+    "diffusivity": 0.001,
+    "candidate_limit": 256,
+    "gaussian_bandwidth": 0.25,
+    "n_generated": 1000,
+    "n_segments": 32
+  },
+  "samplers": {
+    "bootstrap_mean_mixture": {
+      "occupancy": {
+        "n_trajectories": 1000,
+        "n_points": 533000,
+        "outside_domain_points": 26651,
+        "inside_domain_solid_points": 253862,
+        "violation_points": 280513,
+        "outside_domain_fraction_all_points": 0.05000187617260788,
+        "inside_domain_solid_fraction_all_points": 0.47628893058161353,
+        "violation_fraction_all_points": 0.5262908067542214,
+        "inside_domain_solid_fraction_in_domain_points": 0.5013577591740085,
+        "mean_path_length": 533.0
+      },
+      "benchmark_dilution_log_mae": {
+        "mean": 1.4695073382288677,
+        "std": 0.0497109193673904,
+        "split_values": [
+          1.4143614606602193,
+          1.5351887104857411,
+          1.4630317592473951,
+          1.4654474225221148
+        ]
+      }
+    },
+    "pooled_validation_mixture": {
+      "occupancy": {
+        "n_trajectories": 1000,
+        "n_points": 533000,
+        "outside_domain_points": 27097,
+        "inside_domain_solid_points": 252974,
+        "violation_points": 280071,
+        "outside_domain_fraction_all_points": 0.050838649155722324,
+        "inside_domain_solid_fraction_all_points": 0.47462288930581614,
+        "violation_fraction_all_points": 0.5254615384615384,
+        "inside_domain_solid_fraction_in_domain_points": 0.5000444749289884,
+        "mean_path_length": 533.0
+      },
+      "benchmark_dilution_log_mae": {
+        "mean": 1.4559516627838445,
+        "std": 0.04375436180156737,
+        "split_values": [
+          1.4410623925845312,
+          1.5199837689316853,
+          1.441724866181553,
+          1.4210356234376087
+        ]
+      }
+    },
+    "gaussian_bayes": {
+      "occupancy": {
+        "n_trajectories": 1000,
+        "n_points": 533000,
+        "outside_domain_points": 30222,
+        "inside_domain_solid_points": 247793,
+        "violation_points": 278015,
+        "outside_domain_fraction_all_points": 0.056701688555347095,
+        "inside_domain_solid_fraction_all_points": 0.46490243902439027,
+        "violation_fraction_all_points": 0.5216041275797373,
+        "inside_domain_solid_fraction_in_domain_points": 0.49284773796785064,
+        "mean_path_length": 533.0
+      },
+      "benchmark_dilution_log_mae": {
+        "mean": 1.4502709831907272,
+        "std": 0.04821349471121934,
+        "split_values": [
+          1.4323980528275322,
+          1.521073869231194,
+          1.4128437336582227,
+          1.4347682770459596
+        ]
+      }
+    },
+    "knn_conditional": {
+      "occupancy": {
+        "n_trajectories": 1000,
+        "n_points": 533000,
+        "outside_domain_points": 23268,
+        "inside_domain_solid_points": 247991,
+        "violation_points": 271259,
+        "outside_domain_fraction_all_points": 0.043654784240150096,
+        "inside_domain_solid_fraction_all_points": 0.46527392120075045,
+        "violation_fraction_all_points": 0.5089287054409005,
+        "inside_domain_solid_fraction_in_domain_points": 0.4865125203047876,
+        "mean_path_length": 533.0
+      },
+      "benchmark_dilution_log_mae": {
+        "mean": 1.457123194335134,
+        "std": 0.03106778688331385,
+        "split_values": [
+          1.4244416257238466,
+          1.4968788629130203,
+          1.464121859546905,
+          1.4430504291567638
+        ]
+      }
+    },
+    "hybrid": {
+      "occupancy": {
+        "n_trajectories": 1000,
+        "n_points": 533000,
+        "outside_domain_points": 31277,
+        "inside_domain_solid_points": 259069,
+        "violation_points": 290346,
+        "outside_domain_fraction_all_points": 0.05868105065666041,
+        "inside_domain_solid_fraction_all_points": 0.4860581613508443,
+        "violation_fraction_all_points": 0.5447392120075046,
+        "inside_domain_solid_fraction_in_domain_points": 0.5163586281673354,
+        "mean_path_length": 533.0
+      },
+      "benchmark_dilution_log_mae": {
+        "mean": 1.4547801312325555,
+        "std": 0.049455615339657755,
+        "split_values": [
+          1.4468386190891975,
+          1.5268500957358608,
+          1.4261941996203777,
+          1.4192376104847853
+        ]
+      }
+    },
+    "pair_rerank": {
+      "occupancy": {
+        "n_trajectories": 1000,
+        "n_points": 533000,
+        "outside_domain_points": 26450,
+        "inside_domain_solid_points": 243662,
+        "violation_points": 270112,
+        "outside_domain_fraction_all_points": 0.04962476547842402,
+        "inside_domain_solid_fraction_all_points": 0.45715196998123825,
+        "violation_fraction_all_points": 0.5067767354596623,
+        "inside_domain_solid_fraction_in_domain_points": 0.4810226038890534,
+        "mean_path_length": 533.0
+      },
+      "benchmark_dilution_log_mae": {
+        "mean": 1.4870944271579742,
+        "std": 0.05247554362456625,
+        "split_values": [
+          1.4323980528275315,
+          1.553933215306368,
+          1.461941658947885,
+          1.5001047815501116
+        ]
+      }
+    }
+  },
+  "occupancy": {
+    "held_out_reference_sample": {
+      "n_trajectories": 1000,
+      "n_points": 801000,
+      "outside_domain_points": 0,
+      "inside_domain_solid_points": 0,
+      "violation_points": 0,
+      "outside_domain_fraction_all_points": 0.0,
+      "inside_domain_solid_fraction_all_points": 0.0,
+      "violation_fraction_all_points": 0.0,
+      "inside_domain_solid_fraction_in_domain_points": 0.0,
+      "mean_path_length": 801.0
+    }
+  },
+  "correlations": {
+    "samplers": [
+      "bootstrap_mean_mixture",
+      "pooled_validation_mixture",
+      "gaussian_bayes",
+      "knn_conditional",
+      "hybrid",
+      "pair_rerank"
+    ],
+    "pearson": {
+      "n": 6,
+      "r": -0.49597911108303694
+    },
+    "spearman": {
+      "n": 6,
+      "r": -0.4285714285714286
+    },
+    "interpretation": "Positive values indicate that samplers with more pore-mask violations also have larger held-out dilution log errors in this diagnostic."
+  }
+}

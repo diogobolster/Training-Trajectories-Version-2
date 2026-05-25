@@ -39,22 +39,22 @@ CONDITIONS = [
         "id": "core1_high_pe",
         "label": "Core1 high Pe",
         "short": "Core1 high Pe",
-        "path": ROOT / "outputs" / "bentheimer_6um_downsample3_D0003_outer_split_mixture_benchmark.json",
-        "interpretation": "low diffusion favors velocity matching and validation mixtures",
+        "path": ROOT / "outputs" / "bentheimer_6um_downsample3_D0003_n20000_stride400_outer_split_mixture_benchmark.json",
+        "interpretation": "high Pe has a hybrid lowest-mean mechanism with broad mixture support",
     },
     {
         "id": "core1_baseline",
         "label": "Core1 baseline",
         "short": "Core1 baseline",
-        "path": ROOT / "outputs" / "bentheimer_6um_downsample3_outer_split_mixture_benchmark.json",
-        "interpretation": "pooled mixture and Gaussian/Bayes are co-best by rank",
+        "path": ROOT / "outputs" / "bentheimer_6um_downsample3_D001_n20000_stride400_outer_split_mixture_benchmark.json",
+        "interpretation": "Gaussian/Bayes has the lowest mean objective but all memories remain active",
     },
     {
         "id": "core1_low_pe",
         "label": "Core1 low Pe",
         "short": "Core1 low Pe",
-        "path": ROOT / "outputs" / "bentheimer_6um_downsample3_D003_outer_split_mixture_benchmark.json",
-        "interpretation": "higher diffusion shifts selected weight toward hybrid context",
+        "path": ROOT / "outputs" / "bentheimer_6um_downsample3_D003_n20000_stride400_outer_split_mixture_benchmark.json",
+        "interpretation": "higher diffusion gives the lowest mean objective to a validation mixture with substantial velocity support",
     },
     {
         "id": "core2_graph",
@@ -62,8 +62,8 @@ CONDITIONS = [
         "short": "Core2 graph",
         "path": ROOT
         / "outputs"
-        / "bentheimer_core2_subvol1_6um_downsample3_D001_outer_split_mixture_benchmark.json",
-        "interpretation": "second geometry restores Gaussian/Bayes as the best mean sampler",
+        / "bentheimer_core2_subvol1_6um_downsample3_D001_n20000_stride400_outer_split_mixture_benchmark.json",
+        "interpretation": "second geometry gives the lowest mean objective to a mixture with the largest learned-context share",
     },
     {
         "id": "core2_openfoam",
@@ -71,8 +71,8 @@ CONDITIONS = [
         "short": "Core2 OF 18 um",
         "path": ROOT
         / "outputs"
-        / "bentheimer_core2_subvol1_6um_downsample3_D001_openfoam_dt010_n5000_stride400_outer_split_mixture_benchmark.json",
-        "interpretation": "tight coarse OpenFOAM favors archive proximity",
+        / "bentheimer_core2_subvol1_6um_downsample3_D001_openfoam_dt010_n20000_stride1600_outer_split_mixture_benchmark.json",
+        "interpretation": "tight coarse OpenFOAM gives the lowest mean objective to archive proximity",
     },
     {
         "id": "core2_openfoam_12um",
@@ -80,8 +80,8 @@ CONDITIONS = [
         "short": "Core2 OF 12 um",
         "path": ROOT
         / "outputs"
-        / "bentheimer_core2_subvol1_6um_downsample2_D00225_openfoam_phys_scaled_dt010_n5000_stride400_outer_split_mixture_benchmark.json",
-        "interpretation": "tighter resolution favors validation-selected mixtures",
+        / "bentheimer_core2_subvol1_6um_downsample2_D00225_openfoam_phys_scaled_dt010_n20000_stride1600_outer_split_mixture_benchmark.json",
+        "interpretation": "intermediate OpenFOAM resolution gives the lowest mean objective to velocity continuity",
     },
     {
         "id": "core2_openfoam_6um",
@@ -89,8 +89,8 @@ CONDITIONS = [
         "short": "Core2 OF 6 um",
         "path": ROOT
         / "outputs"
-        / "bentheimer_core2_subvol1_6um_fullres_D009_openfoam_strict_dt010_n5000_stride400_outer_split_mixture_benchmark.json",
-        "interpretation": "strict full-resolution flow keeps multiple memories alive",
+        / "bentheimer_core2_subvol1_6um_fullres_D009_openfoam_strict_dt010_n20000_stride1600_outer_split_mixture_benchmark.json",
+        "interpretation": "strict full-resolution flow gives the lowest mean objective to pair organization while mixtures retain multiple memories",
     },
 ]
 
@@ -102,7 +102,7 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=ROOT
         / "outputs"
-        / "bentheimer_core2_subvol1_6um_fullres_D009_openfoam_strict_dt010_n5000_stride400_objective_weight_sensitivity.json",
+        / "bentheimer_core2_subvol1_6um_fullres_D009_openfoam_strict_dt010_n20000_stride1600_objective_weight_sensitivity.json",
     )
     parser.add_argument("--output-json", type=Path, default=ROOT / "outputs" / "master_evidence_table.json")
     parser.add_argument("--output-csv", type=Path, default=ROOT / "outputs" / "master_evidence_table.csv")
@@ -131,11 +131,23 @@ def main() -> None:
 def condition_row(condition: dict[str, object]) -> dict[str, object]:
     data = load_json(condition["path"])
     sampler_summary = data["summary"]["samplers"]
-    best_sampler = min(
-        sampler_summary,
-        key=lambda name: sampler_summary[name]["mean_objective"],
+    ordered = sorted(
+        sampler_summary.items(),
+        key=lambda item: item[1]["mean_objective"],
     )
+    best_sampler = ordered[0][0]
     best = sampler_summary[best_sampler]
+    if len(ordered) > 1:
+        second = ordered[1][1]
+        mean_gap_to_second = second["mean_objective"] - best["mean_objective"]
+        split_variability = max(
+            best.get("std_objective", 0.0),
+            second.get("std_objective", 0.0),
+        )
+    else:
+        mean_gap_to_second = 0.0
+        split_variability = best.get("std_objective", 0.0)
+    uncertainty_marker = "robust" if mean_gap_to_second > split_variability else "overlapping"
     weights = data["summary"]["mean_selected_weights"]
     return {
         "id": condition["id"],
@@ -147,6 +159,9 @@ def condition_row(condition: dict[str, object]) -> dict[str, object]:
         "best_mean_objective": best["mean_objective"],
         "best_mean_rank": best["mean_rank"],
         "best_wins": best["wins"],
+        "mean_gap_to_second": mean_gap_to_second,
+        "split_variability": split_variability,
+        "uncertainty_marker": uncertainty_marker,
         "beats_gaussian_bayes": best["beats_gaussian_bayes"],
         "beats_hybrid": best["beats_hybrid"],
         "selected_weights": weights,
@@ -199,6 +214,9 @@ def write_csv(path: Path, rows: list[dict[str, object]]) -> None:
             "best_mean_objective",
             "best_mean_rank",
             "best_wins",
+            "uncertainty_marker",
+            "mean_gap_to_second",
+            "split_variability",
             "gaussian_weight",
             "knn_weight",
             "hybrid_weight",
@@ -216,6 +234,9 @@ def write_csv(path: Path, rows: list[dict[str, object]]) -> None:
                     "best_mean_objective": row["best_mean_objective"],
                     "best_mean_rank": row["best_mean_rank"],
                     "best_wins": row["best_wins"],
+                    "uncertainty_marker": row["uncertainty_marker"],
+                    "mean_gap_to_second": row["mean_gap_to_second"],
+                    "split_variability": row["split_variability"],
                     "gaussian_weight": weights["gaussian_bayes"],
                     "knn_weight": weights["knn_conditional"],
                     "hybrid_weight": weights["hybrid"],
@@ -238,10 +259,10 @@ def master_svg(rows: list[dict[str, object]], sensitivity: dict[str, object]) ->
     }
     y0 = 104
     body = svg_header(width, height, "Master evidence table: validation selects by regime")
-    body += text(56, 52, "Across Peclet, geometry, and flow fidelity, no sampler wins universally; the original physics kernel remains a strong component.", "subtitle")
+    body += text(56, 52, "Across Peclet, geometry, and flow fidelity, no sampler wins universally; lowest-mean mechanisms shift with the retained-state requirement.", "subtitle")
     body += header_text(x["condition"], 84, "condition")
-    body += header_text(x["best"], 84, "best mean sampler")
-    body += header_text(x["rank"], 84, "rank / wins")
+    body += header_text(x["best"], 84, "lowest mean sampler")
+    body += header_text(x["rank"], 84, "rank / split wins")
     body += header_text(x["weights"], 84, "mean selected weights")
     body += header_text(x["interpretation"], 84, "interpretation")
     for idx, row in enumerate(rows):
@@ -278,7 +299,7 @@ def master_svg(rows: list[dict[str, object]], sensitivity: dict[str, object]) ->
     body += text(
         56,
         note_y + 26,
-        f'Gaussian/Bayes is best in {sensitivity["gaussian_best_count"]}/{sensitivity["n_regimes"]} objective regimes; pair-heavy selects {SAMPLER_DISPLAY[sensitivity["pair_heavy_best_sampler"]]}.',
+        f'Gaussian/Bayes has the lowest mean objective in {sensitivity["gaussian_best_count"]}/{sensitivity["n_regimes"]} objective regimes; pair-heavy selects {SAMPLER_DISPLAY[sensitivity["pair_heavy_best_sampler"]]}.',
         "cell",
     )
     body += text(

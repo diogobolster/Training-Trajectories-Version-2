@@ -21,13 +21,13 @@ CASES = [
         "trajectory": ROOT
         / "data"
         / "processed"
-        / "bentheimer_core2_subvol1_6um_downsample3_D001_openfoam_dt010_n5000_trajectories.npz",
+        / "bentheimer_core2_subvol1_6um_downsample3_D001_openfoam_dt010_n20000_trajectories.npz",
         "balanced": ROOT
         / "outputs"
-        / "bentheimer_core2_subvol1_6um_downsample3_D001_openfoam_dt010_n5000_stride400_outer_split_mixture_benchmark.json",
+        / "bentheimer_core2_subvol1_6um_downsample3_D001_openfoam_dt010_n20000_stride1600_outer_split_mixture_benchmark.json",
         "sensitivity": ROOT
         / "outputs"
-        / "bentheimer_core2_subvol1_6um_downsample3_D001_openfoam_dt010_n5000_stride400_objective_weight_sensitivity.json",
+        / "bentheimer_core2_subvol1_6um_downsample3_D001_openfoam_dt010_n20000_stride1600_objective_weight_sensitivity.json",
     },
     {
         "name": "downsample2",
@@ -37,13 +37,13 @@ CASES = [
         "trajectory": ROOT
         / "data"
         / "processed"
-        / "bentheimer_core2_subvol1_6um_downsample2_D00225_openfoam_phys_scaled_dt010_n5000_trajectories.npz",
+        / "bentheimer_core2_subvol1_6um_downsample2_D00225_openfoam_phys_scaled_dt010_n20000_trajectories.npz",
         "balanced": ROOT
         / "outputs"
-        / "bentheimer_core2_subvol1_6um_downsample2_D00225_openfoam_phys_scaled_dt010_n5000_stride400_outer_split_mixture_benchmark.json",
+        / "bentheimer_core2_subvol1_6um_downsample2_D00225_openfoam_phys_scaled_dt010_n20000_stride1600_outer_split_mixture_benchmark.json",
         "sensitivity": ROOT
         / "outputs"
-        / "bentheimer_core2_subvol1_6um_downsample2_D00225_openfoam_phys_scaled_dt010_n5000_stride400_objective_weight_sensitivity.json",
+        / "bentheimer_core2_subvol1_6um_downsample2_D00225_openfoam_phys_scaled_dt010_n20000_stride1600_objective_weight_sensitivity.json",
     },
     {
         "name": "fullres",
@@ -53,13 +53,13 @@ CASES = [
         "trajectory": ROOT
         / "data"
         / "processed"
-        / "bentheimer_core2_subvol1_6um_fullres_D009_openfoam_strict_dt010_n5000_trajectories.npz",
+        / "bentheimer_core2_subvol1_6um_fullres_D009_openfoam_strict_dt010_n20000_trajectories.npz",
         "balanced": ROOT
         / "outputs"
-        / "bentheimer_core2_subvol1_6um_fullres_D009_openfoam_strict_dt010_n5000_stride400_outer_split_mixture_benchmark.json",
+        / "bentheimer_core2_subvol1_6um_fullres_D009_openfoam_strict_dt010_n20000_stride1600_outer_split_mixture_benchmark.json",
         "sensitivity": ROOT
         / "outputs"
-        / "bentheimer_core2_subvol1_6um_fullres_D009_openfoam_strict_dt010_n5000_stride400_objective_weight_sensitivity.json",
+        / "bentheimer_core2_subvol1_6um_fullres_D009_openfoam_strict_dt010_n20000_stride1600_objective_weight_sensitivity.json",
     },
 ]
 
@@ -67,13 +67,13 @@ CASES = [
 def main() -> None:
     output = ROOT / "outputs" / "openfoam_resolution_ladder_summary.json"
     summary = {
-        "description": "Resolution ladder for Core2 OpenFOAM trajectory-memory tests using tight dt=0.1, n=5000 particle archives.",
+        "description": "Resolution ladder for Core2 OpenFOAM trajectory-memory tests using tight dt=0.1, n=20000 particle archives.",
         "trajectory_protocol": {
-            "particles": 5000,
+            "particles": 20000,
             "dt": 0.1,
             "steps": 4000,
             "segment_steps": 160,
-            "segment_stride": 400,
+            "segment_stride": 1600,
         },
         "autocorrelation_lags": [10, 20, 40, 80],
         "cases": {},

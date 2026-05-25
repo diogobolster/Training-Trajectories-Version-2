@@ -5,6 +5,7 @@
 \usepackage{lmodern}
 \usepackage{array}
 \usepackage{booktabs}
+\usepackage{graphicx}
 
 \newcommand{\gb}{Gaussian/Bayes}
 \newcommand{\knn}{kNN}
@@ -12,6 +13,7 @@
 \newcommand{\pair}{pair-rerank}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
 
 \title{Supporting Information for ``What Must a Pore-Scale Transport Model Remember? Memory Adequacy in Non-Fickian Transport''}
 \author{Diogo Bolster}
@@ -22,9 +24,125 @@
 
 \section*{Purpose and Reproducibility}
 
-This supporting information records the numerical details behind the memory-adequacy results reported in the main text. The main manuscript keeps the scientific design compact: a resolved trajectory archive, competing memory mechanisms, and held-out observables. The tables below provide the audit trail for that design, including the tight OpenFOAM resolution ladder, particle-tracking tolerances, objective-weight sensitivity, and the evidence matrix used to construct the memory-adequacy atlas.
+This supporting information records the numerical details behind the relative memory-adequacy results reported in the main text. The main manuscript keeps the scientific design compact: a resolved trajectory archive, competing transition mechanisms, and held-out observables. The tables and figures below provide the audit trail for that design, including proxy-observable sensitivity, geometric-support diagnostics, archive-density and segment-length diagnostics, the tight OpenFOAM resolution ladder, particle-tracking tolerances, objective-weight sensitivity, and the evidence matrix used to construct the relative retained-state map.
 
-The OpenFOAM cases use voxel finite-volume meshes extracted from the same Core2 Bentheimer subvolume. The 18~$\mu$m and 12~$\mu$m cases use downsampled voxel meshes, while the 6~$\mu$m case uses the full image-resolution voxel mesh and a strict SIMPLE solve with zero linear-solver relative tolerances and residual-control thresholds of $10^{-9}$ for pressure and velocity. The trajectory archives used for the manuscript-facing OpenFOAM tests contain 5000 particles, 4000 saved steps, and saved-step interval $\Delta t=0.1$. Particle integration used internal substepping with physical tolerances scaled across the resolution ladder; no case reached the substep cap.
+The OpenFOAM cases use voxel finite-volume meshes extracted from the same Core2 Bentheimer subvolume. The 18~$\mu$m and 12~$\mu$m cases use downsampled voxel meshes, while the 6~$\mu$m case uses the full image-resolution voxel mesh and a strict SIMPLE solve with zero linear-solver relative tolerances and residual-control thresholds of $10^{-9}$ for pressure and velocity. All manuscript-facing trajectory archives contain 20,000 particles. The OpenFOAM archives use 4000 saved steps and saved-step interval $\Delta t=0.1$. Particle integration used internal substepping with physical tolerances scaled across the resolution ladder; no case reached the substep cap.
+
+Mechanisms with the lowest mean objective in these tables should not be read as statistically separated closures. Several mean differences are small compared with split-to-split variability, and separate columns report mean rank and split wins where available. The tables support qualitative claims: breakthrough and the occupied-volume proxy can disagree, lowest-mean mechanisms and mixture weights shift with objective and regime, OpenFOAM preserves velocity autocorrelation under refinement, and no retained state wins universally.
+
+The occupied-volume and encounter quantities are proxy observables. The dilution index used here is an entropy-based occupied-volume measure computed from binned particles, not a resolved concentration field or scalar-dissipation calculation. Encounter probability is a coarse-grained encounter-opportunity proxy for sampled particle pairs, not a reactive-transport rate law. We therefore report reference-split, bin-size, encounter-radius, inlet-neighborhood pair-sampling, archive-density, segment-length, and geometric-support sensitivity checks in Figures~\ref{fig:Sproxy}--\ref{fig:Sarchiveconv} and Tables~\ref{tab:Sproxy}--\ref{tab:Sgeom}. These checks support qualitative interpretation of the memory map, not calibrated reactive-transport prediction.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/figureS_proxy_sensitivity.png}
+\caption{Core1 baseline proxy-observable sensitivity checks. The occupied-volume panel varies the entropy-bin size and reports the final-time generated--reference gap normalized by reference split-to-split variability. The encounter-opportunity panel varies the proximity radius and compares the reference probability with the generated range across candidate mechanisms.}
+\label{fig:Sproxy}
+\end{figure}
+
+\begin{table}[!htbp]
+\centering
+\caption{Core1 baseline sensitivity checks for proxy observables. Reference-vs-reference errors are computed by splitting each held-out reference test set in half. Occupied-volume-bin rows report the closest generated final-time occupied-volume value among candidate mechanisms; encounter-radius rows report the mechanism with the lowest mean absolute encounter-opportunity proxy error.}
+\label{tab:Sproxy}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}L{1.15in}L{0.68in}L{1.35in}L{1.25in}L{1.35in}@{}}
+\toprule
+Check & Perturbation & Reference result & Generated result & Qualitative effect \\
+\midrule
+Reference split & default metrics & BTC score $7.30\pm1.82$; occupied-volume log MAE $0.017\pm0.006$; pair MAE $0.68\pm0.20$; encounter-opportunity abs. error $0.0041\pm0.0015$ & Defines empirical uncertainty scale & Used to interpret Figure~3 ribbons and the occupied-volume gap inset \\
+Occupied-volume bin & 2 cells & final occupied volume $9838\pm146$ & closest generated 946; gap 60.8 ref. SD & all generated curves remain below reference \\
+Occupied-volume bin & 3 cells & final occupied volume $17424\pm334$ & closest generated 3121; gap 42.8 ref. SD & manuscript result unchanged \\
+Occupied-volume bin & 4 cells & final occupied volume $25359\pm667$ & closest generated 6910; gap 27.7 ref. SD & occupied-volume gap persists under coarser bins \\
+Encounter radius & 2 cells & probability $0.0115\pm0.0026$ & generated range 0.0108--0.0117; lowest error bootstrap mixture & encounter-opportunity ranking is radius-sensitive \\
+Encounter radius & 3 cells & probability $0.0206\pm0.0024$ & generated range 0.0190--0.0200; lowest error \gb{} & default proxy remains qualitative \\
+Encounter radius & 4 cells & probability $0.0299\pm0.0038$ & generated range 0.0286--0.0309; lowest error \gb{} & proximity metric is not a reaction-rate law \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\caption{Core1 baseline sensitivity of pair-separation and encounter-opportunity proxies to pair-sampling convention. Uniform sampling draws particle pairs from all ensemble indices, as in the main benchmarks. The inlet-neighborhood diagnostic instead samples pairs whose initial transverse separation is within 6 grid cells. The conditioned diagnostic changes row-level lowest-error mechanisms, so it supports the interpretation of pair and encounter metrics as ensemble-level proximity diagnostics rather than labeled-reactant pair histories.}
+\label{tab:Sinletpairs}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}L{1.25in}L{1.15in}L{1.05in}L{1.30in}L{1.30in}@{}}
+\toprule
+Pair sampling & Reference encounter probability & Lowest pair-separation error & Lowest encounter-opportunity error & Interpretation \\
+\midrule
+Uniform over all indices & 0.0206 & \hybrid{}; pair MAE 1.459 & \gb{}; abs. error 0.0036 & Main benchmark convention \\
+Initial transverse separation $\leq 6$ cells & 0.4624 & \pair{}; pair MAE 0.536 & \hybrid{}; abs. error 0.0113 & Row-level lowest-error mechanisms depend on the pair-sampling rule \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{figures/figureS_archive_convergence.png}
+\caption{Limited Core1 archive-density and segment-length convergence diagnostic for the occupied-volume gap. The diagnostic uses \gb{} recombination with 10k, 20k, and 28k archived segments, corresponding to 5k, 10k, and 14k training trajectories after the 30\% held-out split. Two motif lengths are tested. Comparing recombined ensembles with the full held-out reference preserves the apparent occupied-volume deficit, but comparing with same-count held-out reference subsamples changes the sign. This indicates that the Figure~3 occupied-volume contrast is a proxy-observable diagnostic affected by entropy-estimator sample support, not a calibrated universal dilution deficit.}
+\label{fig:Sarchiveconv}
+\end{figure}
+
+\begin{table}[!htbp]
+\centering
+\caption{Core1 archive-density and segment-length diagnostic. Values are means over three repeats. Ratios are final-time entropy-based occupied-volume indices for recombined trajectories divided by either the full held-out reference or a same-count held-out reference subsample.}
+\label{tab:Sarchiveconv}
+\scriptsize
+\begin{tabular}{llrrrrr}
+\toprule
+Motif & Archive & Segments & BTC score & Occ.-vol. log MAE & Gen/full ref. & Gen/same-count ref. \\
+\midrule
+24-step & 5k particles & 10k & 140.65 & 1.096 & 0.261 & 1.148 \\
+24-step & 10k particles & 20k & 124.84 & 1.091 & 0.263 & 1.153 \\
+24-step & 14k particles & 28k & 133.01 & 1.082 & 0.268 & 1.169 \\
+36-step & 5k particles & 10k & 119.25 & 1.071 & 0.268 & 1.225 \\
+36-step & 10k particles & 20k & 108.17 & 1.105 & 0.256 & 1.165 \\
+36-step & 14k particles & 28k & 108.28 & 1.064 & 0.262 & 1.212 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\caption{Core1 baseline geometric-support diagnostic for recombined trajectories. Violation fractions are computed by flooring each recombined point to a voxel and checking the connected pore mask used by the resolved tracker. Occupied-volume errors are mean held-out occupied-volume log MAE values from the 20,000-particle outer-split benchmark. The held-out resolved reference sample has 0\% violation under the same check. Across the six recombined mechanisms, violation rate is not positively correlated with occupied-volume error (Pearson $r=-0.50$, Spearman $r=-0.43$), so out-of-pore recombination is interpreted as a broad support limitation rather than a mechanism-specific explanation for the occupied-volume ranking.}
+\label{tab:Sgeom}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}L{1.65in}rrrr@{}}
+\toprule
+Mechanism & Violating points & In-solid points & Out-of-domain points & Occ.-vol. log MAE \\
+\midrule
+Bootstrap mixture & 52.63\% & 47.63\% & 5.00\% & $1.470\pm0.050$ \\
+Validation mixture & 52.55\% & 47.46\% & 5.08\% & $1.456\pm0.044$ \\
+\gb{} & 52.16\% & 46.49\% & 5.67\% & $1.450\pm0.048$ \\
+\knn{} conditional & 50.89\% & 46.53\% & 4.37\% & $1.457\pm0.031$ \\
+\hybrid{} & 54.47\% & 48.61\% & 5.87\% & $1.455\pm0.049$ \\
+\pair{} & 50.68\% & 45.72\% & 4.96\% & $1.487\pm0.052$ \\
+Held-out reference & 0.00\% & 0.00\% & 0.00\% & -- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\caption{Archive and validation bookkeeping for manuscript-facing benchmarks. All rows use 20,000 tracked particles before splitting, a 70/30 outer train--test split, four outer splits, and three inner validation repeats. Candidate caps are listed as memory-free / archive-proximity / velocity-continuity, learned-context, and pair-organization candidates per transition; mixtures combine the component transition distributions.}
+\label{tab:Sarchivebookkeeping}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}L{1.75in}L{1.05in}L{1.15in}L{1.25in}L{1.15in}L{1.20in}L{1.15in}L{1.00in}@{}}
+\toprule
+Benchmark group & Outer train/test & Inner fit/validation & Generated trajectories & Segment / match / stride & Archived motifs & Candidate motifs & Pair samples \\
+\midrule
+Graph-flow balanced outer-split benchmarks (Core1 Pe sweep; Core2 graph) & 14,000 / 6,000 & 9,800 / 4,200 & 60 per validation-grid candidate; 120 per test mechanism per outer split & 36 / 20 / 400 & 19,600 inner fit; 28,000 final train & all / 96 / 256 & 3,000 \\
+Graph-flow objective-sensitivity and breakthrough-only counterfactual & 14,000 / 6,000 & 9,800 / 4,200 & 50 per validation-grid candidate; 100 per test mechanism or validation mixture per outer split & 36 / 20 / 400 & 19,600 inner fit; 28,000 final train & all / 96 / 256 & 2,500 \\
+OpenFOAM balanced resolution ladder & 14,000 / 6,000 & 9,800 / 4,200 & 60 per validation-grid candidate; 120 per test mechanism per outer split & 160 / 80 / 1600 at 18~$\mu$m; 160 / 60 / 1600 at 12 and 6~$\mu$m & 29,400 inner fit; 42,000 final train & all / 96 / 256 & 3,000 \\
+OpenFOAM objective-sensitivity ladder & 14,000 / 6,000 & 9,800 / 4,200 & 50 per validation-grid candidate; 100 per test mechanism or validation mixture per outer split & 160 / 80 / 1600 at 18~$\mu$m; 160 / 60 / 1600 at 12 and 6~$\mu$m & 29,400 inner fit; 42,000 final train & all / 96 / 256 & 2,500 \\
+Core1 particle-count stability diagnostic & Subsets of 500, 2,500, 5,000, 10,000, and 20,000 compared with 20,000-particle reference & No archive recombination & 30 random subset repeats except the full reference & Not applicable & Not applicable & Not applicable & 10,000 per subset; 50,000 reference \\
+\bottomrule
+\end{tabular}
+}%
+\end{table}
 
 \section*{Solver and Tracking Audit}
 
@@ -37,9 +155,9 @@ The OpenFOAM cases use voxel finite-volume meshes extracted from the same Core2 
 \toprule
 Voxel size & Cells & Flow time & $k$ (m$^2$) & Max residual & Particles & Max substeps & Cap hits \\
 \midrule
-18~$\mu$m & 98,270 & 103 & $4.277\times10^{-12}$ & -- & 5000 & 4 & 0 \\
-12~$\mu$m & 322,524 & 105 & $3.690\times10^{-12}$ & -- & 5000 & 5 & 0 \\
-6~$\mu$m & 2,650,688 & 604 & $3.492\times10^{-12}$ & $9.94\times10^{-10}$ & 5000 & 9 & 0 \\
+18~$\mu$m & 98,270 & 103 & $4.277\times10^{-12}$ & -- & 20,000 & 4 & 0 \\
+12~$\mu$m & 322,524 & 105 & $3.690\times10^{-12}$ & -- & 20,000 & 5 & 0 \\
+6~$\mu$m & 2,650,688 & 604 & $3.492\times10^{-12}$ & $9.94\times10^{-10}$ & 20,000 & 10 & 0 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -53,9 +171,9 @@ Voxel size & Cells & Flow time & $k$ (m$^2$) & Max residual & Particles & Max su
 \toprule
 Voxel size & $D$ & Max adv. step & Max diff. step & Mean length & Mean substeps \\
 \midrule
-18~$\mu$m & $10^{-3}$ & 0.0333 & 0.0250 & 4001.000 & 1.0086 \\
-12~$\mu$m & $2.25\times10^{-3}$ & 0.0500 & 0.0375 & 4000.842 & 1.0108 \\
-6~$\mu$m & $9\times10^{-3}$ & 0.1000 & 0.0750 & 4000.689 & 1.0101 \\
+18~$\mu$m & $10^{-3}$ & 0.0333 & 0.0250 & 4000.998 & 1.0082 \\
+12~$\mu$m & $2.25\times10^{-3}$ & 0.0500 & 0.0375 & 4000.936 & 1.0106 \\
+6~$\mu$m & $9\times10^{-3}$ & 0.1000 & 0.0750 & 4000.805 & 1.0094 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -64,97 +182,102 @@ Voxel size & $D$ & Max adv. step & Max diff. step & Mean length & Mean substeps 
 
 \begin{table}[!htbp]
 \centering
-\caption{Outer-split robustness on Core1 baseline trajectories. Lower objective and rank are better.}
+\caption{Outer-split variability on 20,000-particle Core1 baseline trajectories. Lower objective and rank are better; mean differences should be interpreted against the split-to-split standard deviations.}
 \label{tab:Souter}
 \small
 \begin{tabular}{lrrrrr}
 \toprule
-Mechanism & Mean obj. & Std. obj. & Mean rank & Wins & Beats GB/H \\
+Mechanism & Mean obj. & Std. obj. & Mean rank & Split wins & Beats GB/H \\
 \midrule
-Validation mixture & 121.64 & 47.75 & 2.00 & 2 & 3/3 \\
-\gb{} & 125.48 & 50.22 & 2.00 & 2 & --/4 \\
-\hybrid{} & 127.71 & 57.25 & 3.20 & 1 & 1/-- \\
-Bootstrap mixture & 132.05 & 50.44 & 3.20 & 0 & 1/3 \\
-\knn{} conditional & 142.47 & 38.49 & 4.80 & 0 & 0/1 \\
-\pair{} & 167.72 & 60.16 & 5.80 & 0 & 0/0 \\
+\gb{} & 319.51 & 8.35 & 3.00 & 0 & --/2 \\
+\knn{} conditional & 319.74 & 22.51 & 2.50 & 2 & 3/2 \\
+\hybrid{} & 321.94 & 14.63 & 2.50 & 1 & 2/-- \\
+Bootstrap mixture & 325.96 & 12.44 & 3.50 & 1 & 1/1 \\
+Validation mixture & 327.99 & 12.69 & 4.25 & 0 & 2/1 \\
+\pair{} & 345.03 & 22.97 & 5.25 & 0 & 0/0 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \begin{table}[!htbp]
 \centering
-\caption{Best mean mechanism under different Core1 objective-weight regimes.}
+\caption{Objective-sensitivity lowest-mean mechanism under the eight Core1 scalar objective-weight regimes used in Figure~4. The regimes perturb the objective to reveal observable dependence rather than to define a universal scalar score.}
 \label{tab:Sobjective}
 \small
-\begin{tabular}{lrrr}
+\begin{tabular}{llrr}
 \toprule
-Regime & Best mean mechanism & Mean obj. & Mean rank \\
+Regime & Lowest-mean mechanism & Mean obj. & Mean rank \\
 \midrule
-Balanced & \gb{} & 145.26 & 2.25 \\
-BTC heavy & \gb{} & 188.73 & 2.25 \\
-Pair heavy & \knn{} conditional & 204.41 & 2.75 \\
-Dilution heavy & \hybrid{} & 170.07 & 2.50 \\
-Reaction light & \gb{} & 140.53 & 2.25 \\
-Reaction heavy & \gb{} & 85.75 & 1.75 \\
-No reaction & \gb{} & 140.01 & 2.00 \\
+Balanced & \gb{} & 343.69 & 3.50 \\
+Breakthrough only & Bootstrap mixture & 102.30 & 2.25 \\
+BTC heavy & \gb{} & 439.82 & 2.25 \\
+Pair heavy & Bootstrap mixture & 290.50 & 1.75 \\
+Occupied-volume heavy & \gb{} & 655.01 & 2.50 \\
+Encounter light & \gb{} & 339.91 & 3.25 \\
+Encounter heavy & Bootstrap mixture & 177.99 & 2.75 \\
+No encounter & \gb{} & 339.49 & 3.25 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \begin{table}[!htbp]
 \centering
-\caption{Mean selected mixture weights across the Core1 Peclet sweep. Weights are ordered as velocity memory, archive proximity, learned context, and pair organization.}
+\caption{Mean pooled-validation mixture weights across the Core1 Peclet sweep. Weights are ordered as velocity memory, archive proximity, learned context, and pair organization.}
 \label{tab:Speclet}
 \small
 \begin{tabular}{lrrrr}
 \toprule
 Condition & \gb{} & \knn{} & \hybrid{} & \pair{} \\
 \midrule
-$D=3\times 10^{-4}$ & 0.4375 & 0.1875 & 0.3333 & 0.0417 \\
-$D=10^{-3}$ & 0.4125 & 0.1500 & 0.4125 & 0.0250 \\
-$D=3\times 10^{-3}$ & 0.2708 & 0.0000 & 0.7083 & 0.0208 \\
+$D=3\times 10^{-4}$ & 0.2292 & 0.3333 & 0.3125 & 0.1250 \\
+$D=10^{-3}$ & 0.2500 & 0.2292 & 0.2708 & 0.2500 \\
+$D=3\times 10^{-3}$ & 0.3750 & 0.2292 & 0.3125 & 0.0833 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \begin{table}[!htbp]
 \centering
-\caption{Core2 18~$\mu$m OpenFOAM tight-archive outer-split mechanism performance. Lower objective and rank are better. The benchmark uses 5000 tracked particles and a strided archive of path motifs.}
+\caption{Core2 18~$\mu$m OpenFOAM tight-archive outer-split mechanism performance with 20,000 tracked particles. Lower objective and rank are better; the spreads are large enough that the table supports lowest-mean, mean-rank, and split-win comparisons rather than crisp statistical separation.}
 \label{tab:Sopenfoam}
 \small
 \begin{tabular}{lrrrr}
 \toprule
-Mechanism & Mean obj. & Std. obj. & Mean rank & Wins \\
+Mechanism & Mean obj. & Std. obj. & Mean rank & Split wins \\
 \midrule
-\knn{} conditional & 1567.42 & 101.70 & 2.75 & 1 \\
-Validation mixture & 1595.51 & 164.09 & 3.00 & 1 \\
-\gb{} & 1614.39 & 112.04 & 4.00 & 1 \\
-Bootstrap mixture & 1619.47 & 87.60 & 3.00 & 1 \\
-\pair{} & 1650.90 & 57.19 & 4.25 & 0 \\
-\hybrid{} & 1657.55 & 16.51 & 4.00 & 0 \\
+\knn{} conditional & 1570.01 & 29.49 & 3.75 & 1 \\
+\hybrid{} & 1571.85 & 102.93 & 2.75 & 1 \\
+\pair{} & 1578.50 & 98.33 & 3.25 & 0 \\
+\gb{} & 1580.43 & 106.41 & 3.75 & 1 \\
+Bootstrap mixture & 1594.09 & 175.76 & 3.75 & 1 \\
+Validation mixture & 1634.54 & 83.50 & 3.75 & 0 \\
 \bottomrule
 \end{tabular}
+\par\vspace{0.45em}
+{\footnotesize\textit{Note.} Table~\ref{tab:Sopenfoam} and Table~\ref{tab:Sresolution} report lowest mean objective for the balanced outer-split benchmark. Table~\ref{tab:Sopenfoamobjective} reports objective-sensitivity lowest-mean mechanisms under perturbed scalar objectives. Differences at 18~$\mu$m are small relative to split variability; the interpretation is dependence on validation target, not a unique 18~$\mu$m closure.\par}
 \end{table}
 
 \begin{table}[!htbp]
 \centering
-\caption{Best mean memory under different objective-weight regimes for the tight OpenFOAM resolution ladder. This table supports the main-text claim that the selected memory is conditional on resolution and observable: archive proximity is favored throughout the 18~$\mu$m case, validation-selected mixtures dominate the 12~$\mu$m case, and the 6~$\mu$m case preserves a velocity-memory exception for the pair-heavy objective.}
+\caption{Objective-sensitivity lowest-mean retained state under different objective-weight regimes for the 20,000-particle OpenFOAM resolution ladder. This table reports lowest-mean relative summaries, not statistically certified unique closures: learned transition context has the lowest mean objective across most 18~$\mu$m regimes, velocity continuity has the lowest mean objective at 12~$\mu$m, and validation mixtures have the lowest mean objective in most 6~$\mu$m sensitivity tests.}
 \label{tab:Sopenfoamobjective}
 \small
 \begin{tabular}{@{}L{0.24\linewidth}L{0.23\linewidth}L{0.23\linewidth}L{0.20\linewidth}@{}}
 \toprule
 Objective regime & 18~$\mu$m & 12~$\mu$m & 6~$\mu$m \\
 \midrule
-Balanced & Archive proximity & Validation mixture & Validation mixture \\
-Breakthrough only & Archive proximity & Validation mixture & Validation mixture \\
-BTC heavy & Archive proximity & Validation mixture & Validation mixture \\
-Pair heavy & Archive proximity & Validation mixture & Velocity memory \\
-Dilution heavy & Archive proximity & Validation mixture & Validation mixture \\
-Reaction light & Archive proximity & Validation mixture & Validation mixture \\
-Reaction heavy & Archive proximity & Validation mixture & Validation mixture \\
-No reaction & Archive proximity & Validation mixture & Validation mixture \\
+Balanced & Learned context & Velocity memory & Validation mixture \\
+Breakthrough only & Learned context & Velocity memory & Validation mixture \\
+BTC heavy & Learned context & Velocity memory & Validation mixture \\
+Pair heavy & Learned context & Velocity memory & Bootstrap mixture \\
+Occupied-volume heavy & Velocity memory & Velocity memory & Bootstrap mixture \\
+Encounter light & Learned context & Velocity memory & Validation mixture \\
+Encounter heavy & Learned context & Velocity memory & Validation mixture \\
+No encounter & Learned context & Velocity memory & Validation mixture \\
 \bottomrule
 \end{tabular}
+\par\vspace{0.45em}
+{\footnotesize\textit{Note.} Table~\ref{tab:Sopenfoam} and Table~\ref{tab:Sresolution} report lowest mean objective for the balanced outer-split benchmark. Table~\ref{tab:Sopenfoamobjective} reports objective-sensitivity lowest-mean mechanisms under perturbed scalar objectives. Differences at 18~$\mu$m are small relative to split variability; the interpretation is dependence on validation target, not a unique 18~$\mu$m closure.\par}
 \end{table}
 
 \begin{table}[!htbp]
@@ -166,19 +289,19 @@ No reaction & Archive proximity & Validation mixture & Validation mixture \\
 \toprule
 Memory hypothesis & Implementation & Primary information used & Role \\
 \midrule
-Memory-free & Unconditional & Archive frequency only & Baseline forgetting \\
+Memory-free & Unconditional & Archive frequency only & Null conditioning \\
 Archive proximity & \knn{} conditional & Local empirical proximity & Nonparametric matching \\
 Velocity memory & \gb{} & Diffusion-scaled velocity continuity & Original physics kernel \\
 Learned context & \hybrid{} & Contrastive learned score plus \gb{} & Learned transition memory \\
 Pair organization & \pair{} & Pair descriptors plus \gb{} & Short-horizon spatial organization \\
-Memory mixture & Validation-selected mixture & Component weights selected by held-out score & Objective-aware memory selection \\
+Memory mixture & Validation mixture & Component weights chosen by held-out score & Objective-aware memory weighting \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 \begin{table}[!htbp]
 \centering
-\caption{Trajectory ensembles and benchmark roles.}
+\caption{Trajectory ensembles and benchmark roles. All manuscript-facing ensembles contain 20,000 particles. In the OpenFOAM resolution ladder, $u_{\mathrm{grid}}\propto\Delta x^{-1}$ and $D_{\mathrm{grid}}\propto\Delta x^{-2}$ so that physical speed, physical diffusivity, and Peclet number based on the 18~$\mu$m reference length are held approximately fixed.}
 \label{tab:Sexperiments}
 \small
 \begin{tabular}{@{}L{0.20\linewidth}L{0.14\linewidth}L{0.16\linewidth}L{0.14\linewidth}L{0.22\linewidth}@{}}
@@ -198,38 +321,46 @@ Core2 OpenFOAM 6~$\mu$m & Core2 & Finite volume & $9\times10^{-3}$ & Strict full
 
 \begin{table}[!htbp]
 \centering
-\caption{Evidence matrix across the benchmark conditions. Weights are ordered as velocity memory, archive proximity, learned context, and pair organization.}
+\caption{Evidence matrix across the benchmark conditions. Weights are ordered as velocity continuity, archive proximity, learned context, and pair organization. The ``lowest-mean memory'' column denotes the mechanism with the lowest mean objective under the stated benchmark, not a statistically certified unique or universal closure.}
 \label{tab:Sevidence}
 \small
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{llrrl}
 \toprule
-Condition & Best mean memory & Mean obj. & Mean rank & Selected weights \\
+Condition & Lowest-mean memory & Mean obj. & Mean rank & Mixture weights \\
 \midrule
-Core1 high Pe & Validation mixture & 276.15 & 2.00 & 0.438, 0.188, 0.333, 0.042 \\
-Core1 baseline & Validation mixture & 121.64 & 2.00 & 0.413, 0.150, 0.413, 0.025 \\
-Core1 low Pe & Learned context & 243.53 & 2.50 & 0.271, 0.000, 0.708, 0.021 \\
-Core2 graph & Velocity memory & 255.40 & 1.75 & 0.479, 0.188, 0.271, 0.063 \\
-Core2 OpenFOAM 18~$\mu$m & Archive proximity & 1567.42 & 2.75 & 0.167, 0.417, 0.083, 0.333 \\
-Core2 OpenFOAM 12~$\mu$m & Validation mixture & 1593.69 & 1.50 & 0.063, 0.479, 0.125, 0.333 \\
-Core2 OpenFOAM 6~$\mu$m & Validation mixture & 1695.18 & 2.50 & 0.271, 0.417, 0.104, 0.208 \\
+Core1 high Pe & Learned context & 316.35 & 2.00 & 0.229, 0.333, 0.313, 0.125 \\
+Core1 baseline & Velocity memory & 319.51 & 3.00 & 0.250, 0.229, 0.271, 0.250 \\
+Core1 low Pe & Validation mixture & 319.34 & 1.50 & 0.375, 0.229, 0.313, 0.083 \\
+Core2 graph & Validation mixture & 325.98 & 3.00 & 0.271, 0.125, 0.396, 0.208 \\
+Core2 OpenFOAM 18~$\mu$m & Archive proximity & 1570.01 & 3.75 & 0.083, 0.396, 0.250, 0.271 \\
+Core2 OpenFOAM 12~$\mu$m & Velocity memory & 1647.69 & 2.00 & 0.125, 0.500, 0.125, 0.250 \\
+Core2 OpenFOAM 6~$\mu$m & Pair organization & 1657.02 & 2.50 & 0.313, 0.396, 0.083, 0.208 \\
 \bottomrule
 \end{tabular}
+}%
+\par\vspace{0.45em}
+{\footnotesize\textit{Note.} Table~\ref{tab:Sopenfoam} and Table~\ref{tab:Sresolution} report lowest mean objective for the balanced outer-split benchmark. Table~\ref{tab:Sopenfoamobjective} reports objective-sensitivity lowest-mean mechanisms under perturbed scalar objectives. Differences at 18~$\mu$m are small relative to split variability; the interpretation is dependence on validation target, not a unique 18~$\mu$m closure.\par}
 \end{table}
 
 \begin{table}[!htbp]
 \centering
-\caption{OpenFOAM resolution ladder for Core2 using tight 5000-particle trajectory archives. The autocorrelation values are axial velocity autocorrelations of the resolved reference trajectories at the listed saved-step lag with $\Delta t=0.1$.}
+\caption{OpenFOAM resolution ladder for Core2 using tight 20,000-particle trajectory archives. The autocorrelation values are axial velocity autocorrelations of the resolved reference trajectories at the listed saved-step lag with $\Delta t=0.1$. The near equality between 12 and 6~$\mu$m shows that velocity persistence is stable over the two finer meshes; the permeability values tighten substantially but should not be read as a three-point asymptotic convergence proof.}
 \label{tab:Sresolution}
-\small
+\scriptsize
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{lrrrrrr}
 \toprule
-Voxel size & Cells & $k$ (m$^2$) & Corr. lag 10 & Corr. lag 80 & Balanced best & Mean obj. \\
+Voxel size & Cells & $k$ (m$^2$) & Corr. lag 10 & Corr. lag 80 & Balanced lowest mean & Mean obj. \\
 \midrule
-18~$\mu$m & 98,270 & $4.277\times10^{-12}$ & 0.1099 & 0.0878 & Archive proximity & 1567.42 \\
-12~$\mu$m & 322,524 & $3.690\times10^{-12}$ & 0.1259 & 0.1019 & Validation mixture & 1593.69 \\
-6~$\mu$m & 2,650,688 & $3.492\times10^{-12}$ & 0.1260 & 0.1043 & Validation mixture & 1695.18 \\
+18~$\mu$m & 98,270 & $4.277\times10^{-12}$ & 0.108 & 0.086 & Archive proximity & 1570.01 \\
+12~$\mu$m & 322,524 & $3.690\times10^{-12}$ & 0.124 & 0.101 & Velocity memory & 1647.69 \\
+6~$\mu$m & 2,650,688 & $3.492\times10^{-12}$ & 0.120 & 0.100 & Pair organization & 1657.02 \\
 \bottomrule
 \end{tabular}
+}%
+\par\vspace{0.45em}
+{\footnotesize\textit{Note.} Table~\ref{tab:Sopenfoam} and Table~\ref{tab:Sresolution} report lowest mean objective for the balanced outer-split benchmark. Table~\ref{tab:Sopenfoamobjective} reports objective-sensitivity lowest-mean mechanisms under perturbed scalar objectives. Differences at 18~$\mu$m are small relative to split variability; the interpretation is dependence on validation target, not a unique 18~$\mu$m closure.\par}
 \end{table}
 
 \end{document}

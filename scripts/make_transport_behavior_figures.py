@@ -146,6 +146,19 @@ def summarize_records(records: dict[str, list[dict]]) -> dict[str, dict]:
                 )
                 for stat in ("q10", "q50", "q90", "coverage")
             },
+            "breakthrough_std": {
+                stat: np.asarray(
+                    [
+                        np.nanstd(
+                            [float(read_metric(item["breakthrough"], plane)[stat]) for item in items],
+                            ddof=1,
+                        )
+                        for plane in planes
+                    ],
+                    dtype=float,
+                )
+                for stat in ("q10", "q50", "q90", "coverage")
+            },
             "dilution_mean": np.asarray(
                 [
                     np.nanmean(

@@ -4,306 +4,327 @@
       "id": "core1_high_pe",
       "label": "Core1 high Pe",
       "short": "Core1 high Pe",
-      "path": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_6um_downsample3_D0003_outer_split_mixture_benchmark.json",
-      "best_sampler": "pooled_validation_mixture",
-      "best_sampler_display": "pooled mix",
-      "best_mean_objective": 276.1499699681123,
+      "path": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_6um_downsample3_D0003_n20000_stride400_outer_split_mixture_benchmark.json",
+      "best_sampler": "hybrid",
+      "best_sampler_display": "hybrid",
+      "best_mean_objective": 316.35322785284086,
       "best_mean_rank": 2.0,
-      "best_wins": 2,
-      "beats_gaussian_bayes": 3,
-      "beats_hybrid": 3,
+      "best_wins": 1,
+      "mean_gap_to_second": 2.4828957113813317,
+      "split_variability": 24.18540631811564,
+      "uncertainty_marker": "overlapping",
+      "beats_gaussian_bayes": 1,
+      "beats_hybrid": 0,
       "selected_weights": {
-        "gaussian_bayes": 0.4375,
-        "knn_conditional": 0.1875,
-        "hybrid": 0.33333333333333337,
-        "pair_rerank": 0.04166666666666667
+        "gaussian_bayes": 0.22916666666666669,
+        "knn_conditional": 0.33333333333333337,
+        "hybrid": 0.31250000000000006,
+        "pair_rerank": 0.125
       },
-      "dominant_selected_component": "gaussian_bayes",
-      "interpretation": "low diffusion favors velocity matching and validation mixtures"
+      "dominant_selected_component": "knn_conditional",
+      "interpretation": "high Pe has a hybrid lowest-mean mechanism with broad mixture support"
     },
     {
       "id": "core1_baseline",
       "label": "Core1 baseline",
       "short": "Core1 baseline",
-      "path": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_6um_downsample3_outer_split_mixture_benchmark.json",
-      "best_sampler": "pooled_validation_mixture",
-      "best_sampler_display": "pooled mix",
-      "best_mean_objective": 121.6368448240576,
-      "best_mean_rank": 2.0,
-      "best_wins": 2,
-      "beats_gaussian_bayes": 3,
-      "beats_hybrid": 3,
+      "path": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_6um_downsample3_D001_n20000_stride400_outer_split_mixture_benchmark.json",
+      "best_sampler": "gaussian_bayes",
+      "best_sampler_display": "Gaussian/Bayes",
+      "best_mean_objective": 319.50663065617175,
+      "best_mean_rank": 3.0,
+      "best_wins": 0,
+      "mean_gap_to_second": 0.23581099619445922,
+      "split_variability": 22.510073961201762,
+      "uncertainty_marker": "overlapping",
+      "beats_gaussian_bayes": 0,
+      "beats_hybrid": 2,
       "selected_weights": {
-        "gaussian_bayes": 0.4125,
-        "knn_conditional": 0.15,
-        "hybrid": 0.4125,
-        "pair_rerank": 0.025
+        "gaussian_bayes": 0.25,
+        "knn_conditional": 0.22916666666666666,
+        "hybrid": 0.27083333333333337,
+        "pair_rerank": 0.25
       },
-      "dominant_selected_component": "gaussian_bayes",
-      "interpretation": "pooled mixture and Gaussian/Bayes are co-best by rank"
+      "dominant_selected_component": "hybrid",
+      "interpretation": "Gaussian/Bayes has the lowest mean objective but all memories remain active"
     },
     {
       "id": "core1_low_pe",
       "label": "Core1 low Pe",
       "short": "Core1 low Pe",
-      "path": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_6um_downsample3_D003_outer_split_mixture_benchmark.json",
-      "best_sampler": "hybrid",
-      "best_sampler_display": "hybrid",
-      "best_mean_objective": 243.5256243863843,
-      "best_mean_rank": 2.5,
-      "best_wins": 1,
-      "beats_gaussian_bayes": 2,
-      "beats_hybrid": 0,
+      "path": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_6um_downsample3_D003_n20000_stride400_outer_split_mixture_benchmark.json",
+      "best_sampler": "pooled_validation_mixture",
+      "best_sampler_display": "pooled mix",
+      "best_mean_objective": 319.3357916865368,
+      "best_mean_rank": 1.5,
+      "best_wins": 2,
+      "mean_gap_to_second": 7.465906619763132,
+      "split_variability": 26.23424237473336,
+      "uncertainty_marker": "overlapping",
+      "beats_gaussian_bayes": 4,
+      "beats_hybrid": 4,
       "selected_weights": {
-        "gaussian_bayes": 0.2708333333333333,
-        "knn_conditional": 0.0,
-        "hybrid": 0.7083333333333334,
-        "pair_rerank": 0.020833333333333332
+        "gaussian_bayes": 0.375,
+        "knn_conditional": 0.22916666666666669,
+        "hybrid": 0.31250000000000006,
+        "pair_rerank": 0.08333333333333334
       },
-      "dominant_selected_component": "hybrid",
-      "interpretation": "higher diffusion shifts selected weight toward hybrid context"
+      "dominant_selected_component": "gaussian_bayes",
+      "interpretation": "higher diffusion gives the lowest mean objective to a validation mixture with substantial velocity support"
     },
     {
       "id": "core2_graph",
       "label": "Core2 graph flow",
       "short": "Core2 graph",
-      "path": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_core2_subvol1_6um_downsample3_D001_outer_split_mixture_benchmark.json",
-      "best_sampler": "gaussian_bayes",
-      "best_sampler_display": "Gaussian/Bayes",
-      "best_mean_objective": 255.39600188433806,
-      "best_mean_rank": 1.75,
+      "path": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_core2_subvol1_6um_downsample3_D001_n20000_stride400_outer_split_mixture_benchmark.json",
+      "best_sampler": "pooled_validation_mixture",
+      "best_sampler_display": "pooled mix",
+      "best_mean_objective": 325.98469365300423,
+      "best_mean_rank": 3.0,
       "best_wins": 2,
-      "beats_gaussian_bayes": 0,
-      "beats_hybrid": 3,
+      "mean_gap_to_second": 3.554815526929076,
+      "split_variability": 22.324660396276055,
+      "uncertainty_marker": "overlapping",
+      "beats_gaussian_bayes": 3,
+      "beats_hybrid": 2,
       "selected_weights": {
-        "gaussian_bayes": 0.4791666666666667,
-        "knn_conditional": 0.18749999999999997,
-        "hybrid": 0.2708333333333333,
-        "pair_rerank": 0.0625
+        "gaussian_bayes": 0.2708333333333333,
+        "knn_conditional": 0.125,
+        "hybrid": 0.39583333333333337,
+        "pair_rerank": 0.20833333333333331
       },
-      "dominant_selected_component": "gaussian_bayes",
-      "interpretation": "second geometry restores Gaussian/Bayes as the best mean sampler"
+      "dominant_selected_component": "hybrid",
+      "interpretation": "second geometry gives the lowest mean objective to a mixture with the largest learned-context share"
     },
     {
       "id": "core2_openfoam",
       "label": "Core2 OpenFOAM 18 um",
       "short": "Core2 OF 18 um",
-      "path": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_core2_subvol1_6um_downsample3_D001_openfoam_dt010_n5000_stride400_outer_split_mixture_benchmark.json",
+      "path": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_core2_subvol1_6um_downsample3_D001_openfoam_dt010_n20000_stride1600_outer_split_mixture_benchmark.json",
       "best_sampler": "knn_conditional",
       "best_sampler_display": "kNN",
-      "best_mean_objective": 1567.4216253466207,
-      "best_mean_rank": 2.75,
+      "best_mean_objective": 1570.01219522736,
+      "best_mean_rank": 3.75,
       "best_wins": 1,
-      "beats_gaussian_bayes": 3,
-      "beats_hybrid": 3,
+      "mean_gap_to_second": 1.8425490112092575,
+      "split_variability": 102.92829439362299,
+      "uncertainty_marker": "overlapping",
+      "beats_gaussian_bayes": 1,
+      "beats_hybrid": 1,
       "selected_weights": {
-        "gaussian_bayes": 0.16666666666666666,
-        "knn_conditional": 0.41666666666666663,
-        "hybrid": 0.08333333333333333,
-        "pair_rerank": 0.33333333333333337
+        "gaussian_bayes": 0.08333333333333334,
+        "knn_conditional": 0.39583333333333337,
+        "hybrid": 0.25,
+        "pair_rerank": 0.27083333333333337
       },
       "dominant_selected_component": "knn_conditional",
-      "interpretation": "tight coarse OpenFOAM favors archive proximity"
+      "interpretation": "tight coarse OpenFOAM gives the lowest mean objective to archive proximity"
     },
     {
       "id": "core2_openfoam_12um",
       "label": "Core2 OpenFOAM 12 um",
       "short": "Core2 OF 12 um",
-      "path": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_core2_subvol1_6um_downsample2_D00225_openfoam_phys_scaled_dt010_n5000_stride400_outer_split_mixture_benchmark.json",
-      "best_sampler": "pooled_validation_mixture",
-      "best_sampler_display": "pooled mix",
-      "best_mean_objective": 1593.6922452583835,
-      "best_mean_rank": 1.5,
-      "best_wins": 3,
-      "beats_gaussian_bayes": 4,
+      "path": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_core2_subvol1_6um_downsample2_D00225_openfoam_phys_scaled_dt010_n20000_stride1600_outer_split_mixture_benchmark.json",
+      "best_sampler": "gaussian_bayes",
+      "best_sampler_display": "Gaussian/Bayes",
+      "best_mean_objective": 1647.69397643097,
+      "best_mean_rank": 2.0,
+      "best_wins": 2,
+      "mean_gap_to_second": 26.152708031510656,
+      "split_variability": 78.96683239429443,
+      "uncertainty_marker": "overlapping",
+      "beats_gaussian_bayes": 0,
       "beats_hybrid": 4,
       "selected_weights": {
-        "gaussian_bayes": 0.06250000000000001,
-        "knn_conditional": 0.4791666666666667,
+        "gaussian_bayes": 0.12499999999999999,
+        "knn_conditional": 0.5,
         "hybrid": 0.125,
-        "pair_rerank": 0.3333333333333333
+        "pair_rerank": 0.25
       },
       "dominant_selected_component": "knn_conditional",
-      "interpretation": "tighter resolution favors validation-selected mixtures"
+      "interpretation": "intermediate OpenFOAM resolution gives the lowest mean objective to velocity continuity"
     },
     {
       "id": "core2_openfoam_6um",
       "label": "Core2 OpenFOAM 6 um",
       "short": "Core2 OF 6 um",
-      "path": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_core2_subvol1_6um_fullres_D009_openfoam_strict_dt010_n5000_stride400_outer_split_mixture_benchmark.json",
-      "best_sampler": "pooled_validation_mixture",
-      "best_sampler_display": "pooled mix",
-      "best_mean_objective": 1695.1789547064195,
+      "path": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_core2_subvol1_6um_fullres_D009_openfoam_strict_dt010_n20000_stride1600_outer_split_mixture_benchmark.json",
+      "best_sampler": "pair_rerank",
+      "best_sampler_display": "pair rerank",
+      "best_mean_objective": 1657.0160691201552,
       "best_mean_rank": 2.5,
-      "best_wins": 2,
+      "best_wins": 0,
+      "mean_gap_to_second": 17.933696297073766,
+      "split_variability": 108.62023529112284,
+      "uncertainty_marker": "overlapping",
       "beats_gaussian_bayes": 3,
       "beats_hybrid": 3,
       "selected_weights": {
-        "gaussian_bayes": 0.27083333333333337,
-        "knn_conditional": 0.4166666666666667,
-        "hybrid": 0.10416666666666666,
-        "pair_rerank": 0.20833333333333331
+        "gaussian_bayes": 0.3125,
+        "knn_conditional": 0.39583333333333337,
+        "hybrid": 0.08333333333333333,
+        "pair_rerank": 0.20833333333333334
       },
       "dominant_selected_component": "knn_conditional",
-      "interpretation": "strict full-resolution flow keeps multiple memories alive"
+      "interpretation": "strict full-resolution flow gives the lowest mean objective to pair organization while mixtures retain multiple memories"
     }
   ],
   "openfoam_objective_sensitivity": {
-    "path": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_core2_subvol1_6um_fullres_D009_openfoam_strict_dt010_n5000_stride400_objective_weight_sensitivity.json",
-    "gaussian_best_count": 1,
+    "path": "/Users/dbolster/Documents/Codex/Training Trajectories Neural Net/outputs/bentheimer_core2_subvol1_6um_fullres_D009_openfoam_strict_dt010_n20000_stride1600_objective_weight_sensitivity.json",
+    "gaussian_best_count": 0,
     "n_regimes": 8,
-    "pair_heavy_best_sampler": "gaussian_bayes",
+    "pair_heavy_best_sampler": "bootstrap_mean_mixture",
     "regimes": [
       {
         "regime": "balanced",
         "best_sampler": "pooled_validation_mixture",
         "best_sampler_display": "pooled mix",
-        "best_mean_objective": 1695.1789547064195,
-        "best_mean_rank": 2.5,
+        "best_mean_objective": 1677.785371633934,
+        "best_mean_rank": 2.25,
         "bootstrap_mean_weights": {
-          "gaussian_bayes": 0.27083333333333337,
-          "knn_conditional": 0.4166666666666667,
-          "hybrid": 0.10416666666666666,
-          "pair_rerank": 0.20833333333333331
+          "gaussian_bayes": 0.3125,
+          "knn_conditional": 0.3541666666666667,
+          "hybrid": 0.08333333333333333,
+          "pair_rerank": 0.24999999999999997
         },
         "pooled_validation_weights": {
-          "gaussian_bayes": 0.125,
-          "knn_conditional": 0.5625,
+          "gaussian_bayes": 0.3125,
+          "knn_conditional": 0.5,
           "hybrid": 0.0625,
-          "pair_rerank": 0.25
+          "pair_rerank": 0.125
         }
       },
       {
         "regime": "breakthrough_only",
         "best_sampler": "pooled_validation_mixture",
         "best_sampler_display": "pooled mix",
-        "best_mean_objective": 1388.3083333333334,
-        "best_mean_rank": 2.5,
+        "best_mean_objective": 1390.6666666666665,
+        "best_mean_rank": 2.25,
         "bootstrap_mean_weights": {
-          "gaussian_bayes": 0.25,
-          "knn_conditional": 0.4583333333333333,
+          "gaussian_bayes": 0.24999999999999997,
+          "knn_conditional": 0.3541666666666667,
           "hybrid": 0.10416666666666666,
-          "pair_rerank": 0.1875
+          "pair_rerank": 0.29166666666666663
         },
         "pooled_validation_weights": {
-          "gaussian_bayes": 0.125,
-          "knn_conditional": 0.5625,
+          "gaussian_bayes": 0.3125,
+          "knn_conditional": 0.5,
           "hybrid": 0.0625,
-          "pair_rerank": 0.25
+          "pair_rerank": 0.125
         }
       },
       {
         "regime": "btc_heavy",
         "best_sampler": "pooled_validation_mixture",
         "best_sampler_display": "pooled mix",
-        "best_mean_objective": 4318.360310686543,
-        "best_mean_rank": 2.5,
+        "best_mean_objective": 4315.559352483634,
+        "best_mean_rank": 2.25,
         "bootstrap_mean_weights": {
-          "gaussian_bayes": 0.29166666666666663,
-          "knn_conditional": 0.4583333333333333,
-          "hybrid": 0.08333333333333333,
-          "pair_rerank": 0.16666666666666666
+          "gaussian_bayes": 0.24999999999999997,
+          "knn_conditional": 0.3541666666666667,
+          "hybrid": 0.125,
+          "pair_rerank": 0.2708333333333333
         },
         "pooled_validation_weights": {
-          "gaussian_bayes": 0.125,
-          "knn_conditional": 0.5625,
+          "gaussian_bayes": 0.3125,
+          "knn_conditional": 0.5,
           "hybrid": 0.0625,
-          "pair_rerank": 0.25
+          "pair_rerank": 0.125
         }
       },
       {
         "regime": "pair_heavy",
-        "best_sampler": "gaussian_bayes",
-        "best_sampler_display": "Gaussian/Bayes",
-        "best_mean_objective": 1083.024733923804,
-        "best_mean_rank": 2.75,
+        "best_sampler": "bootstrap_mean_mixture",
+        "best_sampler_display": "mean mix",
+        "best_mean_objective": 1110.9373515175234,
+        "best_mean_rank": 4.0,
         "bootstrap_mean_weights": {
           "gaussian_bayes": 0.20833333333333334,
-          "knn_conditional": 0.3958333333333333,
-          "hybrid": 0.1875,
-          "pair_rerank": 0.20833333333333337
+          "knn_conditional": 0.4583333333333333,
+          "hybrid": 0.10416666666666666,
+          "pair_rerank": 0.22916666666666666
         },
         "pooled_validation_weights": {
-          "gaussian_bayes": 0.1875,
-          "knn_conditional": 0.5625,
-          "hybrid": 0.0625,
+          "gaussian_bayes": 0.25,
+          "knn_conditional": 0.4375,
+          "hybrid": 0.125,
           "pair_rerank": 0.1875
         }
       },
       {
         "regime": "dilution_heavy",
-        "best_sampler": "pooled_validation_mixture",
-        "best_sampler_display": "pooled mix",
-        "best_mean_objective": 1388.4969219610803,
-        "best_mean_rank": 2.75,
+        "best_sampler": "bootstrap_mean_mixture",
+        "best_sampler_display": "mean mix",
+        "best_mean_objective": 1303.6256818347795,
+        "best_mean_rank": 3.25,
         "bootstrap_mean_weights": {
-          "gaussian_bayes": 0.27083333333333337,
-          "knn_conditional": 0.4166666666666667,
-          "hybrid": 0.10416666666666666,
-          "pair_rerank": 0.20833333333333331
+          "gaussian_bayes": 0.35416666666666663,
+          "knn_conditional": 0.35416666666666663,
+          "hybrid": 0.08333333333333333,
+          "pair_rerank": 0.20833333333333334
         },
         "pooled_validation_weights": {
-          "gaussian_bayes": 0.125,
-          "knn_conditional": 0.5625,
-          "hybrid": 0.0625,
-          "pair_rerank": 0.25
+          "gaussian_bayes": 0.25,
+          "knn_conditional": 0.5,
+          "hybrid": 0.125,
+          "pair_rerank": 0.125
         }
       },
       {
         "regime": "reaction_light",
         "best_sampler": "pooled_validation_mixture",
         "best_sampler_display": "pooled mix",
-        "best_mean_objective": 1688.2039547064194,
-        "best_mean_rank": 2.5,
+        "best_mean_objective": 1675.445371633934,
+        "best_mean_rank": 2.25,
         "bootstrap_mean_weights": {
-          "gaussian_bayes": 0.27083333333333337,
-          "knn_conditional": 0.4166666666666667,
-          "hybrid": 0.10416666666666666,
-          "pair_rerank": 0.20833333333333331
+          "gaussian_bayes": 0.3125,
+          "knn_conditional": 0.3541666666666667,
+          "hybrid": 0.08333333333333333,
+          "pair_rerank": 0.24999999999999997
         },
         "pooled_validation_weights": {
-          "gaussian_bayes": 0.125,
-          "knn_conditional": 0.5625,
+          "gaussian_bayes": 0.3125,
+          "knn_conditional": 0.5,
           "hybrid": 0.0625,
-          "pair_rerank": 0.25
+          "pair_rerank": 0.125
         }
       },
       {
         "regime": "reaction_heavy",
         "best_sampler": "pooled_validation_mixture",
         "best_sampler_display": "pooled mix",
-        "best_mean_objective": 866.9644773532098,
-        "best_mean_rank": 2.5,
+        "best_mean_objective": 845.392685816967,
+        "best_mean_rank": 2.25,
         "bootstrap_mean_weights": {
-          "gaussian_bayes": 0.27083333333333337,
-          "knn_conditional": 0.4166666666666667,
+          "gaussian_bayes": 0.2916666666666667,
+          "knn_conditional": 0.3541666666666667,
           "hybrid": 0.10416666666666666,
-          "pair_rerank": 0.20833333333333331
+          "pair_rerank": 0.24999999999999997
         },
         "pooled_validation_weights": {
-          "gaussian_bayes": 0.125,
-          "knn_conditional": 0.5625,
+          "gaussian_bayes": 0.3125,
+          "knn_conditional": 0.5,
           "hybrid": 0.0625,
-          "pair_rerank": 0.25
+          "pair_rerank": 0.125
         }
       },
       {
         "regime": "no_reaction",
         "best_sampler": "pooled_validation_mixture",
         "best_sampler_display": "pooled mix",
-        "best_mean_objective": 1687.4289547064195,
-        "best_mean_rank": 2.5,
+        "best_mean_objective": 1675.1853716339338,
+        "best_mean_rank": 2.25,
         "bootstrap_mean_weights": {
-          "gaussian_bayes": 0.27083333333333337,
-          "knn_conditional": 0.4166666666666667,
-          "hybrid": 0.10416666666666666,
-          "pair_rerank": 0.20833333333333331
+          "gaussian_bayes": 0.3125,
+          "knn_conditional": 0.3541666666666667,
+          "hybrid": 0.08333333333333333,
+          "pair_rerank": 0.24999999999999997
         },
         "pooled_validation_weights": {
-          "gaussian_bayes": 0.125,
-          "knn_conditional": 0.5625,
+          "gaussian_bayes": 0.3125,
+          "knn_conditional": 0.5,
           "hybrid": 0.0625,
-          "pair_rerank": 0.25
+          "pair_rerank": 0.125
         }
       }
     ]

@@ -4,10 +4,18 @@ Date: 2026-05-24
 
 ## Local Consistency
 
-- BibTeX entries in `paper/references.bib`: 26.
-- Unique citation keys used in `paper/wrr_manuscript.tex`: 26.
+- BibTeX entries in `paper/references.bib`: 56.
+- Unique citation keys used in `paper/wrr_manuscript.tex`: 56.
 - Missing BibTeX entries: none.
 - Uncited BibTeX entries: none.
+
+## Expansion Audit
+
+The bibliography was expanded by 30 directly relevant references spanning pore-scale mixing, non-Fickian transport, Lagrangian reactive transport, OpenFOAM/pore-scale simulation, and machine-learning methods for porous media.
+
+- New references added: 30.
+- New references with Diogo Bolster in the author list: 11.
+- New references from 2023--2026: 17.
 
 ## Crossref DOI Check
 
